@@ -5,9 +5,14 @@ from PyQt6.QtCore import QCoreApplication
 import sys
 
 class Bdd(QWidget):
+    """Classe Bdd
+
+    Args:
+        QWidget : Hérite de la classe QWidget
+    """
+
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("UI Avions")
 
         # QSqlDatabase
         self.db : QSqlDatabase = QSqlDatabase.addDatabase("QPSQL")
@@ -19,13 +24,16 @@ class Bdd(QWidget):
         ok : bool = self.db.open()
         if ok:
             print("Successfull connection to database")
-            self.getPlanes()
-            self.getCountry()
             
         else:
             self.db.lastError().text()
     
     def getPlanes(self) -> list:
+        """Récupère la liste des avions
+
+        Returns:
+            list: Une liste d'avions (TODO)
+        """
         query : QSqlQuery = self.db.exec('SELECT * FROM "Planes";')
         list = []
         while query.next():
@@ -33,6 +41,11 @@ class Bdd(QWidget):
         return list
 
     def getCountry(self) -> list:
+        """Retourne la liste des pays
+
+        Returns:
+            list: Une liste de nom de pays
+        """
         query : QSqlQuery = self.db.exec('SELECT "Name" FROM "Countries" ORDER BY "Name" ASC;')
         list = []
         while query.next():
@@ -40,6 +53,14 @@ class Bdd(QWidget):
         return list
 
     def getAirportByCountry(self, country : str) -> list:
+        """Retourne les aeroports
+
+        Args:
+            country (str): Nom d'un pays
+
+        Returns:
+            list: Une liste d'aeroport
+        """
         #TODO
         pass
         
