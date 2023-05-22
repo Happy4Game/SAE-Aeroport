@@ -24,3 +24,5 @@ class AirportInfoLayout(QVBoxLayout):
         self.addWidget(self.__radioCode)
         self.addWidget(self.__location)
 
+        
+
