@@ -1,10 +1,13 @@
 from PyQt6.QtWidgets import QLabel, QVBoxLayout
 
 class AirportInfoLayout(QVBoxLayout):
+    """Création du layout contenant le sinformations des aéroports
 
+    Args:
+        QVBoxLayout (QtWidgets): Layout vertical
+    """
     def __init__(self):
         super().__init__()
-
         # Labels indiquant les informations de l'aeroport
         self.__label = QLabel("Informations de l'aeroport")
         self.__name = QLabel("Nom : ")
@@ -13,6 +16,7 @@ class AirportInfoLayout(QVBoxLayout):
         self.__radioCode = QLabel("Code radio : ")
         self.__location = QLabel("Lieu : ")
 
+        # Ajout des widgets dans le layout
         self.addWidget(self.__label)
         self.addWidget(self.__name)
         self.addWidget(self.__IATACode)
