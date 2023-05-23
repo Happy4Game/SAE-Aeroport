@@ -28,18 +28,37 @@ class Bdd(QWidget):
         else:
             self.db.lastError().text()
     
-    def getPlanes(self) -> list:
+    # def getPlanes(self) -> list:
+    #     """Récupère la liste des avions
+
+    #     Returns:
+    #         list: Une liste d'avions (TODO)
+    #     """
+    #     query : QSqlQuery = self.db.exec('SELECT * FROM "Planes";')
+    #     list = []
+    #     while query.next():
+    #         list.append(query.value(0))
+    #     return list
+#-----------------------------------------------------------------------------
+    def get_name_country(self) -> tuple:
         """Récupère la liste des avions
 
-        Returns:
-            list: Une liste d'avions (TODO)
-        """
-        query : QSqlQuery = self.db.exec('SELECT * FROM "Planes";')
-        list = []
-        while query.next():
-            list.append(query.value(0))
-        return list
+    Returns:
+        (QSqlQuery, list): La requête exécutée et une liste d'avions
+    """
+        query = QSqlQuery(self.db)
+        query.prepare('SELECT "Name" FROM "Countries" ORDER BY "Name" ASC;')
 
+        if query.exec():
+            plane_list = []
+            while query.next():
+                plane_list.append(query.value(0))
+            return query, plane_list
+        else:
+            print("Erreur lors de l'exécution de la requête.")
+            return query, []
+#--------------------------------------------------------------------------
+    
     def getCountry(self) -> list:
         """Retourne la liste des pays
 

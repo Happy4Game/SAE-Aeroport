@@ -2,6 +2,7 @@ from PyQt6.QtWidgets import QApplication, QWidget, QHBoxLayout
 from CountryListLayout import CountryListLayout
 from AirportListLayout import AirportListLayout
 from AirportInfoWidget import AirportInfoLayout
+from ViewDataLayout import ViewDataLayout # demandé pourquoi il n'importe pas juste le fichier
 
 import sys
 
@@ -32,6 +33,11 @@ class win(QWidget):
         # Crée le layout affichant les informations sur un aeroport
         self.__airportInfo = AirportInfoLayout()
         self.__mainLayout.addLayout(self.__airportInfo)
+
+        #Crée le layout affichant les data visualisation
+        self.__viewData = ViewDataLayout()
+        self.__mainLayout.addLayout(self.__viewData)
+        self.__viewData.load_data
 
         self.setLayout(self.__mainLayout)
         self.show()
