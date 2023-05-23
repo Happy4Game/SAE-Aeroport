@@ -1,8 +1,5 @@
 from PyQt6.QtSql import QSqlDatabase, QSqlQuery
-from PyQt6.QtWidgets import QApplication, QWidget
-from PyQt6 import QtSql, QtCore
-from PyQt6.QtCore import QCoreApplication
-import sys
+from PyQt6.QtWidgets import QWidget
 
 class Bdd(QWidget):
     """Classe Bdd
@@ -61,8 +58,12 @@ class Bdd(QWidget):
         Returns:
             list: Une liste d'aeroport
         """
-        #TODO
-        pass
+        # TODO
+        if (country == "Test"):
+            return ["Test de Gaulle", "Test de Roissy", "..."]
+        else:
+            return ["Aucun résultat"]
+        
         
     def closeConnection(self):
         self.db.close()
@@ -70,8 +71,8 @@ class Bdd(QWidget):
 
 
 
-if __name__ == "__main__": 
-    print(f'main') 
-    app = QApplication(sys.argv) 
-    f = Bdd() 
-    sys.exit(app.exec())
+# if __name__ == "__main__": 
+#     print(f'main') 
+#     app = QApplication(sys.argv) 
+#     f = Bdd() 
+#     sys.exit(app.exec())

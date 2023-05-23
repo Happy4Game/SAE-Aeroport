@@ -25,6 +25,7 @@ class CountryListLayout(QVBoxLayout):
 
         # A retirer (TODO)
         self.__list.addItem("Test")
+        self.__list.addItem("Test2")
 
         self.__bdd.closeConnection()
 
