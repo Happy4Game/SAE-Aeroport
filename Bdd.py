@@ -70,6 +70,13 @@ class Bdd(QWidget):
         while query.next():
             list.append(query.value(0))
         return list
+    
+    def getInfoByAirport(self, airport : str) -> list:
+        if airport == "Charles de Gaulle":
+            return["AER", "ETU", "knfv", "hurhu", "gt", "gtijid", "ieviuv", "huevu", "ufgihe"]
+        else:
+            return [""]
+        
 
     def getAirportByCountry(self, country : str) -> list:
         """Retourne les aeroports

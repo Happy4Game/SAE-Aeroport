@@ -39,6 +39,8 @@ class win(QWidget):
         self.__mainLayout.addLayout(self.__viewData)
         self.__viewData.load_data
 
+        self.__airportList.airportClicked.connect(self.setSelectedAiroprt)
+
         self.setLayout(self.__mainLayout)
         self.show()
 
@@ -50,6 +52,10 @@ class win(QWidget):
         """
         # TODO Envoyer vers AirportListLayout
         print(country)
+
+    def setSelectedAiroprt(self, airport :str):
+        print(airport)
+        self.__airportInfo.setInfoByAeroport(airport)
 
 if __name__ == "__main__": 
     print(f'main') 
