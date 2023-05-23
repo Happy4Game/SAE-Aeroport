@@ -3,6 +3,7 @@ from CountryListLayout import CountryListLayout
 from AirportListLayout import AirportListLayout
 from AirportInfoWidget import AirportInfoLayout
 
+
 import sys
 
 class win(QWidget): 
@@ -33,6 +34,13 @@ class win(QWidget):
         self.__airportInfo = AirportInfoLayout()
         self.__mainLayout.addLayout(self.__airportInfo)
 
+        #Crée le layout affichant les data visualisation
+        # self.__viewData = ViewDataLayout()
+        # self.__mainLayout.addLayout(self.__viewData)
+        # self.__viewData.load_data
+
+        self.__airportList.airportClicked.connect(self.setSelectedAiroprt)
+
         self.setLayout(self.__mainLayout)
         self.show()
 
@@ -44,6 +52,10 @@ class win(QWidget):
         """
         # TODO Envoyer vers AirportListLayout
         print(country)
+
+    def setSelectedAiroprt(self, airport :str):
+        print(airport)
+        self.__airportInfo.setInfoByAeroport(airport)
 
 if __name__ == "__main__": 
     print(f'main') 

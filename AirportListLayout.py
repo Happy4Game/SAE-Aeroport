@@ -1,7 +1,11 @@
 from PyQt6.QtWidgets import QLabel, QVBoxLayout, QListWidget
 from PyQt6.QtCore import Qt
+from PyQt6.QtCore import pyqtSignal
+from Bdd import Bdd
 
 class AirportListLayout(QVBoxLayout):
+    airportClicked : pyqtSignal = pyqtSignal(str)
+
     """Création du layout contenant la liste des aéroports
 
     Args:
@@ -26,3 +30,11 @@ class AirportListLayout(QVBoxLayout):
         # Ajout des widgets dans le layout
         self.addWidget(self.__label)
         self.addWidget(self.__list)
+
+        self.__list.itemClicked.connect(self.airportClickedFunc)
+
+        
+
+    def airportClickedFunc(self, item : QListWidget):
+        self.airportClicked.emit(item.text())
+        
