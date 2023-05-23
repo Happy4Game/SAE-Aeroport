@@ -43,7 +43,7 @@ class win(QWidget):
             country (str): _description_
         """
         # TODO Envoyer vers AirportListLayout
-        self.__airportList.setAirportList(country)
+        self.__airportList.setAirportListByCountry(country)
 
 if __name__ == "__main__": 
     print(f'main') 

@@ -23,7 +23,7 @@ class AirportListLayout(QVBoxLayout):
         self.addWidget(self.__list)
 
     
-    def setAirportList(self, country : str):
+    def setAirportListByCountry(self, country : str):
         """Définit la liste des aéroports récupérés dans la vue CountryListLayout pour la vue AirportListLayout
 
         Args:
