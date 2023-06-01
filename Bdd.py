@@ -1,7 +1,6 @@
 from PyQt6.QtSql import QSqlDatabase, QSqlQuery
 from PyQt6.QtWidgets import QApplication, QWidget
-from PyQt6 import QtSql, QtCore
-from PyQt6.QtCore import QCoreApplication
+
 import sys
 
 class Bdd(QWidget):
@@ -14,13 +13,18 @@ class Bdd(QWidget):
     def __init__(self):
         super().__init__()
 
+        if QSqlDatabase.contains():
+            default_connection = QSqlDatabase.database()
+            default_connection.close()
+            QSqlDatabase.removeDatabase(default_connection.connectionName())
+
         # QSqlDatabase
         self.db : QSqlDatabase = QSqlDatabase.addDatabase("QPSQL")
         self.db.setHostName("localhost")
         self.db.setPort(5432)
         self.db.setDatabaseName("planes_test")
         self.db.setUserName("postgres")
-        self.db.setPassword("toor")
+        self.db.setPassword("Johannahoj972.")
         ok : bool = self.db.open()
         if ok:
             print("Successfull connection to database")
@@ -40,42 +44,85 @@ class Bdd(QWidget):
             list.append(query.value(0))
         return list
 
-    def get_name_country(self) -> tuple:
-        """Récupère la liste des avions
-
-    Returns:
-        (QSqlQuery, list): La requête exécutée et une liste d'avions
-    """
-        query = QSqlQuery(self.db)
-        query.prepare('SELECT "Name" FROM "Countries" ORDER BY "Name" ASC;')
-
-        if query.exec():
-            plane_list = []
-            while query.next():
-                plane_list.append(query.value(0))
-            return query, plane_list
-        else:
-            print("Erreur lors de l'exécution de la requête.")
-            return query, []
 
     
     def getCountry(self) -> list:
         """Retourne la liste des pays
 
         Returns:
-            list: Une liste de nom de pays
+            list: Une liste de noms de pays
         """
-        query : QSqlQuery = self.db.exec('SELECT "Name" FROM "Countries" ORDER BY "Name" ASC;')
-        list = []
+        query = QSqlQuery(self.db)
+        query.exec('SELECT "name_country" FROM "country" ORDER BY "name_country" ASC;')
+        
+        country_list = []
         while query.next():
-            list.append(query.value(0))
-        return list
+            country_list.append(query.value(0))
+        
+        print(country_list)
+        return country_list
     
-    def getInfoByAirport(self, airport : str) -> list:
-        if airport == "Charles de Gaulle":
-            return["AER", "ETU", "knfv", "hurhu", "gt", "gtijid", "ieviuv", "huevu", "ufgihe"]
+    def getInfoByAirport(self, airport: str) -> list:
+        query = QSqlQuery(self.db)
+        info = []
+        if query.exec('SELECT * FROM "airport";'):
+            while query.next():
+                name = query.value(1)
+                city = query.value(2)
+                country = query.value(3)
+                iata_code = query.value(4)
+                icao_code = query.value(5)
+                latitude = query.value(6)
+                longitude = query.value(7)
+                altitude = query.value(8)
+                timezone = query.value(9)
+
+                if airport == name:
+                    info.append(name)
+                    info.append(city)
+                    info.append(country)
+                    info.append(iata_code)
+                    info.append(icao_code)
+                    info.append(latitude)
+                    info.append(longitude)
+                    info.append(altitude)
+                    info.append(timezone)
+
         else:
-            return [""]
+            print("Erreur lors de l'exécution de la requête.")
+
+        return info
+
+
+    def getPositionAeroport(self, country: str):
+        query = QSqlQuery(self.db)
+        query.prepare("SELECT name_ap, latitude_ap, longitude_ap FROM airport WHERE country_ap = :country")
+        query.bindValue(":country", country)
+
+        if query.exec():
+            data = []
+            while query.next():
+                name = query.value(0)
+                latitude = query.value(1)
+                longitude = query.value(2)
+                data.append((name, latitude, longitude))
+
+            return data
+        else:
+            print("Erreur lors de l'exécution de la requête.")
+            return query, []
+
+    
+    def getAirFrancePlaneSeats(self):
+        query = QSqlQuery(self.db)
+        query.exec('select distinct p.name_plane, ps.seat_nb from plane p inner join planeseats ps on p.icao_plane = ps.icao_plane inner join routes r on p.icao_plane = r.icao_code inner join airlinecompany ac on r.id_ac = ac.id_ac where ac.name_ac ilike "Air France";')
+        seat_list = []
+        while query.next():
+            plane_name = query.value(0)
+            seat_number = query.value(1)
+            seat_list.append((plane_name, seat_number))
+        return seat_list
+
         
 
     def getAirportByCountry(self, country : str) -> list:
@@ -87,8 +134,19 @@ class Bdd(QWidget):
         Returns:
             list: Une liste d'aeroport
         """
-        #TODO
-        pass
+        query = QSqlQuery(self.db)
+        query.prepare("SELECT name_ap FROM airport WHERE country_ap = :country")
+        query.bindValue(":country", country)
+
+        if query.exec():
+            data = []
+            while query.next():
+                data.append(query.value(0))
+
+            return data
+        else:
+            print("Erreur lors de l'exécution de la requête.")
+            return query, []
         
     def closeConnection(self):
         self.db.close()
