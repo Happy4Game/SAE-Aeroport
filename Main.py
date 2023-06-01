@@ -1,11 +1,13 @@
-from PyQt6.QtWidgets import QApplication, QWidget, QHBoxLayout
+from PyQt6.QtWidgets import QWidget
+from PyQt6.QtWidgets import QApplication, QHBoxLayout, QVBoxLayout, QWidget
 from CountryListLayout import CountryListLayout
 from AirportListLayout import AirportListLayout
 from AirportInfoWidget import AirportInfoLayout
-from ViewDataLayout import ViewDataLayout # demandé pourquoi il n'importe pas juste le fichier
+from ViewDataMapWidget import ViewDataMapWidget
 
 import sys
-
+#TODO: a chaque clique effacer derriere pour ne pas générer une double liste
+# Faire en sorte de récupérer le pays pour que la map monde s'affiche en fonction
 class win(QWidget): 
     """Créer la fenêtre principale
 
@@ -29,29 +31,26 @@ class win(QWidget):
         # Crée le layout affichant les aeroports
         self.__airportList = AirportListLayout()
         self.__mainLayout.addLayout(self.__airportList)
+        self.__airportList.airportClicked.connect(self.setSelectedAiroprt)
 
         # Crée le layout affichant les informations sur un aeroport
         self.__airportInfo = AirportInfoLayout()
         self.__mainLayout.addLayout(self.__airportInfo)
 
         #Crée le layout affichant les data visualisation
-        self.__viewData = ViewDataLayout()
-        self.__mainLayout.addLayout(self.__viewData)
-        self.__viewData.load_data
+        self.__viewData = ViewDataMapWidget()
+        self.__viewData.setFixedSize(500, 500)
+        self.__mainLayout.addWidget(self.__viewData)
 
-        self.__airportList.airportClicked.connect(self.setSelectedAiroprt)
+        
 
         self.setLayout(self.__mainLayout)
         self.show()
 
     def setSelectedCountry(self, country : str):
-        """Définit le pays récupéré dans la vue CountryListLayout pour la vue AirportListLayout
-
-        Args:
-            country (str): _description_
-        """
-        # TODO Envoyer vers AirportListLayout
-        print(country)
+        
+        self.__airportList.setAeroportByCountry(country)
+        return country
 
     def setSelectedAiroprt(self, airport :str):
         print(airport)

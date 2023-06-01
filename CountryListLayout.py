@@ -13,24 +13,13 @@ class CountryListLayout(QVBoxLayout):
         self.__label = QLabel("Liste des pays")
 
         self.__list = QListWidget()
-        
-        # Liste de pays randoms (Européens)
-
-        # BDD
-        self.__bdd = Bdd()
-
-        list = self.__bdd.getCountry()
-        for country in list:
-            self.__list.addItem(country)
-
-        # A retirer (TODO)
-        self.__list.addItem("Test")
-
-        self.__bdd.closeConnection()
+        self.countryClickedText = ""
+        self.addWidget(self.__label)
+        self.addWidget(self.__list)
 
         # Redirection du signal vers la fonction countryClickedFunc
         self.__list.itemClicked.connect(self.countryClickedFunc)
-
+        self.addCountryList()
         self.addWidget(self.__label)
         self.addWidget(self.__list)
 
@@ -41,4 +30,25 @@ class CountryListLayout(QVBoxLayout):
         Args:
             item (QListWidgetItem): Element de QListWidget
         """
+        self.countryClickedText = item.text()
         self.countryClicked.emit(item.text())
+
+    def getCountryClickedText(self):
+        """Fonction qui retourne le texte émis par le signal countryClicked.
+
+        Returns:
+            str: Texte émis par le signal countryClicked.
+        """
+        
+        return self.countryClickedText
+    
+    def addCountryList(self):
+        if self.__list.count() == 0:
+            bdd = Bdd()
+            info = bdd.getCountry()
+
+            print(info)
+            for country in range(len(info)):
+                self.__list.addItem(info[country])
+                
+            bdd.closeConnection()

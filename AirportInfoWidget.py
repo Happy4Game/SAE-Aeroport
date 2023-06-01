@@ -21,7 +21,6 @@ class AirportInfoLayout(QVBoxLayout):
         self.__altitude = QLabel("Altitude : ")
         self.__timezone = QLabel("Timezone : ")
         
-
         # Ajout des widgets dans le layout
         self.addWidget(self.__label)
         self.addWidget(self.__name)
@@ -34,17 +33,18 @@ class AirportInfoLayout(QVBoxLayout):
         self.addWidget(self.__altitude)
         self.addWidget(self.__timezone)
         
+        # Initialisation des valeurs des labels
+        self.labels = [self.__name, self.__city, self.__country, self.__IATACode, self.__ICAOCode, self.__latitude, self.__longitude, self.__altitude, self.__timezone]
+        self.initialTexts = [label.text() for label in self.labels]
 
-
-    def setInfoByAeroport(self, airport :str):
+    def setInfoByAeroport(self, airport: str):
         bdd = Bdd()
-        list = bdd.getInfoByAirport(airport)
+        info = bdd.getInfoByAirport(airport)
         
-        labels = [self.__name, self.__city, self.__country, self.__IATACode, self.__ICAOCode, self.__latitude, self.__longitude, self.__altitude, self.__timezone]
+        for label, initialText in zip(self.labels, self.initialTexts):
+            label.setText(initialText)  # Réinitialisation du texte avant mise à jour
 
-        
-        
-        for i in range(len(labels)):
-            labels[i].setText(labels[i].text() + list[i])
-                
+        for label, value in zip(self.labels, info):
+            label.setText(label.text() + str(value))
+            
         bdd.closeConnection()
