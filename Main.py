@@ -1,8 +1,8 @@
 from PyQt6.QtWidgets import QWidget
 from PyQt6.QtWidgets import QApplication, QHBoxLayout, QVBoxLayout, QWidget
-from CountryListLayout import CountryListLayout
-from AirportListLayout import AirportListLayout
-from AirportInfoWidget import AirportInfoLayout
+from CountryListWidget import CountryListWidget
+from AirportListWidget import AirportListWidget
+from AirportInfoWidget import AirportInfoWidget
 from ViewDataMapWidget import ViewDataMapWidget
 
 
@@ -14,6 +14,7 @@ class win(QWidget):
     """
     def __init__(self): 
         super().__init__()
+        self.setMinimumSize(1250, 500)
 
         # TODO Changer le nom du logiciel
         self.setWindowTitle("UI Avions")
@@ -21,21 +22,22 @@ class win(QWidget):
         # Layout comprenant l'ensemble des widgets/layouts
         self.__mainLayout = QHBoxLayout()
 
-        # Crée le layout affichant les pays
-        self.__countryList : CountryListLayout = CountryListLayout()
+        # Crée le widget affichant les pays
+        self.__countryList : CountryListWidget = CountryListWidget()
         # Récupère le signal et le redirige vers la fonction setSelectedCountry
         self.__countryList.countryClicked.connect(self.setSelectedCountry)
 
-        self.__mainLayout.addLayout(self.__countryList)
+        self.__mainLayout.addWidget(self.__countryList)
 
-        # Crée le layout affichant les aeroports
-        self.__airportList = AirportListLayout()
-        self.__mainLayout.addLayout(self.__airportList)
+        # Crée le widget affichant les aeroports
+        self.__airportList : AirportListWidget = AirportListWidget()
+        self.__mainLayout.addWidget(self.__airportList)
         self.__airportList.airportClicked.connect(self.setSelectedAiroprt)
 
-        # Crée le layout affichant les informations sur un aeroport
-        self.__airportInfo = AirportInfoLayout()
-        self.__mainLayout.addLayout(self.__airportInfo)
+        # Crée le widget affichant les informations sur un aeroport
+        self.__airportInfo = AirportInfoWidget()
+        self.__airportInfo.setFixedSize(200, 500)
+        self.__mainLayout.addWidget(self.__airportInfo)
 
         #Crée le layout affichant les data visualisation
         self.__viewData = ViewDataMapWidget()
@@ -48,7 +50,6 @@ class win(QWidget):
         self.show()
 
     def setSelectedCountry(self, country : str):
-        
         self.__airportList.setAeroportByCountry(country)
 
         # Supprimer le widget précédent s'il existe
