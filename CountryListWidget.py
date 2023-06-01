@@ -1,27 +1,30 @@
-from PyQt6.QtWidgets import QLabel, QVBoxLayout, QListWidget, QListWidgetItem
+from PyQt6.QtWidgets import QLabel, QWidget, QVBoxLayout, QListWidget, QListWidgetItem
 from PyQt6.QtCore import pyqtSignal
 from Bdd import Bdd
 
-class CountryListLayout(QVBoxLayout):
+class CountryListWidget(QWidget):
 
     countryClicked : pyqtSignal = pyqtSignal(str)
 
     def __init__(self):
         super().__init__()
 
+        self.__layout = QVBoxLayout()
+        self.setLayout(self.__layout)
+
         # Label indiquant la liste des pays
         self.__label = QLabel("Liste des pays")
 
         self.__list = QListWidget()
         self.countryClickedText = ""
-        self.addWidget(self.__label)
-        self.addWidget(self.__list)
+        self.__layout.addWidget(self.__label)
+        self.__layout.addWidget(self.__list)
 
         # Redirection du signal vers la fonction countryClickedFunc
         self.__list.itemClicked.connect(self.countryClickedFunc)
         self.addCountryList()
-        self.addWidget(self.__label)
-        self.addWidget(self.__list)
+        self.__layout.addWidget(self.__label)
+        self.__layout.addWidget(self.__list)
 
 
     def countryClickedFunc(self, item : QListWidgetItem):

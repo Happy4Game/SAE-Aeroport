@@ -23,8 +23,8 @@ class Bdd(QWidget):
         self.db.setHostName("localhost")
         self.db.setPort(5432)
         self.db.setDatabaseName("planes_test")
-        self.db.setUserName("postgres")
-        self.db.setPassword("Johannahoj972.")
+        self.db.setUserName("happy")
+        self.db.setPassword("toor")
         ok : bool = self.db.open()
         if ok:
             print("Successfull connection to database")
