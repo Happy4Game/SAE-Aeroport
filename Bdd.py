@@ -46,14 +46,15 @@ class Bdd(QWidget):
 
 
     
-    def getCountry(self) -> list:
+    def getCountry(self, text : str = "") -> list:
         """Retourne la liste des pays
 
         Returns:
             list: Une liste de noms de pays
         """
         query = QSqlQuery(self.db)
-        query.exec('SELECT "name_country" FROM "country" ORDER BY "name_country" ASC;')
+        query.exec("SELECT name_country FROM country WHERE name_country ILIKE '" + text + "%' ORDER BY name_country ASC;")
+     
         
         country_list = []
         while query.next():
