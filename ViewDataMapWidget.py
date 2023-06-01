@@ -18,21 +18,14 @@ class ViewDataMapWidget(QWidget):
         self.__layout = QVBoxLayout()
         self.resize(50,50)
 
-        temp_file = self.view_data()
-
-        # Charger l'image dans QLabel
-        image_label = QLabel()
-        pixmap = QPixmap(temp_file).scaled(500, 500)
-        image_label.setPixmap(pixmap)
-        self.__layout.addWidget(image_label)
-
+        
         self.setLayout(self.__layout)
         
         
 
-    def view_data(self) -> str:
+    def view_data_country(self, country : str) -> str:
         bdd = Bdd()
-        airport_data = bdd.getPositionAeroport("France")
+        airport_data = bdd.getPositionAeroportOfCountry(country)
 
         # Création d'un DataFrame Pandas à partir des données des aéroports
         df = pd.DataFrame(airport_data, columns=["name", "latitude", "longitude"])
@@ -57,14 +50,66 @@ class ViewDataMapWidget(QWidget):
         ax.set_ylabel('Latitude')
         ax.set_aspect('equal')
 
+        # Définir les limites de zoom sur l'Europe
+        ax.set_xlim(-30, 50)  # Ajuster ces valeurs en fonction de la zone d'intérêt
+        ax.set_ylim(30, 80)   # Ajuster ces valeurs en fonction de la zone d'intérêt
+
+
         # Enregistrer la carte au format PNG
         temp_file = 'map.png'
         plt.savefig(temp_file, format='png')
         plt.close()
 
-        return temp_file
+        # Charger l'image dans QLabel
         
+        image_label = QLabel()
+        pixmap = QPixmap(temp_file).scaled(500, 500)
+        image_label.setPixmap(pixmap)
+        self.__layout.addWidget(image_label)
+        
+        
+    def view_data_airport(self, airport : str) -> str:
+        bdd = Bdd()
+        airport_data = bdd.getPositionAeroport(airport)
+        print(airport_data)
+        # Création d'un DataFrame Pandas à partir des données des aéroports
+        df = pd.DataFrame(airport_data, columns=["name", "latitude", "longitude"])
 
+        df['latitude'] = df['latitude'].str.replace(',', '.')
+        df['longitude'] = df['longitude'].str.replace(',', '.')
+        # Création d'une géo-série GeoPandas à partir du DataFrame
+        geometry = [Point(xy) for xy in zip(df['longitude'], df['latitude'])]
+        gdf = gpd.GeoDataFrame(df, geometry=geometry)
+
+        # Chargement de la carte du monde
+        world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+
+        # Affichage de la carte du monde et des points des aéroports
+        fig, ax = plt.subplots(figsize=(12, 8))
+        world.plot(ax=ax, color='lightgray')
+        gdf.plot(ax=ax, markersize=5, color='red', alpha=0.5)
+
+        # Paramètres de l'affichage
+        ax.set_title('Airport Locations')
+        ax.set_xlabel('Longitude')
+        ax.set_ylabel('Latitude')
+        ax.set_aspect('equal')
+
+        # Définir les limites de zoom sur l'Europe
+        ax.set_xlim(-30, 50)  # Ajuster ces valeurs en fonction de la zone d'intérêt
+        ax.set_ylim(30, 80)   # Ajuster ces valeurs en fonction de la zone d'intérêt
+        
+        # Enregistrer la carte au format PNG
+        temp_file = 'map.png'
+        plt.savefig(temp_file, format='png')
+        plt.close()
+
+        # Charger l'image dans QLabel
+        
+        image_label = QLabel()
+        pixmap = QPixmap(temp_file).scaled(500, 500)
+        image_label.setPixmap(pixmap)
+        self.__layout.addWidget(image_label)
 
 
 

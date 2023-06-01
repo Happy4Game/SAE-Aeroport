@@ -1,20 +1,19 @@
-from PyQt6.QtWidgets import QLabel, QVBoxLayout, QWidget, QListWidget
+from PyQt6.QtWidgets import QLabel, QVBoxLayout, QListWidget
 from PyQt6.QtCore import Qt
 from PyQt6.QtCore import pyqtSignal
 from Bdd import Bdd
 
-class AirportListWidget(QWidget):
+class AirportListLayout(QVBoxLayout):
     airportClicked : pyqtSignal = pyqtSignal(str)
 
-    """Création du widget contenant la liste des aéroports
+    """Création du layout contenant la liste des aéroports
 
+    Args:
+        QVBoxLayout (QWidget): Layout vertical
     """
 
     def __init__(self):
         super().__init__()
-
-        self.__layout = QVBoxLayout()
-        self.setLayout(self.__layout)
 
         # Label indiquant la liste des aeroports
         self.__label = QLabel("Liste des aeroports")
@@ -29,8 +28,8 @@ class AirportListWidget(QWidget):
         # self.__list.addItem("Lyon")
 
         # Ajout des widgets dans le layout
-        self.__layout.addWidget(self.__label)
-        self.__layout.addWidget(self.__list)
+        self.addWidget(self.__label)
+        self.addWidget(self.__list)
 
         self.__list.itemClicked.connect(self.airportClickedFunc)
 

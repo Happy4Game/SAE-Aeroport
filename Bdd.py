@@ -22,9 +22,9 @@ class Bdd(QWidget):
         self.db : QSqlDatabase = QSqlDatabase.addDatabase("QPSQL")
         self.db.setHostName("localhost")
         self.db.setPort(5432)
-        self.db.setDatabaseName("planes_test")
-        self.db.setUserName("happy")
-        self.db.setPassword("toor")
+        self.db.setDatabaseName("plane_test")
+        self.db.setUserName("johan")
+        self.db.setPassword("Johannahoj972.")
         ok : bool = self.db.open()
         if ok:
             print("Successfull connection to database")
@@ -94,7 +94,7 @@ class Bdd(QWidget):
         return info
 
 
-    def getPositionAeroport(self, country: str):
+    def getPositionAeroportOfCountry(self, country: str):
         query = QSqlQuery(self.db)
         query.prepare("SELECT name_ap, latitude_ap, longitude_ap FROM airport WHERE country_ap = :country")
         query.bindValue(":country", country)
@@ -111,8 +111,25 @@ class Bdd(QWidget):
         else:
             print("Erreur lors de l'exécution de la requête.")
             return query, []
-
+        
+    def getPositionAeroport(self, airport: str):
+        query = QSqlQuery(self.db)
+        query.prepare("SELECT name_ap, latitude_ap, longitude_ap FROM airport WHERE name_ap = :airport")
+        query.bindValue(":airport", airport)
     
+        if query.exec():
+            data = []
+            while query.next():
+                name = query.value(0)
+                latitude = query.value(1)
+                longitude = query.value(2)
+                data.append((name, latitude, longitude))
+
+            return data
+        else:
+            print("Erreur lors de l'exécution de la requête.")
+            return query, []
+        
     def getAirFrancePlaneSeats(self):
         query = QSqlQuery(self.db)
         query.exec('select distinct p.name_plane, ps.seat_nb from plane p inner join planeseats ps on p.icao_plane = ps.icao_plane inner join routes r on p.icao_plane = r.icao_code inner join airlinecompany ac on r.id_ac = ac.id_ac where ac.name_ac ilike "Air France";')
