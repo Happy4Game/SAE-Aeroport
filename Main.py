@@ -12,8 +12,12 @@ class win(QWidget):
     """Créer la fenêtre principale
 
     """
+    
     def __init__(self): 
         super().__init__()
+
+        self.country : str = ""
+
         self.setMinimumSize(1250, 500)
 
         # TODO Changer le nom du logiciel
@@ -32,15 +36,16 @@ class win(QWidget):
         # Crée le widget affichant les aeroports
         self.__airportList : AirportListWidget = AirportListWidget()
         self.__mainLayout.addWidget(self.__airportList)
-        self.__airportList.airportClicked.connect(self.setSelectedAiroprt)
+        self.__airportList.airportClicked.connect(self.setSelectedAirport)
+        self.__airportList.airportSearched.connect(self.setAirportBySearch)
 
         # Crée le widget affichant les informations sur un aeroport
-        self.__airportInfo = AirportInfoWidget()
+        self.__airportInfo : AirportInfoWidget = AirportInfoWidget()
         self.__airportInfo.setFixedSize(200, 500)
         self.__mainLayout.addWidget(self.__airportInfo)
 
         #Crée le layout affichant les data visualisation
-        self.__viewData = ViewDataMapWidget()
+        self.__viewData : ViewDataMapWidget = ViewDataMapWidget()
         self.__viewData.setFixedSize(500, 500)
         self.__mainLayout.addWidget(self.__viewData)
         
@@ -50,7 +55,13 @@ class win(QWidget):
         self.show()
 
     def setSelectedCountry(self, country : str):
-        self.__airportList.setAeroportByCountry(country)
+        """Défini le pays pour la liste des aeroports et pour la viewdata
+
+        Args:
+            country (str): _description_
+        """
+        self.country = country
+        self.__airportList.setAirportByCountry(country)
 
         # Supprimer le widget précédent s'il existe
         if self.__viewData is not None:
@@ -66,9 +77,13 @@ class win(QWidget):
         self.__viewData.view_data_country(country)
 
 
-    def setSelectedAiroprt(self, airport :str):
-        print(airport)
-        self.__airportInfo.setInfoByAeroport(airport)
+    def setSelectedAirport(self, airport :str):
+        """Défini l'aeroport selectionne pour la viewdata et pour les informations de l'aeroport
+
+        Args:
+            airport (str): aeroport
+        """
+        self.__airportInfo.setInfoByAirport(airport)
 
         # Supprimer le widget précédent s'il existe
         if self.__viewData is not None:
@@ -82,6 +97,11 @@ class win(QWidget):
 
         # Afficher les données dans le nouveau widget
         self.__viewData.view_data_airport(airport)
+
+    def setAirportBySearch(self):
+        """Défini la liste des pays lors du changement de l'entrée utilisateur
+        """
+        self.__airportList.setAirportByCountry(self.country)
 
 if __name__ == "__main__": 
     print(f'main') 
