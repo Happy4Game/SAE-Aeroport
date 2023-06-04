@@ -10,6 +10,11 @@ from shapely.geometry import Point
 import sys
 
 class ViewDataMapWidget(QWidget):
+    """Classe représentant un widget contenant une data visualisation map monde
+
+    Args:
+        QWidget (QWidget): hérite de QWidget
+    """
 
     def __init__(self):
         super().__init__()
@@ -20,8 +25,14 @@ class ViewDataMapWidget(QWidget):
         
         
 
-    def view_data_country(self, country : str) -> str:
+    def view_data_country(self, country : str):
+        """Méthode permettant d'afficher une data visualisation de tout les aéroports d'un pays
+
+        Args:
+            country (str): le pays dont on veut connaitre les aéroports
+        """
         bdd = Bdd()
+        #On stock dans une varibale le résultat de la méthode
         airport_data = bdd.getPositionAeroportOfCountry(country)
 
         # Création d'un DataFrame Pandas à partir des données des aéroports
@@ -56,15 +67,21 @@ class ViewDataMapWidget(QWidget):
         plt.close()
 
         # Charger l'image dans QLabel
-        
         image_label = QLabel()
         pixmap = QPixmap(temp_file).scaled(500, 500)
         image_label.setPixmap(pixmap)
         self.__layout.addWidget(image_label)
         
         
-    def view_data_airport(self, airport : str) -> str:
+    def view_data_airport(self, airport : str):
+        """Méthode permettant d'afficher une data visualisation sous forme de map monde représentant un aéroport d'un pays
+
+        Args:
+            airport (str): l'aeroport dont on veut connaitre la position
+
+        """
         bdd = Bdd()
+        #On stock dans une variable le résultat de la méthode
         airport_data = bdd.getPositionAeroport(airport)
         print(airport_data)
         # Création d'un DataFrame Pandas à partir des données des aéroports
@@ -99,69 +116,7 @@ class ViewDataMapWidget(QWidget):
         plt.close()
 
         # Charger l'image dans QLabel
-        
         image_label = QLabel()
         pixmap = QPixmap(temp_file).scaled(500, 500)
         image_label.setPixmap(pixmap)
         self.__layout.addWidget(image_label)
-
-
-
-
-
-
-
-
-
-
-#     self.setWindowTitle("Airport Data")
-    #     self.resize(800, 600)
-    #     self.setLayout(QVBoxLayout())
-        
-    #     self.bdd = Bdd()
-    #     self.view_data()
-
-    # def view_data(self):
-
-    #     query = QSqlQuery("SELECT country_ap, COUNT(*) as count FROM airport GROUP BY country_ap")
-
-    #     series = QBarSeries()
-
-    #     while query.next():
-    #         country = query.value("country_ap")
-    #         count = query.value("count")
-
-    #         bar_set = QBarSet(country)
-    #         bar_set.append(count)
-    #         series.append(bar_set)
-
-    #     chart = QChart()
-    #     chart.addSeries(series)
-    #     chart.setTitle("Number of Airports by Country")
-    #     chart.setAnimationOptions(QChart.SeriesAnimations)
-
-    #     axis_x = QBarCategoryAxis()
-    #     chart.addAxis(axis_x, Qt.AlignBottom)
-    #     series.attachAxis(axis_x)
-
-    #     axis_y = QValueAxis()
-    #     chart.addAxis(axis_y, Qt.AlignLeft)
-    #     series.attachAxis(axis_y)
-
-    #     chart_view = QChartView(chart)
-    #     chart_view.setRenderHint(QPainter.Antialiasing)
-    #     chart_view.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    #     self.layout().addWidget(chart_view)
-
-
-
-
-
-
-# if __name__ == "__main__":
-#     app = QApplication(sys.argv)
-
-#     view = ViewDataMapWidget()
-#     view.show()
-
-#     sys.exit(app.exec())
