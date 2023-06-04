@@ -11,16 +11,16 @@ class AirportInfoWidget(QWidget):
         self.setLayout(self.__layout)
         
         # Labels indiquant les informations de l'aeroport
-        self.__label = QLabel("Informations de l'aeroport")
-        self.__name = QLabel("Nom : ")
-        self.__city = QLabel("Ville : ")
-        self.__country = QLabel("Pays : ")
-        self.__IATACode = QLabel("Code IATA : ")
-        self.__ICAOCode = QLabel("Code ICAO : ")
-        self.__latitude = QLabel("Latitude : ")
-        self.__longitude = QLabel("Longitude : ")
-        self.__altitude = QLabel("Altitude : ")
-        self.__timezone = QLabel("Timezone : ")
+        self.__label : QLabel = QLabel("Informations de l'aeroport")
+        self.__name : QLabel = QLabel("Nom : ")
+        self.__city : QLabel = QLabel("Ville : ")
+        self.__country : QLabel = QLabel("Pays : ")
+        self.__IATACode : QLabel = QLabel("Code IATA : ")
+        self.__ICAOCode : QLabel = QLabel("Code ICAO : ")
+        self.__latitude : QLabel = QLabel("Latitude : ")
+        self.__longitude : QLabel = QLabel("Longitude : ")
+        self.__altitude : QLabel = QLabel("Altitude : ")
+        self.__timezone : QLabel = QLabel("Timezone : ")
         
         # Ajout des widgets dans le layout
         self.__layout.addWidget(self.__label)
@@ -38,7 +38,7 @@ class AirportInfoWidget(QWidget):
         self.labels = [self.__name, self.__city, self.__country, self.__IATACode, self.__ICAOCode, self.__latitude, self.__longitude, self.__altitude, self.__timezone]
         self.initialTexts = [label.text() for label in self.labels]
 
-    def setInfoByAeroport(self, airport: str):
+    def setInfoByAirport(self, airport: str):
         bdd = Bdd()
         info = bdd.getInfoByAirport(airport)
         

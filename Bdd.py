@@ -49,6 +49,9 @@ class Bdd(QWidget):
     def getCountry(self, text : str = "") -> list:
         """Retourne la liste des pays
 
+        Args:
+            text (str): Nom d'un pays 'pour de la recherche' 
+
         Returns:
             list: Une liste de noms de pays
         """
@@ -64,6 +67,14 @@ class Bdd(QWidget):
         return country_list
     
     def getInfoByAirport(self, airport: str) -> list:
+        """Retourne la liste des infos d'un aeroport
+
+        Args:
+            airport (str): nom de l'aeroport
+
+        Returns:
+            list: Une liste d'informations sur un aeroport
+        """
         query = QSqlQuery(self.db)
         info = []
         if query.exec('SELECT * FROM "airport";'):
@@ -143,17 +154,18 @@ class Bdd(QWidget):
 
         
 
-    def getAirportByCountry(self, country : str) -> list:
+    def getAirportByCountry(self, country : str, airport : str = "") -> list:
         """Retourne les aeroports
 
         Args:
             country (str): Nom d'un pays
+            airport (str) : Nom d'un aeroport 'pour la fonction de recherche'
 
         Returns:
             list: Une liste d'aeroport
         """
         query = QSqlQuery(self.db)
-        query.prepare("SELECT name_ap FROM airport WHERE country_ap = :country")
+        query.prepare("SELECT name_ap FROM airport WHERE country_ap = :country AND name_ap ILIKE '" + airport + "%' ORDER BY name_ap ASC;")
         query.bindValue(":country", country)
 
         if query.exec():
