@@ -4,8 +4,7 @@ from CountryListWidget import CountryListWidget
 from AirportListWidget import AirportListWidget
 from AirportInfoWidget import AirportInfoWidget
 from ViewDataMapWidget import ViewDataMapWidget
-
-
+from ViewDataBarWidget import ViewDataBarWidget
 import sys
 
 class win(QWidget): 
@@ -45,10 +44,14 @@ class win(QWidget):
         self.__mainLayout.addWidget(self.__airportInfo)
 
         #Crée le layout affichant les data visualisation
-        self.__viewData : ViewDataMapWidget = ViewDataMapWidget()
-        self.__viewData.setFixedSize(500, 500)
-        self.__mainLayout.addWidget(self.__viewData)
+        # self.__viewData : ViewDataMapWidget = ViewDataMapWidget()
+        # self.__viewData.setFixedSize(500, 500)
+        # self.__mainLayout.addWidget(self.__viewData)
         
+        #Crée le layout affichant les data visualisation du nombre de passenger
+        self.__viewDataPassenger : ViewDataBarWidget = ViewDataBarWidget()
+        self.__viewDataPassenger.setFixedSize(500,500)
+        self.__mainLayout.addWidget(self.__viewDataPassenger)
         
 
         self.setLayout(self.__mainLayout)
@@ -64,17 +67,32 @@ class win(QWidget):
         self.__airportList.setAirportByCountry(country)
 
         # Supprimer le widget précédent s'il existe
-        if self.__viewData is not None:
-            self.__mainLayout.removeWidget(self.__viewData)
-            self.__viewData.deleteLater()
-
-        # Créer un nouveau widget
-        self.__viewData = ViewDataMapWidget()
-        self.__viewData.setFixedSize(500, 500)
-        self.__mainLayout.addWidget(self.__viewData)
+        # if self.__viewData is not None:
+        #     self.__mainLayout.removeWidget(self.__viewData)
+        #     self.__viewData.deleteLater()
+        if self.__viewDataPassenger is not None:
+            self.__mainLayout.removeWidget(self.__viewDataPassenger)
+            self.__viewDataPassenger.deleteLater()
+        # # Créer un nouveau widget
+        # self.__viewData = ViewDataMapWidget()
+        # self.__viewData.setFixedSize(500, 500)
+        # self.__mainLayout.addWidget(self.__viewData)
 
         # Afficher les données dans le nouveau widget
-        self.__viewData.view_data_country(country)
+
+        #Vue de la map monde des aeroport par pays
+        # self.__viewData.view_data_country(country)
+
+        self.__viewDataPassenger : ViewDataBarWidget = ViewDataBarWidget()
+        #self.__viewDataPassenger.setFixedSize(500,500)
+        self.__mainLayout.addWidget(self.__viewDataPassenger)
+
+        #vue pour les 10 aeroport qui transporte le plus de personne
+        #self.__viewDataPassenger.view_data_bar_nb_passenger_transport(country)
+
+        #vue pour les 5 aeroport les plus frequenter par pays
+        self.__viewDataPassenger.view_data_bar_airport_frequency(country)
+        
 
 
     def setSelectedAirport(self, airport :str):

@@ -178,6 +178,42 @@ class Bdd(QWidget):
             print("Erreur lors de l'exécution de la requête.")
             return query, []
         
+    def getNbPassengerByAirport(self, country: str):
+        # Quels sont les 10 aéroports dans un pays spécifique (défini par la variable ":country") 
+        # qui ont transporté le plus grand nombre de passagers, triés par ordre croissant du nombre de passagers ?
+        query = QSqlQuery(self.db)
+        query.prepare("SELECT nb_passenger, name_ap, name_country FROM (SELECT SUM(seat_nb) AS nb_passenger, name_ap, name_country FROM planeseats AS ps INNER JOIN plane AS p ON p.icao_plane = ps.id_plane INNER JOIN routeavion AS ra ON ra.iata_code = p.iata_plane INNER JOIN routes AS r ON r.id_ra = ra.id_ra INNER JOIN airport ON source_ap = id_ap INNER JOIN country ON country.name_country = airport.country_ap WHERE name_country ILIKE :country GROUP BY name_ap, name_country ORDER BY nb_passenger DESC LIMIT 10 ) AS subquery ORDER BY nb_passenger ASC;")
+        query.bindValue(":country", country)
+
+        if query.exec():
+            nb_passenger_data = [], []
+            while query.next():
+                nb_passenger = query.value("nb_passenger")
+                airport_name = query.value("name_ap")
+                nb_passenger_data[0].append(nb_passenger)
+                nb_passenger_data[1].append(airport_name)
+            return nb_passenger_data
+        else:
+            print("Erreur lors de l'exécution de la requête.")
+            return [], []
+
+    def getMostUseAirport(self, country: str):
+        #Quels sont les aéroports les plus fréquentés dans un pays ?
+        query = QSqlQuery(self.db)
+        query.prepare("SELECT name_ap, frequency FROM(SELECT airport.name_ap, COUNT(*) AS frequency FROM routes JOIN airport ON routes.dest_ap = airport.id_ap JOIN country ON airport.country_ap = country.name_country WHERE country.name_country ILIKE :country GROUP BY airport.name_ap ORDER BY frequency DESC limit 5) as subquery ORDER BY frequency ASC;")
+        query.bindValue(":country", country)
+        if query.exec():
+            nb_passenger_data = [], []
+            while query.next():
+                airport_name = query.value("name_ap")
+                number = query.value("frequency")
+                nb_passenger_data[0].append(airport_name)
+                nb_passenger_data[1].append(number)
+            return nb_passenger_data
+        else:
+            print("Erreur lors de l'exécution de la requête.")
+            return [], []
+        
     def closeConnection(self):
         self.db.close()
         print("Connection closed")

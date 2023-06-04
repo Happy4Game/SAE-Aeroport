@@ -14,11 +14,8 @@ class ViewDataMapWidget(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.__label = QLabel("salut")
         self.__layout = QVBoxLayout()
         self.resize(50,50)
-
-        
         self.setLayout(self.__layout)
         
         
