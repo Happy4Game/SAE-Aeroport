@@ -30,8 +30,6 @@ class ViewDataMapWidget(QWidget):
         # Création d'un DataFrame Pandas à partir des données des aéroports
         df = pd.DataFrame(airport_data, columns=["name", "latitude", "longitude"])
 
-        df['latitude'] = df['latitude'].str.replace(',', '.')
-        df['longitude'] = df['longitude'].str.replace(',', '.')
         # Création d'une géo-série GeoPandas à partir du DataFrame
         geometry = [Point(xy) for xy in zip(df['longitude'], df['latitude'])]
         gdf = gpd.GeoDataFrame(df, geometry=geometry)
@@ -41,8 +39,8 @@ class ViewDataMapWidget(QWidget):
 
         # Affichage de la carte du monde et des points des aéroports
         fig, ax = plt.subplots(figsize=(12, 8))
-        world.plot(ax=ax, color='lightgray')
-        gdf.plot(ax=ax, markersize=5, color='red', alpha=0.5)
+        gdf.plot(ax=ax, markersize=10, color='red', alpha=0.7, zorder  = 2)
+        world.boundary.plot(ax=ax, facecolor='lightgray', edgecolor='black', zorder = 1)
 
         # Paramètres de l'affichage
         ax.set_title('Airport Locations')
@@ -75,19 +73,18 @@ class ViewDataMapWidget(QWidget):
         # Création d'un DataFrame Pandas à partir des données des aéroports
         df = pd.DataFrame(airport_data, columns=["name", "latitude", "longitude"])
 
-        df['latitude'] = df['latitude'].str.replace(',', '.')
-        df['longitude'] = df['longitude'].str.replace(',', '.')
         # Création d'une géo-série GeoPandas à partir du DataFrame
         geometry = [Point(xy) for xy in zip(df['longitude'], df['latitude'])]
         gdf = gpd.GeoDataFrame(df, geometry=geometry)
 
         # Chargement de la carte du monde
         world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
-
+        
         # Affichage de la carte du monde et des points des aéroports
         fig, ax = plt.subplots(figsize=(12, 8))
-        world.plot(ax=ax, color='lightgray')
-        gdf.plot(ax=ax, markersize=5, color='red', alpha=0.5)
+        gdf.plot(ax=ax, markersize=10, color='red', alpha=0.7, zorder = 2)
+        world.boundary.plot(ax=ax, facecolor='lightgray', edgecolor='black', zorder = 1)
+        
 
         # Paramètres de l'affichage
         ax.set_title('Airport Locations')
