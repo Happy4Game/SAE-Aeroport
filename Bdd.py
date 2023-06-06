@@ -105,8 +105,26 @@ class Bdd(QWidget):
 
         return info
 
+    def getInfoAirportRoute(self, airport: str):
+        query = QSqlQuery(self.db)
+        query.prepare('SELECT name_ap, longitutude_ap, latitude_ap FROM "airport" WHERE name_ap = :airport;')
+        query.bindValue(":airport", airport)
+        
+        if query.exec():
+            info = []
+            while query.next():
+                name = query.value(0)
+                longitude = query.value(1)
+                latitude = query.value(2)
+                info.append(name)
+                info.append(longitude)
+                info.append(latitude)
+            return info
+        else:
+            print("Erreur lors de l'exécution de la requête.")
+            return []
 
-    def getPositionAeroportOfCountry(self, country: str):
+    def getPositionAeroportOfCountry(self, country: str) -> list:
         query = QSqlQuery(self.db)
         query.prepare("SELECT name_ap, latitude_ap, longitude_ap FROM airport WHERE country_ap = :country")
         query.bindValue(":country", country)
