@@ -5,7 +5,6 @@ from AirportListWidget import AirportListWidget
 from AirportInfoWidget import AirportInfoWidget
 from ViewDataMapWidget import ViewDataMapWidget
 from ViewDataBarWidget import ViewDataBarWidget
-from ViewDataRouteWidget import ViewDataRouteWidget
 import sys
 
 class win(QWidget): 
@@ -78,13 +77,9 @@ class win(QWidget):
         # if self.__viewData is not None:
         #     self.__mainLayout.removeWidget(self.__viewData)
         #     self.__viewData.deleteLater()
-
-        # if self.__viewDataPassenger is not None:
-        #     self.__mainLayout.removeWidget(self.__viewDataPassenger)
-        #     self.__viewDataPassenger.deleteLater()
-        # if self.__viewDataRoute is not None:
-        #     self.__mainLayout.removeWidget(self.__viewDataRoute)
-        #     self.__viewDataRoute.deleteLater()
+        if self.__viewDataPassenger is not None:
+            self.__mainLayout.removeWidget(self.__viewDataPassenger)
+            self.__viewDataPassenger.deleteLater()
         # # Créer un nouveau widget
         # self.__viewData = ViewDataMapWidget()
         # self.__viewData.setFixedSize(500, 500)
@@ -99,7 +94,7 @@ class win(QWidget):
         self.__viewDataPassenger.qRadioBtnSignal.connect(self.refreshViewDataPassengerByCountry)
         
         #self.__viewDataPassenger.setFixedSize(500,500)
-        #self.__mainLayout.addWidget(self.__viewDataPassenger)
+        self.__mainLayout.addWidget(self.__viewDataPassenger)
 
         #vue pour les 10 aeroport qui transporte le plus de personne
         #self.__viewDataPassenger.view_data_bar_nb_passenger_transport(country)
