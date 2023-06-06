@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QLabel, QVBoxLayout, QWidget, QHBoxLayout, QRadioButton
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, pyqtSignal
 from Bdd import Bdd
 from PyQt6.QtGui import QPixmap
 import matplotlib.pyplot as plt
@@ -13,6 +13,8 @@ class ViewDataBarWidget(QWidget):
         QWidget (QWidget): hérite de QWidget
     """
 
+    qRadioBtnSignal : pyqtSignal = pyqtSignal()
+
     def __init__(self):
         super().__init__()
 
@@ -22,8 +24,11 @@ class ViewDataBarWidget(QWidget):
         # Layout comportant les radio box
         self.__viewLayoutH : QHBoxLayout = QHBoxLayout()
         self.__qRadioBbtn1 : QRadioButton = QRadioButton("Affichage des aeoroports")
+        self.__qRadioBbtn1.setChecked(True)
+        self.__qRadioBbtn1.clicked.connect(self.qRadioBbtnSignalFunc)
         self.__qRadioBbtn2 : QRadioButton = QRadioButton("Aeroports les plus fréquentés")
-        self.__qRadioBbtn2.setChecked(True)
+        self.__qRadioBbtn2.clicked.connect(self.qRadioBbtnSignalFunc)
+        
         self.__viewLayoutH.addWidget(self.__qRadioBbtn1)
         self.__viewLayoutH.addWidget(self.__qRadioBbtn2)
 
@@ -41,6 +46,9 @@ class ViewDataBarWidget(QWidget):
         nb_passenger_data = bdd.getNbPassengerByAirport(country)
 
         abscisse_pos = np.arange(len(nb_passenger_data[1]) + 1)
+
+        # Coche le bouton radio 1
+        self.__qRadioBbtn1.setChecked(True)
 
         #Transforme les données en str
         nb_passenger_str = np.array(nb_passenger_data[0]).astype(str)
@@ -63,10 +71,10 @@ class ViewDataBarWidget(QWidget):
         plt.savefig(temp_file, format='png', dpi=75)
         plt.close()
 
-        image_label : QLabel = QLabel()
-        image_label.setPixmap(QPixmap(temp_file))
+        self.image_label : QLabel = QLabel()
+        self.image_label.setPixmap(QPixmap(temp_file))
         self.__layout.addLayout(self.__viewLayoutH)
-        self.__layout.addWidget(image_label, Qt.AlignmentFlag.AlignCenter)
+        self.__layout.addWidget(self.image_label, Qt.AlignmentFlag.AlignCenter)
 
     def view_data_bar_airport_frequency(self, country: str):
         """Méthode permettant d'afficher une data visualisation de la fréquence d'utilisation des aeroport par pays
@@ -79,6 +87,9 @@ class ViewDataBarWidget(QWidget):
         
         abscisse_pos = np.arange(len(data_frequency[0]) + 1)
         
+        # Coche le bouton radio 2
+        self.__qRadioBbtn2.setChecked(True)
+
         #Transforme les données en str
         frequency_str = np.array(data_frequency[1]).astype(str)
         frequency_str = np.insert(frequency_str, 0, "0")
@@ -104,3 +115,25 @@ class ViewDataBarWidget(QWidget):
         image_label.setPixmap(QPixmap(temp_file))
         self.__layout.addLayout(self.__viewLayoutH)
         self.__layout.addWidget(image_label, Qt.AlignmentFlag.AlignCenter)
+    
+    def refresh(self, country : str = ""):
+        """Rafraichi la vue en fonction du pays
+
+        Args:
+            country (str): country. Defaults to "".
+        """
+        if self.__qRadioBbtn1.isChecked() == True:
+            self.clear()
+            self.view_data_bar_nb_passenger_transport(country)
+        elif self.__qRadioBbtn2.isChecked() == True:
+            self.clear()
+            self.view_data_bar_airport_frequency(country)
+
+    def qRadioBbtnSignalFunc(self):
+        self.qRadioBtnSignal.emit()
+
+    def clear(self):
+        """Supprime le widget du layout
+        """
+        if self.__layout.count() > 1:
+            self.__layout.removeWidget(self.__layout.itemAt(1).widget())
