@@ -22,9 +22,9 @@ class Bdd(QWidget):
         self.db : QSqlDatabase = QSqlDatabase.addDatabase("QPSQL")
         self.db.setHostName("localhost")
         self.db.setPort(5432)
-        self.db.setDatabaseName("planes_test")
-        self.db.setUserName("postgres")
-        self.db.setPassword("toor")
+        self.db.setDatabaseName("plane_test")
+        self.db.setUserName("johan")
+        self.db.setPassword("Johannahoj972.")
         ok : bool = self.db.open()
         if ok:
             print("Successfull connection to database")

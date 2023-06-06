@@ -4,9 +4,12 @@ from Bdd import Bdd
 from PyQt6.QtGui import QPixmap
 import matplotlib.pyplot as plt
 import numpy as np
+import geopandas as gpd
+import pandas as pd
+from shapely.geometry import Point
 
 
-class ViewDataBarWidget(QWidget):
+class ViewDataWidget(QWidget):
     """Classe représentant un widget contenant une data visualisation diagramme en barre
 
     Args:
@@ -23,14 +26,18 @@ class ViewDataBarWidget(QWidget):
 
         # Layout comportant les radio box
         self.__viewLayoutH : QHBoxLayout = QHBoxLayout()
-        self.__qRadioBbtn1 : QRadioButton = QRadioButton("Affichage des aeoroports")
+        self.__qRadioBbtn1 : QRadioButton = QRadioButton("Affichage des aeroports")
         self.__qRadioBbtn1.setChecked(True)
         self.__qRadioBbtn1.clicked.connect(self.qRadioBbtnSignalFunc)
         self.__qRadioBbtn2 : QRadioButton = QRadioButton("Aeroports les plus fréquentés")
         self.__qRadioBbtn2.clicked.connect(self.qRadioBbtnSignalFunc)
+
+        self.__qRadioBbtn3 : QRadioButton = QRadioButton("Map monde des aeroports")
+        self.__qRadioBbtn3.clicked.connect(self.qRadioBbtnSignalFunc)
         
         self.__viewLayoutH.addWidget(self.__qRadioBbtn1)
         self.__viewLayoutH.addWidget(self.__qRadioBbtn2)
+        self.__viewLayoutH.addWidget(self.__qRadioBbtn3)
 
         self.__viewLayoutH.setAlignment(Qt.AlignmentFlag.AlignTop)
 
@@ -116,6 +123,101 @@ class ViewDataBarWidget(QWidget):
         self.__layout.addLayout(self.__viewLayoutH)
         self.__layout.addWidget(image_label, Qt.AlignmentFlag.AlignCenter)
     
+    def view_data_country(self, country : str):
+        """Méthode permettant d'afficher une data visualisation de tout les aéroports d'un pays
+
+        Args:
+            country (str): le pays dont on veut connaitre les aéroports
+        """
+        bdd = Bdd()
+        #On stock dans une varibale le résultat de la méthode
+        airport_data = bdd.getPositionAeroportOfCountry(country)
+
+        # Création d'un DataFrame Pandas à partir des données des aéroports
+        df = pd.DataFrame(airport_data, columns=["name", "latitude", "longitude"])
+
+        # Création d'une géo-série GeoPandas à partir du DataFrame
+        geometry = [Point(xy) for xy in zip(df['longitude'], df['latitude'])]
+        gdf = gpd.GeoDataFrame(df, geometry=geometry)
+
+        # Chargement de la carte du monde
+        world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+
+        # Affichage de la carte du monde et des points des aéroports
+        fig, ax = plt.subplots(figsize=(12, 8))
+        gdf.plot(ax=ax, markersize=10, color='red', alpha=0.7, zorder  = 2)
+        world.boundary.plot(ax=ax, facecolor='lightgray', edgecolor='black', zorder = 1)
+
+        # Paramètres de l'affichage
+        ax.set_title('Airport Locations')
+        ax.set_xlabel('Longitude')
+        ax.set_ylabel('Latitude')
+        ax.set_aspect('equal')
+
+        # Définir les limites de zoom sur l'Europe
+        ax.set_xlim(-30, 50)  # Ajuster ces valeurs en fonction de la zone d'intérêt
+        ax.set_ylim(30, 80)   # Ajuster ces valeurs en fonction de la zone d'intérêt
+
+
+        # Enregistrer la carte au format PNG
+        temp_file = 'map.png'
+        plt.savefig(temp_file, format='png')
+        plt.close()
+
+        # Charger l'image dans QLabel
+        self.image_label : QLabel = QLabel()
+        self.image_label.setPixmap(QPixmap(temp_file).scaled(500,500))
+        self.__layout.addLayout(self.__viewLayoutH)
+        self.__layout.addWidget(self.image_label, Qt.AlignmentFlag.AlignCenter)
+
+    def view_data_airport(self, airport : str):
+        """Méthode permettant d'afficher une data visualisation sous forme de map monde représentant un aéroport d'un pays
+
+        Args:
+            airport (str): l'aeroport dont on veut connaitre la position
+
+        """
+        bdd = Bdd()
+        #On stock dans une variable le résultat de la méthode
+        airport_data = bdd.getPositionAeroport(airport)
+        print(airport_data)
+        # Création d'un DataFrame Pandas à partir des données des aéroports
+        df = pd.DataFrame(airport_data, columns=["name", "latitude", "longitude"])
+
+        # Création d'une géo-série GeoPandas à partir du DataFrame
+        geometry = [Point(xy) for xy in zip(df['longitude'], df['latitude'])]
+        gdf = gpd.GeoDataFrame(df, geometry=geometry)
+
+        # Chargement de la carte du monde
+        world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+        
+        # Affichage de la carte du monde et des points des aéroports
+        fig, ax = plt.subplots(figsize=(12, 8))
+        gdf.plot(ax=ax, markersize=10, color='red', alpha=0.7, zorder = 2)
+        world.boundary.plot(ax=ax, facecolor='lightgray', edgecolor='black', zorder = 1)
+        
+
+        # Paramètres de l'affichage
+        ax.set_title('Airport Locations')
+        ax.set_xlabel('Longitude')
+        ax.set_ylabel('Latitude')
+        ax.set_aspect('equal')
+
+        # Définir les limites de zoom sur l'Europe
+        ax.set_xlim(-30, 50)  # Ajuster ces valeurs en fonction de la zone d'intérêt
+        ax.set_ylim(30, 80)   # Ajuster ces valeurs en fonction de la zone d'intérêt
+        
+        # Enregistrer la carte au format PNG
+        temp_file = 'map.png'
+        plt.savefig(temp_file, format='png')
+        plt.close()
+
+        # Charger l'image dans QLabel
+        self.image_label : QLabel = QLabel()
+        self.image_label.setPixmap(QPixmap(temp_file).scaled(500,500))
+        self.__layout.addLayout(self.__viewLayoutH)
+        self.__layout.addWidget(self.image_label, Qt.AlignmentFlag.AlignCenter)
+    
     def refresh(self, country : str = ""):
         """Rafraichi la vue en fonction du pays
 
@@ -128,6 +230,10 @@ class ViewDataBarWidget(QWidget):
         elif self.__qRadioBbtn2.isChecked() == True:
             self.clear()
             self.view_data_bar_airport_frequency(country)
+        elif self.__qRadioBbtn3.isChecked() == True:
+            self.clear()
+            self.view_data_country(country)
+            #TODO: Ajouter un fonctionnalité pour lancer la méthode view_data_airport
 
     def qRadioBbtnSignalFunc(self):
         self.qRadioBtnSignal.emit()
