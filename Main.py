@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QWidget
-from PyQt6.QtWidgets import QApplication, QHBoxLayout, QVBoxLayout, QWidget
+from PyQt6.QtWidgets import QApplication, QHBoxLayout, QWidget, QVBoxLayout
 from CountryListWidget import CountryListWidget
 from AirportListWidget import AirportListWidget
 from AirportInfoWidget import AirportInfoWidget
@@ -50,15 +50,18 @@ class win(QWidget):
         # self.__mainLayout.addWidget(self.__viewData)
         
         #Crée le layout affichant les data visualisation du nombre de passenger
-        self.__viewDataPassenger : ViewDataBarWidget = ViewDataBarWidget()
-        self.__viewDataPassenger.setFixedSize(500,500)
-        self.__mainLayout.addWidget(self.__viewDataPassenger)
+        # Layout comportant les radio box avec la view
+        self.__viewLayout : QVBoxLayout = QVBoxLayout()
         
-        #Crée le layout affichant la route entre deux aéroports
-        self.__viewDataRoute : ViewDataRouteWidget = ViewDataRouteWidget()
-        self.__viewDataRoute.setFixedSize(500,500)
-        self.__mainLayout.addWidget(self.__viewDataRoute)
+        self.__viewDataPassenger : ViewDataBarWidget = ViewDataBarWidget()
+        self.__viewDataPassenger.qRadioBtnSignal.connect(self.refreshViewDataPassengerByCountry)
+        
+        self.__viewLayout.addWidget(self.__viewDataPassenger)
 
+        self.__mainLayout.addLayout(self.__viewLayout, 1)
+
+        
+        # Affiche le layout principal
         self.setLayout(self.__mainLayout)
         self.show()
 
@@ -92,7 +95,9 @@ class win(QWidget):
         #Vue de la map monde des aeroport par pays
         # self.__viewData.view_data_country(country)
 
-        #self.__viewDataPassenger : ViewDataBarWidget = ViewDataBarWidget()
+        self.__viewDataPassenger : ViewDataBarWidget = ViewDataBarWidget()
+        self.__viewDataPassenger.qRadioBtnSignal.connect(self.refreshViewDataPassengerByCountry)
+        
         #self.__viewDataPassenger.setFixedSize(500,500)
         #self.__mainLayout.addWidget(self.__viewDataPassenger)
 
@@ -100,15 +105,9 @@ class win(QWidget):
         #self.__viewDataPassenger.view_data_bar_nb_passenger_transport(country)
 
         #vue pour les 5 aeroport les plus frequenter par pays
+        self.__viewDataPassenger.refresh(country)
         #self.__viewDataPassenger.view_data_bar_airport_frequency(country)
         
-        #vue pour les routes des aéroports
-        self.__viewDataRoute: ViewDataRouteWidget = ViewDataRouteWidget()
-        self.__mainLayout.addWidget(self.__viewDataRoute)
-
-        self.__viewDataRoute.view_data_route("Bilbao Airport", "Abbeville")
-
-
     def setSelectedAirport(self, airport :str):
         """Défini l'aeroport selectionne pour la viewdata et pour les informations de l'aeroport
 
@@ -134,6 +133,11 @@ class win(QWidget):
         """Défini la liste des pays lors du changement de l'entrée utilisateur
         """
         self.__airportList.setAirportByCountry(self.country)
+
+    def refreshViewDataPassengerByCountry(self):
+        """Rafraichi les données de la view data passenger
+        """
+        self.__viewDataPassenger.refresh(self.country)
 
 if __name__ == "__main__": 
     print(f'main') 
