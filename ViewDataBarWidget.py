@@ -1,9 +1,8 @@
-from PyQt6.QtWidgets import QLabel, QVBoxLayout, QWidget
+from PyQt6.QtWidgets import QLabel, QVBoxLayout, QWidget, QHBoxLayout, QRadioButton
+from PyQt6.QtCore import Qt
 from Bdd import Bdd
 from PyQt6.QtGui import QPixmap
 import matplotlib.pyplot as plt
-import geopandas as gpd
-import pandas as pd
 import numpy as np
 
 
@@ -18,9 +17,18 @@ class ViewDataBarWidget(QWidget):
         super().__init__()
 
         self.__layout = QVBoxLayout()
-        self.resize(50,50)
         self.setLayout(self.__layout)
-        
+
+        # Layout comportant les radio box
+        self.__viewLayoutH : QHBoxLayout = QHBoxLayout()
+        self.__qRadioBbtn1 : QRadioButton = QRadioButton("Affichage des aeoroports")
+        self.__qRadioBbtn2 : QRadioButton = QRadioButton("Aeroports les plus fréquentés")
+        self.__qRadioBbtn2.setChecked(True)
+        self.__viewLayoutH.addWidget(self.__qRadioBbtn1)
+        self.__viewLayoutH.addWidget(self.__qRadioBbtn2)
+
+        self.__viewLayoutH.setAlignment(Qt.AlignmentFlag.AlignTop)
+
 
     def view_data_bar_nb_passenger_transport(self, country: str):
         """Méthode permettant de créer une data visualisation correspondant au nombre de personne transporté par aeroport
@@ -52,13 +60,13 @@ class ViewDataBarWidget(QWidget):
 
         #Nommage et sauvegarde de l'image
         temp_file = 'graph_passenger.png'
-        plt.savefig(temp_file, format='png')
+        plt.savefig(temp_file, format='png', dpi=75)
         plt.close()
 
-        image_label = QLabel()
-        pixmap = QPixmap(temp_file)
-        image_label.setPixmap(pixmap)
-        self.__layout.addWidget(image_label)
+        image_label : QLabel = QLabel()
+        image_label.setPixmap(QPixmap(temp_file))
+        self.__layout.addLayout(self.__viewLayoutH)
+        self.__layout.addWidget(image_label, Qt.AlignmentFlag.AlignCenter)
 
     def view_data_bar_airport_frequency(self, country: str):
         """Méthode permettant d'afficher une data visualisation de la fréquence d'utilisation des aeroport par pays
@@ -89,10 +97,10 @@ class ViewDataBarWidget(QWidget):
         
         #Nommage et sauvegarde de l'image
         temp_file = 'graph_frequency.png'
-        plt.savefig(temp_file, format='png')
+        plt.savefig(temp_file, format='png', dpi=75)
         plt.close()
 
-        image_label = QLabel()
-        pixmap = QPixmap(temp_file)
-        image_label.setPixmap(pixmap)
-        self.__layout.addWidget(image_label)
+        image_label : QLabel = QLabel()
+        image_label.setPixmap(QPixmap(temp_file))
+        self.__layout.addLayout(self.__viewLayoutH)
+        self.__layout.addWidget(image_label, Qt.AlignmentFlag.AlignCenter)

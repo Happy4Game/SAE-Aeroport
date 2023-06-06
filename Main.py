@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QWidget
-from PyQt6.QtWidgets import QApplication, QHBoxLayout, QVBoxLayout, QWidget
+from PyQt6.QtWidgets import QApplication, QHBoxLayout, QWidget, QVBoxLayout
 from CountryListWidget import CountryListWidget
 from AirportListWidget import AirportListWidget
 from AirportInfoWidget import AirportInfoWidget
@@ -49,11 +49,17 @@ class win(QWidget):
         # self.__mainLayout.addWidget(self.__viewData)
         
         #Crée le layout affichant les data visualisation du nombre de passenger
-        self.__viewDataPassenger : ViewDataBarWidget = ViewDataBarWidget()
-        self.__viewDataPassenger.setFixedSize(500,500)
-        self.__mainLayout.addWidget(self.__viewDataPassenger)
+        # Layout comportant les radio box avec la view
+        self.__viewLayout : QVBoxLayout = QVBoxLayout()
         
+        self.__viewDataPassenger : ViewDataBarWidget = ViewDataBarWidget()
+        
+        self.__viewLayout.addWidget(self.__viewDataPassenger)
 
+        self.__mainLayout.addLayout(self.__viewLayout, 1)
+
+        
+        # Affiche le layout principal
         self.setLayout(self.__mainLayout)
         self.show()
 
@@ -93,8 +99,6 @@ class win(QWidget):
         #vue pour les 5 aeroport les plus frequenter par pays
         self.__viewDataPassenger.view_data_bar_airport_frequency(country)
         
-
-
     def setSelectedAirport(self, airport :str):
         """Défini l'aeroport selectionne pour la viewdata et pour les informations de l'aeroport
 

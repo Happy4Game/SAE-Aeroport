@@ -1,5 +1,4 @@
 from PyQt6.QtWidgets import QLabel, QVBoxLayout, QWidget, QListWidget, QLineEdit
-from PyQt6.QtCore import Qt
 from PyQt6.QtCore import pyqtSignal
 from Bdd import Bdd
 
