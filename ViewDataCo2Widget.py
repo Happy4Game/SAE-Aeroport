@@ -14,6 +14,7 @@ class ViewDataCo2Widget(QWidget):
         super().__init__()
 
         self.__layout = QVBoxLayout()
+        self.view_data_co2()
         self.setLayout(self.__layout)
         
     

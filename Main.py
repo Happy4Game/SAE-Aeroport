@@ -1,5 +1,6 @@
-from PyQt6.QtWidgets import QApplication, QWidget, QTabWidget
+from PyQt6.QtWidgets import QApplication, QTabWidget
 from InfosCountryAndAirport import InfosCountryAndAirport
+from ViewDataCo2Widget import ViewDataCo2Widget
 import sys
 
 class win(QTabWidget): 
