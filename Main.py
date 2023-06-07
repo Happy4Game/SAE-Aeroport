@@ -1,5 +1,4 @@
-from PyQt6.QtWidgets import QWidget
-from PyQt6.QtWidgets import QApplication, QHBoxLayout, QWidget, QVBoxLayout
+from PyQt6.QtWidgets import QApplication, QHBoxLayout, QWidget, QVBoxLayout, QMainWindow
 from CountryListWidget import CountryListWidget
 from AirportListWidget import AirportListWidget
 from AirportInfoWidget import AirportInfoWidget
@@ -98,7 +97,7 @@ class win(QWidget):
         #vue pour les 10 aeroport qui transporte le plus de personne
         #self.__viewDataPassenger.view_data_bar_nb_passenger_transport(country)
 
-        #vue pour les 5 aeroport les plus frequenter par pays
+        #vue pour les 5 aeroport les plus frequentés par pays
         self.__viewData.refresh(country)
         #self.__viewDataPassenger.view_data_bar_airport_frequency(country)
         
@@ -123,6 +122,7 @@ class win(QWidget):
         # Afficher les données dans le nouveau widget
         #TODO: Ajouter un fonctionnalité pour lancer la méthode view_data_airport
         # à la place de ça :
+        self.__viewData.clear()
         self.__viewData.view_data_airport(airport)
 
     def setAirportBySearch(self):
