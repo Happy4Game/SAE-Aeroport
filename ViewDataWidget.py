@@ -217,7 +217,7 @@ class ViewDataWidget(QWidget):
         self.image_label.setPixmap(QPixmap(temp_file).scaled(500,500))
         self.__layout.addWidget(self.image_label, Qt.AlignmentFlag.AlignCenter)
 
-    def view_data_country(self):
+    def view_data_co2(self):
         bdd = Bdd()
         co2_data = bdd.getTotalCo2ByCountry()
 
