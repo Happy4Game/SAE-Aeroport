@@ -50,6 +50,5 @@ class ViewDataCo2Widget(QWidget):
 
         # Charger l'image dans un QLabel
         self.image_label = QLabel()
-        self.image_label.setPixmap(QPixmap(temp_file).scaled(500, 500))
-        self.__layout.addLayout(self.__viewLayoutH)
+        self.image_label.setPixmap(QPixmap(temp_file))
         self.__layout.addWidget(self.image_label, Qt.AlignmentFlag.AlignCenter)
