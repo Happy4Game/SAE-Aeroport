@@ -215,7 +215,6 @@ class ViewDataWidget(QWidget):
         # Charger l'image dans QLabel
         self.image_label : QLabel = QLabel()
         self.image_label.setPixmap(QPixmap(temp_file).scaled(500,500))
-        self.__layout.addLayout(self.__viewLayoutH)
         self.__layout.addWidget(self.image_label, Qt.AlignmentFlag.AlignCenter)
     
     def refresh(self, country : str = ""):
