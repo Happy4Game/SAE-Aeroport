@@ -3,7 +3,6 @@ from PyQt6.QtWidgets import QApplication, QHBoxLayout, QWidget, QVBoxLayout
 from CountryListWidget import CountryListWidget
 from AirportListWidget import AirportListWidget
 from AirportInfoWidget import AirportInfoWidget
-from ViewDataMapWidget import ViewDataMapWidget
 from ViewDataWidget import ViewDataWidget
 import sys
 
