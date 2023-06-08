@@ -3,11 +3,14 @@ from CountryListWidget import CountryListWidget
 from AirportListWidget import AirportListWidget
 from AirportInfoWidget import AirportInfoWidget
 from ViewDataWidget import ViewDataWidget
+from Bdd import Bdd
 
 class InfosCountryAndAirport(QWidget):
 
-    def __init__(self):
+    def __init__(self, bdd : Bdd):
         super().__init__()
+
+        self.bdd = bdd
 
         self.country : str = ""  
 
@@ -15,33 +18,29 @@ class InfosCountryAndAirport(QWidget):
         self.__mainLayout : QHBoxLayout = QHBoxLayout()
 
         # Crée le widget affichant les pays
-        self.__countryList : CountryListWidget = CountryListWidget()
+        self.__countryList : CountryListWidget = CountryListWidget(bdd)
         # Récupère le signal et le redirige vers la fonction setSelectedCountry
         self.__countryList.countryClicked.connect(self.setSelectedCountry)
 
         self.__mainLayout.addWidget(self.__countryList)
 
         # Crée le widget affichant les aeroports
-        self.__airportList : AirportListWidget = AirportListWidget()
+        self.__airportList : AirportListWidget = AirportListWidget(bdd)
         self.__mainLayout.addWidget(self.__airportList)
         self.__airportList.airportClicked.connect(self.setSelectedAirport)
         self.__airportList.airportSearched.connect(self.setAirportBySearch)
 
         # Crée le widget affichant les informations sur un aeroport
-        self.__airportInfo : AirportInfoWidget = AirportInfoWidget()
+        self.__airportInfo : AirportInfoWidget = AirportInfoWidget(bdd)
         self.__airportInfo.setFixedSize(200, 500)
         self.__mainLayout.addWidget(self.__airportInfo)
 
-        #Crée le layout affichant les data visualisation
-        # self.__viewData : ViewDataMapWidget = ViewDataMapWidget()
-        # self.__viewData.setFixedSize(500, 500)
-        # self.__mainLayout.addWidget(self.__viewData)
         
         #Crée le layout affichant les data visualisation du nombre de passenger
         # Layout comportant les radio box avec la view
         self.__viewLayout : QVBoxLayout = QVBoxLayout()
         
-        self.__viewData : ViewDataWidget = ViewDataWidget()
+        self.__viewData : ViewDataWidget = ViewDataWidget(bdd)
         self.__viewData.qRadioBtnSignal.connect(self.refreshViewData)
         
         self.__viewLayout.addWidget(self.__viewData)
@@ -66,17 +65,14 @@ class InfosCountryAndAirport(QWidget):
         if self.__viewData is not None:
             self.__mainLayout.removeWidget(self.__viewData)
             self.__viewData.deleteLater()
-        # # Créer un nouveau widget
-        # self.__viewData = ViewDataMapWidget()
-        # self.__viewData.setFixedSize(500, 500)
-        # self.__mainLayout.addWidget(self.__viewData)
+
 
         # Afficher les données dans le nouveau widget
 
         #Vue de la map monde des aeroport par pays
         # self.__viewData.view_data_country(country)
 
-        self.__viewData : ViewDataWidget = ViewDataWidget()
+        self.__viewData : ViewDataWidget = ViewDataWidget(self.bdd)
         self.__viewData.qRadioBtnSignal.connect(self.refreshViewData)
         
         #self.__viewDataPassenger.setFixedSize(500,500)
@@ -103,7 +99,7 @@ class InfosCountryAndAirport(QWidget):
             self.__viewData.deleteLater()
 
         # Créer un nouveau widget
-        self.__viewData = ViewDataWidget()
+        self.__viewData = ViewDataWidget(self.bdd)
         self.__viewData.qRadioBtnSignal.connect(self.refreshViewData)
         self.__mainLayout.addWidget(self.__viewData)
 
@@ -118,7 +114,7 @@ class InfosCountryAndAirport(QWidget):
         """
         self.__airportList.setAirportByCountry(self.country)
 
-    def refreshViewData(self):
+    def refreshViewData(self, selectedView : int):
         """Rafraichi les données de la view data passenger
         """
         self.__viewData.refresh(self.country)

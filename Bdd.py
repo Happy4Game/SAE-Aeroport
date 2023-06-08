@@ -13,18 +13,14 @@ class Bdd(QWidget):
     def __init__(self):
         super().__init__()
 
-        if QSqlDatabase.contains():
-            default_connection = QSqlDatabase.database()
-            default_connection.close()
-            QSqlDatabase.removeDatabase(default_connection.connectionName())
 
         # QSqlDatabase
         self.db : QSqlDatabase = QSqlDatabase.addDatabase("QPSQL")
         self.db.setHostName("localhost")
         self.db.setPort(5432)
         self.db.setDatabaseName("plane_test")
-        self.db.setUserName("johan")
-        self.db.setPassword("Johannahoj972.")
+        self.db.setUserName("happy")
+        self.db.setPassword("toor")
         ok : bool = self.db.open()
         if ok:
             print("Successfull connection to database")
@@ -172,6 +168,29 @@ class Bdd(QWidget):
             data = []
             while query.next():
                 data.append(query.value(0))
+
+            return data
+        else:
+            print("Erreur lors de l'exécution de la requête.")
+            return query, []
+        
+    def getAirports(self, airport : str = "") -> list:
+        """Retourne les aeroports
+
+        Args:
+            airport (str) : Nom d'un aeroport 'pour la fonction de recherche'
+
+        Returns:
+            list: Une liste d'aeroport
+        """
+        query = QSqlQuery(self.db)
+        query.prepare("SELECT name_ap FROM airport WHERE name_ap ILIKE '" + airport + "%' ORDER BY name_ap ASC;")
+
+        if query.exec():
+            data = []
+            while query.next():
+                if ("[Duplicate]" not in query.value(0) and "(Duplicate)" not in query.value(0)):
+                    data.append(query.value(0))
 
             return data
         else:

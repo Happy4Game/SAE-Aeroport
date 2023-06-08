@@ -10,21 +10,25 @@ class AirportListWidget(QWidget):
 
     """
 
-    def __init__(self):
+    def __init__(self, bdd: Bdd, name : str = "Liste des aeroports", placeHolder : str = "Rechercher un aeroport", showAllAirport : bool = False):
         super().__init__()
+
+        self.bdd = bdd
 
         self.__layout = QVBoxLayout()
         self.setLayout(self.__layout)
 
         # Label indiquant la liste des aeroports
-        self.__label = QLabel("Liste des aeroports")
+        self.__label = QLabel(name)
 
         # Ligne de saisie de texte
         self.__line_edit : QLineEdit = QLineEdit()
-        self.__line_edit.setPlaceholderText("Rechercher un aeroport")
+        self.__line_edit.setPlaceholderText(placeHolder)
         self.__line_edit.textChanged.connect(self.airportSearchedFunc)
 
         self.__list = QListWidget()
+        if (showAllAirport):
+            self.setAirportList()
 
         # Ajout des widgets dans le layout
         self.__layout.addWidget(self.__label)
@@ -46,10 +50,16 @@ class AirportListWidget(QWidget):
     def setAirportByCountry(self, country: str):
         self.__list.clear()
         if self.__list.count() == 0:
-            bdd = Bdd()
-            info = bdd.getAirportByCountry(country, self.__line_edit.text())
+            info = self.bdd.getAirportByCountry(country, self.__line_edit.text())
             print(info)
             for airport in range(len(info)):
                 self.__list.addItem(info[airport])
+
+
+    def setAirportList(self):
+        self.__list.clear()
+        if self.__list.count() == 0:
+            info = self.bdd.getAirports(self.__line_edit.text())
+            for airport in range(len(info)):
+                self.__list.addItem(info[airport])
                 
-            bdd.closeConnection()

@@ -5,8 +5,11 @@ class AirportInfoWidget(QWidget):
     """Création du widget contenant le sinformations des aéroports
 
     """
-    def __init__(self):
+    def __init__(self, bdd : Bdd):
         super().__init__()
+
+        self.bdd = bdd
+
         self.__layout = QVBoxLayout()
         self.setLayout(self.__layout)
         
@@ -39,13 +42,10 @@ class AirportInfoWidget(QWidget):
         self.initialTexts = [label.text() for label in self.labels]
 
     def setInfoByAirport(self, airport: str):
-        bdd = Bdd()
-        info = bdd.getInfoByAirport(airport)
+        info = self.bdd.getInfoByAirport(airport)
         
         for label, initialText in zip(self.labels, self.initialTexts):
             label.setText(initialText)  # Réinitialisation du texte avant mise à jour
 
         for label, value in zip(self.labels, info):
             label.setText(label.text() + str(value))
-            
-        bdd.closeConnection()

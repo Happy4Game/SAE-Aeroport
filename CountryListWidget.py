@@ -6,8 +6,10 @@ class CountryListWidget(QWidget):
 
     countryClicked : pyqtSignal = pyqtSignal(str)
 
-    def __init__(self):
+    def __init__(self, bdd : Bdd):
         super().__init__()
+
+        self.bdd = bdd
 
         self.__layout = QVBoxLayout()
         self.setLayout(self.__layout)
@@ -55,11 +57,7 @@ class CountryListWidget(QWidget):
         self.__list.clear()
         text = self.__line_edit.text()
         if self.__list.count() == 0:
-            bdd = Bdd()
-            info = bdd.getCountry(text)
-
-            print(info)
+            info = self.bdd.getCountry(text)
+            
             for country in range(len(info)):
                 self.__list.addItem(info[country])
-                
-            bdd.closeConnection()

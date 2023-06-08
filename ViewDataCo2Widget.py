@@ -10,8 +10,10 @@ from shapely.geometry import Point
 import sys
 
 class ViewDataCo2Widget(QWidget):
-    def __init__(self):
+    def __init__(self, bdd : Bdd):
         super().__init__()
+
+        self.bdd = bdd
 
         self.__layout = QVBoxLayout()
         self.view_data_co2()
@@ -19,8 +21,7 @@ class ViewDataCo2Widget(QWidget):
         
     
     def view_data_co2(self):
-        bdd = Bdd()
-        co2_data = bdd.getTotalCo2ByCountry()
+        co2_data = self.bdd.getTotalCo2ByCountry()
         print(co2_data)
         # Créer un DataFrame à partir des données de CO2
         df = pd.DataFrame(co2_data, columns=["co2", "pays"])
