@@ -19,8 +19,8 @@ class BddControler(QWidget):
         self.db.setHostName("localhost")
         self.db.setPort(5432)
         self.db.setDatabaseName("plane_test")
-        self.db.setUserName("happy")
-        self.db.setPassword("toor")
+        self.db.setUserName("johan")
+        self.db.setPassword("Johannahoj972.")
         ok : bool = self.db.open()
         if ok:
             print("Successfull connection to database")
@@ -277,7 +277,7 @@ class BddControler(QWidget):
             list: Une liste de total de co2 par pays
         """
         query = QSqlQuery(self.db)
-        query.prepare("select sum(t.co2) co2, a.country_ap pays from tot_co2 t inner join airport a on t.airport=a.name_ap group by pays order by co2 desc;")
+        query.prepare("select co2, country_ap as pays from tot_co2_pays;")
         if query.exec():
             data = []
             while query.next():
@@ -324,7 +324,7 @@ class BddControler(QWidget):
             list: Une liste de total de co2 en europe
         """
         query = QSqlQuery(self.db)
-        query.prepare("select sum(t.co2) co2, a.country_ap pays from tot_co2 t inner join airport a on t.airport=a.name_ap where a.country_ap in ('France', 'Germany', 'Italy', 'Spain', 'United Kingdom') group by pays order by co2 desc;")
+        query.prepare("select co2, country_ap as pays from tot_co2_pays_europe;")
         if query.exec():
             data = []
             while query.next():
@@ -334,7 +334,7 @@ class BddControler(QWidget):
                 
             return data
         else:
-            print("Erreur lors de l'exécution de la requête.")
+            print("Erreur lors de l'exécution de la requête.§§")
             return []
     
         
