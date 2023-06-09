@@ -158,9 +158,12 @@ class ViewDataWidget(QWidget):
         ax.set_ylabel('Latitude')
         ax.set_aspect('equal')
 
-        # Définir les limites de zoom sur l'Europe
-        ax.set_xlim(-30, 50)  # Ajuster ces valeurs en fonction de la zone d'intérêt
-        ax.set_ylim(30, 80)   # Ajuster ces valeurs en fonction de la zone d'intérêt
+        # Définir les limites de zoom
+        # Obtenir les limites x et y en fonction des coordonnées des aéroports du pays
+        min_x, min_y, max_x, max_y = gdf.total_bounds
+
+        ax.set_xlim(min_x - 10, max_x + 10)  # Ajuster ces valeurs en fonction de la zone d'intérêt
+        ax.set_ylim(min_y - 10, max_y + 10)   # Ajuster ces valeurs en fonction de la zone d'intérêt
 
 
         # Enregistrer la carte au format PNG
@@ -206,9 +209,13 @@ class ViewDataWidget(QWidget):
         ax.set_ylabel('Latitude')
         ax.set_aspect('equal')
 
-        # Définir les limites de zoom sur l'Europe
-        ax.set_xlim(-30, 50)  # Ajuster ces valeurs en fonction de la zone d'intérêt
-        ax.set_ylim(30, 80)   # Ajuster ces valeurs en fonction de la zone d'intérêt
+        # Définir les limites de zoom
+        # Obtenir les limites x et y en fonction des coordonnées des aéroports du pays
+        min_x, min_y, max_x, max_y = gdf.total_bounds
+
+
+        ax.set_xlim(min_x - 25, max_x + 25)  # Ajuster ces valeurs en fonction de la zone d'intérêt
+        ax.set_ylim(min_y - 25, max_y + 25)   # Ajuster ces valeurs en fonction de la zone d'intérêt
         
         # Enregistrer la carte au format PNG
         temp_file = 'map.png'

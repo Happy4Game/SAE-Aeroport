@@ -52,7 +52,7 @@ class BddControler(QWidget):
             list: Une liste de noms de pays
         """
         query = QSqlQuery(self.db)
-        query.exec("SELECT name_country FROM country WHERE name_country ILIKE '" + text + "%' ORDER BY name_country ASC;")
+        query.exec("SELECT DISTINCT(country_ap) FROM airport WHERE country_ap ILIKE '" + text + "%' ORDER BY country_ap ASC;")
      
         
         country_list = []
