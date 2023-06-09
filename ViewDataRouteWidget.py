@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QLabel, QVBoxLayout, QWidget
-from Bdd import Bdd
+from BddControler import BddControler
 from PyQt6.QtGui import QPixmap
 import matplotlib.pyplot as plt
 import geopandas as gpd
@@ -14,8 +14,10 @@ class ViewDataRouteWidget(QWidget):
         QWidget (QWidget): hérite de QWidget
     """
 
-    def __init__(self, depart : str, destination : str):
+    def __init__(self, bdd : BddControler, depart : str, destination : str):
         super().__init__()
+
+        self.__bdd = bdd
 
         self.__layout = QVBoxLayout()
         self.setLayout(self.__layout)
@@ -31,9 +33,8 @@ class ViewDataRouteWidget(QWidget):
             depart (str): aéroport de départ
             destination (str): aéroport d'arrivée
         """
-        bdd = Bdd()
         #On stock dans une varibale le résultat de la méthode
-        airport_data_depart = bdd.getInfoAirportRoute(depart)
+        airport_data_depart = self.__bdd.getInfoAirportRoute(depart)
         print(airport_data_depart)
         depart_name = airport_data_depart[0]
         print(depart_name)
@@ -41,7 +42,7 @@ class ViewDataRouteWidget(QWidget):
         print(depart_longitude)
         depart_latitude = float(airport_data_depart[2])
         print(depart_latitude)
-        airport_data_arrivee = bdd.getInfoAirportRoute(destination)
+        airport_data_arrivee = self.__bdd.getInfoAirportRoute(destination)
         print(airport_data_arrivee)
         arrivee_name = airport_data_arrivee[0]
         arrivee_longitude = float(airport_data_arrivee[1])

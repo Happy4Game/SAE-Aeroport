@@ -1,11 +1,11 @@
 from PyQt6.QtWidgets import QWidget, QHBoxLayout
 from AirportListWidget import AirportListWidget
 from ViewDataRouteWidget import ViewDataRouteWidget
-from Bdd import Bdd
+from BddControler import BddControler
 
 class RouteWidget(QWidget):
 
-    def __init__(self, bdd : Bdd):
+    def __init__(self, bdd : BddControler):
         super().__init__()
 
         self.bdd = bdd
@@ -25,7 +25,7 @@ class RouteWidget(QWidget):
         self.__airportDestList.airportSearched.connect(self.setDestAirportList)
         self.__mainLayout.addWidget(self.__airportDestList)
 
-        self.__viewDataRouteWidget : ViewDataRouteWidget = ViewDataRouteWidget("", "")
+        self.__viewDataRouteWidget : ViewDataRouteWidget = ViewDataRouteWidget(bdd, "", "")
         self.__mainLayout.addWidget(self.__viewDataRouteWidget)
         
 

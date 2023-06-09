@@ -3,11 +3,11 @@ from CountryListWidget import CountryListWidget
 from AirportListWidget import AirportListWidget
 from AirportInfoWidget import AirportInfoWidget
 from ViewDataWidget import ViewDataWidget
-from Bdd import Bdd
+from BddControler import BddControler
 
 class InfosCountryAndAirport(QWidget):
 
-    def __init__(self, bdd : Bdd):
+    def __init__(self, bdd : BddControler):
         super().__init__()
 
         self.bdd = bdd

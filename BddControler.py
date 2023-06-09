@@ -3,7 +3,7 @@ from PyQt6.QtWidgets import QApplication, QWidget
 
 import sys
 
-class Bdd(QWidget):
+class BddControler(QWidget):
     """Classe Bdd
 
     Args:
@@ -278,5 +278,5 @@ class Bdd(QWidget):
 if __name__ == "__main__": 
     print(f'main') 
     app = QApplication(sys.argv) 
-    f = Bdd() 
+    f = BddControler() 
     sys.exit(app.exec())

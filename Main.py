@@ -2,7 +2,7 @@ from PyQt6.QtWidgets import QApplication, QTabWidget, QWidget
 from InfosCountryAndAirport import InfosCountryAndAirport
 from ViewDataCo2Widget import ViewDataCo2Widget
 from RouteWidget import RouteWidget
-from Bdd import Bdd
+from BddControler import BddControler
 import sys
 
 class win(QTabWidget): 
@@ -17,7 +17,7 @@ class win(QTabWidget):
         # TODO Changer le nom du logiciel
         self.setWindowTitle("UI Avions")        
 
-        self.bdd : Bdd = Bdd()
+        self.bdd : BddControler = BddControler()
 
         # Ajoute le widget principal au QTabBar
         self.addTab(InfosCountryAndAirport(self.bdd), "Informations sur les pays/aéroports")

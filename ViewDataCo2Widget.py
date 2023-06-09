@@ -1,16 +1,13 @@
-from PyQt6.QtWidgets import QLabel, QVBoxLayout, QWidget, QHBoxLayout, QRadioButton, QApplication
-from PyQt6.QtCore import Qt, pyqtSignal
-from Bdd import Bdd
+from PyQt6.QtWidgets import QLabel, QVBoxLayout, QWidget
+from PyQt6.QtCore import Qt
+from BddControler import BddControler
 from PyQt6.QtGui import QPixmap
 import matplotlib.pyplot as plt
-import numpy as np
 import geopandas as gpd
 import pandas as pd
-from shapely.geometry import Point
-import sys
 
 class ViewDataCo2Widget(QWidget):
-    def __init__(self, bdd : Bdd):
+    def __init__(self, bdd : BddControler):
         super().__init__()
 
         self.bdd = bdd

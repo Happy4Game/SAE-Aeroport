@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QLabel, QVBoxLayout, QWidget, QHBoxLayout, QRadioButton, QApplication
 from PyQt6.QtCore import Qt, pyqtSignal
-from Bdd import Bdd
+from BddControler import BddControler
 from PyQt6.QtGui import QPixmap
 import matplotlib.pyplot as plt
 import numpy as np
@@ -21,7 +21,7 @@ class ViewDataWidget(QWidget):
 
     qRadioBtnSignal : pyqtSignal = pyqtSignal(int)
 
-    def __init__(self, bdd : Bdd):
+    def __init__(self, bdd : BddControler):
         super().__init__()
 
         self.bdd = bdd

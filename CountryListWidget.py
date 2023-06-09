@@ -1,12 +1,12 @@
 from PyQt6.QtWidgets import QLabel, QWidget, QVBoxLayout, QListWidget, QListWidgetItem, QLineEdit
 from PyQt6.QtCore import pyqtSignal
-from Bdd import Bdd
+from BddControler import BddControler
 
 class CountryListWidget(QWidget):
 
     countryClicked : pyqtSignal = pyqtSignal(str)
 
-    def __init__(self, bdd : Bdd):
+    def __init__(self, bdd : BddControler):
         super().__init__()
 
         self.bdd = bdd

@@ -1,11 +1,11 @@
 from PyQt6.QtWidgets import QLabel, QVBoxLayout, QWidget
-from Bdd import Bdd
+from BddControler import BddControler
 
 class AirportInfoWidget(QWidget):
     """Création du widget contenant le sinformations des aéroports
 
     """
-    def __init__(self, bdd : Bdd):
+    def __init__(self, bdd : BddControler):
         super().__init__()
 
         self.bdd = bdd

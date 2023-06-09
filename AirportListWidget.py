@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QLabel, QVBoxLayout, QWidget, QListWidget, QLineEdit
 from PyQt6.QtCore import pyqtSignal
-from Bdd import Bdd
+from BddControler import BddControler
 
 class AirportListWidget(QWidget):
     airportClicked : pyqtSignal = pyqtSignal(str)
@@ -10,7 +10,7 @@ class AirportListWidget(QWidget):
 
     """
 
-    def __init__(self, bdd: Bdd, name : str = "Liste des aeroports", placeHolder : str = "Rechercher un aeroport", showAllAirport : bool = False):
+    def __init__(self, bdd: BddControler, name : str = "Liste des aeroports", placeHolder : str = "Rechercher un aeroport", showAllAirport : bool = False):
         super().__init__()
 
         self.bdd = bdd
