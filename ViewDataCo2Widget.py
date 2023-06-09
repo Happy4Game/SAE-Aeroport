@@ -22,7 +22,7 @@ class ViewDataCo2Widget(QWidget):
         """Fonction qui affiche les données de CO2 dans un graphique
         """
         co2_data = self.bdd.getTotalCo2ByCountry()
-        print(co2_data)
+        
         # Créer un DataFrame à partir des données de CO2
         df = pd.DataFrame(co2_data, columns=["co2", "pays"])
 
