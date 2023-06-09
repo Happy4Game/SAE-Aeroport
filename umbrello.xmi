@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<XMI xmi.version="1.2" timestamp="2023-06-09T09:43:03" verified="false" xmlns:UML="http://schema.omg.org/spec/UML/1.4">
+<XMI xmi.version="1.2" timestamp="2023-06-09T15:17:18" verified="false" xmlns:UML="http://schema.omg.org/spec/UML/1.4">
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>umbrello uml modeller 2.32.3 http://umbrello.kde.org</XMI.exporter>
@@ -45,9 +45,6 @@
        </UML:Namespace.ownedElement>
       </UML:Package>
       <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uYh1Iudb7LiJB" name="AirportInfoWidget" namespace="Logical_View" comment="CrÃ©ation du widget contenant le sinformations des aÃ©roports&#10;" visibility="public">
-       <UML:GeneralizableElement.generalization>
-        <UML:Generalization xmi.idref="uXsBuI7FWauHM"/>
-       </UML:GeneralizableElement.generalization>
        <UML:Classifier.feature>
         <UML:Attribute isSpecification="false" xmi.id="uvch6iBYxEf4b" name="bdd" visibility="public" type="uJ3jlFFnZdZbe"/>
         <UML:Attribute isSpecification="false" xmi.id="uGQe8F59Y3SPf" name="layout" visibility="private" type="u23fY2DAYT2Hx" initialValue="()"/>
@@ -68,9 +65,6 @@
       <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uwK9pXnXIEaue" name="QWidget" namespace="Logical_View" visibility="public"/>
       <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="u23fY2DAYT2Hx" name="QVBoxLayout" namespace="Logical_View" visibility="public"/>
       <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="urIVLH07iSwUs" name="AirportListWidget" namespace="Logical_View" comment="CrÃ©ation du widget contenant la liste des aÃ©roports&#10;" visibility="public">
-       <UML:GeneralizableElement.generalization>
-        <UML:Generalization xmi.idref="ut1apAotNDO7C"/>
-       </UML:GeneralizableElement.generalization>
        <UML:Classifier.feature>
         <UML:Attribute isSpecification="false" xmi.id="uug6oAECj3te2" name="bdd" visibility="public" type="uJ3jlFFnZdZbe"/>
         <UML:Attribute isSpecification="false" xmi.id="ugHAGt2dweSEy" name="layout" visibility="private" type="u23fY2DAYT2Hx" initialValue="()"/>
@@ -102,9 +96,6 @@
       <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="utcZDPb83K7mN" name="QLabel" namespace="Logical_View" visibility="public"/>
       <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uek4tgQv70vqV" name="QListWidget" namespace="Logical_View" visibility="public"/>
       <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uJ3jlFFnZdZbe" name="BddControler" namespace="Logical_View" comment="Classe Bdd&#10;    Args:&#10;        QWidget : HÃ©rite de la classe QWidget&#10;" visibility="public">
-       <UML:GeneralizableElement.generalization>
-        <UML:Generalization xmi.idref="upNSSiX950FvN"/>
-       </UML:GeneralizableElement.generalization>
        <UML:Classifier.feature>
         <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uFeZDsrXekXIS" name="__init__" comment=" QSqlDatabase" visibility="public" stereotype="constructor" isQuery="false" isOverride="false" isVirtual="false" isInline="false"/>
         <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uXktwxSnuPBHh" name="getPlanes" comment="RÃ©cupÃ¨re la liste des avions&#10;        Returns:&#10;            list: Une liste d'avions (TODO)&#10;" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
@@ -181,9 +172,6 @@
        </UML:Classifier.feature>
       </UML:Class>
       <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uwP2LenjBSARi" name="CountryListWidget" namespace="Logical_View" visibility="public">
-       <UML:GeneralizableElement.generalization>
-        <UML:Generalization xmi.idref="uQF2QnO0SRLvy"/>
-       </UML:GeneralizableElement.generalization>
        <UML:Classifier.feature>
         <UML:Attribute isSpecification="false" xmi.id="uwaYcS9OXwmK0" name="layout" visibility="private" type="u23fY2DAYT2Hx" initialValue="()"/>
         <UML:Attribute isSpecification="false" xmi.id="uOmJuFEA8LKQu" name="label" comment="Label indiquant la liste des pays" visibility="private" type="utcZDPb83K7mN" initialValue="(&quot;Liste des pays&quot;)"/>
@@ -210,9 +198,6 @@
        </UML:Classifier.feature>
       </UML:Class>
       <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uqXuitl77SCOt" name="InfosCountryAndAirport" namespace="Logical_View" visibility="public">
-       <UML:GeneralizableElement.generalization>
-        <UML:Generalization xmi.idref="uudG9Dto1NYww"/>
-       </UML:GeneralizableElement.generalization>
        <UML:Classifier.feature>
         <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uXE9dGFcL5jfK" name="__init__" comment=" Layout comprenant l'ensemble des widgets/layouts CrÃ©e le widget affichant les pays RÃ©cupÃ¨re le signal et le redirige vers la fonction setSelectedCountry CrÃ©e le widget affichant les aeroports CrÃ©e le widget affichant les informations sur un aeroportCrÃ©e le layout affichant les data visualisation du nombre de passenger Layout comportant les radio box avec la view" visibility="public" stereotype="constructor" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
          <UML:BehavioralFeature.parameter>
@@ -237,16 +222,9 @@
         </UML:Operation>
        </UML:Classifier.feature>
       </UML:Class>
-      <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uoD78zki8N6TL" name="win" namespace="Logical_View" visibility="public">
-       <UML:GeneralizableElement.generalization>
-        <UML:Generalization xmi.idref="uLjXsSZukHu7b"/>
-       </UML:GeneralizableElement.generalization>
-      </UML:Class>
+      <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uoD78zki8N6TL" name="win" namespace="Logical_View" visibility="public"/>
       <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="upGixATWfOoiB" name="QTabWidget" namespace="Logical_View" visibility="public"/>
       <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uI7pNPmupbS4W" name="RouteWidget" namespace="Logical_View" visibility="public">
-       <UML:GeneralizableElement.generalization>
-        <UML:Generalization xmi.idref="uKDZl5sKo4MpT"/>
-       </UML:GeneralizableElement.generalization>
        <UML:Classifier.feature>
         <UML:Attribute isSpecification="false" xmi.id="unLXAM6VFrmUc" name="bdd" visibility="public" type="uJ3jlFFnZdZbe"/>
         <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="ur36LCEmpc9jM" name="__init__" visibility="public" stereotype="constructor" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
@@ -266,12 +244,19 @@
         </UML:Operation>
         <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uODa6zwYOgu4r" name="setSrcAirportList" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false"/>
         <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uE9E6kQtaYBc3" name="setDestAirportList" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false"/>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uIimzy1xoI1KR" name="setSelectedSrcCountry" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter isSpecification="false" xmi.id="ubsO2osNwafhg" name="country" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uCOBqsHBkgFb3" name="setSelectedDestCountry" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter isSpecification="false" xmi.id="ud6DXmJc7sEu7" name="country" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
        </UML:Classifier.feature>
       </UML:Class>
       <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="ujKAn2RcwxL3D" name="ViewDataCo2Widget" namespace="Logical_View" visibility="public">
-       <UML:GeneralizableElement.generalization>
-        <UML:Generalization xmi.idref="uXvcdnqpEwevU"/>
-       </UML:GeneralizableElement.generalization>
        <UML:Classifier.feature>
         <UML:Attribute isSpecification="false" xmi.id="ulwYJRtwKQdga" name="layout" visibility="private" type="u23fY2DAYT2Hx" initialValue="()"/>
         <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uMEqvaravewTf" name="__init__" visibility="public" stereotype="constructor" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
@@ -283,9 +268,6 @@
        </UML:Classifier.feature>
       </UML:Class>
       <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="usKrhGIQMKjhD" name="ViewDataRouteWidget" namespace="Logical_View" comment="Classe reprÃ©sentant un widget contenant une data visualisation diagramme en barre&#10;    Args:&#10;        QWidget (QWidget): hÃ©rite de QWidget&#10;" visibility="public">
-       <UML:GeneralizableElement.generalization>
-        <UML:Generalization xmi.idref="unuyOPuvFA90N"/>
-       </UML:GeneralizableElement.generalization>
        <UML:Classifier.feature>
         <UML:Attribute isSpecification="false" xmi.id="u2WTi39DyRolA" name="layout" visibility="private" type="u23fY2DAYT2Hx" initialValue="()"/>
         <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uUK7ZQBVkagI7" name="__init__" visibility="public" stereotype="constructor" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
@@ -305,9 +287,6 @@
        </UML:Classifier.feature>
       </UML:Class>
       <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uDdZmmJTtSsKF" name="ViewDataWidget" namespace="Logical_View" visibility="public">
-       <UML:GeneralizableElement.generalization>
-        <UML:Generalization xmi.idref="u5E3JROBI10oe"/>
-       </UML:GeneralizableElement.generalization>
        <UML:Classifier.feature>
         <UML:Attribute isSpecification="false" xmi.id="uHZlFCnm0MlUF" name="num_view" visibility="public" type="uxLwbtoH3lCOI" initialValue="1"/>
         <UML:Attribute isSpecification="false" xmi.id="uq99qfYgoAAon" name="layout" visibility="private" type="u23fY2DAYT2Hx" initialValue="()"/>
@@ -348,11 +327,11 @@
      </UML:Namespace.ownedElement>
      <XMI.extension xmi.extender="umbrello">
       <diagrams resolution="120">
-       <diagram xmi.id="utmcinytEXV3d" name="class diagram" type="1" documentation="" backgroundcolor="#ffffff" fillcolor="#ffffc0" font="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0" griddotcolor="#d3d3d3" linecolor="#990000" linewidth="0" textcolor="#000000" usefillcolor="1" showattribassocs="1" showatts="1" showattsig="1" showops="1" showopsig="1" showpackage="1" showpubliconly="0" showscope="1" showstereotype="2" localid="-1" showgrid="0" snapgrid="0" snapcsgrid="0" snapx="25" snapy="25" zoom="75.6144" canvasheight="619.177" canvaswidth="1561.78" isopen="1">
+       <diagram xmi.id="utmcinytEXV3d" name="class diagram" type="1" documentation="" backgroundcolor="#ffffff" fillcolor="#ffffc0" font="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0" griddotcolor="#d3d3d3" linecolor="#990000" linewidth="0" textcolor="#000000" usefillcolor="1" showattribassocs="1" showatts="1" showattsig="1" showops="1" showopsig="1" showpackage="1" showpubliconly="0" showscope="1" showstereotype="2" localid="-1" showgrid="0" snapgrid="0" snapcsgrid="0" snapx="25" snapy="25" zoom="70.7571" canvasheight="619.18" canvaswidth="1561.78" isopen="1">
         <widgets>
          <classwidget xmi.id="ujKAn2RcwxL3D" localid="u6AiwBvIe8sOt" textcolor="#000000" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="0" usesdiagramusefillcolor="0" fillcolor="#ffffc0" font="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0,Normal" autoresize="1" x="-3688.26" y="-5865.37" width="267" height="64" isinstance="0" showstereotype="2" showoperations="1" showpubliconly="0" showopsigs="601" showpackage="1" showscope="1" showattributes="1" showattsigs="601" showstereotype="2"/>
          <classwidget xmi.id="uJ3jlFFnZdZbe" localid="uDZZkBsbf7zL0" textcolor="#000000" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="0" usesdiagramusefillcolor="0" fillcolor="#ffffc0" font="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0,Normal" autoresize="1" x="-4053.08" y="-5918.64" width="353" height="248" isinstance="0" showstereotype="2" showoperations="1" showpubliconly="0" showopsigs="601" showpackage="1" showscope="1" showattributes="1" showattsigs="601" showstereotype="2"/>
-         <classwidget xmi.id="uI7pNPmupbS4W" localid="uK2AgtxU8XnhY" textcolor="#000000" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="0" usesdiagramusefillcolor="0" fillcolor="#ffffc0" font="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0,Normal" autoresize="1" x="-4377.95" y="-5863.53" width="267" height="112" isinstance="0" showstereotype="2" showoperations="1" showpubliconly="0" showopsigs="601" showpackage="1" showscope="1" showattributes="1" showattsigs="601" showstereotype="2"/>
+         <classwidget xmi.id="uI7pNPmupbS4W" localid="uK2AgtxU8XnhY" textcolor="#000000" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="0" usesdiagramusefillcolor="0" fillcolor="#ffffc0" font="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0,Normal" autoresize="1" x="-4377.95" y="-5863.53" width="267" height="144" isinstance="0" showstereotype="2" showoperations="1" showpubliconly="0" showopsigs="601" showpackage="1" showscope="1" showattributes="1" showattsigs="601" showstereotype="2"/>
          <classwidget xmi.id="uwP2LenjBSARi" localid="uH9muPERTUK15" textcolor="#000000" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="0" usesdiagramusefillcolor="0" fillcolor="#ffffc0" font="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0,Normal" autoresize="1" x="-3219.17" y="-5959.26" width="403" height="144" isinstance="0" showstereotype="2" showoperations="1" showpubliconly="0" showopsigs="601" showpackage="1" showscope="1" showattributes="1" showattsigs="601" showstereotype="2"/>
          <classwidget xmi.id="urIVLH07iSwUs" localid="ufY387uV4R2mn" textcolor="#000000" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="0" usesdiagramusefillcolor="0" fillcolor="#ffffc0" font="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0,Normal" autoresize="1" x="-4043.49" y="-5629.45" width="923" height="160" isinstance="0" showstereotype="2" showoperations="1" showpubliconly="0" showopsigs="601" showpackage="1" showscope="1" showattributes="1" showattsigs="601" showstereotype="2"/>
          <classwidget xmi.id="uqXuitl77SCOt" localid="uatejhyF7edEt" textcolor="#000000" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="0" usesdiagramusefillcolor="0" fillcolor="#ffffc0" font="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0,Normal" autoresize="1" x="-4356.42" y="-6049.34" width="267" height="104" isinstance="0" showstereotype="2" showoperations="1" showpubliconly="0" showopsigs="601" showpackage="1" showscope="1" showattributes="1" showattsigs="601" showstereotype="2"/>
@@ -404,7 +383,7 @@
   </UML:Model>
  </XMI.content>
  <XMI.extensions xmi.extender="umbrello">
-  <docsettings viewid="utmcinytEXV3d" documentation="" uniqueid="u3TasGQTMSfmo"/>
+  <docsettings viewid="utmcinytEXV3d" documentation="" uniqueid="ud6DXmJc7sEu7"/>
   <listview>
    <listitem id="Views" type="800" open="1">
     <listitem id="Component_View" type="821" open="1"/>
@@ -482,11 +461,13 @@
      <listitem id="upGixATWfOoiB" type="813" open="0"/>
      <listitem id="u23fY2DAYT2Hx" type="813" open="0"/>
      <listitem id="uwK9pXnXIEaue" type="813" open="0"/>
-     <listitem id="uI7pNPmupbS4W" type="813" open="0">
+     <listitem id="uI7pNPmupbS4W" type="813" open="1">
       <listitem id="ur36LCEmpc9jM" type="815" open="0"/>
       <listitem id="unLXAM6VFrmUc" type="814" open="0"/>
       <listitem id="utZsIKByTpSuh" type="815" open="0"/>
       <listitem id="uE9E6kQtaYBc3" type="815" open="0"/>
+      <listitem id="uCOBqsHBkgFb3" type="815" open="0"/>
+      <listitem id="uIimzy1xoI1KR" type="815" open="0"/>
       <listitem id="upR4IH56HzMnX" type="815" open="0"/>
       <listitem id="uODa6zwYOgu4r" type="815" open="0"/>
      </listitem>

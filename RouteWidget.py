@@ -2,6 +2,7 @@ from PyQt6.QtWidgets import QWidget, QHBoxLayout
 from AirportListWidget import AirportListWidget
 from ViewDataRouteWidget import ViewDataRouteWidget
 from BddControler import BddControler
+from CountryListWidget import CountryListWidget
 
 class RouteWidget(QWidget):
 
@@ -15,12 +16,24 @@ class RouteWidget(QWidget):
 
         self.__mainLayout : QHBoxLayout = QHBoxLayout()
 
-        self.__airportSrcList : AirportListWidget = AirportListWidget(bdd, "Aeroport de depart", "Rechercher un aeroport de depart", True)
+        # Crée le widget affichant les pays src
+        self.__countrySrcList : CountryListWidget = CountryListWidget(bdd)
+        self.__countrySrcList.countryClicked.connect(self.setSelectedSrcCountry)
+        self.__mainLayout.addWidget(self.__countrySrcList)
+
+        # Crée le widget affichant les aeroports src
+        self.__airportSrcList : AirportListWidget = AirportListWidget(bdd, "Aeroport de depart", "Rechercher un aeroport de depart", False)
         self.__airportSrcList.airportClicked.connect(self.setSrcAirport)
         self.__airportSrcList.airportSearched.connect(self.setSrcAirportList)
         self.__mainLayout.addWidget(self.__airportSrcList)
 
-        self.__airportDestList : AirportListWidget = AirportListWidget(bdd, "Aeroport de destination", "Rechercher un aeroport de destination", True)
+        # Crée le widget affichant les pays dest
+        self.__countryDestList : CountryListWidget = CountryListWidget(bdd)
+        self.__countryDestList.countryClicked.connect(self.setSelectedDestCountry)
+        self.__mainLayout.addWidget(self.__countryDestList)
+
+        # Crée le widget affichant les aeroports dest
+        self.__airportDestList : AirportListWidget = AirportListWidget(bdd, "Aeroport de destination", "Rechercher un aeroport de destination", False)
         self.__airportDestList.airportClicked.connect(self.setDestAirport)
         self.__airportDestList.airportSearched.connect(self.setDestAirportList)
         self.__mainLayout.addWidget(self.__airportDestList)
@@ -31,6 +44,25 @@ class RouteWidget(QWidget):
 
         self.setLayout(self.__mainLayout)
         
+    def setSelectedSrcCountry(self, country : str) -> None:
+        """Défini le pays pour la liste des aeroports et pour la viewdata
+
+        Args:
+            country (str): Nom du pays
+        """
+        self.srcCountry = country
+        self.__airportSrcList.setAirportByCountry(country)
+
+    def setSelectedDestCountry(self, country : str) -> None:
+        """Défini le pays pour la liste des aeroports et pour la viewdata
+
+        Args:
+            country (str): Nom du pays
+        """
+        self.destCountry = country
+        self.__airportDestList.setAirportByCountry(country)
+
+
     def setSrcAirport(self, airport : str) -> None:
         """Défini l'aeroport de depart pour la viewdata
 
@@ -54,7 +86,7 @@ class RouteWidget(QWidget):
             self.__viewDataRouteWidget.view_data_route(self.__airportSrc, self.__airportDest)
 
     def setSrcAirportList(self) -> None:
-        self.__airportSrcList.setAirportList()
+        self.__airportSrcList.setAirportByCountry(self.srcCountry)
 
     def setDestAirportList(self) -> None:
-        self.__airportDestList.setAirportList()
+        self.__airportDestList.setAirportByCountry(self.destCountry)
