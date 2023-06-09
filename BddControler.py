@@ -317,6 +317,25 @@ class BddControler(QWidget):
             print("Erreur lors de l'exécution de la requête.")
             return []
 
+    def getTotalCo2ByEurope(self) -> list:
+        """Retourne le total de co2 des pays d'europe
+
+        Returns:
+            list: Une liste de total de co2 en europe
+        """
+        query = QSqlQuery(self.db)
+        query.prepare("select sum(t.co2) co2, a.country_ap pays from tot_co2 t inner join airport a on t.airport=a.name_ap where a.country_ap in ('France', 'Germany', 'Italy', 'Spain', 'United Kingdom') group by pays order by co2 desc;")
+        if query.exec():
+            data = []
+            while query.next():
+                co2 = query.value("co2")
+                pays = query.value("pays")
+                data.append((co2,pays))
+                
+            return data
+        else:
+            print("Erreur lors de l'exécution de la requête.")
+            return []
     
         
     def closeConnection(self) -> None:
