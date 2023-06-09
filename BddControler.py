@@ -189,7 +189,7 @@ class BddControler(QWidget):
             data = []
             while query.next():
                 data.append(query.value(0))
-
+            
             return data
         else:
             print("Erreur lors de l'exécution de la requête.")
@@ -316,7 +316,28 @@ class BddControler(QWidget):
         else:
             print("Erreur lors de l'exécution de la requête.")
             return []
+    
+    def getInfoRouteByAirport(self, src_airport :str, dest_airport: str):
+        """Retourne les informations des routes (distance en km et émission de co2)
+        """
+        query = QSqlQuery(self.db)
+        query.prepare("select calculated_co2 as co2, source_airport, destination_airport, distance from co2_par_aeroport_total where source_airport ilike :source and destination_airport ilike :destination")
+        query.bindValue(":source", src_airport)
+        query.bindValue(":destination", dest_airport)
 
+        if query.exec():
+            info = []
+            while query.next():
+                co2 = query.value("co2")
+                distance = query.value("distance")
+                info.append(round(co2))
+                info.append(round(distance))
+            print(info)
+            return info
+        else:
+            print("§§§§§§§§Erreur lors de l'exécution de la requête.")
+            return []
+        
     def getTotalCo2ByEurope(self) -> list:
         """Retourne le total de co2 des pays d'europe
 

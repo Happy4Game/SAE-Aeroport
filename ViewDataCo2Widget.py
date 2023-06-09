@@ -35,7 +35,7 @@ class ViewDataCo2Widget(QWidget):
         merged.plot(column='co2', cmap='Reds', linewidth=0.8, ax=ax, edgecolor='0.8', legend=True)
 
         # Définir le titre et les étiquettes du graphique
-        ax.set_title('Émissions de CO2 par pays')
+        ax.set_title('Émissions de CO2 par pays (Référentiel : Monde)')
         ax.set_xlabel('Longitude')
         ax.set_ylabel('Latitude')
 
@@ -71,7 +71,7 @@ class ViewDataCo2Widget(QWidget):
         merged.plot(column='co2', cmap='Reds', linewidth=0.8, ax=ax, edgecolor='0.8', legend=True)
 
         # Définir le titre et les étiquettes du graphique
-        ax.set_title('Émissions de CO2 en europe')
+        ax.set_title('Émissions de CO2 en europe (Référentiel : Europe)')
         ax.set_xlabel('Longitude')
         ax.set_ylabel('Latitude')
 

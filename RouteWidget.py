@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QWidget, QHBoxLayout
+from PyQt6.QtWidgets import QWidget, QHBoxLayout, QVBoxLayout, QLabel
 from AirportListWidget import AirportListWidget
 from ViewDataRouteWidget import ViewDataRouteWidget
 from BddControler import BddControler
@@ -39,8 +39,19 @@ class RouteWidget(QWidget):
         self.__mainLayout.addWidget(self.__airportDestList)
 
         self.__viewDataRouteWidget : ViewDataRouteWidget = ViewDataRouteWidget(bdd, "", "")
-        self.__mainLayout.addWidget(self.__viewDataRouteWidget)
+        self.__rightLayout : QVBoxLayout = QVBoxLayout()
+    
+        self.__rightLayout.addWidget(self.__viewDataRouteWidget)
         
+        self.__distance : QLabel = QLabel("Distance (km) :")
+        self.__co2 : QLabel = QLabel("Emission co2 :")
+        self.__rightLayout.addWidget(self.__distance)
+        self.__rightLayout.addWidget(self.__co2)
+
+        self.__mainLayout.addLayout(self.__rightLayout)
+
+        self.infoRoute = [self.__distance, self.__co2]
+        self.initialTexts = [label.text() for label in self.infoRoute]
 
         self.setLayout(self.__mainLayout)
         
@@ -73,6 +84,13 @@ class RouteWidget(QWidget):
         if self.__airportSrc != "" and self.__airportDest != "":
             self.__viewDataRouteWidget.clear()
             self.__viewDataRouteWidget.view_data_route(self.__airportSrc, self.__airportDest)
+            info = self.bdd.getInfoRouteByAirport(self.__airportSrc, self.__airportDest)
+            print(info)
+            for label, initialText in zip(self.infoRoute, self.initialTexts):
+                label.setText(initialText)  # Réinitialisation du texte avant mise à jour
+
+            for label, value in zip(self.infoRoute, info):
+                label.setText(label.text() + str(value))
     
     def setDestAirport(self, airport : str) -> None:
         """Défini l'aeroport de destination pour la viewdata
@@ -84,6 +102,14 @@ class RouteWidget(QWidget):
         if self.__airportSrc != "" and self.__airportDest != "":
             self.__viewDataRouteWidget.clear()
             self.__viewDataRouteWidget.view_data_route(self.__airportSrc, self.__airportDest)
+            self.bdd.getInfoRouteByAirport(self.__airportSrc, self.__airportDest)
+            info = self.bdd.getInfoRouteByAirport(self.__airportSrc, self.__airportDest)
+            
+            for label, initialText in zip(self.infoRoute, self.initialTexts):
+                label.setText(initialText)  # Réinitialisation du texte avant mise à jour
+
+            for label, value in zip(self.infoRoute, info):
+                label.setText(label.text() + str(value))
 
     def setSrcAirportList(self) -> None:
         self.__airportSrcList.setAirportByCountry(self.srcCountry)
