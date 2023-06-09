@@ -2,3 +2,6 @@ __pycache__
 
 #La sauvegarde de la map
 *.png
+
+#Dossier vscode
+.vscode

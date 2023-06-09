@@ -41,7 +41,7 @@ class AirportInfoWidget(QWidget):
         self.labels = [self.__name, self.__city, self.__country, self.__IATACode, self.__ICAOCode, self.__latitude, self.__longitude, self.__altitude, self.__timezone]
         self.initialTexts = [label.text() for label in self.labels]
 
-    def setInfoByAirport(self, airport: str):
+    def setInfoByAirport(self, airport: str) -> None:
         info = self.bdd.getInfoByAirport(airport)
         
         for label, initialText in zip(self.labels, self.initialTexts):

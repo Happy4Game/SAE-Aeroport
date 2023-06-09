@@ -39,15 +39,15 @@ class AirportListWidget(QWidget):
 
         
 
-    def airportClickedFunc(self, item : QListWidget):
+    def airportClickedFunc(self, item : QListWidget) -> None:
         self.airportClicked.emit(item.text())
     
-    def airportSearchedFunc(self):
+    def airportSearchedFunc(self) -> None:
         """Emmit the lineEdit text when changed
         """
         self.airportSearched.emit("")
     
-    def setAirportByCountry(self, country: str):
+    def setAirportByCountry(self, country: str) -> None:
         self.__list.clear()
         if self.__list.count() == 0:
             info = self.bdd.getAirportByCountry(country, self.__line_edit.text())
@@ -56,7 +56,7 @@ class AirportListWidget(QWidget):
                 self.__list.addItem(info[airport])
 
 
-    def setAirportList(self):
+    def setAirportList(self) -> None:
         self.__list.clear()
         if self.__list.count() == 0:
             info = self.bdd.getAirports(self.__line_edit.text())

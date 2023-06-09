@@ -10,14 +10,16 @@ class ViewDataCo2Widget(QWidget):
     def __init__(self, bdd : BddControler):
         super().__init__()
 
-        self.bdd = bdd
+        self.bdd : BddControler = bdd
 
         self.__layout = QVBoxLayout()
         self.view_data_co2()
         self.setLayout(self.__layout)
         
     
-    def view_data_co2(self):
+    def view_data_co2(self) -> None:
+        """Fonction qui affiche les données de CO2 dans un graphique
+        """
         co2_data = self.bdd.getTotalCo2ByCountry()
         print(co2_data)
         # Créer un DataFrame à partir des données de CO2

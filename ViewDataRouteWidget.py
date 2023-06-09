@@ -17,7 +17,7 @@ class ViewDataRouteWidget(QWidget):
     def __init__(self, bdd : BddControler, depart : str, destination : str):
         super().__init__()
 
-        self.__bdd = bdd
+        self.__bdd : BddControler = bdd
 
         self.__layout = QVBoxLayout()
         self.setLayout(self.__layout)
@@ -26,7 +26,7 @@ class ViewDataRouteWidget(QWidget):
             self.clear()
             self.view_data_route(depart, destination)
 
-    def view_data_route(self, depart : str, destination : str):
+    def view_data_route(self, depart : str, destination : str) -> None:
         """Méthode permettant d'afficher une data visualisation de la route entre deux aéroports
 
         Args:
@@ -106,7 +106,7 @@ class ViewDataRouteWidget(QWidget):
         self.image_label.setPixmap(QPixmap(temp_file).scaled(500, 500))
         self.__layout.addWidget(self.image_label)
 
-    def clear(self):
+    def clear(self) -> None:
         """Supprime le widget du layout
         """
         if self.__layout.count() > 1:

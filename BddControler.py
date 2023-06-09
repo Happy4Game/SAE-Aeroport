@@ -102,7 +102,15 @@ class BddControler(QWidget):
         return info
 
 
-    def getPositionAeroportOfCountry(self, country: str):
+    def getPositionAeroportOfCountry(self, country: str) -> list:
+        """Retourne la position des aeroports d'un pays
+
+        Args:
+            country (str): nom d'un pays
+
+        Returns:
+            list: Une liste de position d'aeroport
+        """
         query = QSqlQuery(self.db)
         query.prepare("SELECT name_ap, latitude_ap, longitude_ap FROM airport WHERE country_ap = :country")
         query.bindValue(":country", country)
@@ -120,7 +128,15 @@ class BddControler(QWidget):
             print("Erreur lors de l'exécution de la requête.")
             return query, []
         
-    def getPositionAeroport(self, airport: str):
+    def getPositionAeroport(self, airport: str) -> list:
+        """Retourne une liste de position d'un aeroport
+
+        Args:
+            airport (str): nom d'un aeroport
+
+        Returns:
+            list: Une liste de position d'un aeroport
+        """
         query = QSqlQuery(self.db)
         query.prepare("SELECT name_ap, latitude_ap, longitude_ap FROM airport WHERE name_ap = :airport")
         query.bindValue(":airport", airport)
@@ -138,7 +154,12 @@ class BddControler(QWidget):
             print("Erreur lors de l'exécution de la requête.")
             return query, []
         
-    def getAirFrancePlaneSeats(self):
+    def getAirFrancePlaneSeats(self) -> list:
+        """Retourne la liste avec le nom des avions et le nombre de sieges
+
+        Returns:
+            list: Une liste avec le nom des avions et le nombre de sieges
+        """
         query = QSqlQuery(self.db)
         query.exec('select distinct p.name_plane, ps.seat_nb from plane p inner join planeseats ps on p.icao_plane = ps.icao_plane inner join routes r on p.icao_plane = r.icao_code inner join airlinecompany ac on r.id_ac = ac.id_ac where ac.name_ac ilike "Air France";')
         seat_list = []
@@ -197,7 +218,15 @@ class BddControler(QWidget):
             print("Erreur lors de l'exécution de la requête.")
             return query, []
         
-    def getNbPassengerByAirport(self, country: str):
+    def getNbPassengerByAirport(self, country: str) -> list:
+        """Retourne le nombre de passager par aeroport
+
+        Args:
+            country (str): Nom d'un pays
+
+        Returns:
+            list: Une liste de nombre de passager par aeroport
+        """
         # Quels sont les 10 aéroports dans un pays spécifique (défini par la variable ":country") 
         # qui ont transporté le plus grand nombre de passagers, triés par ordre croissant du nombre de passagers ?
         query = QSqlQuery(self.db)
@@ -216,7 +245,15 @@ class BddControler(QWidget):
             print("Erreur lors de l'exécution de la requête.")
             return [], []
 
-    def getMostUseAirport(self, country: str):
+    def getMostUseAirport(self, country: str) -> list:
+        """Retourne les aeroports les plus fréquentés dans un pays
+
+        Args:
+            country (str): Nom d'un pays
+
+        Returns:
+            list: Une liste d'aeroport
+        """
         #Quels sont les aéroports les plus fréquentés dans un pays ?
         query = QSqlQuery(self.db)
         query.prepare("SELECT name_ap, frequency FROM(SELECT airport.name_ap, COUNT(*) AS frequency FROM routes JOIN airport ON routes.dest_ap = airport.id_ap JOIN country ON airport.country_ap = country.name_country WHERE country.name_country ILIKE :country GROUP BY airport.name_ap ORDER BY frequency DESC limit 5) as subquery ORDER BY frequency ASC;")
@@ -233,7 +270,12 @@ class BddControler(QWidget):
             print("Erreur lors de l'exécution de la requête.")
             return [], []
         
-    def getTotalCo2ByCountry(self):
+    def getTotalCo2ByCountry(self) -> list:
+        """Retourne le total de co2 par pays
+
+        Returns:
+            list: Une liste de total de co2 par pays
+        """
         query = QSqlQuery(self.db)
         query.prepare("select sum(t.co2) co2, a.country_ap pays from tot_co2 t inner join airport a on t.airport=a.name_ap group by pays order by co2 desc;")
         if query.exec():
@@ -248,7 +290,15 @@ class BddControler(QWidget):
             print("Erreur lors de l'exécution de la requête.")
             return []
     
-    def getInfoAirportRoute(self, airport: str):
+    def getInfoAirportRoute(self, airport: str) -> list:
+        """Retourne les informations d'un aeroport
+
+        Args:
+            airport (str): Nom d'un aeroport
+
+        Returns:
+            list: Une liste d'informations d'un aeroport
+        """
         query = QSqlQuery(self.db)
         query.prepare('SELECT name_ap, longitude_ap, latitude_ap FROM "airport" WHERE name_ap = :airport;')
         query.bindValue(":airport", airport)
@@ -269,7 +319,9 @@ class BddControler(QWidget):
 
     
         
-    def closeConnection(self):
+    def closeConnection(self) -> None:
+        """Ferme la connection avec la base de données
+        """
         self.db.close()
         print("Connection closed")
 

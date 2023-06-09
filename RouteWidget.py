@@ -31,20 +31,30 @@ class RouteWidget(QWidget):
 
         self.setLayout(self.__mainLayout)
         
-    def setSrcAirport(self, airport : str):
+    def setSrcAirport(self, airport : str) -> None:
+        """Défini l'aeroport de depart pour la viewdata
+
+        Args:
+            airport (str): un nom d'aeroport
+        """
         self.__airportSrc = airport
         if self.__airportSrc != "" and self.__airportDest != "":
             self.__viewDataRouteWidget.clear()
             self.__viewDataRouteWidget.view_data_route(self.__airportSrc, self.__airportDest)
     
-    def setDestAirport(self, airport : str):
+    def setDestAirport(self, airport : str) -> None:
+        """Défini l'aeroport de destination pour la viewdata
+
+        Args:
+            airport (str): un nom d'aeroport
+        """
         self.__airportDest = airport
         if self.__airportSrc != "" and self.__airportDest != "":
             self.__viewDataRouteWidget.clear()
             self.__viewDataRouteWidget.view_data_route(self.__airportSrc, self.__airportDest)
 
-    def setSrcAirportList(self):
+    def setSrcAirportList(self) -> None:
         self.__airportSrcList.setAirportList()
 
-    def setDestAirportList(self):
+    def setDestAirportList(self) -> None:
         self.__airportDestList.setAirportList()

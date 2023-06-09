@@ -10,7 +10,7 @@ class InfosCountryAndAirport(QWidget):
     def __init__(self, bdd : BddControler):
         super().__init__()
 
-        self.bdd = bdd
+        self.bdd : BddControler = bdd
 
         self.country : str = ""  
 
@@ -49,7 +49,7 @@ class InfosCountryAndAirport(QWidget):
 
         self.setLayout(self.__mainLayout)
 
-    def setSelectedCountry(self, country : str):
+    def setSelectedCountry(self, country : str) -> None:
         """Défini le pays pour la liste des aeroports et pour la viewdata
 
         Args:
@@ -85,7 +85,7 @@ class InfosCountryAndAirport(QWidget):
         self.__viewData.refresh(country)
         #self.__viewDataPassenger.view_data_bar_airport_frequency(country)
         
-    def setSelectedAirport(self, airport :str):
+    def setSelectedAirport(self, airport :str) -> None:
         """Défini l'aeroport selectionne pour la viewdata et pour les informations de l'aeroport
 
         Args:
@@ -109,12 +109,12 @@ class InfosCountryAndAirport(QWidget):
         self.__viewData.clear()
         self.__viewData.view_data_airport(airport)
 
-    def setAirportBySearch(self):
+    def setAirportBySearch(self) -> None:
         """Défini la liste des pays lors du changement de l'entrée utilisateur
         """
         self.__airportList.setAirportByCountry(self.country)
 
-    def refreshViewData(self, selectedView : int):
+    def refreshViewData(self, selectedView : int) -> None:
         """Rafraichi les données de la view data passenger
         """
         self.__viewData.refresh(self.country)

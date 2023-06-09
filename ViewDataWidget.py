@@ -24,7 +24,7 @@ class ViewDataWidget(QWidget):
     def __init__(self, bdd : BddControler):
         super().__init__()
 
-        self.bdd = bdd
+        self.bdd : BddControler = bdd
 
         self.num_view = 1
 
@@ -49,7 +49,7 @@ class ViewDataWidget(QWidget):
         self.__viewLayoutH.setAlignment(Qt.AlignmentFlag.AlignTop)
         
 
-    def view_data_bar_nb_passenger_transport(self, country: str):
+    def view_data_bar_nb_passenger_transport(self, country: str) -> None:
         """Méthode permettant de créer une data visualisation correspondant au nombre de personne transporté par aeroport
 
         Args:
@@ -89,7 +89,7 @@ class ViewDataWidget(QWidget):
         self.__layout.addLayout(self.__viewLayoutH)
         self.__layout.addWidget(self.image_label, Qt.AlignmentFlag.AlignCenter)
 
-    def view_data_bar_airport_frequency(self, country: str):
+    def view_data_bar_airport_frequency(self, country: str) -> None:
         """Méthode permettant d'afficher une data visualisation de la fréquence d'utilisation des aeroport par pays
 
         Args:
@@ -128,7 +128,7 @@ class ViewDataWidget(QWidget):
         self.__layout.addLayout(self.__viewLayoutH)
         self.__layout.addWidget(image_label, Qt.AlignmentFlag.AlignCenter)
     
-    def view_data_country(self, country : str):
+    def view_data_country(self, country : str) -> None:
         """Méthode permettant d'afficher une data visualisation de tout les aéroports d'un pays
 
         Args:
@@ -174,7 +174,7 @@ class ViewDataWidget(QWidget):
         self.__layout.addLayout(self.__viewLayoutH)
         self.__layout.addWidget(self.image_label, Qt.AlignmentFlag.AlignCenter)
 
-    def view_data_airport(self, airport : str):
+    def view_data_airport(self, airport : str) -> None:
         """Méthode permettant d'afficher une data visualisation sous forme de map monde représentant un aéroport d'un pays
 
         Args:
@@ -221,7 +221,7 @@ class ViewDataWidget(QWidget):
         self.__layout.addWidget(self.image_label, Qt.AlignmentFlag.AlignCenter)
 
     
-    def refresh(self, country : str = ""):
+    def refresh(self, country : str = "") -> None:
         """Rafraichi la vue en fonction du pays et retourne le numéro de vue
 
         Args:
@@ -241,10 +241,10 @@ class ViewDataWidget(QWidget):
             self.view_data_country(country)
             #TODO: Ajouter un fonctionnalité pour lancer la méthode view_data_airport
 
-    def qRadioBbtnSignalFunc(self):
+    def qRadioBbtnSignalFunc(self) -> None:
         self.qRadioBtnSignal.emit(self.num_view)
 
-    def clear(self):
+    def clear(self) -> None:
         """Supprime le widget du layout
         """
         if self.__layout.count() > 1:

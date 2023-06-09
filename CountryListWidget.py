@@ -9,7 +9,7 @@ class CountryListWidget(QWidget):
     def __init__(self, bdd : BddControler):
         super().__init__()
 
-        self.bdd = bdd
+        self.bdd : BddControler = bdd
 
         self.__layout = QVBoxLayout()
         self.setLayout(self.__layout)
@@ -35,7 +35,7 @@ class CountryListWidget(QWidget):
         self.__layout.addWidget(self.__list)
 
 
-    def countryClickedFunc(self, item : QListWidgetItem):
+    def countryClickedFunc(self, item : QListWidgetItem) -> None:
         """Fonction qui emmet le texte du pays dans un signal
 
         Args:
@@ -44,7 +44,7 @@ class CountryListWidget(QWidget):
         self.countryClickedText = item.text()
         self.countryClicked.emit(item.text())
 
-    def getCountryClickedText(self):
+    def getCountryClickedText(self) -> str:
         """Fonction qui retourne le texte émis par le signal countryClicked.
 
         Returns:
@@ -53,7 +53,9 @@ class CountryListWidget(QWidget):
         
         return self.countryClickedText
     
-    def addCountryList(self):
+    def addCountryList(self) -> None:
+        """Fonction qui ajoute la liste des pays dans QListWidget
+        """
         self.__list.clear()
         text = self.__line_edit.text()
         if self.__list.count() == 0:

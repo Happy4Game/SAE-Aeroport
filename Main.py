@@ -29,7 +29,7 @@ class win(QTabWidget):
         # Affiche la fenêtre
         self.show()
     
-    def closeConnection(self):
+    def closeConnection(self) -> None:
         self.bdd.closeConnection()
 
 
