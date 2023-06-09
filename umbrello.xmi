@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMI xmi.version="1.2" timestamp="2023-06-09T09:43:03" verified="false" xmlns:UML="http://schema.omg.org/spec/UML/1.4">
+ <XMI.header>
+  <XMI.documentation>
+   <XMI.exporter>umbrello uml modeller 2.32.3 http://umbrello.kde.org</XMI.exporter>
+   <XMI.exporterVersion>1.7.3</XMI.exporterVersion>
+   <XMI.exporterEncoding>UnicodeUTF8</XMI.exporterEncoding>
+  </XMI.documentation>
+  <XMI.metamodel xmi.name="UML" xmi.version="1.4" href="UML.xml"/>
+ </XMI.header>
+ <XMI.content>
+  <UML:Model xmi.id="m1" name="UML Model" isSpecification="false" isAbstract="false" isRoot="false" isLeaf="false">
+   <UML:Namespace.ownedElement>
+    <UML:Stereotype isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="folder" name="folder" namespace="m1" visibility="public"/>
+    <UML:Stereotype isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="constructor" name="constructor" namespace="m1" visibility="public"/>
+    <UML:Model isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="Logical_View" name="Logical View" namespace="m1" visibility="public">
+     <UML:Namespace.ownedElement>
+      <UML:Package isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="Datatypes" name="Datatypes" namespace="Logical_View" visibility="public" stereotype="folder">
+       <UML:Namespace.ownedElement>
+        <UML:DataType isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="u49oZIG2xB4IX" name="char" namespace="Datatypes" visibility="public" isActive="false"/>
+        <UML:DataType isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uxLwbtoH3lCOI" name="int" namespace="Datatypes" visibility="public"/>
+        <UML:DataType isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uosjSAKzVvl4O" name="float" namespace="Datatypes" visibility="public"/>
+        <UML:DataType isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uEQQixFZEexrz" name="double" namespace="Datatypes" visibility="public" isActive="false"/>
+        <UML:DataType isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uqlg2wqJT4lxR" name="bool" namespace="Datatypes" visibility="public"/>
+        <UML:DataType isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uhkaFdl39Q7CW" name="string" namespace="Datatypes" visibility="public"/>
+        <UML:DataType isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="u4d0laldVP6NR" name="unsigned char" namespace="Datatypes" visibility="public" isActive="false"/>
+        <UML:DataType isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uqwg2CvJE3WtI" name="signed char" namespace="Datatypes" visibility="public" isActive="false"/>
+        <UML:DataType isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uSmcBjpsIaEdZ" name="unsigned int" namespace="Datatypes" visibility="public" isActive="false"/>
+        <UML:DataType isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="u4VwEU9mauh9B" name="signed int" namespace="Datatypes" visibility="public" isActive="false"/>
+        <UML:DataType isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="upt9OEm23VL6o" name="short int" namespace="Datatypes" visibility="public" isActive="false"/>
+        <UML:DataType isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uIDygeN1JNV0b" name="unsigned short int" namespace="Datatypes" visibility="public" isActive="false"/>
+        <UML:DataType isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uFthyRLtZ8lcD" name="signed short int" namespace="Datatypes" visibility="public" isActive="false"/>
+        <UML:DataType isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uJX3Y22K68gC9" name="long int" namespace="Datatypes" visibility="public" isActive="false"/>
+        <UML:DataType isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uQGbd14uy6Gsk" name="signed long int" namespace="Datatypes" visibility="public" isActive="false"/>
+        <UML:DataType isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="u74JgO6phhx4j" name="unsigned long int" namespace="Datatypes" visibility="public" isActive="false"/>
+        <UML:DataType isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="u91CZj1lWW1z6" name="long double" namespace="Datatypes" visibility="public" isActive="false"/>
+        <UML:DataType isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uTtoIwrentBkp" name="wchar_t" namespace="Datatypes" visibility="public" isActive="false"/>
+        <UML:DataType isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="ut0vVui7Ua1wA" name="array" namespace="Datatypes" visibility="public"/>
+        <UML:DataType isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="unko3JLzewAKD" name="tuple" namespace="Datatypes" visibility="public"/>
+        <UML:DataType isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="ui22lDec0kES8" name="list" namespace="Datatypes" visibility="public"/>
+        <UML:DataType isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uoOz1OGbK67ee" name="long" namespace="Datatypes" visibility="public"/>
+        <UML:DataType isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uWljHH33hnW1S" name="dict" namespace="Datatypes" visibility="public"/>
+        <UML:DataType isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uSB9FbjgO9L5M" name="object" namespace="Datatypes" visibility="public"/>
+        <UML:DataType isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uFmK0g4znqC54" name="set" namespace="Datatypes" visibility="public"/>
+       </UML:Namespace.ownedElement>
+      </UML:Package>
+      <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uYh1Iudb7LiJB" name="AirportInfoWidget" namespace="Logical_View" comment="CrÃ©ation du widget contenant le sinformations des aÃ©roports&#10;" visibility="public">
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="uXsBuI7FWauHM"/>
+       </UML:GeneralizableElement.generalization>
+       <UML:Classifier.feature>
+        <UML:Attribute isSpecification="false" xmi.id="uvch6iBYxEf4b" name="bdd" visibility="public" type="uJ3jlFFnZdZbe"/>
+        <UML:Attribute isSpecification="false" xmi.id="uGQe8F59Y3SPf" name="layout" visibility="private" type="u23fY2DAYT2Hx" initialValue="()"/>
+        <UML:Attribute isSpecification="false" xmi.id="uTOLPuq6tT0xj" name="labels" comment="Labels indiquant les informations de l'aeroport Ajout des widgets dans le layout Initialisation des valeurs des labels" visibility="public" type="ui22lDec0kES8"/>
+        <UML:Attribute isSpecification="false" xmi.id="uNJJz59ykPIv8" name="initialTexts" comment="Labels indiquant les informations de l'aeroport Ajout des widgets dans le layout Initialisation des valeurs des labels" visibility="public" type="ui22lDec0kES8"/>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uDmXBlGPsBz1S" name="__init__" comment=" Labels indiquant les informations de l'aeroport Ajout des widgets dans le layout Initialisation des valeurs des labels" visibility="public" stereotype="constructor" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter isSpecification="false" xmi.id="uKQR8SlRMAXUc" name="bdd" visibility="private" type="uJ3jlFFnZdZbe" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uVSlkFxEFFHxc" name="setInfoByAirport" comment=" RÃ©initialisation du texte avant mise Ã  jour" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter isSpecification="false" xmi.id="ucMrRts8Q68oc" name="airport" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uwK9pXnXIEaue" name="QWidget" namespace="Logical_View" visibility="public"/>
+      <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="u23fY2DAYT2Hx" name="QVBoxLayout" namespace="Logical_View" visibility="public"/>
+      <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="urIVLH07iSwUs" name="AirportListWidget" namespace="Logical_View" comment="CrÃ©ation du widget contenant la liste des aÃ©roports&#10;" visibility="public">
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="ut1apAotNDO7C"/>
+       </UML:GeneralizableElement.generalization>
+       <UML:Classifier.feature>
+        <UML:Attribute isSpecification="false" xmi.id="uug6oAECj3te2" name="bdd" visibility="public" type="uJ3jlFFnZdZbe"/>
+        <UML:Attribute isSpecification="false" xmi.id="ugHAGt2dweSEy" name="layout" visibility="private" type="u23fY2DAYT2Hx" initialValue="()"/>
+        <UML:Attribute isSpecification="false" xmi.id="uCWeVU0RyUDUx" name="label" comment="Label indiquant la liste des aeroports" visibility="private" type="utcZDPb83K7mN" initialValue="()"/>
+        <UML:Attribute isSpecification="false" xmi.id="uqyK45LRYu8yh" name="list" comment="Label indiquant la liste des aeroports Ligne de saisie de texte" visibility="private" type="uek4tgQv70vqV" initialValue="()"/>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="ub2zTDKu6S6Tj" name="__init__" comment=" Label indiquant la liste des aeroports Ligne de saisie de texte Ajout des widgets dans le layout" visibility="public" stereotype="constructor" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter isSpecification="false" xmi.id="uvLQCYhTTRnZz" name="bdd" visibility="private" type="uJ3jlFFnZdZbe" value=""/>
+          <UML:Parameter isSpecification="false" xmi.id="uohhiLFNjG688" name="name" visibility="private" type="uhkaFdl39Q7CW" value="Liste des aeroports"/>
+          <UML:Parameter isSpecification="false" xmi.id="uO5WP6aysqge4" name="placeHolder" visibility="private" type="uhkaFdl39Q7CW" value="Rechercher un aeroport"/>
+          <UML:Parameter isSpecification="false" xmi.id="uqwnzB3p4sNar" name="showAllAirport" visibility="private" type="uqlg2wqJT4lxR" value="false"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="usm6VIl9fnw0v" name="airportClickedFunc" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter isSpecification="false" xmi.id="u43rm5UeByfo1" name="item" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+          <UML:Parameter isSpecification="false" xmi.id="uC8QJtwhc4HU4" name="QListWidget" visibility="private" type="uek4tgQv70vqV" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="u6AAWrJkBh4oD" name="airportSearchedFunc" comment="Emmit the lineEdit text when changed&#10;" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false"/>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uEWYFi36LE9mX" name="setAirportByCountry" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter isSpecification="false" xmi.id="u9ZyIYo4JuXk6" name="country" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uK1QTCSSoYrZW" name="setAirportList" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false"/>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="utcZDPb83K7mN" name="QLabel" namespace="Logical_View" visibility="public"/>
+      <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uek4tgQv70vqV" name="QListWidget" namespace="Logical_View" visibility="public"/>
+      <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uJ3jlFFnZdZbe" name="BddControler" namespace="Logical_View" comment="Classe Bdd&#10;    Args:&#10;        QWidget : HÃ©rite de la classe QWidget&#10;" visibility="public">
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="upNSSiX950FvN"/>
+       </UML:GeneralizableElement.generalization>
+       <UML:Classifier.feature>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uFeZDsrXekXIS" name="__init__" comment=" QSqlDatabase" visibility="public" stereotype="constructor" isQuery="false" isOverride="false" isVirtual="false" isInline="false"/>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uXktwxSnuPBHh" name="getPlanes" comment="RÃ©cupÃ¨re la liste des avions&#10;        Returns:&#10;            list: Une liste d'avions (TODO)&#10;" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter xmi.id="uK10Xx5STs6U4" type="ui22lDec0kES8" kind="return"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uru9x8LOVbhbn" name="getCountry" comment="Retourne la liste des pays&#10;        Args:&#10;            text (str): Nom d'un pays 'pour de la recherche' &#10;        Returns:&#10;            list: Une liste de noms de pays&#10;" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter xmi.id="ugzDD14ricKlN" type="ui22lDec0kES8" kind="return"/>
+          <UML:Parameter isSpecification="false" xmi.id="u2uiturzMatb0" name="text" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="unuOTA0KauwMb" name="getInfoByAirport" comment="Retourne la liste des infos d'un aeroport&#10;        Args:&#10;            airport (str): nom de l'aeroport&#10;        Returns:&#10;            list: Une liste d'informations sur un aeroport&#10;" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter xmi.id="uIgXYgw5Mzhb9" type="ui22lDec0kES8" kind="return"/>
+          <UML:Parameter isSpecification="false" xmi.id="uxEB7lOgJafq6" name="airport" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="ufjycEDtBexmv" name="getPositionAeroportOfCountry" comment="Retourne la position des aeroports d'un pays&#10;        Args:&#10;            country (str): nom d'un pays&#10;        Returns:&#10;            list: Une liste de position d'aeroport&#10;" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter xmi.id="uO0ChMTr0ljMO" type="ui22lDec0kES8" kind="return"/>
+          <UML:Parameter isSpecification="false" xmi.id="uMhPLKhnAI5XS" name="country" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uPjPAv2WRCMyc" name="getPositionAeroport" comment="Retourne une liste de position d'un aeroport&#10;        Args:&#10;            airport (str): nom d'un aeroport&#10;        Returns:&#10;            list: Une liste de position d'un aeroport&#10;" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter xmi.id="ux0HrSmTo1JEo" type="ui22lDec0kES8" kind="return"/>
+          <UML:Parameter isSpecification="false" xmi.id="uPY215WB1MIeY" name="airport" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="usdYMln4w18bm" name="getAirFrancePlaneSeats" comment="Retourne la liste avec le nom des avions et le nombre de sieges&#10;        Returns:&#10;            list: Une liste avec le nom des avions et le nombre de sieges&#10;" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter xmi.id="uQxJddlOcqbD6" type="ui22lDec0kES8" kind="return"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uCPdk5pn2nq4V" name="getAirportByCountry" comment="Retourne les aeroports&#10;        Args:&#10;            country (str): Nom d'un pays&#10;            airport (str) : Nom d'un aeroport 'pour la fonction de recherche'&#10;        Returns:&#10;            list: Une liste d'aeroport&#10;" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter xmi.id="uwJJ965PqBf4P" type="ui22lDec0kES8" kind="return"/>
+          <UML:Parameter isSpecification="false" xmi.id="uqGCVSmaWhz97" name="country" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+          <UML:Parameter isSpecification="false" xmi.id="udoclK74dInU6" name="airport" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uO2rk1ab43oG5" name="getAirports" comment="Retourne les aeroports&#10;        Args:&#10;            airport (str) : Nom d'un aeroport 'pour la fonction de recherche'&#10;        Returns:&#10;            list: Une liste d'aeroport&#10;" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter xmi.id="uYMkJwv3jpe4p" type="ui22lDec0kES8" kind="return"/>
+          <UML:Parameter isSpecification="false" xmi.id="uOt5o3MIotWpO" name="airport" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="ue2ZbkKzEFawB" name="getNbPassengerByAirport" comment="Retourne le nombre de passager par aeroport&#10;        Args:&#10;            country (str): Nom d'un pays&#10;        Returns:&#10;            list: Une liste de nombre de passager par aeroport&#10; Quels sont les 10 aÃ©roports dans un pays spÃ©cifique (dÃ©fini par la variable &quot;:country&quot;)  qui ont transportÃ© le plus grand nombre de passagers, triÃ©s par ordre croissant du nombre de passagers ?" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter xmi.id="uCsGSLtpykdSn" type="ui22lDec0kES8" kind="return"/>
+          <UML:Parameter isSpecification="false" xmi.id="uSrIfzNOtVcD9" name="country" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uZIpwwy5ijFpg" name="getMostUseAirport" comment="Retourne les aeroports les plus frÃ©quentÃ©s dans un pays&#10;        Args:&#10;            country (str): Nom d'un pays&#10;        Returns:&#10;            list: Une liste d'aeroport&#10;Quels sont les aÃ©roports les plus frÃ©quentÃ©s dans un pays ?" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter xmi.id="uBJ7WoNrORS6k" type="ui22lDec0kES8" kind="return"/>
+          <UML:Parameter isSpecification="false" xmi.id="ugToKSR8Z4rx9" name="country" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uMnwb6pGJYBub" name="getTotalCo2ByCountry" comment="Retourne le total de co2 par pays&#10;        Returns:&#10;            list: Une liste de total de co2 par pays&#10;" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter xmi.id="uvEvumKxrTTzN" type="ui22lDec0kES8" kind="return"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uFAleYQP7LjV5" name="getInfoAirportRoute" comment="Retourne les informations d'un aeroport&#10;        Args:&#10;            airport (str): Nom d'un aeroport&#10;        Returns:&#10;            list: Une liste d'informations d'un aeroport&#10;" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter xmi.id="uCfv7kqnalaXR" type="ui22lDec0kES8" kind="return"/>
+          <UML:Parameter isSpecification="false" xmi.id="uvsOKskXeJtIO" name="airport" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uFzmClhcpskht" name="closeConnection" comment="Ferme la connection avec la base de donnÃ©es&#10;" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false"/>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uwP2LenjBSARi" name="CountryListWidget" namespace="Logical_View" visibility="public">
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="uQF2QnO0SRLvy"/>
+       </UML:GeneralizableElement.generalization>
+       <UML:Classifier.feature>
+        <UML:Attribute isSpecification="false" xmi.id="uwaYcS9OXwmK0" name="layout" visibility="private" type="u23fY2DAYT2Hx" initialValue="()"/>
+        <UML:Attribute isSpecification="false" xmi.id="uOmJuFEA8LKQu" name="label" comment="Label indiquant la liste des pays" visibility="private" type="utcZDPb83K7mN" initialValue="(&quot;Liste des pays&quot;)"/>
+        <UML:Attribute isSpecification="false" xmi.id="uTrr9UNnCD0Xa" name="list" comment="Label indiquant la liste des pays Ligne de saisie de texte" visibility="private" type="uek4tgQv70vqV" initialValue="()"/>
+        <UML:Attribute isSpecification="false" xmi.id="u8DROXEwll3gz" name="countryClickedText" comment="Label indiquant la liste des pays Ligne de saisie de texte" visibility="public" type="uhkaFdl39Q7CW" initialValue="&quot;&quot;"/>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uCFobuTkS6pN8" name="__init__" comment=" Label indiquant la liste des pays Ligne de saisie de texte Redirection du signal vers la fonction countryClickedFunc" visibility="public" stereotype="constructor" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter isSpecification="false" xmi.id="uBcAwQxkrimqV" name="bdd" visibility="private" type="uJ3jlFFnZdZbe" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="u7HJlRle387r3" name="countryClickedFunc" comment="Fonction qui emmet le texte du pays dans un signal&#10;        Args:&#10;            item (QListWidgetItem): Element de QListWidget&#10;" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter xmi.id="udC6FdeYQVSFe" type="uhkaFdl39Q7CW" kind="return"/>
+          <UML:Parameter isSpecification="false" xmi.id="u0YrGgRFD5GKn" name="item" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+          <UML:Parameter isSpecification="false" xmi.id="upx4Ude0qD7Dm" name="QListWidgetItem" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="u6fEpFGk6Pl3O" name="getCountryClickedText" comment="Fonction qui retourne le texte Ã©mis par le signal countryClicked.&#10;        Returns:&#10;            str: Texte Ã©mis par le signal countryClicked.&#10;" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter xmi.id="ubaiEVzpbKcvL" type="uhkaFdl39Q7CW" kind="return"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="u12PWAjQ4UHMD" name="addCountryList" comment="Fonction qui ajoute la liste des pays dans QListWidget&#10;" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false"/>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uqXuitl77SCOt" name="InfosCountryAndAirport" namespace="Logical_View" visibility="public">
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="uudG9Dto1NYww"/>
+       </UML:GeneralizableElement.generalization>
+       <UML:Classifier.feature>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uXE9dGFcL5jfK" name="__init__" comment=" Layout comprenant l'ensemble des widgets/layouts CrÃ©e le widget affichant les pays RÃ©cupÃ¨re le signal et le redirige vers la fonction setSelectedCountry CrÃ©e le widget affichant les aeroports CrÃ©e le widget affichant les informations sur un aeroportCrÃ©e le layout affichant les data visualisation du nombre de passenger Layout comportant les radio box avec la view" visibility="public" stereotype="constructor" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter isSpecification="false" xmi.id="uW94nmk4yJDEm" name="bdd" visibility="private" type="uJ3jlFFnZdZbe" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="um4ootmSriA83" name="setSelectedCountry" comment="DÃ©fini le pays pour la liste des aeroports et pour la viewdata&#10;        Args:&#10;            country (str): Nom d'un pays&#10; " visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter isSpecification="false" xmi.id="u9kxy48IGYRop" name="country" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uDo0mVSg0bQY7" name="setSelectedAirport" comment="DÃ©fini l'aeroport selectionne pour la viewdata et pour les informations de l'aeroport&#10;        Args:&#10;            airport (str): aeroport&#10; Supprimer le widget prÃ©cÃ©dent s'il existe CrÃ©er un nouveau widget Afficher les donnÃ©es dans le nouveau widgetTODO: Ajouter un fonctionnalitÃ© pour lancer la mÃ©thode view_data_airport Ã  la place de Ã§a :" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter isSpecification="false" xmi.id="u6r8xjT4skCj3" name="airport" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uwAilNC8L7DWV" name="setAirportBySearch" comment="DÃ©fini la liste des pays lors du changement de l'entrÃ©e utilisateur&#10;" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false"/>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uPWYiIAX9J0tO" name="refreshViewData" comment="Rafraichi les donnÃ©es de la view data passenger&#10;" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter isSpecification="false" xmi.id="ufVem1DdsvSHF" name="selectedView" visibility="private" type="uxLwbtoH3lCOI" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uoD78zki8N6TL" name="win" namespace="Logical_View" visibility="public">
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="uLjXsSZukHu7b"/>
+       </UML:GeneralizableElement.generalization>
+      </UML:Class>
+      <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="upGixATWfOoiB" name="QTabWidget" namespace="Logical_View" visibility="public"/>
+      <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uI7pNPmupbS4W" name="RouteWidget" namespace="Logical_View" visibility="public">
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="uKDZl5sKo4MpT"/>
+       </UML:GeneralizableElement.generalization>
+       <UML:Classifier.feature>
+        <UML:Attribute isSpecification="false" xmi.id="unLXAM6VFrmUc" name="bdd" visibility="public" type="uJ3jlFFnZdZbe"/>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="ur36LCEmpc9jM" name="__init__" visibility="public" stereotype="constructor" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter isSpecification="false" xmi.id="uRIdXUS3uo6o1" name="bdd" visibility="private" type="uJ3jlFFnZdZbe" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="upR4IH56HzMnX" name="setSrcAirport" comment="DÃ©fini l'aeroport de depart pour la viewdata&#10;        Args:&#10;            airport (str): un nom d'aeroport&#10;" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter isSpecification="false" xmi.id="u2G6RBLXqsSyA" name="airport" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="utZsIKByTpSuh" name="setDestAirport" comment="DÃ©fini l'aeroport de destination pour la viewdata&#10;        Args:&#10;            airport (str): un nom d'aeroport&#10;" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter isSpecification="false" xmi.id="uV8BjXr99cHax" name="airport" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uODa6zwYOgu4r" name="setSrcAirportList" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false"/>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uE9E6kQtaYBc3" name="setDestAirportList" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false"/>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="ujKAn2RcwxL3D" name="ViewDataCo2Widget" namespace="Logical_View" visibility="public">
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="uXvcdnqpEwevU"/>
+       </UML:GeneralizableElement.generalization>
+       <UML:Classifier.feature>
+        <UML:Attribute isSpecification="false" xmi.id="ulwYJRtwKQdga" name="layout" visibility="private" type="u23fY2DAYT2Hx" initialValue="()"/>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uMEqvaravewTf" name="__init__" visibility="public" stereotype="constructor" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter isSpecification="false" xmi.id="u3TasGQTMSfmo" name="bdd" visibility="private" type="uJ3jlFFnZdZbe" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uaO69ehhWLuDN" name="view_data_co2" comment="Fonction qui affiche les donnÃ©es de CO2 dans un graphique&#10; CrÃ©er un DataFrame Ã  partir des donnÃ©es de CO2 Fusionner les donnÃ©es de CO2 avec les donnÃ©es de la carte du monde Tracer les donnÃ©es fusionnÃ©es DÃ©finir le titre et les Ã©tiquettes du graphique DÃ©finir le rapport d'aspect et les limites de zoom Ajustez ces valeurs en fonction de la zone d'intÃ©rÃªt Ajustez ces valeurs en fonction de la zone d'intÃ©rÃªt Enregistrer la carte sous forme de fichier PNG Charger l'image dans un QLabel" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false"/>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="usKrhGIQMKjhD" name="ViewDataRouteWidget" namespace="Logical_View" comment="Classe reprÃ©sentant un widget contenant une data visualisation diagramme en barre&#10;    Args:&#10;        QWidget (QWidget): hÃ©rite de QWidget&#10;" visibility="public">
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="unuyOPuvFA90N"/>
+       </UML:GeneralizableElement.generalization>
+       <UML:Classifier.feature>
+        <UML:Attribute isSpecification="false" xmi.id="u2WTi39DyRolA" name="layout" visibility="private" type="u23fY2DAYT2Hx" initialValue="()"/>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uUK7ZQBVkagI7" name="__init__" visibility="public" stereotype="constructor" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter isSpecification="false" xmi.id="uIWpaVQmlyMMk" name="bdd" visibility="private" type="uJ3jlFFnZdZbe" value=""/>
+          <UML:Parameter isSpecification="false" xmi.id="u7quVM4Y3ZgdV" name="depart" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+          <UML:Parameter isSpecification="false" xmi.id="uj9RX6jqAkekz" name="destination" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uyGmM9SiBEyHv" name="view_data_route" comment="MÃ©thode permettant d'afficher une data visualisation de la route entre deux aÃ©roports&#10;        Args:&#10;            depart (str): aÃ©roport de dÃ©part&#10;            destination (str): aÃ©roport d'arrivÃ©e&#10;On stock dans une varibale le rÃ©sultat de la mÃ©thode CrÃ©ation du DataFrame pour les aÃ©roports de dÃ©part et d'arrivÃ©e CrÃ©ation d'une gÃ©o-sÃ©rie GeoPandas Ã  partir du DataFrame Chargement de la carte du monde Affichage de la carte du monde et des points des aÃ©roports TracÃ© de la route entre les aÃ©roports de dÃ©part et d'arrivÃ©eEpaisseur de ligneStyle de ligne ParamÃ¨tres de l'affichage DÃ©finir les limites de zoom sur l'Europe Ajuster ces valeurs en fonction de la zone d'intÃ©rÃªt Ajuster ces valeurs en fonction de la zone d'intÃ©rÃªt DÃ©finir les limites de zoom pour inclure les aÃ©roports de dÃ©part et d'arrivÃ©e Enregistrer la carte au format PNG Charger l'image dans un QLabel" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter isSpecification="false" xmi.id="unsrlUPVVamoY" name="depart" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+          <UML:Parameter isSpecification="false" xmi.id="ug5U88InCrBXX" name="destination" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uHTMArbyOD0mH" name="clear" comment="Supprime le widget du layout&#10;" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false"/>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Class isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uDdZmmJTtSsKF" name="ViewDataWidget" namespace="Logical_View" visibility="public">
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="u5E3JROBI10oe"/>
+       </UML:GeneralizableElement.generalization>
+       <UML:Classifier.feature>
+        <UML:Attribute isSpecification="false" xmi.id="uHZlFCnm0MlUF" name="num_view" visibility="public" type="uxLwbtoH3lCOI" initialValue="1"/>
+        <UML:Attribute isSpecification="false" xmi.id="uq99qfYgoAAon" name="layout" visibility="private" type="u23fY2DAYT2Hx" initialValue="()"/>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uMth9Ls4GoNuA" name="__init__" comment=" Layout comportant les radio box" visibility="public" stereotype="constructor" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter isSpecification="false" xmi.id="u1nimZx6I1kSa" name="bdd" visibility="private" type="uJ3jlFFnZdZbe" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uUAJpgk7ZGMUc" name="view_data_bar_nb_passenger_transport" comment="MÃ©thode permettant de crÃ©er une data visualisation correspondant au nombre de personne transportÃ© par aeroport&#10;        Args:&#10;            country (str): Le pays dont on veux connaitre le rÃ©sultat de la requÃªte&#10;On stock dans une varibale le rÃ©sultat de la methode Coche le bouton radio 1Transforme les donnÃ©es en str Ajouter le tuple pour la valeur &quot;0&quot;ParamÃ©trage du graphiqueAjuster le graphique au layoutNommage et sauvegarde de l'image" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter isSpecification="false" xmi.id="ut5Rszlz7Ul0K" name="country" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uGX6wYHlHVzuO" name="view_data_bar_airport_frequency" comment="MÃ©thode permettant d'afficher une data visualisation de la frÃ©quence d'utilisation des aeroport par pays&#10;        Args:&#10;            country (str): Le pays dont on veux connaitre le rÃ©sultat de la requÃªte&#10; Coche le bouton radio 2Transforme les donnÃ©es en str Ajouter le tuple pour la valeur &quot;0&quot;ParamÃ©trage du graphiqueAjuster le graphique au layoutNommage et sauvegarde de l'image" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter isSpecification="false" xmi.id="ubUctSwtS7ovt" name="country" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="u1ZF34dpWwe5l" name="view_data_country" comment="MÃ©thode permettant d'afficher une data visualisation de tout les aÃ©roports d'un pays&#10;        Args:&#10;            country (str): le pays dont on veut connaitre les aÃ©roports&#10;On stock dans une varibale le rÃ©sultat de la mÃ©thode CrÃ©ation d'un DataFrame Pandas Ã  partir des donnÃ©es des aÃ©roports CrÃ©ation d'une gÃ©o-sÃ©rie GeoPandas Ã  partir du DataFrame Chargement de la carte du monde Affichage de la carte du monde et des points des aÃ©roports ParamÃ¨tres de l'affichage DÃ©finir les limites de zoom sur l'Europe Ajuster ces valeurs en fonction de la zone d'intÃ©rÃªt Ajuster ces valeurs en fonction de la zone d'intÃ©rÃªt Enregistrer la carte au format PNG Charger l'image dans QLabel" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter isSpecification="false" xmi.id="u96ArQpMI17uz" name="country" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uxrKNJzxVs83P" name="view_data_airport" comment="MÃ©thode permettant d'afficher une data visualisation sous forme de map monde reprÃ©sentant un aÃ©roport d'un pays&#10;        Args:&#10;            airport (str): l'aeroport dont on veut connaitre la position&#10;On stock dans une variable le rÃ©sultat de la mÃ©thode CrÃ©ation d'un DataFrame Pandas Ã  partir des donnÃ©es des aÃ©roports CrÃ©ation d'une gÃ©o-sÃ©rie GeoPandas Ã  partir du DataFrame Chargement de la carte du monde Affichage de la carte du monde et des points des aÃ©roports ParamÃ¨tres de l'affichage DÃ©finir les limites de zoom sur l'Europe Ajuster ces valeurs en fonction de la zone d'intÃ©rÃªt Ajuster ces valeurs en fonction de la zone d'intÃ©rÃªt Enregistrer la carte au format PNG Charger l'image dans QLabel" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter isSpecification="false" xmi.id="uUx742sbXUgLS" name="airport" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uJtAOcogWLhC0" name="refresh" comment="Rafraichi la vue en fonction du pays et retourne le numÃ©ro de vue&#10;        Args:&#10;            country (str): country. Defaults to &quot;&quot;.&#10;TODO: Ajouter un fonctionnalitÃ© pour lancer la mÃ©thode view_data_airport" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter isSpecification="false" xmi.id="uKZ9ytfvdlRFM" name="country" visibility="private" type="uhkaFdl39Q7CW" value=""/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="ufwRi3bbzlHvs" name="qRadioBbtnSignalFunc" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false"/>
+        <UML:Operation isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="uf8vt9jtWiE3O" name="clear" comment="Supprime le widget du layout&#10;" visibility="public" isQuery="false" isOverride="false" isVirtual="false" isInline="false"/>
+       </UML:Classifier.feature>
+      </UML:Class>
+     </UML:Namespace.ownedElement>
+     <XMI.extension xmi.extender="umbrello">
+      <diagrams resolution="120">
+       <diagram xmi.id="utmcinytEXV3d" name="class diagram" type="1" documentation="" backgroundcolor="#ffffff" fillcolor="#ffffc0" font="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0" griddotcolor="#d3d3d3" linecolor="#990000" linewidth="0" textcolor="#000000" usefillcolor="1" showattribassocs="1" showatts="1" showattsig="1" showops="1" showopsig="1" showpackage="1" showpubliconly="0" showscope="1" showstereotype="2" localid="-1" showgrid="0" snapgrid="0" snapcsgrid="0" snapx="25" snapy="25" zoom="75.6144" canvasheight="619.177" canvaswidth="1561.78" isopen="1">
+        <widgets>
+         <classwidget xmi.id="ujKAn2RcwxL3D" localid="u6AiwBvIe8sOt" textcolor="#000000" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="0" usesdiagramusefillcolor="0" fillcolor="#ffffc0" font="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0,Normal" autoresize="1" x="-3688.26" y="-5865.37" width="267" height="64" isinstance="0" showstereotype="2" showoperations="1" showpubliconly="0" showopsigs="601" showpackage="1" showscope="1" showattributes="1" showattsigs="601" showstereotype="2"/>
+         <classwidget xmi.id="uJ3jlFFnZdZbe" localid="uDZZkBsbf7zL0" textcolor="#000000" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="0" usesdiagramusefillcolor="0" fillcolor="#ffffc0" font="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0,Normal" autoresize="1" x="-4053.08" y="-5918.64" width="353" height="248" isinstance="0" showstereotype="2" showoperations="1" showpubliconly="0" showopsigs="601" showpackage="1" showscope="1" showattributes="1" showattsigs="601" showstereotype="2"/>
+         <classwidget xmi.id="uI7pNPmupbS4W" localid="uK2AgtxU8XnhY" textcolor="#000000" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="0" usesdiagramusefillcolor="0" fillcolor="#ffffc0" font="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0,Normal" autoresize="1" x="-4377.95" y="-5863.53" width="267" height="112" isinstance="0" showstereotype="2" showoperations="1" showpubliconly="0" showopsigs="601" showpackage="1" showscope="1" showattributes="1" showattsigs="601" showstereotype="2"/>
+         <classwidget xmi.id="uwP2LenjBSARi" localid="uH9muPERTUK15" textcolor="#000000" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="0" usesdiagramusefillcolor="0" fillcolor="#ffffc0" font="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0,Normal" autoresize="1" x="-3219.17" y="-5959.26" width="403" height="144" isinstance="0" showstereotype="2" showoperations="1" showpubliconly="0" showopsigs="601" showpackage="1" showscope="1" showattributes="1" showattsigs="601" showstereotype="2"/>
+         <classwidget xmi.id="urIVLH07iSwUs" localid="ufY387uV4R2mn" textcolor="#000000" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="0" usesdiagramusefillcolor="0" fillcolor="#ffffc0" font="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0,Normal" autoresize="1" x="-4043.49" y="-5629.45" width="923" height="160" isinstance="0" showstereotype="2" showoperations="1" showpubliconly="0" showopsigs="601" showpackage="1" showscope="1" showattributes="1" showattsigs="601" showstereotype="2"/>
+         <classwidget xmi.id="uqXuitl77SCOt" localid="uatejhyF7edEt" textcolor="#000000" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="0" usesdiagramusefillcolor="0" fillcolor="#ffffc0" font="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0,Normal" autoresize="1" x="-4356.42" y="-6049.34" width="267" height="104" isinstance="0" showstereotype="2" showoperations="1" showpubliconly="0" showopsigs="601" showpackage="1" showscope="1" showattributes="1" showattsigs="601" showstereotype="2"/>
+         <classwidget xmi.id="uYh1Iudb7LiJB" localid="uyDOiCkQfwHjc" textcolor="#000000" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="0" usesdiagramusefillcolor="0" fillcolor="#ffffc0" font="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0,Normal" autoresize="1" x="-4002.61" y="-6088.5" width="267" height="112" isinstance="0" showstereotype="2" showoperations="1" showpubliconly="0" showopsigs="601" showpackage="1" showscope="1" showattributes="1" showattsigs="601" showstereotype="2"/>
+         <classwidget xmi.id="usKrhGIQMKjhD" localid="ufMyBL4rZWWBU" textcolor="#000000" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="0" usesdiagramusefillcolor="0" fillcolor="#ffffc0" font="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0,Normal" autoresize="1" x="-3660.62" y="-5765.95" width="472" height="80" isinstance="0" showstereotype="2" showoperations="1" showpubliconly="0" showopsigs="601" showpackage="1" showscope="1" showattributes="1" showattsigs="601" showstereotype="2"/>
+         <classwidget xmi.id="uDdZmmJTtSsKF" localid="uCgslZ6ywMaOn" textcolor="#000000" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="0" usesdiagramusefillcolor="0" fillcolor="#ffffc0" font="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0,Normal" autoresize="1" x="-3644.67" y="-6088.63" width="349" height="176" isinstance="0" showstereotype="2" showoperations="1" showpubliconly="0" showopsigs="601" showpackage="1" showscope="1" showattributes="1" showattsigs="601" showstereotype="2"/>
+        </widgets>
+        <messages/>
+        <associations>
+         <assocwidget xmi.id="unLXAM6VFrmUc" localid="u5A0DMGuJXC8H" textcolor="none" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="1" usesdiagramusefillcolor="1" fillcolor="none" font="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0" autoresize="1" seqnum="" xmi.id="unLXAM6VFrmUc" type="510" visibilityA="0" visibilityB="0" changeabilityA="900" changeabilityB="900" widgetaid="uI7pNPmupbS4W" widgetbid="uJ3jlFFnZdZbe" indexa="1" totalcounta="2" indexb="1" totalcountb="2">
+          <floatingtext xmi.id="uyfMHgUvGKsNP" localid="ubw8tNYNRlFcz" textcolor="none" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="1" usesdiagramusefillcolor="1" fillcolor="none" font="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0" autoresize="1" x="-4054.08" y="-5823.64" width="37" height="20" isinstance="0" showstereotype="2" text="bdd" pretext="+" posttext="" role="710"/>
+          <linepath layout="Direct">
+           <startpoint startx="-4110.95" starty="-5823.3"/>
+           <endpoint endx="-4053.08" endy="-5823.3"/>
+          </linepath>
+         </assocwidget>
+         <assocwidget xmi.id="uvch6iBYxEf4b" localid="uy7mF1ljW6cEa" textcolor="none" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="1" usesdiagramusefillcolor="1" fillcolor="none" font="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0" autoresize="1" seqnum="" xmi.id="uvch6iBYxEf4b" type="510" visibilityA="0" visibilityB="0" changeabilityA="900" changeabilityB="900" widgetaid="uYh1Iudb7LiJB" widgetbid="uJ3jlFFnZdZbe" indexa="1" totalcounta="2" indexb="1" totalcountb="2">
+          <floatingtext xmi.id="uomzDTMoyjhSQ" localid="uJFtWDxjka3xT" textcolor="none" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="1" usesdiagramusefillcolor="1" fillcolor="none" font="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0" autoresize="1" x="-3911.94" y="-5942.27" width="37" height="20" isinstance="0" showstereotype="2" text="bdd" pretext="+" posttext="" role="710"/>
+          <linepath layout="Direct">
+           <startpoint startx="-3881.9" starty="-5976.5"/>
+           <endpoint endx="-3881.9" endy="-5918.64"/>
+          </linepath>
+         </assocwidget>
+         <assocwidget xmi.id="uug6oAECj3te2" localid="uSMI6hJmt2SRa" textcolor="none" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="1" usesdiagramusefillcolor="1" fillcolor="none" font="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0" autoresize="1" seqnum="" xmi.id="uug6oAECj3te2" type="510" visibilityA="0" visibilityB="0" changeabilityA="900" changeabilityB="900" widgetaid="urIVLH07iSwUs" widgetbid="uJ3jlFFnZdZbe" indexa="1" totalcounta="2" indexb="1" totalcountb="2">
+          <floatingtext xmi.id="uSGxRczVCH6xS" localid="uAIptnNTxpemT" textcolor="none" linecolor="#990000" linewidth="0" usefillcolor="1" usesdiagramfillcolor="1" usesdiagramusefillcolor="1" fillcolor="none" font="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0" autoresize="1" x="-3907.58" y="-5687.64" width="37" height="20" isinstance="0" showstereotype="2" text="bdd" pretext="+" posttext="" role="710"/>
+          <linepath layout="Direct">
+           <startpoint startx="-3876.58" starty="-5629.45"/>
+           <endpoint endx="-3876.58" endy="-5670.64"/>
+          </linepath>
+         </assocwidget>
+        </associations>
+       </diagram>
+      </diagrams>
+     </XMI.extension>
+    </UML:Model>
+    <UML:Model isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="Use_Case_View" name="Use Case View" namespace="m1" visibility="public">
+     <UML:Namespace.ownedElement/>
+    </UML:Model>
+    <UML:Model isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="Component_View" name="Component View" namespace="m1" visibility="public">
+     <UML:Namespace.ownedElement/>
+    </UML:Model>
+    <UML:Model isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="Deployment_View" name="Deployment View" namespace="m1" visibility="public">
+     <UML:Namespace.ownedElement/>
+    </UML:Model>
+    <UML:Model isSpecification="false" isLeaf="false" isRoot="false" isAbstract="false" xmi.id="Entity_Relationship_Model" name="Entity Relationship Model" namespace="m1" visibility="public">
+     <UML:Namespace.ownedElement/>
+    </UML:Model>
+   </UML:Namespace.ownedElement>
+  </UML:Model>
+ </XMI.content>
+ <XMI.extensions xmi.extender="umbrello">
+  <docsettings viewid="utmcinytEXV3d" documentation="" uniqueid="u3TasGQTMSfmo"/>
+  <listview>
+   <listitem id="Views" type="800" open="1">
+    <listitem id="Component_View" type="821" open="1"/>
+    <listitem id="Deployment_View" type="827" open="1"/>
+    <listitem id="Entity_Relationship_Model" type="836" open="1"/>
+    <listitem id="Logical_View" type="801" open="1">
+     <listitem id="uYh1Iudb7LiJB" type="813" open="0">
+      <listitem id="uDmXBlGPsBz1S" type="815" open="0"/>
+      <listitem id="uvch6iBYxEf4b" type="814" open="0"/>
+      <listitem id="uNJJz59ykPIv8" type="814" open="0"/>
+      <listitem id="uTOLPuq6tT0xj" type="814" open="0"/>
+      <listitem id="uGQe8F59Y3SPf" type="814" open="0"/>
+      <listitem id="uVSlkFxEFFHxc" type="815" open="0"/>
+     </listitem>
+     <listitem id="urIVLH07iSwUs" type="813" open="0">
+      <listitem id="ub2zTDKu6S6Tj" type="815" open="0"/>
+      <listitem id="usm6VIl9fnw0v" type="815" open="0"/>
+      <listitem id="u6AAWrJkBh4oD" type="815" open="0"/>
+      <listitem id="uug6oAECj3te2" type="814" open="0"/>
+      <listitem id="uCWeVU0RyUDUx" type="814" open="0"/>
+      <listitem id="ugHAGt2dweSEy" type="814" open="0"/>
+      <listitem id="uqyK45LRYu8yh" type="814" open="0"/>
+      <listitem id="uEWYFi36LE9mX" type="815" open="0"/>
+      <listitem id="uK1QTCSSoYrZW" type="815" open="0"/>
+     </listitem>
+     <listitem id="uJ3jlFFnZdZbe" type="813" open="0">
+      <listitem id="uFeZDsrXekXIS" type="815" open="0"/>
+      <listitem id="uFzmClhcpskht" type="815" open="0"/>
+      <listitem id="usdYMln4w18bm" type="815" open="0"/>
+      <listitem id="uCPdk5pn2nq4V" type="815" open="0"/>
+      <listitem id="uO2rk1ab43oG5" type="815" open="0"/>
+      <listitem id="uru9x8LOVbhbn" type="815" open="0"/>
+      <listitem id="uFAleYQP7LjV5" type="815" open="0"/>
+      <listitem id="unuOTA0KauwMb" type="815" open="0"/>
+      <listitem id="uZIpwwy5ijFpg" type="815" open="0"/>
+      <listitem id="ue2ZbkKzEFawB" type="815" open="0"/>
+      <listitem id="uXktwxSnuPBHh" type="815" open="0"/>
+      <listitem id="uPjPAv2WRCMyc" type="815" open="0"/>
+      <listitem id="ufjycEDtBexmv" type="815" open="0"/>
+      <listitem id="uMnwb6pGJYBub" type="815" open="0"/>
+     </listitem>
+     <listitem id="utmcinytEXV3d" type="807" label="class diagram" open="0"/>
+     <listitem id="uwP2LenjBSARi" type="813" open="0">
+      <listitem id="uCFobuTkS6pN8" type="815" open="0"/>
+      <listitem id="u12PWAjQ4UHMD" type="815" open="0"/>
+      <listitem id="u7HJlRle387r3" type="815" open="0"/>
+      <listitem id="u8DROXEwll3gz" type="814" open="0"/>
+      <listitem id="u6fEpFGk6Pl3O" type="815" open="0"/>
+      <listitem id="uOmJuFEA8LKQu" type="814" open="0"/>
+      <listitem id="uwaYcS9OXwmK0" type="814" open="0"/>
+      <listitem id="uTrr9UNnCD0Xa" type="814" open="0"/>
+     </listitem>
+     <listitem id="Datatypes" type="830" open="0">
+      <listitem id="ut0vVui7Ua1wA" type="829" open="1"/>
+      <listitem id="uqlg2wqJT4lxR" type="829" open="1"/>
+      <listitem id="uWljHH33hnW1S" type="829" open="1"/>
+      <listitem id="uosjSAKzVvl4O" type="829" open="1"/>
+      <listitem id="uxLwbtoH3lCOI" type="829" open="1"/>
+      <listitem id="ui22lDec0kES8" type="829" open="1"/>
+      <listitem id="uoOz1OGbK67ee" type="829" open="1"/>
+      <listitem id="uSB9FbjgO9L5M" type="829" open="1"/>
+      <listitem id="uFmK0g4znqC54" type="829" open="1"/>
+      <listitem id="uhkaFdl39Q7CW" type="829" open="1"/>
+      <listitem id="unko3JLzewAKD" type="829" open="1"/>
+     </listitem>
+     <listitem id="uqXuitl77SCOt" type="813" open="0">
+      <listitem id="uXE9dGFcL5jfK" type="815" open="0"/>
+      <listitem id="uPWYiIAX9J0tO" type="815" open="0"/>
+      <listitem id="uwAilNC8L7DWV" type="815" open="0"/>
+      <listitem id="uDo0mVSg0bQY7" type="815" open="0"/>
+      <listitem id="um4ootmSriA83" type="815" open="0"/>
+     </listitem>
+     <listitem id="utcZDPb83K7mN" type="813" open="0"/>
+     <listitem id="uek4tgQv70vqV" type="813" open="0"/>
+     <listitem id="upGixATWfOoiB" type="813" open="0"/>
+     <listitem id="u23fY2DAYT2Hx" type="813" open="0"/>
+     <listitem id="uwK9pXnXIEaue" type="813" open="0"/>
+     <listitem id="uI7pNPmupbS4W" type="813" open="0">
+      <listitem id="ur36LCEmpc9jM" type="815" open="0"/>
+      <listitem id="unLXAM6VFrmUc" type="814" open="0"/>
+      <listitem id="utZsIKByTpSuh" type="815" open="0"/>
+      <listitem id="uE9E6kQtaYBc3" type="815" open="0"/>
+      <listitem id="upR4IH56HzMnX" type="815" open="0"/>
+      <listitem id="uODa6zwYOgu4r" type="815" open="0"/>
+     </listitem>
+     <listitem id="ujKAn2RcwxL3D" type="813" open="0">
+      <listitem id="uMEqvaravewTf" type="815" open="0"/>
+      <listitem id="ulwYJRtwKQdga" type="814" open="0"/>
+      <listitem id="uaO69ehhWLuDN" type="815" open="0"/>
+     </listitem>
+     <listitem id="usKrhGIQMKjhD" type="813" open="0">
+      <listitem id="uUK7ZQBVkagI7" type="815" open="0"/>
+      <listitem id="uHTMArbyOD0mH" type="815" open="0"/>
+      <listitem id="u2WTi39DyRolA" type="814" open="0"/>
+      <listitem id="uyGmM9SiBEyHv" type="815" open="0"/>
+     </listitem>
+     <listitem id="uDdZmmJTtSsKF" type="813" open="0">
+      <listitem id="uMth9Ls4GoNuA" type="815" open="0"/>
+      <listitem id="uf8vt9jtWiE3O" type="815" open="0"/>
+      <listitem id="uq99qfYgoAAon" type="814" open="0"/>
+      <listitem id="uHZlFCnm0MlUF" type="814" open="0"/>
+      <listitem id="ufwRi3bbzlHvs" type="815" open="0"/>
+      <listitem id="uJtAOcogWLhC0" type="815" open="0"/>
+      <listitem id="uxrKNJzxVs83P" type="815" open="0"/>
+      <listitem id="uGX6wYHlHVzuO" type="815" open="0"/>
+      <listitem id="uUAJpgk7ZGMUc" type="815" open="0"/>
+      <listitem id="u1ZF34dpWwe5l" type="815" open="0"/>
+     </listitem>
+     <listitem id="uoD78zki8N6TL" type="813" open="0"/>
+    </listitem>
+    <listitem id="Use_Case_View" type="802" open="1"/>
+   </listitem>
+  </listview>
+  <codegeneration>
+   <codegenerator language="Python">
+    <sourcecode id="uDmXBlGPsBz1S" value="super().__init__()&#10;self.bdd=bdd&#10;self.__layout=QVBoxLayout()&#10;self.setLayout(self.__layout)&#10;self.__label:QLabel=QLabel(&quot;Informations de l'aeroport&quot;)&#10;self.__name:QLabel=QLabel(&quot;Nom : &quot;)&#10;self.__city:QLabel=QLabel(&quot;Ville : &quot;)&#10;self.__country:QLabel=QLabel(&quot;Pays : &quot;)&#10;self.__IATACode:QLabel=QLabel(&quot;Code IATA : &quot;)&#10;self.__ICAOCode:QLabel=QLabel(&quot;Code ICAO : &quot;)&#10;self.__latitude:QLabel=QLabel(&quot;Latitude : &quot;)&#10;self.__longitude:QLabel=QLabel(&quot;Longitude : &quot;)&#10;self.__altitude:QLabel=QLabel(&quot;Altitude : &quot;)&#10;self.__timezone:QLabel=QLabel(&quot;Timezone : &quot;)&#10;self.__layout.addWidget(self.__label)&#10;self.__layout.addWidget(self.__name)&#10;self.__layout.addWidget(self.__city)&#10;self.__layout.addWidget(self.__country)&#10;self.__layout.addWidget(self.__IATACode)&#10;self.__layout.addWidget(self.__ICAOCode)&#10;self.__layout.addWidget(self.__latitude)&#10;self.__layout.addWidget(self.__longitude)&#10;self.__layout.addWidget(self.__altitude)&#10;self.__layout.addWidget(self.__timezone)&#10;self.labels=[self.__name,self.__city,self.__country,self.__IATACode,self.__ICAOCode,self.__latitude,self.__longitude,self.__altitude,self.__timezone]&#10;self.initialTexts=[label.text()for label in self.labels]&#10;"/>
+    <sourcecode id="uVSlkFxEFFHxc" value="info=self.bdd.getInfoByAirport(airport)&#10;for label,initialText in zip(self.labels,self.initialTexts):&#10;  label.setText(initialText)&#10;&#10;for label,value in zip(self.labels,info):&#10;  label.setText(label.text()+str(value))"/>
+    <sourcecode id="ub2zTDKu6S6Tj" value="super().__init__()&#10;self.bdd=bdd&#10;self.__layout=QVBoxLayout()&#10;self.setLayout(self.__layout)&#10;self.__label=QLabel(name)&#10;self.__line_edit:QLineEdit=QLineEdit()&#10;self.__line_edit.setPlaceholderText(placeHolder)&#10;self.__line_edit.textChanged.connect(self.airportSearchedFunc)&#10;self.__list=QListWidget()&#10;if(showAllAirport):&#10;  self.setAirportList()&#10;&#10;self.__layout.addWidget(self.__label)&#10;self.__layout.addWidget(self.__line_edit)&#10;self.__layout.addWidget(self.__list)&#10;self.__list.itemClicked.connect(self.airportClickedFunc)&#10;"/>
+    <sourcecode id="usm6VIl9fnw0v" value="self.airportClicked.emit(item.text())&#10;"/>
+    <sourcecode id="u6AAWrJkBh4oD" value="self.airportSearched.emit(&quot;&quot;)&#10;"/>
+    <sourcecode id="uEWYFi36LE9mX" value="self.__list.clear()&#10;if self.__list.count()==0:&#10;  info=self.bdd.getAirportByCountry(country,self.__line_edit.text())&#10;  print(info)&#10;  for airport in range(len(info)):&#10;    self.__list.addItem(info[airport])&#10;&#10;&#10;"/>
+    <sourcecode id="uK1QTCSSoYrZW" value="self.__list.clear()&#10;if self.__list.count()==0:&#10;  info=self.bdd.getAirports(self.__line_edit.text())&#10;  for airport in range(len(info)):&#10;    self.__list.addItem(info[airport])"/>
+    <sourcecode id="uFeZDsrXekXIS" value="super().__init__()&#10;self.db:QSqlDatabase=QSqlDatabase.addDatabase(&quot;QPSQL&quot;)&#10;self.db.setHostName(&quot;localhost&quot;)&#10;self.db.setPort(5432)&#10;self.db.setDatabaseName(&quot;plane_test&quot;)&#10;self.db.setUserName(&quot;happy&quot;)&#10;self.db.setPassword(&quot;toor&quot;)&#10;ok:bool=self.db.open()&#10;if ok:&#10;  print(&quot;Successfull connection to database&quot;)&#10;&#10;else:&#10;  self.db.lastError().text()&#10;&#10;"/>
+    <sourcecode id="uXktwxSnuPBHh" value="query:QSqlQuery=self.db.exec('SELECT * FROM &quot;Planes&quot;;')&#10;list=[]&#10;while query.next():&#10;  list.append(query.value(0))&#10;&#10;return list&#10;"/>
+    <sourcecode id="uru9x8LOVbhbn" value="query=QSqlQuery(self.db)&#10;query.exec(&quot;SELECT name_country FROM country WHERE name_country ILIKE '&quot;+text+&quot;%' ORDER BY name_country ASC;&quot;)&#10;country_list=[]&#10;while query.next():&#10;  country_list.append(query.value(0))&#10;&#10;print(country_list)&#10;return country_list&#10;"/>
+    <sourcecode id="unuOTA0KauwMb" value="query=QSqlQuery(self.db)&#10;info=[]&#10;if query.exec('SELECT * FROM &quot;airport&quot;;'):&#10;  while query.next():&#10;    name=query.value(1)&#10;    city=query.value(2)&#10;    country=query.value(3)&#10;    iata_code=query.value(4)&#10;    icao_code=query.value(5)&#10;    latitude=query.value(6)&#10;    longitude=query.value(7)&#10;    altitude=query.value(8)&#10;    timezone=query.value(9)&#10;    if airport==name:&#10;      info.append(name)&#10;      info.append(city)&#10;      info.append(country)&#10;      info.append(iata_code)&#10;      info.append(icao_code)&#10;      info.append(latitude)&#10;      info.append(longitude)&#10;      info.append(altitude)&#10;      info.append(timezone)&#10;&#10;&#10;&#10;else:&#10;  print(&quot;Erreur lors de l'exÃ©cution de la requÃªte.&quot;)&#10;&#10;return info&#10;"/>
+    <sourcecode id="ufjycEDtBexmv" value="query=QSqlQuery(self.db)&#10;query.prepare(&quot;SELECT name_ap, latitude_ap, longitude_ap FROM airport WHERE country_ap = :country&quot;)&#10;query.bindValue(&quot;:country&quot;,country)&#10;if query.exec():&#10;  data=[]&#10;  while query.next():&#10;    name=query.value(0)&#10;    latitude=query.value(1)&#10;    longitude=query.value(2)&#10;    data.append((name,latitude,longitude))&#10;&#10;  return data&#10;&#10;else:&#10;  print(&quot;Erreur lors de l'exÃ©cution de la requÃªte.&quot;)&#10;  return query,[]&#10;&#10;"/>
+    <sourcecode id="uPjPAv2WRCMyc" value="query=QSqlQuery(self.db)&#10;query.prepare(&quot;SELECT name_ap, latitude_ap, longitude_ap FROM airport WHERE name_ap = :airport&quot;)&#10;query.bindValue(&quot;:airport&quot;,airport)&#10;if query.exec():&#10;  data=[]&#10;  while query.next():&#10;    name=query.value(0)&#10;    latitude=query.value(1)&#10;    longitude=query.value(2)&#10;    data.append((name,latitude,longitude))&#10;&#10;  return data&#10;&#10;else:&#10;  print(&quot;Erreur lors de l'exÃ©cution de la requÃªte.&quot;)&#10;  return query,[]&#10;&#10;"/>
+    <sourcecode id="usdYMln4w18bm" value="query=QSqlQuery(self.db)&#10;query.exec('select distinct p.name_plane, ps.seat_nb from plane p inner join planeseats ps on p.icao_plane = ps.icao_plane inner join routes r on p.icao_plane = r.icao_code inner join airlinecompany ac on r.id_ac = ac.id_ac where ac.name_ac ilike &quot;Air France&quot;;')&#10;seat_list=[]&#10;while query.next():&#10;  plane_name=query.value(0)&#10;  seat_number=query.value(1)&#10;  seat_list.append((plane_name,seat_number))&#10;&#10;return seat_list&#10;"/>
+    <sourcecode id="uCPdk5pn2nq4V" value="query=QSqlQuery(self.db)&#10;query.prepare(&quot;SELECT name_ap FROM airport WHERE country_ap = :country AND name_ap ILIKE '&quot;+airport+&quot;%' ORDER BY name_ap ASC;&quot;)&#10;query.bindValue(&quot;:country&quot;,country)&#10;if query.exec():&#10;  data=[]&#10;  while query.next():&#10;    data.append(query.value(0))&#10;&#10;  return data&#10;&#10;else:&#10;  print(&quot;Erreur lors de l'exÃ©cution de la requÃªte.&quot;)&#10;  return query,[]&#10;&#10;"/>
+    <sourcecode id="uO2rk1ab43oG5" value="query=QSqlQuery(self.db)&#10;query.prepare(&quot;SELECT name_ap FROM airport WHERE name_ap ILIKE '&quot;+airport+&quot;%' ORDER BY name_ap ASC;&quot;)&#10;if query.exec():&#10;  data=[]&#10;  while query.next():&#10;    if(&quot;[Duplicate]&quot;not in query.value(0)and&quot;(Duplicate)&quot;not in query.value(0)):&#10;      data.append(query.value(0))&#10;&#10;&#10;  return data&#10;&#10;else:&#10;  print(&quot;Erreur lors de l'exÃ©cution de la requÃªte.&quot;)&#10;  return query,[]&#10;&#10;"/>
+    <sourcecode id="ue2ZbkKzEFawB" value="query=QSqlQuery(self.db)&#10;query.prepare(&quot;SELECT nb_passenger, name_ap, name_country FROM (SELECT SUM(seat_nb) AS nb_passenger, name_ap, name_country FROM planeseats AS ps INNER JOIN plane AS p ON p.icao_plane = ps.id_plane INNER JOIN routeavion AS ra ON ra.iata_code = p.iata_plane INNER JOIN routes AS r ON r.id_ra = ra.id_ra INNER JOIN airport ON source_ap = id_ap INNER JOIN country ON country.name_country = airport.country_ap WHERE name_country ILIKE :country GROUP BY name_ap, name_country ORDER BY nb_passenger DESC LIMIT 10 ) AS subquery ORDER BY nb_passenger ASC;&quot;)&#10;query.bindValue(&quot;:country&quot;,country)&#10;if query.exec():&#10;  nb_passenger_data=[],[]&#10;  while query.next():&#10;    nb_passenger=query.value(&quot;nb_passenger&quot;)&#10;    airport_name=query.value(&quot;name_ap&quot;)&#10;    nb_passenger_data[0].append(nb_passenger)&#10;    nb_passenger_data[1].append(airport_name)&#10;&#10;  return nb_passenger_data&#10;&#10;else:&#10;  print(&quot;Erreur lors de l'exÃ©cution de la requÃªte.&quot;)&#10;  return[],[]&#10;&#10;"/>
+    <sourcecode id="uZIpwwy5ijFpg" value="query=QSqlQuery(self.db)&#10;query.prepare(&quot;SELECT name_ap, frequency FROM(SELECT airport.name_ap, COUNT(*) AS frequency FROM routes JOIN airport ON routes.dest_ap = airport.id_ap JOIN country ON airport.country_ap = country.name_country WHERE country.name_country ILIKE :country GROUP BY airport.name_ap ORDER BY frequency DESC limit 5) as subquery ORDER BY frequency ASC;&quot;)&#10;query.bindValue(&quot;:country&quot;,country)&#10;if query.exec():&#10;  nb_passenger_data=[],[]&#10;  while query.next():&#10;    airport_name=query.value(&quot;name_ap&quot;)&#10;    number=query.value(&quot;frequency&quot;)&#10;    nb_passenger_data[0].append(airport_name)&#10;    nb_passenger_data[1].append(number)&#10;&#10;  return nb_passenger_data&#10;&#10;else:&#10;  print(&quot;Erreur lors de l'exÃ©cution de la requÃªte.&quot;)&#10;  return[],[]&#10;&#10;"/>
+    <sourcecode id="uMnwb6pGJYBub" value="query=QSqlQuery(self.db)&#10;query.prepare(&quot;select sum(t.co2) co2, a.country_ap pays from tot_co2 t inner join airport a on t.airport=a.name_ap group by pays order by co2 desc;&quot;)&#10;if query.exec():&#10;  data=[]&#10;  while query.next():&#10;    co2=query.value(&quot;co2&quot;)&#10;    pays=query.value(&quot;pays&quot;)&#10;    data.append((co2,pays))&#10;&#10;  return data&#10;&#10;else:&#10;  print(&quot;Erreur lors de l'exÃ©cution de la requÃªte.&quot;)&#10;  return[]&#10;&#10;"/>
+    <sourcecode id="uFAleYQP7LjV5" value="query=QSqlQuery(self.db)&#10;query.prepare('SELECT name_ap, longitude_ap, latitude_ap FROM &quot;airport&quot; WHERE name_ap = :airport;')&#10;query.bindValue(&quot;:airport&quot;,airport)&#10;if query.exec():&#10;  info=[]&#10;  while query.next():&#10;    name=query.value(0)&#10;    longitude=query.value(1)&#10;    latitude=query.value(2)&#10;    info.append(name)&#10;    info.append(longitude)&#10;    info.append(latitude)&#10;&#10;  return info&#10;&#10;else:&#10;  print(&quot;Erreur lors de l'exÃ©cution de la requÃªte.&quot;)&#10;  return[]&#10;&#10;"/>
+    <sourcecode id="uFzmClhcpskht" value="self.db.close()&#10;print(&quot;Connection closed&quot;)&#10;"/>
+    <sourcecode id="uCFobuTkS6pN8" value="super().__init__()&#10;self.bdd:BddControler=bdd&#10;self.__layout=QVBoxLayout()&#10;self.setLayout(self.__layout)&#10;self.__label=QLabel(&quot;Liste des pays&quot;)&#10;self.__line_edit:QLineEdit=QLineEdit()&#10;self.__line_edit.setPlaceholderText(&quot;Rechercher un pays&quot;)&#10;self.__line_edit.textChanged.connect(self.addCountryList)&#10;self.__list=QListWidget()&#10;self.countryClickedText=&quot;&quot;&#10;self.__layout.addWidget(self.__label)&#10;self.__layout.addWidget(self.__list)&#10;self.__list.itemClicked.connect(self.countryClickedFunc)&#10;self.addCountryList()&#10;self.__layout.addWidget(self.__label)&#10;self.__layout.addWidget(self.__line_edit)&#10;self.__layout.addWidget(self.__list)&#10;"/>
+    <sourcecode id="u7HJlRle387r3" value="self.countryClickedText=item.text()&#10;self.countryClicked.emit(item.text())&#10;"/>
+    <sourcecode id="u6fEpFGk6Pl3O" value="return self.countryClickedText&#10;"/>
+    <sourcecode id="u12PWAjQ4UHMD" value="self.__list.clear()&#10;text=self.__line_edit.text()&#10;if self.__list.count()==0:&#10;  info=self.bdd.getCountry(text)&#10;  for country in range(len(info)):&#10;    self.__list.addItem(info[country])"/>
+    <sourcecode id="uXE9dGFcL5jfK" value="super().__init__()&#10;self.bdd:BddControler=bdd&#10;self.country:str=&quot;&quot;&#10;self.__mainLayout:QHBoxLayout=QHBoxLayout()&#10;self.__countryList:CountryListWidget=CountryListWidget(bdd)&#10;self.__countryList.countryClicked.connect(self.setSelectedCountry)&#10;self.__mainLayout.addWidget(self.__countryList)&#10;self.__airportList:AirportListWidget=AirportListWidget(bdd)&#10;self.__mainLayout.addWidget(self.__airportList)&#10;self.__airportList.airportClicked.connect(self.setSelectedAirport)&#10;self.__airportList.airportSearched.connect(self.setAirportBySearch)&#10;self.__airportInfo:AirportInfoWidget=AirportInfoWidget(bdd)&#10;self.__airportInfo.setFixedSize(200,500)&#10;self.__mainLayout.addWidget(self.__airportInfo)&#10;self.__viewLayout:QVBoxLayout=QVBoxLayout()&#10;self.__viewData:ViewDataWidget=ViewDataWidget(bdd)&#10;self.__viewData.qRadioBtnSignal.connect(self.refreshViewData)&#10;self.__viewLayout.addWidget(self.__viewData)&#10;self.__mainLayout.addLayout(self.__viewLayout,1)&#10;self.setLayout(self.__mainLayout)&#10;"/>
+    <sourcecode id="um4ootmSriA83" value="self.country=country&#10;self.__airportList.setAirportByCountry(country)&#10;if self.__viewData is not None:&#10;  self.__mainLayout.removeWidget(self.__viewData)&#10;  self.__viewData.deleteLater()&#10;&#10;self.__viewData:ViewDataWidget=ViewDataWidget(self.bdd)&#10;self.__viewData.qRadioBtnSignal.connect(self.refreshViewData)&#10;self.__mainLayout.addWidget(self.__viewData)&#10;self.__viewData.refresh(country)&#10;"/>
+    <sourcecode id="uDo0mVSg0bQY7" value="self.__airportInfo.setInfoByAirport(airport)&#10;if self.__viewData is not None:&#10;  self.__mainLayout.removeWidget(self.__viewData)&#10;  self.__viewData.deleteLater()&#10;&#10;self.__viewData=ViewDataWidget(self.bdd)&#10;self.__viewData.qRadioBtnSignal.connect(self.refreshViewData)&#10;self.__mainLayout.addWidget(self.__viewData)&#10;self.__viewData.clear()&#10;self.__viewData.view_data_airport(airport)&#10;"/>
+    <sourcecode id="uwAilNC8L7DWV" value="self.__airportList.setAirportByCountry(self.country)&#10;"/>
+    <sourcecode id="uPWYiIAX9J0tO" value="self.__viewData.refresh(self.country)"/>
+    <sourcecode id="ur36LCEmpc9jM" value="super().__init__()&#10;self.bdd=bdd&#10;self.__airportSrc:str=&quot;&quot;&#10;self.__airportDest:str=&quot;&quot;&#10;self.__mainLayout:QHBoxLayout=QHBoxLayout()&#10;self.__airportSrcList:AirportListWidget=AirportListWidget(bdd,&quot;Aeroport de depart&quot;,&quot;Rechercher un aeroport de depart&quot;,True)&#10;self.__airportSrcList.airportClicked.connect(self.setSrcAirport)&#10;self.__airportSrcList.airportSearched.connect(self.setSrcAirportList)&#10;self.__mainLayout.addWidget(self.__airportSrcList)&#10;self.__airportDestList:AirportListWidget=AirportListWidget(bdd,&quot;Aeroport de destination&quot;,&quot;Rechercher un aeroport de destination&quot;,True)&#10;self.__airportDestList.airportClicked.connect(self.setDestAirport)&#10;self.__airportDestList.airportSearched.connect(self.setDestAirportList)&#10;self.__mainLayout.addWidget(self.__airportDestList)&#10;self.__viewDataRouteWidget:ViewDataRouteWidget=ViewDataRouteWidget(bdd,&quot;&quot;,&quot;&quot;)&#10;self.__mainLayout.addWidget(self.__viewDataRouteWidget)&#10;self.setLayout(self.__mainLayout)&#10;"/>
+    <sourcecode id="upR4IH56HzMnX" value="self.__airportSrc=airport&#10;if self.__airportSrc!=&quot;&quot;and self.__airportDest!=&quot;&quot;:&#10;  self.__viewDataRouteWidget.clear()&#10;  self.__viewDataRouteWidget.view_data_route(self.__airportSrc,self.__airportDest)&#10;&#10;"/>
+    <sourcecode id="utZsIKByTpSuh" value="self.__airportDest=airport&#10;if self.__airportSrc!=&quot;&quot;and self.__airportDest!=&quot;&quot;:&#10;  self.__viewDataRouteWidget.clear()&#10;  self.__viewDataRouteWidget.view_data_route(self.__airportSrc,self.__airportDest)&#10;&#10;"/>
+    <sourcecode id="uODa6zwYOgu4r" value="self.__airportSrcList.setAirportList()&#10;"/>
+    <sourcecode id="uE9E6kQtaYBc3" value="self.__airportDestList.setAirportList()"/>
+    <sourcecode id="uMEqvaravewTf" value="super().__init__()&#10;self.bdd:BddControler=bdd&#10;self.__layout=QVBoxLayout()&#10;self.view_data_co2()&#10;self.setLayout(self.__layout)&#10;"/>
+    <sourcecode id="uaO69ehhWLuDN" value="co2_data=self.bdd.getTotalCo2ByCountry()&#10;print(co2_data)&#10;df=pd.DataFrame(co2_data,columns=[&quot;co2&quot;,&quot;pays&quot;])&#10;world=gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))&#10;merged=world.merge(df,left_on='name',right_on='pays',how='left')&#10;fig,ax=plt.subplots(figsize=(12,8))&#10;merged.plot(column='co2',cmap='Reds',linewidth=0.8,ax=ax,edgecolor='0.8',legend=True)&#10;ax.set_title('Ã‰missions de CO2 par pays')&#10;ax.set_xlabel('Longitude')&#10;ax.set_ylabel('Latitude')&#10;ax.set_aspect('equal')&#10;ax.set_xlim(-30,50)&#10;ax.set_ylim(30,80)&#10;temp_file='co2.png'&#10;plt.savefig(temp_file,format='png')&#10;plt.close()&#10;self.image_label=QLabel()&#10;self.image_label.setPixmap(QPixmap(temp_file))&#10;self.__layout.addWidget(self.image_label,Qt.AlignmentFlag.AlignCenter)"/>
+    <sourcecode id="uUK7ZQBVkagI7" value="super().__init__()&#10;self.__bdd:BddControler=bdd&#10;self.__layout=QVBoxLayout()&#10;self.setLayout(self.__layout)&#10;if depart!=&quot;&quot;and destination!=&quot;&quot;:&#10;  self.clear()&#10;  self.view_data_route(depart,destination)&#10;&#10;"/>
+    <sourcecode id="uyGmM9SiBEyHv" value="airport_data_depart=self.__bdd.getInfoAirportRoute(depart)&#10;print(airport_data_depart)&#10;depart_name=airport_data_depart[0]&#10;print(depart_name)&#10;depart_longitude=float(airport_data_depart[1])&#10;print(depart_longitude)&#10;depart_latitude=float(airport_data_depart[2])&#10;print(depart_latitude)&#10;airport_data_arrivee=self.__bdd.getInfoAirportRoute(destination)&#10;print(airport_data_arrivee)&#10;arrivee_name=airport_data_arrivee[0]&#10;arrivee_longitude=float(airport_data_arrivee[1])&#10;arrivee_latitude=float(airport_data_arrivee[2])&#10;df=pd.DataFrame(:&#10;&#10;  &quot;name&quot;:[depart_name,arrivee_name],&quot;longitude&quot;:[depart_longitude,depart_latitude],&quot;latitude&quot;:[depart_latitude,arrivee_latitude]&#10;)&#10;geometry=[Point(xy)for xy in zip(df['longitude'],df['latitude'])]&#10;gdf=gpd.GeoDataFrame(df,geometry=geometry)&#10;world=gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))&#10;fig,ax=plt.subplots(figsize=(12,8))&#10;gdf.plot(ax=ax,markersize=10,color=&quot;red&quot;,alpha=0.7,zorder=2)&#10;world.boundary.plot(ax=ax,facecolor=&quot;lightgray&quot;,edgecolor=&quot;black&quot;,zorder=1)&#10;plt.plot(&#10;[depart_longitude,arrivee_longitude],[depart_latitude,arrivee_latitude],color=&quot;red&quot;,linewidth=3,linestyle=&quot;--&quot;,alpha=0.7,zorder=3,)&#10;ax.set_title(&quot;Route between Airports&quot;)&#10;ax.set_xlabel(&quot;Longitude&quot;)&#10;ax.set_ylabel(&quot;Latitude&quot;)&#10;ax.set_aspect(&quot;equal&quot;)&#10;ax.set_xlim(-30,50)&#10;ax.set_ylim(30,80)&#10;min_longitude=min(depart_longitude,arrivee_longitude)-5&#10;max_longitude=max(depart_longitude,arrivee_longitude)+5&#10;min_latitude=min(depart_latitude,arrivee_latitude)-5&#10;max_latitude=max(depart_latitude,arrivee_latitude)+5&#10;ax.set_xlim(min_longitude,max_longitude)&#10;ax.set_ylim(min_latitude,max_latitude)&#10;temp_file=&quot;route.png&quot;&#10;plt.savefig(temp_file,format=&quot;png&quot;)&#10;plt.close()&#10;self.image_label=QLabel()&#10;self.image_label.setPixmap(QPixmap(temp_file).scaled(500,500))&#10;self.__layout.addWidget(self.image_label)&#10;"/>
+    <sourcecode id="uHTMArbyOD0mH" value="if self.__layout.count()&gt;1:&#10;  self.__layout.removeWidget(self.__layout.itemAt(1).widget())&#10;&#10;elif self.__layout.count()==1:&#10;  self.__layout.removeWidget(self.__layout.itemAt(0).widget())"/>
+    <sourcecode id="uMth9Ls4GoNuA" value="super().__init__()&#10;self.bdd:BddControler=bdd&#10;self.num_view=1&#10;self.__layout=QVBoxLayout()&#10;self.setLayout(self.__layout)&#10;self.__viewLayoutH:QHBoxLayout=QHBoxLayout()&#10;self.__qRadioBbtn1:QRadioButton=QRadioButton(&quot;Affichage des aeroports&quot;)&#10;self.__qRadioBbtn1.setChecked(True)&#10;self.__qRadioBbtn1.clicked.connect(self.qRadioBbtnSignalFunc)&#10;self.__qRadioBbtn2:QRadioButton=QRadioButton(&quot;Aeroports les plus frÃ©quentÃ©s&quot;)&#10;self.__qRadioBbtn2.clicked.connect(self.qRadioBbtnSignalFunc)&#10;self.__qRadioBbtn3:QRadioButton=QRadioButton(&quot;Map monde des aeroports&quot;)&#10;self.__qRadioBbtn3.clicked.connect(self.qRadioBbtnSignalFunc)&#10;self.__viewLayoutH.addWidget(self.__qRadioBbtn1)&#10;self.__viewLayoutH.addWidget(self.__qRadioBbtn2)&#10;self.__viewLayoutH.addWidget(self.__qRadioBbtn3)&#10;self.__viewLayoutH.setAlignment(Qt.AlignmentFlag.AlignTop)&#10;"/>
+    <sourcecode id="uUAJpgk7ZGMUc" value="nb_passenger_data=self.bdd.getNbPassengerByAirport(country)&#10;abscisse_pos=np.arange(len(nb_passenger_data[1])+1)&#10;self.__qRadioBbtn1.setChecked(True)&#10;nb_passenger_str=np.array(nb_passenger_data[0]).astype(str)&#10;nb_passenger_str=np.insert(nb_passenger_str,0,&quot;0&quot;)&#10;nb_passenger_data[1].insert(0,&quot; &quot;)&#10;plt.bar(abscisse_pos,nb_passenger_str,align='edge',alpha=0.5,edgecolor='black')&#10;plt.xticks(abscisse_pos,nb_passenger_data[1],rotation=45,ha='right',fontsize=8)&#10;plt.ylabel('Number of Passengers')&#10;plt.title('Passenger Count by Airport in {}'.format(country))&#10;plt.tight_layout()&#10;temp_file='graph_passenger.png'&#10;plt.savefig(temp_file,format='png',dpi=75)&#10;plt.close()&#10;self.image_label:QLabel=QLabel()&#10;self.image_label.setPixmap(QPixmap(temp_file))&#10;self.__layout.addLayout(self.__viewLayoutH)&#10;self.__layout.addWidget(self.image_label,Qt.AlignmentFlag.AlignCenter)&#10;"/>
+    <sourcecode id="uGX6wYHlHVzuO" value="data_frequency=self.bdd.getMostUseAirport(country)&#10;abscisse_pos=np.arange(len(data_frequency[0])+1)&#10;self.__qRadioBbtn2.setChecked(True)&#10;frequency_str=np.array(data_frequency[1]).astype(str)&#10;frequency_str=np.insert(frequency_str,0,&quot;0&quot;)&#10;data_frequency[0].insert(0,&quot; &quot;)&#10;plt.bar(abscisse_pos,frequency_str,align='edge',alpha=0.5,edgecolor='black')&#10;plt.xticks(abscisse_pos,data_frequency[0],rotation=45,ha='right',fontsize=8)&#10;plt.ylabel('Frequency')&#10;plt.title('The most used airports in {}'.format(country))&#10;plt.tight_layout()&#10;temp_file='graph_frequency.png'&#10;plt.savefig(temp_file,format='png',dpi=75)&#10;plt.close()&#10;image_label:QLabel=QLabel()&#10;image_label.setPixmap(QPixmap(temp_file))&#10;self.__layout.addLayout(self.__viewLayoutH)&#10;self.__layout.addWidget(image_label,Qt.AlignmentFlag.AlignCenter)&#10;"/>
+    <sourcecode id="u1ZF34dpWwe5l" value="airport_data=self.bdd.getPositionAeroportOfCountry(country)&#10;df=pd.DataFrame(airport_data,columns=[&quot;name&quot;,&quot;latitude&quot;,&quot;longitude&quot;])&#10;geometry=[Point(xy)for xy in zip(df['longitude'],df['latitude'])]&#10;gdf=gpd.GeoDataFrame(df,geometry=geometry)&#10;world=gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))&#10;fig,ax=plt.subplots(figsize=(12,8))&#10;gdf.plot(ax=ax,markersize=10,color='red',alpha=0.7,zorder=2)&#10;world.boundary.plot(ax=ax,facecolor='lightgray',edgecolor='black',zorder=1)&#10;ax.set_title('Airport Locations')&#10;ax.set_xlabel('Longitude')&#10;ax.set_ylabel('Latitude')&#10;ax.set_aspect('equal')&#10;ax.set_xlim(-30,50)&#10;ax.set_ylim(30,80)&#10;temp_file='map.png'&#10;plt.savefig(temp_file,format='png')&#10;plt.close()&#10;self.image_label:QLabel=QLabel()&#10;self.image_label.setPixmap(QPixmap(temp_file).scaled(500,500))&#10;self.__layout.addLayout(self.__viewLayoutH)&#10;self.__layout.addWidget(self.image_label,Qt.AlignmentFlag.AlignCenter)&#10;"/>
+    <sourcecode id="uxrKNJzxVs83P" value="airport_data=self.bdd.getPositionAeroport(airport)&#10;print(airport_data)&#10;df=pd.DataFrame(airport_data,columns=[&quot;name&quot;,&quot;latitude&quot;,&quot;longitude&quot;])&#10;geometry=[Point(xy)for xy in zip(df['longitude'],df['latitude'])]&#10;gdf=gpd.GeoDataFrame(df,geometry=geometry)&#10;world=gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))&#10;fig,ax=plt.subplots(figsize=(12,8))&#10;gdf.plot(ax=ax,markersize=10,color='red',alpha=0.7,zorder=2)&#10;world.boundary.plot(ax=ax,facecolor='lightgray',edgecolor='black',zorder=1)&#10;ax.set_title('Airport Locations')&#10;ax.set_xlabel('Longitude')&#10;ax.set_ylabel('Latitude')&#10;ax.set_aspect('equal')&#10;ax.set_xlim(-30,50)&#10;ax.set_ylim(30,80)&#10;temp_file='map.png'&#10;plt.savefig(temp_file,format='png')&#10;plt.close()&#10;self.image_label:QLabel=QLabel()&#10;self.image_label.setPixmap(QPixmap(temp_file).scaled(500,500))&#10;self.__layout.addWidget(self.image_label,Qt.AlignmentFlag.AlignCenter)&#10;"/>
+    <sourcecode id="uJtAOcogWLhC0" value="if self.__qRadioBbtn1.isChecked()==True:&#10;  self.num_view=1&#10;  self.clear()&#10;  self.view_data_bar_nb_passenger_transport(country)&#10;&#10;elif self.__qRadioBbtn2.isChecked()==True:&#10;  self.num_view=2&#10;  self.clear()&#10;  self.view_data_bar_airport_frequency(country)&#10;&#10;elif self.__qRadioBbtn3.isChecked()==True:&#10;  self.num_view=3&#10;  self.clear()&#10;  self.view_data_country(country)&#10;&#10;"/>
+    <sourcecode id="ufwRi3bbzlHvs" value="self.qRadioBtnSignal.emit(self.num_view)&#10;"/>
+    <sourcecode id="uf8vt9jtWiE3O" value="if self.__layout.count()&gt;1:&#10;  self.__layout.removeWidget(self.__layout.itemAt(1).widget())&#10;&#10;"/>
+   </codegenerator>
+  </codegeneration>
+ </XMI.extensions>
+</XMI>

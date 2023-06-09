@@ -53,7 +53,7 @@ class InfosCountryAndAirport(QWidget):
         """Défini le pays pour la liste des aeroports et pour la viewdata
 
         Args:
-            country (str): _description_
+            country (str): Nom du pays
         """
         self.country = country
         self.__airportList.setAirportByCountry(country)

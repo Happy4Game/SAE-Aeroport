@@ -48,6 +48,11 @@ class AirportListWidget(QWidget):
         self.airportSearched.emit("")
     
     def setAirportByCountry(self, country: str) -> None:
+        """Défini la liste des aeroports en fonction du pays
+
+        Args:
+            country (str): Nom du pays
+        """
         self.__list.clear()
         if self.__list.count() == 0:
             info = self.bdd.getAirportByCountry(country, self.__line_edit.text())
@@ -57,6 +62,8 @@ class AirportListWidget(QWidget):
 
 
     def setAirportList(self) -> None:
+        """Défini la liste des aeroports
+        """
         self.__list.clear()
         if self.__list.count() == 0:
             info = self.bdd.getAirports(self.__line_edit.text())
