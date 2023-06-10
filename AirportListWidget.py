@@ -69,4 +69,33 @@ class AirportListWidget(QWidget):
             info = self.bdd.getAirports(self.__line_edit.text())
             for airport in range(len(info)):
                 self.__list.addItem(info[airport])
-                
+
+    def getList(self):
+        return self.__list
+
+
+class AirportSrcListWidget(AirportListWidget):
+    def __init__(self, bdd: BddControler, name: str = "Liste des aeroports", placeHolder: str = "Rechercher un aeroport", showAllAirport: bool = False):
+        super().__init__(bdd, name, placeHolder, showAllAirport)
+
+    def updateAirportList(self, country) -> None:
+        list_airport = self.getList()
+        list_airport.clear()
+
+        info = self.bdd.getAirportOnlyWithRoute(country)
+
+        for airport in info:
+            list_airport.addItem(airport)
+
+class AirportDestListWidget(AirportSrcListWidget):
+    def __init__(self, bdd: BddControler, name: str = "Liste des aeroports", placeHolder: str = "Rechercher un aeroport", showAllAirport: bool = False):
+        super().__init__(bdd, name, placeHolder, showAllAirport)
+
+    def updateAirportDestList(self, country_dest: str, airport_src :str) -> None:
+        list_airport = self.getList()
+        list_airport.clear()
+
+        info = self.bdd.getAirportDestWithRoute(country_dest, airport_src)
+
+        for airport in info:
+            list_airport.addItem(airport)

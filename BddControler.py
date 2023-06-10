@@ -382,6 +382,53 @@ class BddControler(QWidget):
             print("Erreur lors de l'exécution de la requête.§§")
             return []
     
+    def getAirportOnlyWithRoute(self, country :str) -> list:
+        """Retourne un liste d'aeroport avec des routes d'un pays
+
+        Args:
+            country (str): pays d'origine de l'aeroport
+
+        Returns:
+            list: la liste de aéroport qui ont des routes
+        """
+        query = QSqlQuery(self.db)
+        query.prepare("select DISTINCT(a.name_ap) as airport from airport a where a.country_ap ilike :country AND (a.id_ap IN (SELECT dest_ap FROM routes) OR a.id_ap IN (SELECT source_ap FROM routes));")
+        query.bindValue(":country", country)
+        if query.exec():
+            data = []
+            while query.next():
+                airports = query.value("airport")
+                data.append(airports)
+                
+            return data
+        else:
+            print("Erreur lors de l'exécution de la requête.§§")
+            return []
+        
+    def getAirportDestWithRoute(self, country_dest :str, airport_src : str):
+        """Retourne la liste des aéroports qui on une route en commun avec le pays de destination et l'aéroport de départ
+
+        Args:
+            country_dest (str): pays de destination
+            airport_src (str): aéroport de départ
+
+        Returns:
+            list: les aéroports qui on une route en commun avec le pays de destination et l'aéroport de départ
+        """
+        query = QSqlQuery(self.db)
+        query.prepare("SELECT DISTINCT(a2.name_ap) as airport FROM routes r INNER JOIN airport a ON r.source_ap = a.id_ap INNER JOIN airport a2 on r.dest_ap = a2.id_ap WHERE a2.country_ap ILIKE :country AND a.name_ap ILIKE :airport")
+        query.bindValue(":country", country_dest)
+        query.bindValue(":airport", airport_src)
+        if query.exec():
+            data = []
+            while query.next():
+                airports = query.value("airport")
+                data.append(airports)
+                
+            return data
+        else:
+            print("Erreur lors de l'exécution de la requête.§§")
+            return []
         
     def closeConnection(self) -> None:
         """Ferme la connection avec la base de données
