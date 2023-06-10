@@ -2,7 +2,7 @@ from PyQt6.QtWidgets import QLabel, QWidget, QVBoxLayout, QListWidget, QListWidg
 from PyQt6.QtCore import pyqtSignal
 from BddControler import BddControler
 
-class CountryListWidget(QWidget):
+class CountrySrcListWidget(QWidget):
 
     countryClicked : pyqtSignal = pyqtSignal(str)
 
@@ -53,13 +53,41 @@ class CountryListWidget(QWidget):
         
         return self.countryClickedText
     
-    def addCountryList(self) -> None:
+    def addCountryList(self, countries : list = None) -> None:
         """Fonction qui ajoute la liste des pays dans QListWidget
+
+        Args:
+            countries (list, optional): Liste des pays à ajouter. 
+                                   Si None, récupère la liste des pays depuis la base de données. 
+                                   Par défaut None.
         """
         self.__list.clear()
+
+        
         text = self.__line_edit.text()
         if self.__list.count() == 0:
             info = self.bdd.getCountry(text)
             
             for country in range(len(info)):
                 self.__list.addItem(info[country])
+        
+            
+
+    def clearCountryList(self):
+        """Fonction qui vide la liste des pays dans QListWidget"""
+        self.__list.clear()
+
+    def getList(self):
+        return self.__list
+
+class CountryDestListWidget(CountrySrcListWidget):
+    def __init__(self, bdd: BddControler):
+        super().__init__(bdd)
+
+    def updateCountryList(self, countries : list):
+        countryList = self.getList()
+        countryList.clear()
+        
+
+        for country in countries:
+                countryList.addItem(country)

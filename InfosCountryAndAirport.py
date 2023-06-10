@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QWidget, QHBoxLayout, QVBoxLayout
-from CountryListWidget import CountryListWidget
+from CountryListWidget import CountrySrcListWidget
 from AirportListWidget import AirportListWidget
 from AirportInfoWidget import AirportInfoWidget
 from ViewDataWidget import ViewDataWidget
@@ -18,7 +18,7 @@ class InfosCountryAndAirport(QWidget):
         self.__mainLayout : QHBoxLayout = QHBoxLayout()
 
         # Crée le widget affichant les pays
-        self.__countryList : CountryListWidget = CountryListWidget(bdd)
+        self.__countryList : CountrySrcListWidget = CountrySrcListWidget(bdd)
         # Récupère le signal et le redirige vers la fonction setSelectedCountry
         self.__countryList.countryClicked.connect(self.setSelectedCountry)
 

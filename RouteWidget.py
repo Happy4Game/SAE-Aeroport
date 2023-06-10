@@ -2,7 +2,7 @@ from PyQt6.QtWidgets import QWidget, QHBoxLayout, QVBoxLayout, QLabel
 from AirportListWidget import AirportListWidget
 from ViewDataRouteWidget import ViewDataRouteWidget
 from BddControler import BddControler
-from CountryListWidget import CountryListWidget
+from CountryListWidget import CountrySrcListWidget, CountryDestListWidget
 
 class RouteWidget(QWidget):
 
@@ -17,7 +17,7 @@ class RouteWidget(QWidget):
         self.__mainLayout : QHBoxLayout = QHBoxLayout()
 
         # Crée le widget affichant les pays src
-        self.__countrySrcList : CountryListWidget = CountryListWidget(bdd)
+        self.__countrySrcList : CountrySrcListWidget = CountrySrcListWidget(bdd)
         self.__countrySrcList.countryClicked.connect(self.setSelectedSrcCountry)
         self.__mainLayout.addWidget(self.__countrySrcList)
 
@@ -28,7 +28,7 @@ class RouteWidget(QWidget):
         self.__mainLayout.addWidget(self.__airportSrcList)
 
         # Crée le widget affichant les pays dest
-        self.__countryDestList : CountryListWidget = CountryListWidget(bdd)
+        self.__countryDestList : CountryDestListWidget = CountryDestListWidget(bdd)
         self.__countryDestList.countryClicked.connect(self.setSelectedDestCountry)
         self.__mainLayout.addWidget(self.__countryDestList)
 
@@ -79,6 +79,14 @@ class RouteWidget(QWidget):
     def setSrcAirport(self, airport: str) -> None:
         self.__airportSrc = airport
         self.updateRouteInfo()
+        countries = self.bdd.getRouteFromAirportToCountry(airport)
+
+        #On supprime tout les pays pour n'afficher que ceux qui on des routes avec l'aeroport
+        self.__countryDestList.clearCountryList()
+
+        #On ajoute les pays
+        
+        self.__countryDestList.updateCountryList(countries)
 
     def setDestAirport(self, airport: str) -> None:
         self.__airportDest = airport

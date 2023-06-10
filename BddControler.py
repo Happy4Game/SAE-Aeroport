@@ -335,8 +335,32 @@ class BddControler(QWidget):
             print(info)
             return info
         else:
-            print("§§§§§§§§Erreur lors de l'exécution de la requête.")
+            print("Erreur lors de l'exécution de la requête.")
             return []
+
+    def getRouteFromAirportToCountry(self, airport : str):
+        """Retourne la liste des pays disponible en prenant un aeroport
+
+        Args:
+            airport (str): aéroport de départ
+
+        Returns:
+            (list): une liste contenant les pays disponibles
+        """
+        query = QSqlQuery(self.db)
+        query.prepare("SELECT DISTINCT(a2.country_ap) as country FROM routes r INNER JOIN airport a ON r.source_ap = a.id_ap INNER JOIN airport a2 on r.dest_ap = a2.id_ap WHERE a.name_ap ILIKE :airport;")
+        query.bindValue(":airport", airport)
+        
+        if query.exec():
+            info = []
+            while query.next():
+                countries = query.value("country")
+                info.append(countries)
+            print(info)
+            return info
+        else:
+            print("Erreur lors de l'exécution de la requête.")
+            return [] 
         
     def getTotalCo2ByEurope(self) -> list:
         """Retourne le total de co2 des pays d'europe
