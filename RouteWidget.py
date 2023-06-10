@@ -45,6 +45,8 @@ class RouteWidget(QWidget):
         
         self.__distance : QLabel = QLabel("Distance (km) :")
         self.__co2 : QLabel = QLabel("Emission co2 :")
+        self.__distance.setVisible(False) # On cache les infos
+        self.__co2.setVisible(False)
         self.__rightLayout.addWidget(self.__distance)
         self.__rightLayout.addWidget(self.__co2)
 
@@ -74,42 +76,29 @@ class RouteWidget(QWidget):
         self.__airportDestList.setAirportByCountry(country)
 
 
-    def setSrcAirport(self, airport : str) -> None:
-        """Défini l'aeroport de depart pour la viewdata
-
-        Args:
-            airport (str): un nom d'aeroport
-        """
+    def setSrcAirport(self, airport: str) -> None:
         self.__airportSrc = airport
-        if self.__airportSrc != "" and self.__airportDest != "":
-            self.__viewDataRouteWidget.clear()
-            self.__viewDataRouteWidget.view_data_route(self.__airportSrc, self.__airportDest)
-            info = self.bdd.getInfoRouteByAirport(self.__airportSrc, self.__airportDest)
-            print(info)
-            for label, initialText in zip(self.infoRoute, self.initialTexts):
-                label.setText(initialText)  # Réinitialisation du texte avant mise à jour
+        self.updateRouteInfo()
 
-            for label, value in zip(self.infoRoute, info):
-                label.setText(label.text() + str(value))
-    
-    def setDestAirport(self, airport : str) -> None:
-        """Défini l'aeroport de destination pour la viewdata
-
-        Args:
-            airport (str): un nom d'aeroport
-        """
+    def setDestAirport(self, airport: str) -> None:
         self.__airportDest = airport
+        self.updateRouteInfo()
+
+    def updateRouteInfo(self) -> None:
         if self.__airportSrc != "" and self.__airportDest != "":
             self.__viewDataRouteWidget.clear()
             self.__viewDataRouteWidget.view_data_route(self.__airportSrc, self.__airportDest)
-            self.bdd.getInfoRouteByAirport(self.__airportSrc, self.__airportDest)
             info = self.bdd.getInfoRouteByAirport(self.__airportSrc, self.__airportDest)
-            
+
             for label, initialText in zip(self.infoRoute, self.initialTexts):
                 label.setText(initialText)  # Réinitialisation du texte avant mise à jour
 
             for label, value in zip(self.infoRoute, info):
                 label.setText(label.text() + str(value))
+
+            #On affiche les infos
+            self.__distance.setVisible(True)
+            self.__co2.setVisible(True)
 
     def setSrcAirportList(self) -> None:
         self.__airportSrcList.setAirportByCountry(self.srcCountry)
