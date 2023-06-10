@@ -78,6 +78,26 @@ class ViewDataRouteWidget(QWidget):
             zorder=3,
         )
 
+        plt.annotate(
+            "Départ",
+            xy=(depart_longitude, depart_latitude),
+            xytext=(-10, -20),
+            textcoords="offset points",
+            arrowprops=dict(arrowstyle="->", color="black"),
+            ha="center",
+            fontsize=16
+        )
+
+        plt.annotate(
+            "Arrivée",
+            xy=(arrivee_longitude, arrivee_latitude),
+            xytext=(-10, -20),
+            textcoords="offset points",
+            arrowprops=dict(arrowstyle="->", color="black"),
+            ha="center",
+            fontsize=16
+        )
+
         # Paramètres de l'affichage
         ax.set_title("Route between Airports")
         ax.set_xlabel("Longitude")
