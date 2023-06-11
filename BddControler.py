@@ -19,8 +19,8 @@ class BddControler(QWidget):
         self.db.setHostName("localhost")
         self.db.setPort(5432)
         self.db.setDatabaseName("plane_test")
-        self.db.setUserName("johan")
-        self.db.setPassword("Johannahoj972.")
+        self.db.setUserName("john")
+        self.db.setPassword("doe")
         ok : bool = self.db.open()
         if ok:
             print("Successfull connection to database")
