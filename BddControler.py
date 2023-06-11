@@ -445,7 +445,8 @@ class BddControler(QWidget):
             query.bindValue(":active", active)
         else:
             # C'est l'europe
-            query.prepare("SELECT * FROM airlinecompany WHERE country_ac IN (SELECT name_country FROM country_europe);")
+            query.prepare("SELECT * FROM airlinecompany WHERE activity ILIKE :active AND country_ac IN (SELECT name_country FROM country_europe);")
+            query.bindValue(":active", active)
 
         if query.exec():
             data = []

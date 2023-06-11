@@ -90,6 +90,21 @@
                                 <a class="function" href="#BddControler.getCompanyList">getCompanyList</a>
                         </li>
                         <li>
+                                <a class="function" href="#BddControler.getInfoByCompany">getInfoByCompany</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#BddControler.getco2ByAirlineCompany_monde_asc">getco2ByAirlineCompany_monde_asc</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#BddControler.getco2ByAirlineCompany_monde_desc">getco2ByAirlineCompany_monde_desc</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#BddControler.getco2ByAirlineCompany_europe_asc">getco2ByAirlineCompany_europe_asc</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#BddControler.getco2ByAirlineCompany_europe_desc">getco2ByAirlineCompany_europe_desc</a>
+                        </li>
+                        <li>
                                 <a class="function" href="#BddControler.closeConnection">closeConnection</a>
                         </li>
                 </ul>
@@ -548,7 +563,7 @@ BddControler    </h1>
 </span><span id="L-430"><a href="#L-430"><span class="linenos">430</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.§§&quot;</span><span class="p">)</span>
 </span><span id="L-431"><a href="#L-431"><span class="linenos">431</span></a>            <span class="k">return</span> <span class="p">[]</span>
 </span><span id="L-432"><a href="#L-432"><span class="linenos">432</span></a>    
-</span><span id="L-433"><a href="#L-433"><span class="linenos">433</span></a>    <span class="k">def</span> <span class="nf">getCompanyList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">active</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;%&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="L-433"><a href="#L-433"><span class="linenos">433</span></a>    <span class="k">def</span> <span class="nf">getCompanyList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">active</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;%&quot;</span><span class="p">,</span> <span class="n">isWorld</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
 </span><span id="L-434"><a href="#L-434"><span class="linenos">434</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne la liste des compagnies aériennes</span>
 </span><span id="L-435"><a href="#L-435"><span class="linenos">435</span></a>
 </span><span id="L-436"><a href="#L-436"><span class="linenos">436</span></a><span class="sd">        Args:</span>
@@ -558,32 +573,159 @@ BddControler    </h1>
 </span><span id="L-440"><a href="#L-440"><span class="linenos">440</span></a><span class="sd">            list: Une liste de compagnies aériennes</span>
 </span><span id="L-441"><a href="#L-441"><span class="linenos">441</span></a><span class="sd">        &quot;&quot;&quot;</span>
 </span><span id="L-442"><a href="#L-442"><span class="linenos">442</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
-</span><span id="L-443"><a href="#L-443"><span class="linenos">443</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM airlinecompany WHERE activity ILIKE :active;&quot;</span><span class="p">)</span>
-</span><span id="L-444"><a href="#L-444"><span class="linenos">444</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:active&quot;</span><span class="p">,</span> <span class="n">active</span><span class="p">)</span>
-</span><span id="L-445"><a href="#L-445"><span class="linenos">445</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
-</span><span id="L-446"><a href="#L-446"><span class="linenos">446</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span id="L-447"><a href="#L-447"><span class="linenos">447</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
-</span><span id="L-448"><a href="#L-448"><span class="linenos">448</span></a>                <span class="n">name_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;name_ac&quot;</span><span class="p">)</span>
-</span><span id="L-449"><a href="#L-449"><span class="linenos">449</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name_ac</span><span class="p">)</span>
-</span><span id="L-450"><a href="#L-450"><span class="linenos">450</span></a>                
-</span><span id="L-451"><a href="#L-451"><span class="linenos">451</span></a>            <span class="k">return</span> <span class="n">data</span>
-</span><span id="L-452"><a href="#L-452"><span class="linenos">452</span></a>        <span class="k">else</span><span class="p">:</span>
-</span><span id="L-453"><a href="#L-453"><span class="linenos">453</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.§§&quot;</span><span class="p">)</span>
-</span><span id="L-454"><a href="#L-454"><span class="linenos">454</span></a>            <span class="k">return</span> <span class="p">[]</span>
-</span><span id="L-455"><a href="#L-455"><span class="linenos">455</span></a>        
-</span><span id="L-456"><a href="#L-456"><span class="linenos">456</span></a>    <span class="k">def</span> <span class="nf">closeConnection</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="L-457"><a href="#L-457"><span class="linenos">457</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Ferme la connection avec la base de données</span>
-</span><span id="L-458"><a href="#L-458"><span class="linenos">458</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-459"><a href="#L-459"><span class="linenos">459</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span><span id="L-460"><a href="#L-460"><span class="linenos">460</span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Connection closed&quot;</span><span class="p">)</span>
+</span><span id="L-443"><a href="#L-443"><span class="linenos">443</span></a>        <span class="k">if</span> <span class="n">isWorld</span><span class="p">:</span>
+</span><span id="L-444"><a href="#L-444"><span class="linenos">444</span></a>            <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM airlinecompany WHERE activity ILIKE :active;&quot;</span><span class="p">)</span>
+</span><span id="L-445"><a href="#L-445"><span class="linenos">445</span></a>            <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:active&quot;</span><span class="p">,</span> <span class="n">active</span><span class="p">)</span>
+</span><span id="L-446"><a href="#L-446"><span class="linenos">446</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="L-447"><a href="#L-447"><span class="linenos">447</span></a>            <span class="c1"># C&#39;est l&#39;europe</span>
+</span><span id="L-448"><a href="#L-448"><span class="linenos">448</span></a>            <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM airlinecompany WHERE activity ILIKE :active AND country_ac IN (SELECT name_country FROM country_europe);&quot;</span><span class="p">)</span>
+</span><span id="L-449"><a href="#L-449"><span class="linenos">449</span></a>            <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:active&quot;</span><span class="p">,</span> <span class="n">active</span><span class="p">)</span>
+</span><span id="L-450"><a href="#L-450"><span class="linenos">450</span></a>
+</span><span id="L-451"><a href="#L-451"><span class="linenos">451</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="L-452"><a href="#L-452"><span class="linenos">452</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="L-453"><a href="#L-453"><span class="linenos">453</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="L-454"><a href="#L-454"><span class="linenos">454</span></a>                <span class="n">name_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;name_ac&quot;</span><span class="p">)</span>
+</span><span id="L-455"><a href="#L-455"><span class="linenos">455</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name_ac</span><span class="p">)</span>
+</span><span id="L-456"><a href="#L-456"><span class="linenos">456</span></a>                
+</span><span id="L-457"><a href="#L-457"><span class="linenos">457</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="L-458"><a href="#L-458"><span class="linenos">458</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="L-459"><a href="#L-459"><span class="linenos">459</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.§§&quot;</span><span class="p">)</span>
+</span><span id="L-460"><a href="#L-460"><span class="linenos">460</span></a>            <span class="k">return</span> <span class="p">[]</span>
 </span><span id="L-461"><a href="#L-461"><span class="linenos">461</span></a>
-</span><span id="L-462"><a href="#L-462"><span class="linenos">462</span></a>
-</span><span id="L-463"><a href="#L-463"><span class="linenos">463</span></a>
-</span><span id="L-464"><a href="#L-464"><span class="linenos">464</span></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span> 
-</span><span id="L-465"><a href="#L-465"><span class="linenos">465</span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;main&#39;</span><span class="p">)</span> 
-</span><span id="L-466"><a href="#L-466"><span class="linenos">466</span></a>    <span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> 
-</span><span id="L-467"><a href="#L-467"><span class="linenos">467</span></a>    <span class="n">f</span> <span class="o">=</span> <span class="n">BddControler</span><span class="p">()</span> 
-</span><span id="L-468"><a href="#L-468"><span class="linenos">468</span></a>    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">exec</span><span class="p">())</span>
+</span><span id="L-462"><a href="#L-462"><span class="linenos">462</span></a>    <span class="k">def</span> <span class="nf">getInfoByCompany</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">company</span> <span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="L-463"><a href="#L-463"><span class="linenos">463</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne les informations d&#39;une compagnie aérienne</span>
+</span><span id="L-464"><a href="#L-464"><span class="linenos">464</span></a>
+</span><span id="L-465"><a href="#L-465"><span class="linenos">465</span></a><span class="sd">        Args:</span>
+</span><span id="L-466"><a href="#L-466"><span class="linenos">466</span></a><span class="sd">            company (str): Nom d&#39;une compagnie aérienne</span>
+</span><span id="L-467"><a href="#L-467"><span class="linenos">467</span></a>
+</span><span id="L-468"><a href="#L-468"><span class="linenos">468</span></a><span class="sd">        Returns:</span>
+</span><span id="L-469"><a href="#L-469"><span class="linenos">469</span></a><span class="sd">            list: Une liste d&#39;informations d&#39;une compagnie aérienne</span>
+</span><span id="L-470"><a href="#L-470"><span class="linenos">470</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-471"><a href="#L-471"><span class="linenos">471</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="L-472"><a href="#L-472"><span class="linenos">472</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT name_ac, iata_ac, icao_ac, radio_indicative, country_ac, activity FROM airlinecompany WHERE name_ac ILIKE :company;&quot;</span><span class="p">)</span>
+</span><span id="L-473"><a href="#L-473"><span class="linenos">473</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:company&quot;</span><span class="p">,</span> <span class="n">company</span><span class="p">)</span>
+</span><span id="L-474"><a href="#L-474"><span class="linenos">474</span></a>
+</span><span id="L-475"><a href="#L-475"><span class="linenos">475</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="L-476"><a href="#L-476"><span class="linenos">476</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="L-477"><a href="#L-477"><span class="linenos">477</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="L-478"><a href="#L-478"><span class="linenos">478</span></a>                <span class="n">name_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;name_ac&quot;</span><span class="p">)</span>
+</span><span id="L-479"><a href="#L-479"><span class="linenos">479</span></a>                <span class="n">country_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;country_ac&quot;</span><span class="p">)</span>
+</span><span id="L-480"><a href="#L-480"><span class="linenos">480</span></a>                <span class="n">iata_code</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;iata_ac&quot;</span><span class="p">)</span>
+</span><span id="L-481"><a href="#L-481"><span class="linenos">481</span></a>                <span class="n">radio_code</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;radio_indicative&quot;</span><span class="p">)</span>
+</span><span id="L-482"><a href="#L-482"><span class="linenos">482</span></a>                <span class="n">activity</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;activity&quot;</span><span class="p">)</span>
+</span><span id="L-483"><a href="#L-483"><span class="linenos">483</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name_ac</span><span class="p">)</span>
+</span><span id="L-484"><a href="#L-484"><span class="linenos">484</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">country_ac</span><span class="p">)</span>
+</span><span id="L-485"><a href="#L-485"><span class="linenos">485</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">iata_code</span><span class="p">)</span>
+</span><span id="L-486"><a href="#L-486"><span class="linenos">486</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">radio_code</span><span class="p">)</span>
+</span><span id="L-487"><a href="#L-487"><span class="linenos">487</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">activity</span><span class="p">)</span>
+</span><span id="L-488"><a href="#L-488"><span class="linenos">488</span></a>                
+</span><span id="L-489"><a href="#L-489"><span class="linenos">489</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="L-490"><a href="#L-490"><span class="linenos">490</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="L-491"><a href="#L-491"><span class="linenos">491</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.§§&quot;</span><span class="p">)</span>
+</span><span id="L-492"><a href="#L-492"><span class="linenos">492</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span><span id="L-493"><a href="#L-493"><span class="linenos">493</span></a>        
+</span><span id="L-494"><a href="#L-494"><span class="linenos">494</span></a>    <span class="k">def</span> <span class="nf">getco2ByAirlineCompany_monde_asc</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="L-495"><a href="#L-495"><span class="linenos">495</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne la liste des compagnies du monde dans l&#39;ordre croissant d&#39;émission de co2</span>
+</span><span id="L-496"><a href="#L-496"><span class="linenos">496</span></a>
+</span><span id="L-497"><a href="#L-497"><span class="linenos">497</span></a><span class="sd">        Returns:</span>
+</span><span id="L-498"><a href="#L-498"><span class="linenos">498</span></a><span class="sd">            list: liste des émissions de co2</span>
+</span><span id="L-499"><a href="#L-499"><span class="linenos">499</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-500"><a href="#L-500"><span class="linenos">500</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="L-501"><a href="#L-501"><span class="linenos">501</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot; select * from co2_par_airlinecompany_monde order by co2_total asc limit 5;&quot;</span><span class="p">)</span>
+</span><span id="L-502"><a href="#L-502"><span class="linenos">502</span></a>
+</span><span id="L-503"><a href="#L-503"><span class="linenos">503</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="L-504"><a href="#L-504"><span class="linenos">504</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="L-505"><a href="#L-505"><span class="linenos">505</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="L-506"><a href="#L-506"><span class="linenos">506</span></a>                <span class="n">name_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;name_ac&quot;</span><span class="p">)</span>
+</span><span id="L-507"><a href="#L-507"><span class="linenos">507</span></a>                <span class="n">co2_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;co2_total&quot;</span><span class="p">)</span>
+</span><span id="L-508"><a href="#L-508"><span class="linenos">508</span></a>                
+</span><span id="L-509"><a href="#L-509"><span class="linenos">509</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name_ac</span><span class="p">,</span><span class="n">co2_ac</span><span class="p">))</span>
+</span><span id="L-510"><a href="#L-510"><span class="linenos">510</span></a>                
+</span><span id="L-511"><a href="#L-511"><span class="linenos">511</span></a>            
+</span><span id="L-512"><a href="#L-512"><span class="linenos">512</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="L-513"><a href="#L-513"><span class="linenos">513</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="L-514"><a href="#L-514"><span class="linenos">514</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.&quot;</span><span class="p">)</span>
+</span><span id="L-515"><a href="#L-515"><span class="linenos">515</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span><span id="L-516"><a href="#L-516"><span class="linenos">516</span></a>        
+</span><span id="L-517"><a href="#L-517"><span class="linenos">517</span></a>    <span class="k">def</span> <span class="nf">getco2ByAirlineCompany_monde_desc</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="L-518"><a href="#L-518"><span class="linenos">518</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne la liste des compagnies du monde dans l&#39;ordre décroissant d&#39;émission de co2</span>
+</span><span id="L-519"><a href="#L-519"><span class="linenos">519</span></a>
+</span><span id="L-520"><a href="#L-520"><span class="linenos">520</span></a><span class="sd">        Returns:</span>
+</span><span id="L-521"><a href="#L-521"><span class="linenos">521</span></a><span class="sd">            list: liste des émissions de co2</span>
+</span><span id="L-522"><a href="#L-522"><span class="linenos">522</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-523"><a href="#L-523"><span class="linenos">523</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="L-524"><a href="#L-524"><span class="linenos">524</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot; select * from co2_par_airlinecompany_monde order by co2_total desc limit 5;&quot;</span><span class="p">)</span>
+</span><span id="L-525"><a href="#L-525"><span class="linenos">525</span></a>
+</span><span id="L-526"><a href="#L-526"><span class="linenos">526</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="L-527"><a href="#L-527"><span class="linenos">527</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="L-528"><a href="#L-528"><span class="linenos">528</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="L-529"><a href="#L-529"><span class="linenos">529</span></a>                <span class="n">name_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;name_ac&quot;</span><span class="p">)</span>
+</span><span id="L-530"><a href="#L-530"><span class="linenos">530</span></a>                <span class="n">co2_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;co2_total&quot;</span><span class="p">)</span>
+</span><span id="L-531"><a href="#L-531"><span class="linenos">531</span></a>                
+</span><span id="L-532"><a href="#L-532"><span class="linenos">532</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name_ac</span><span class="p">,</span><span class="n">co2_ac</span><span class="p">))</span>
+</span><span id="L-533"><a href="#L-533"><span class="linenos">533</span></a>              
+</span><span id="L-534"><a href="#L-534"><span class="linenos">534</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="L-535"><a href="#L-535"><span class="linenos">535</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="L-536"><a href="#L-536"><span class="linenos">536</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.&quot;</span><span class="p">)</span>
+</span><span id="L-537"><a href="#L-537"><span class="linenos">537</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span><span id="L-538"><a href="#L-538"><span class="linenos">538</span></a>        
+</span><span id="L-539"><a href="#L-539"><span class="linenos">539</span></a>    <span class="k">def</span> <span class="nf">getco2ByAirlineCompany_europe_asc</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="L-540"><a href="#L-540"><span class="linenos">540</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne la liste des compagnies d&#39;europe dans l&#39;ordre croissant d&#39;émission de co2</span>
+</span><span id="L-541"><a href="#L-541"><span class="linenos">541</span></a>
+</span><span id="L-542"><a href="#L-542"><span class="linenos">542</span></a><span class="sd">        Returns:</span>
+</span><span id="L-543"><a href="#L-543"><span class="linenos">543</span></a><span class="sd">            list: liste des émissions de co2</span>
+</span><span id="L-544"><a href="#L-544"><span class="linenos">544</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-545"><a href="#L-545"><span class="linenos">545</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="L-546"><a href="#L-546"><span class="linenos">546</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot; select * from co2_par_airlinecompany_europe order by co2_total asc limit 5;&quot;</span><span class="p">)</span>
+</span><span id="L-547"><a href="#L-547"><span class="linenos">547</span></a>
+</span><span id="L-548"><a href="#L-548"><span class="linenos">548</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="L-549"><a href="#L-549"><span class="linenos">549</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="L-550"><a href="#L-550"><span class="linenos">550</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="L-551"><a href="#L-551"><span class="linenos">551</span></a>                <span class="n">name_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;name_ac&quot;</span><span class="p">)</span>
+</span><span id="L-552"><a href="#L-552"><span class="linenos">552</span></a>                <span class="n">co2_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;co2_total&quot;</span><span class="p">)</span>
+</span><span id="L-553"><a href="#L-553"><span class="linenos">553</span></a>                
+</span><span id="L-554"><a href="#L-554"><span class="linenos">554</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name_ac</span><span class="p">,</span><span class="n">co2_ac</span><span class="p">))</span>
+</span><span id="L-555"><a href="#L-555"><span class="linenos">555</span></a>                
+</span><span id="L-556"><a href="#L-556"><span class="linenos">556</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="L-557"><a href="#L-557"><span class="linenos">557</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="L-558"><a href="#L-558"><span class="linenos">558</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.&quot;</span><span class="p">)</span>
+</span><span id="L-559"><a href="#L-559"><span class="linenos">559</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span><span id="L-560"><a href="#L-560"><span class="linenos">560</span></a>        
+</span><span id="L-561"><a href="#L-561"><span class="linenos">561</span></a>    <span class="k">def</span> <span class="nf">getco2ByAirlineCompany_europe_desc</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="L-562"><a href="#L-562"><span class="linenos">562</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne la liste des compagnies d&#39;europe dans l&#39;ordre décroissant d&#39;émission de co2</span>
+</span><span id="L-563"><a href="#L-563"><span class="linenos">563</span></a>
+</span><span id="L-564"><a href="#L-564"><span class="linenos">564</span></a><span class="sd">        Returns:</span>
+</span><span id="L-565"><a href="#L-565"><span class="linenos">565</span></a><span class="sd">            list: liste des émissions de co2</span>
+</span><span id="L-566"><a href="#L-566"><span class="linenos">566</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-567"><a href="#L-567"><span class="linenos">567</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="L-568"><a href="#L-568"><span class="linenos">568</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot; select * from co2_par_airlinecompany_europe order by co2_total desc limit 5;&quot;</span><span class="p">)</span>
+</span><span id="L-569"><a href="#L-569"><span class="linenos">569</span></a>
+</span><span id="L-570"><a href="#L-570"><span class="linenos">570</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="L-571"><a href="#L-571"><span class="linenos">571</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="L-572"><a href="#L-572"><span class="linenos">572</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="L-573"><a href="#L-573"><span class="linenos">573</span></a>                <span class="n">name_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;name_ac&quot;</span><span class="p">)</span>
+</span><span id="L-574"><a href="#L-574"><span class="linenos">574</span></a>                <span class="n">co2_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;co2_total&quot;</span><span class="p">)</span>
+</span><span id="L-575"><a href="#L-575"><span class="linenos">575</span></a>                
+</span><span id="L-576"><a href="#L-576"><span class="linenos">576</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name_ac</span><span class="p">,</span><span class="n">co2_ac</span><span class="p">))</span>
+</span><span id="L-577"><a href="#L-577"><span class="linenos">577</span></a>                
+</span><span id="L-578"><a href="#L-578"><span class="linenos">578</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="L-579"><a href="#L-579"><span class="linenos">579</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="L-580"><a href="#L-580"><span class="linenos">580</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.&quot;</span><span class="p">)</span>
+</span><span id="L-581"><a href="#L-581"><span class="linenos">581</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span><span id="L-582"><a href="#L-582"><span class="linenos">582</span></a>        
+</span><span id="L-583"><a href="#L-583"><span class="linenos">583</span></a>    <span class="k">def</span> <span class="nf">closeConnection</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="L-584"><a href="#L-584"><span class="linenos">584</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Ferme la connection avec la base de données</span>
+</span><span id="L-585"><a href="#L-585"><span class="linenos">585</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-586"><a href="#L-586"><span class="linenos">586</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span id="L-587"><a href="#L-587"><span class="linenos">587</span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Connection closed&quot;</span><span class="p">)</span>
+</span><span id="L-588"><a href="#L-588"><span class="linenos">588</span></a>
+</span><span id="L-589"><a href="#L-589"><span class="linenos">589</span></a>
+</span><span id="L-590"><a href="#L-590"><span class="linenos">590</span></a>
+</span><span id="L-591"><a href="#L-591"><span class="linenos">591</span></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span> 
+</span><span id="L-592"><a href="#L-592"><span class="linenos">592</span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;main&#39;</span><span class="p">)</span> 
+</span><span id="L-593"><a href="#L-593"><span class="linenos">593</span></a>    <span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> 
+</span><span id="L-594"><a href="#L-594"><span class="linenos">594</span></a>    <span class="n">f</span> <span class="o">=</span> <span class="n">BddControler</span><span class="p">()</span>
+</span><span id="L-595"><a href="#L-595"><span class="linenos">595</span></a>    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">exec</span><span class="p">())</span>
 </span></pre></div>
 
 
@@ -1026,7 +1168,7 @@ BddControler    </h1>
 </span><span id="BddControler-431"><a href="#BddControler-431"><span class="linenos">431</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.§§&quot;</span><span class="p">)</span>
 </span><span id="BddControler-432"><a href="#BddControler-432"><span class="linenos">432</span></a>            <span class="k">return</span> <span class="p">[]</span>
 </span><span id="BddControler-433"><a href="#BddControler-433"><span class="linenos">433</span></a>    
-</span><span id="BddControler-434"><a href="#BddControler-434"><span class="linenos">434</span></a>    <span class="k">def</span> <span class="nf">getCompanyList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">active</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;%&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="BddControler-434"><a href="#BddControler-434"><span class="linenos">434</span></a>    <span class="k">def</span> <span class="nf">getCompanyList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">active</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;%&quot;</span><span class="p">,</span> <span class="n">isWorld</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
 </span><span id="BddControler-435"><a href="#BddControler-435"><span class="linenos">435</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne la liste des compagnies aériennes</span>
 </span><span id="BddControler-436"><a href="#BddControler-436"><span class="linenos">436</span></a>
 </span><span id="BddControler-437"><a href="#BddControler-437"><span class="linenos">437</span></a><span class="sd">        Args:</span>
@@ -1036,24 +1178,151 @@ BddControler    </h1>
 </span><span id="BddControler-441"><a href="#BddControler-441"><span class="linenos">441</span></a><span class="sd">            list: Une liste de compagnies aériennes</span>
 </span><span id="BddControler-442"><a href="#BddControler-442"><span class="linenos">442</span></a><span class="sd">        &quot;&quot;&quot;</span>
 </span><span id="BddControler-443"><a href="#BddControler-443"><span class="linenos">443</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
-</span><span id="BddControler-444"><a href="#BddControler-444"><span class="linenos">444</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM airlinecompany WHERE activity ILIKE :active;&quot;</span><span class="p">)</span>
-</span><span id="BddControler-445"><a href="#BddControler-445"><span class="linenos">445</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:active&quot;</span><span class="p">,</span> <span class="n">active</span><span class="p">)</span>
-</span><span id="BddControler-446"><a href="#BddControler-446"><span class="linenos">446</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
-</span><span id="BddControler-447"><a href="#BddControler-447"><span class="linenos">447</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span id="BddControler-448"><a href="#BddControler-448"><span class="linenos">448</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
-</span><span id="BddControler-449"><a href="#BddControler-449"><span class="linenos">449</span></a>                <span class="n">name_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;name_ac&quot;</span><span class="p">)</span>
-</span><span id="BddControler-450"><a href="#BddControler-450"><span class="linenos">450</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name_ac</span><span class="p">)</span>
-</span><span id="BddControler-451"><a href="#BddControler-451"><span class="linenos">451</span></a>                
-</span><span id="BddControler-452"><a href="#BddControler-452"><span class="linenos">452</span></a>            <span class="k">return</span> <span class="n">data</span>
-</span><span id="BddControler-453"><a href="#BddControler-453"><span class="linenos">453</span></a>        <span class="k">else</span><span class="p">:</span>
-</span><span id="BddControler-454"><a href="#BddControler-454"><span class="linenos">454</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.§§&quot;</span><span class="p">)</span>
-</span><span id="BddControler-455"><a href="#BddControler-455"><span class="linenos">455</span></a>            <span class="k">return</span> <span class="p">[]</span>
-</span><span id="BddControler-456"><a href="#BddControler-456"><span class="linenos">456</span></a>        
-</span><span id="BddControler-457"><a href="#BddControler-457"><span class="linenos">457</span></a>    <span class="k">def</span> <span class="nf">closeConnection</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="BddControler-458"><a href="#BddControler-458"><span class="linenos">458</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Ferme la connection avec la base de données</span>
-</span><span id="BddControler-459"><a href="#BddControler-459"><span class="linenos">459</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="BddControler-460"><a href="#BddControler-460"><span class="linenos">460</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span><span id="BddControler-461"><a href="#BddControler-461"><span class="linenos">461</span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Connection closed&quot;</span><span class="p">)</span>
+</span><span id="BddControler-444"><a href="#BddControler-444"><span class="linenos">444</span></a>        <span class="k">if</span> <span class="n">isWorld</span><span class="p">:</span>
+</span><span id="BddControler-445"><a href="#BddControler-445"><span class="linenos">445</span></a>            <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM airlinecompany WHERE activity ILIKE :active;&quot;</span><span class="p">)</span>
+</span><span id="BddControler-446"><a href="#BddControler-446"><span class="linenos">446</span></a>            <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:active&quot;</span><span class="p">,</span> <span class="n">active</span><span class="p">)</span>
+</span><span id="BddControler-447"><a href="#BddControler-447"><span class="linenos">447</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="BddControler-448"><a href="#BddControler-448"><span class="linenos">448</span></a>            <span class="c1"># C&#39;est l&#39;europe</span>
+</span><span id="BddControler-449"><a href="#BddControler-449"><span class="linenos">449</span></a>            <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM airlinecompany WHERE activity ILIKE :active AND country_ac IN (SELECT name_country FROM country_europe);&quot;</span><span class="p">)</span>
+</span><span id="BddControler-450"><a href="#BddControler-450"><span class="linenos">450</span></a>            <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:active&quot;</span><span class="p">,</span> <span class="n">active</span><span class="p">)</span>
+</span><span id="BddControler-451"><a href="#BddControler-451"><span class="linenos">451</span></a>
+</span><span id="BddControler-452"><a href="#BddControler-452"><span class="linenos">452</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="BddControler-453"><a href="#BddControler-453"><span class="linenos">453</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="BddControler-454"><a href="#BddControler-454"><span class="linenos">454</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="BddControler-455"><a href="#BddControler-455"><span class="linenos">455</span></a>                <span class="n">name_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;name_ac&quot;</span><span class="p">)</span>
+</span><span id="BddControler-456"><a href="#BddControler-456"><span class="linenos">456</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name_ac</span><span class="p">)</span>
+</span><span id="BddControler-457"><a href="#BddControler-457"><span class="linenos">457</span></a>                
+</span><span id="BddControler-458"><a href="#BddControler-458"><span class="linenos">458</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="BddControler-459"><a href="#BddControler-459"><span class="linenos">459</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="BddControler-460"><a href="#BddControler-460"><span class="linenos">460</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.§§&quot;</span><span class="p">)</span>
+</span><span id="BddControler-461"><a href="#BddControler-461"><span class="linenos">461</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span><span id="BddControler-462"><a href="#BddControler-462"><span class="linenos">462</span></a>
+</span><span id="BddControler-463"><a href="#BddControler-463"><span class="linenos">463</span></a>    <span class="k">def</span> <span class="nf">getInfoByCompany</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">company</span> <span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="BddControler-464"><a href="#BddControler-464"><span class="linenos">464</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne les informations d&#39;une compagnie aérienne</span>
+</span><span id="BddControler-465"><a href="#BddControler-465"><span class="linenos">465</span></a>
+</span><span id="BddControler-466"><a href="#BddControler-466"><span class="linenos">466</span></a><span class="sd">        Args:</span>
+</span><span id="BddControler-467"><a href="#BddControler-467"><span class="linenos">467</span></a><span class="sd">            company (str): Nom d&#39;une compagnie aérienne</span>
+</span><span id="BddControler-468"><a href="#BddControler-468"><span class="linenos">468</span></a>
+</span><span id="BddControler-469"><a href="#BddControler-469"><span class="linenos">469</span></a><span class="sd">        Returns:</span>
+</span><span id="BddControler-470"><a href="#BddControler-470"><span class="linenos">470</span></a><span class="sd">            list: Une liste d&#39;informations d&#39;une compagnie aérienne</span>
+</span><span id="BddControler-471"><a href="#BddControler-471"><span class="linenos">471</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BddControler-472"><a href="#BddControler-472"><span class="linenos">472</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="BddControler-473"><a href="#BddControler-473"><span class="linenos">473</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT name_ac, iata_ac, icao_ac, radio_indicative, country_ac, activity FROM airlinecompany WHERE name_ac ILIKE :company;&quot;</span><span class="p">)</span>
+</span><span id="BddControler-474"><a href="#BddControler-474"><span class="linenos">474</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:company&quot;</span><span class="p">,</span> <span class="n">company</span><span class="p">)</span>
+</span><span id="BddControler-475"><a href="#BddControler-475"><span class="linenos">475</span></a>
+</span><span id="BddControler-476"><a href="#BddControler-476"><span class="linenos">476</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="BddControler-477"><a href="#BddControler-477"><span class="linenos">477</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="BddControler-478"><a href="#BddControler-478"><span class="linenos">478</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="BddControler-479"><a href="#BddControler-479"><span class="linenos">479</span></a>                <span class="n">name_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;name_ac&quot;</span><span class="p">)</span>
+</span><span id="BddControler-480"><a href="#BddControler-480"><span class="linenos">480</span></a>                <span class="n">country_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;country_ac&quot;</span><span class="p">)</span>
+</span><span id="BddControler-481"><a href="#BddControler-481"><span class="linenos">481</span></a>                <span class="n">iata_code</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;iata_ac&quot;</span><span class="p">)</span>
+</span><span id="BddControler-482"><a href="#BddControler-482"><span class="linenos">482</span></a>                <span class="n">radio_code</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;radio_indicative&quot;</span><span class="p">)</span>
+</span><span id="BddControler-483"><a href="#BddControler-483"><span class="linenos">483</span></a>                <span class="n">activity</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;activity&quot;</span><span class="p">)</span>
+</span><span id="BddControler-484"><a href="#BddControler-484"><span class="linenos">484</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name_ac</span><span class="p">)</span>
+</span><span id="BddControler-485"><a href="#BddControler-485"><span class="linenos">485</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">country_ac</span><span class="p">)</span>
+</span><span id="BddControler-486"><a href="#BddControler-486"><span class="linenos">486</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">iata_code</span><span class="p">)</span>
+</span><span id="BddControler-487"><a href="#BddControler-487"><span class="linenos">487</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">radio_code</span><span class="p">)</span>
+</span><span id="BddControler-488"><a href="#BddControler-488"><span class="linenos">488</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">activity</span><span class="p">)</span>
+</span><span id="BddControler-489"><a href="#BddControler-489"><span class="linenos">489</span></a>                
+</span><span id="BddControler-490"><a href="#BddControler-490"><span class="linenos">490</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="BddControler-491"><a href="#BddControler-491"><span class="linenos">491</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="BddControler-492"><a href="#BddControler-492"><span class="linenos">492</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.§§&quot;</span><span class="p">)</span>
+</span><span id="BddControler-493"><a href="#BddControler-493"><span class="linenos">493</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span><span id="BddControler-494"><a href="#BddControler-494"><span class="linenos">494</span></a>        
+</span><span id="BddControler-495"><a href="#BddControler-495"><span class="linenos">495</span></a>    <span class="k">def</span> <span class="nf">getco2ByAirlineCompany_monde_asc</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="BddControler-496"><a href="#BddControler-496"><span class="linenos">496</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne la liste des compagnies du monde dans l&#39;ordre croissant d&#39;émission de co2</span>
+</span><span id="BddControler-497"><a href="#BddControler-497"><span class="linenos">497</span></a>
+</span><span id="BddControler-498"><a href="#BddControler-498"><span class="linenos">498</span></a><span class="sd">        Returns:</span>
+</span><span id="BddControler-499"><a href="#BddControler-499"><span class="linenos">499</span></a><span class="sd">            list: liste des émissions de co2</span>
+</span><span id="BddControler-500"><a href="#BddControler-500"><span class="linenos">500</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BddControler-501"><a href="#BddControler-501"><span class="linenos">501</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="BddControler-502"><a href="#BddControler-502"><span class="linenos">502</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot; select * from co2_par_airlinecompany_monde order by co2_total asc limit 5;&quot;</span><span class="p">)</span>
+</span><span id="BddControler-503"><a href="#BddControler-503"><span class="linenos">503</span></a>
+</span><span id="BddControler-504"><a href="#BddControler-504"><span class="linenos">504</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="BddControler-505"><a href="#BddControler-505"><span class="linenos">505</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="BddControler-506"><a href="#BddControler-506"><span class="linenos">506</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="BddControler-507"><a href="#BddControler-507"><span class="linenos">507</span></a>                <span class="n">name_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;name_ac&quot;</span><span class="p">)</span>
+</span><span id="BddControler-508"><a href="#BddControler-508"><span class="linenos">508</span></a>                <span class="n">co2_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;co2_total&quot;</span><span class="p">)</span>
+</span><span id="BddControler-509"><a href="#BddControler-509"><span class="linenos">509</span></a>                
+</span><span id="BddControler-510"><a href="#BddControler-510"><span class="linenos">510</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name_ac</span><span class="p">,</span><span class="n">co2_ac</span><span class="p">))</span>
+</span><span id="BddControler-511"><a href="#BddControler-511"><span class="linenos">511</span></a>                
+</span><span id="BddControler-512"><a href="#BddControler-512"><span class="linenos">512</span></a>            
+</span><span id="BddControler-513"><a href="#BddControler-513"><span class="linenos">513</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="BddControler-514"><a href="#BddControler-514"><span class="linenos">514</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="BddControler-515"><a href="#BddControler-515"><span class="linenos">515</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.&quot;</span><span class="p">)</span>
+</span><span id="BddControler-516"><a href="#BddControler-516"><span class="linenos">516</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span><span id="BddControler-517"><a href="#BddControler-517"><span class="linenos">517</span></a>        
+</span><span id="BddControler-518"><a href="#BddControler-518"><span class="linenos">518</span></a>    <span class="k">def</span> <span class="nf">getco2ByAirlineCompany_monde_desc</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="BddControler-519"><a href="#BddControler-519"><span class="linenos">519</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne la liste des compagnies du monde dans l&#39;ordre décroissant d&#39;émission de co2</span>
+</span><span id="BddControler-520"><a href="#BddControler-520"><span class="linenos">520</span></a>
+</span><span id="BddControler-521"><a href="#BddControler-521"><span class="linenos">521</span></a><span class="sd">        Returns:</span>
+</span><span id="BddControler-522"><a href="#BddControler-522"><span class="linenos">522</span></a><span class="sd">            list: liste des émissions de co2</span>
+</span><span id="BddControler-523"><a href="#BddControler-523"><span class="linenos">523</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BddControler-524"><a href="#BddControler-524"><span class="linenos">524</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="BddControler-525"><a href="#BddControler-525"><span class="linenos">525</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot; select * from co2_par_airlinecompany_monde order by co2_total desc limit 5;&quot;</span><span class="p">)</span>
+</span><span id="BddControler-526"><a href="#BddControler-526"><span class="linenos">526</span></a>
+</span><span id="BddControler-527"><a href="#BddControler-527"><span class="linenos">527</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="BddControler-528"><a href="#BddControler-528"><span class="linenos">528</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="BddControler-529"><a href="#BddControler-529"><span class="linenos">529</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="BddControler-530"><a href="#BddControler-530"><span class="linenos">530</span></a>                <span class="n">name_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;name_ac&quot;</span><span class="p">)</span>
+</span><span id="BddControler-531"><a href="#BddControler-531"><span class="linenos">531</span></a>                <span class="n">co2_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;co2_total&quot;</span><span class="p">)</span>
+</span><span id="BddControler-532"><a href="#BddControler-532"><span class="linenos">532</span></a>                
+</span><span id="BddControler-533"><a href="#BddControler-533"><span class="linenos">533</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name_ac</span><span class="p">,</span><span class="n">co2_ac</span><span class="p">))</span>
+</span><span id="BddControler-534"><a href="#BddControler-534"><span class="linenos">534</span></a>              
+</span><span id="BddControler-535"><a href="#BddControler-535"><span class="linenos">535</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="BddControler-536"><a href="#BddControler-536"><span class="linenos">536</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="BddControler-537"><a href="#BddControler-537"><span class="linenos">537</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.&quot;</span><span class="p">)</span>
+</span><span id="BddControler-538"><a href="#BddControler-538"><span class="linenos">538</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span><span id="BddControler-539"><a href="#BddControler-539"><span class="linenos">539</span></a>        
+</span><span id="BddControler-540"><a href="#BddControler-540"><span class="linenos">540</span></a>    <span class="k">def</span> <span class="nf">getco2ByAirlineCompany_europe_asc</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="BddControler-541"><a href="#BddControler-541"><span class="linenos">541</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne la liste des compagnies d&#39;europe dans l&#39;ordre croissant d&#39;émission de co2</span>
+</span><span id="BddControler-542"><a href="#BddControler-542"><span class="linenos">542</span></a>
+</span><span id="BddControler-543"><a href="#BddControler-543"><span class="linenos">543</span></a><span class="sd">        Returns:</span>
+</span><span id="BddControler-544"><a href="#BddControler-544"><span class="linenos">544</span></a><span class="sd">            list: liste des émissions de co2</span>
+</span><span id="BddControler-545"><a href="#BddControler-545"><span class="linenos">545</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BddControler-546"><a href="#BddControler-546"><span class="linenos">546</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="BddControler-547"><a href="#BddControler-547"><span class="linenos">547</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot; select * from co2_par_airlinecompany_europe order by co2_total asc limit 5;&quot;</span><span class="p">)</span>
+</span><span id="BddControler-548"><a href="#BddControler-548"><span class="linenos">548</span></a>
+</span><span id="BddControler-549"><a href="#BddControler-549"><span class="linenos">549</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="BddControler-550"><a href="#BddControler-550"><span class="linenos">550</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="BddControler-551"><a href="#BddControler-551"><span class="linenos">551</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="BddControler-552"><a href="#BddControler-552"><span class="linenos">552</span></a>                <span class="n">name_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;name_ac&quot;</span><span class="p">)</span>
+</span><span id="BddControler-553"><a href="#BddControler-553"><span class="linenos">553</span></a>                <span class="n">co2_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;co2_total&quot;</span><span class="p">)</span>
+</span><span id="BddControler-554"><a href="#BddControler-554"><span class="linenos">554</span></a>                
+</span><span id="BddControler-555"><a href="#BddControler-555"><span class="linenos">555</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name_ac</span><span class="p">,</span><span class="n">co2_ac</span><span class="p">))</span>
+</span><span id="BddControler-556"><a href="#BddControler-556"><span class="linenos">556</span></a>                
+</span><span id="BddControler-557"><a href="#BddControler-557"><span class="linenos">557</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="BddControler-558"><a href="#BddControler-558"><span class="linenos">558</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="BddControler-559"><a href="#BddControler-559"><span class="linenos">559</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.&quot;</span><span class="p">)</span>
+</span><span id="BddControler-560"><a href="#BddControler-560"><span class="linenos">560</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span><span id="BddControler-561"><a href="#BddControler-561"><span class="linenos">561</span></a>        
+</span><span id="BddControler-562"><a href="#BddControler-562"><span class="linenos">562</span></a>    <span class="k">def</span> <span class="nf">getco2ByAirlineCompany_europe_desc</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="BddControler-563"><a href="#BddControler-563"><span class="linenos">563</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne la liste des compagnies d&#39;europe dans l&#39;ordre décroissant d&#39;émission de co2</span>
+</span><span id="BddControler-564"><a href="#BddControler-564"><span class="linenos">564</span></a>
+</span><span id="BddControler-565"><a href="#BddControler-565"><span class="linenos">565</span></a><span class="sd">        Returns:</span>
+</span><span id="BddControler-566"><a href="#BddControler-566"><span class="linenos">566</span></a><span class="sd">            list: liste des émissions de co2</span>
+</span><span id="BddControler-567"><a href="#BddControler-567"><span class="linenos">567</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BddControler-568"><a href="#BddControler-568"><span class="linenos">568</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="BddControler-569"><a href="#BddControler-569"><span class="linenos">569</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot; select * from co2_par_airlinecompany_europe order by co2_total desc limit 5;&quot;</span><span class="p">)</span>
+</span><span id="BddControler-570"><a href="#BddControler-570"><span class="linenos">570</span></a>
+</span><span id="BddControler-571"><a href="#BddControler-571"><span class="linenos">571</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="BddControler-572"><a href="#BddControler-572"><span class="linenos">572</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="BddControler-573"><a href="#BddControler-573"><span class="linenos">573</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="BddControler-574"><a href="#BddControler-574"><span class="linenos">574</span></a>                <span class="n">name_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;name_ac&quot;</span><span class="p">)</span>
+</span><span id="BddControler-575"><a href="#BddControler-575"><span class="linenos">575</span></a>                <span class="n">co2_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;co2_total&quot;</span><span class="p">)</span>
+</span><span id="BddControler-576"><a href="#BddControler-576"><span class="linenos">576</span></a>                
+</span><span id="BddControler-577"><a href="#BddControler-577"><span class="linenos">577</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name_ac</span><span class="p">,</span><span class="n">co2_ac</span><span class="p">))</span>
+</span><span id="BddControler-578"><a href="#BddControler-578"><span class="linenos">578</span></a>                
+</span><span id="BddControler-579"><a href="#BddControler-579"><span class="linenos">579</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="BddControler-580"><a href="#BddControler-580"><span class="linenos">580</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="BddControler-581"><a href="#BddControler-581"><span class="linenos">581</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.&quot;</span><span class="p">)</span>
+</span><span id="BddControler-582"><a href="#BddControler-582"><span class="linenos">582</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span><span id="BddControler-583"><a href="#BddControler-583"><span class="linenos">583</span></a>        
+</span><span id="BddControler-584"><a href="#BddControler-584"><span class="linenos">584</span></a>    <span class="k">def</span> <span class="nf">closeConnection</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="BddControler-585"><a href="#BddControler-585"><span class="linenos">585</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Ferme la connection avec la base de données</span>
+</span><span id="BddControler-586"><a href="#BddControler-586"><span class="linenos">586</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BddControler-587"><a href="#BddControler-587"><span class="linenos">587</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span id="BddControler-588"><a href="#BddControler-588"><span class="linenos">588</span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Connection closed&quot;</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -1858,13 +2127,13 @@ BddControler    </h1>
 <div class="attr function">
             
         <span class="def">def</span>
-        <span class="name">getCompanyList</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">active</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;%&#39;</span></span><span class="return-annotation">) -> <span class="nb">list</span>:</span></span>
+        <span class="name">getCompanyList</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">active</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;%&#39;</span>, </span><span class="param"><span class="n">isWorld</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span></span><span class="return-annotation">) -> <span class="nb">list</span>:</span></span>
 
                 <label class="view-source-button" for="BddControler.getCompanyList-view-source"><span>View Source</span></label>
 
     </div>
     <a class="headerlink" href="#BddControler.getCompanyList"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="BddControler.getCompanyList-434"><a href="#BddControler.getCompanyList-434"><span class="linenos">434</span></a>    <span class="k">def</span> <span class="nf">getCompanyList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">active</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;%&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="BddControler.getCompanyList-434"><a href="#BddControler.getCompanyList-434"><span class="linenos">434</span></a>    <span class="k">def</span> <span class="nf">getCompanyList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">active</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;%&quot;</span><span class="p">,</span> <span class="n">isWorld</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
 </span><span id="BddControler.getCompanyList-435"><a href="#BddControler.getCompanyList-435"><span class="linenos">435</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne la liste des compagnies aériennes</span>
 </span><span id="BddControler.getCompanyList-436"><a href="#BddControler.getCompanyList-436"><span class="linenos">436</span></a>
 </span><span id="BddControler.getCompanyList-437"><a href="#BddControler.getCompanyList-437"><span class="linenos">437</span></a><span class="sd">        Args:</span>
@@ -1874,18 +2143,24 @@ BddControler    </h1>
 </span><span id="BddControler.getCompanyList-441"><a href="#BddControler.getCompanyList-441"><span class="linenos">441</span></a><span class="sd">            list: Une liste de compagnies aériennes</span>
 </span><span id="BddControler.getCompanyList-442"><a href="#BddControler.getCompanyList-442"><span class="linenos">442</span></a><span class="sd">        &quot;&quot;&quot;</span>
 </span><span id="BddControler.getCompanyList-443"><a href="#BddControler.getCompanyList-443"><span class="linenos">443</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
-</span><span id="BddControler.getCompanyList-444"><a href="#BddControler.getCompanyList-444"><span class="linenos">444</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM airlinecompany WHERE activity ILIKE :active;&quot;</span><span class="p">)</span>
-</span><span id="BddControler.getCompanyList-445"><a href="#BddControler.getCompanyList-445"><span class="linenos">445</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:active&quot;</span><span class="p">,</span> <span class="n">active</span><span class="p">)</span>
-</span><span id="BddControler.getCompanyList-446"><a href="#BddControler.getCompanyList-446"><span class="linenos">446</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
-</span><span id="BddControler.getCompanyList-447"><a href="#BddControler.getCompanyList-447"><span class="linenos">447</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span id="BddControler.getCompanyList-448"><a href="#BddControler.getCompanyList-448"><span class="linenos">448</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
-</span><span id="BddControler.getCompanyList-449"><a href="#BddControler.getCompanyList-449"><span class="linenos">449</span></a>                <span class="n">name_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;name_ac&quot;</span><span class="p">)</span>
-</span><span id="BddControler.getCompanyList-450"><a href="#BddControler.getCompanyList-450"><span class="linenos">450</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name_ac</span><span class="p">)</span>
-</span><span id="BddControler.getCompanyList-451"><a href="#BddControler.getCompanyList-451"><span class="linenos">451</span></a>                
-</span><span id="BddControler.getCompanyList-452"><a href="#BddControler.getCompanyList-452"><span class="linenos">452</span></a>            <span class="k">return</span> <span class="n">data</span>
-</span><span id="BddControler.getCompanyList-453"><a href="#BddControler.getCompanyList-453"><span class="linenos">453</span></a>        <span class="k">else</span><span class="p">:</span>
-</span><span id="BddControler.getCompanyList-454"><a href="#BddControler.getCompanyList-454"><span class="linenos">454</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.§§&quot;</span><span class="p">)</span>
-</span><span id="BddControler.getCompanyList-455"><a href="#BddControler.getCompanyList-455"><span class="linenos">455</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span><span id="BddControler.getCompanyList-444"><a href="#BddControler.getCompanyList-444"><span class="linenos">444</span></a>        <span class="k">if</span> <span class="n">isWorld</span><span class="p">:</span>
+</span><span id="BddControler.getCompanyList-445"><a href="#BddControler.getCompanyList-445"><span class="linenos">445</span></a>            <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM airlinecompany WHERE activity ILIKE :active;&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getCompanyList-446"><a href="#BddControler.getCompanyList-446"><span class="linenos">446</span></a>            <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:active&quot;</span><span class="p">,</span> <span class="n">active</span><span class="p">)</span>
+</span><span id="BddControler.getCompanyList-447"><a href="#BddControler.getCompanyList-447"><span class="linenos">447</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="BddControler.getCompanyList-448"><a href="#BddControler.getCompanyList-448"><span class="linenos">448</span></a>            <span class="c1"># C&#39;est l&#39;europe</span>
+</span><span id="BddControler.getCompanyList-449"><a href="#BddControler.getCompanyList-449"><span class="linenos">449</span></a>            <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM airlinecompany WHERE activity ILIKE :active AND country_ac IN (SELECT name_country FROM country_europe);&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getCompanyList-450"><a href="#BddControler.getCompanyList-450"><span class="linenos">450</span></a>            <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:active&quot;</span><span class="p">,</span> <span class="n">active</span><span class="p">)</span>
+</span><span id="BddControler.getCompanyList-451"><a href="#BddControler.getCompanyList-451"><span class="linenos">451</span></a>
+</span><span id="BddControler.getCompanyList-452"><a href="#BddControler.getCompanyList-452"><span class="linenos">452</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="BddControler.getCompanyList-453"><a href="#BddControler.getCompanyList-453"><span class="linenos">453</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="BddControler.getCompanyList-454"><a href="#BddControler.getCompanyList-454"><span class="linenos">454</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="BddControler.getCompanyList-455"><a href="#BddControler.getCompanyList-455"><span class="linenos">455</span></a>                <span class="n">name_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;name_ac&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getCompanyList-456"><a href="#BddControler.getCompanyList-456"><span class="linenos">456</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name_ac</span><span class="p">)</span>
+</span><span id="BddControler.getCompanyList-457"><a href="#BddControler.getCompanyList-457"><span class="linenos">457</span></a>                
+</span><span id="BddControler.getCompanyList-458"><a href="#BddControler.getCompanyList-458"><span class="linenos">458</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="BddControler.getCompanyList-459"><a href="#BddControler.getCompanyList-459"><span class="linenos">459</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="BddControler.getCompanyList-460"><a href="#BddControler.getCompanyList-460"><span class="linenos">460</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.§§&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getCompanyList-461"><a href="#BddControler.getCompanyList-461"><span class="linenos">461</span></a>            <span class="k">return</span> <span class="p">[]</span>
 </span></pre></div>
 
 
@@ -1896,6 +2171,235 @@ BddControler    </h1>
 
 <p>Returns:
     list: Une liste de compagnies aériennes</p>
+</div>
+
+
+                            </div>
+                            <div id="BddControler.getInfoByCompany" class="classattr">
+                                        <input id="BddControler.getInfoByCompany-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">getInfoByCompany</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">company</span><span class="p">:</span> <span class="nb">str</span></span><span class="return-annotation">) -> <span class="nb">list</span>:</span></span>
+
+                <label class="view-source-button" for="BddControler.getInfoByCompany-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#BddControler.getInfoByCompany"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="BddControler.getInfoByCompany-463"><a href="#BddControler.getInfoByCompany-463"><span class="linenos">463</span></a>    <span class="k">def</span> <span class="nf">getInfoByCompany</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">company</span> <span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="BddControler.getInfoByCompany-464"><a href="#BddControler.getInfoByCompany-464"><span class="linenos">464</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne les informations d&#39;une compagnie aérienne</span>
+</span><span id="BddControler.getInfoByCompany-465"><a href="#BddControler.getInfoByCompany-465"><span class="linenos">465</span></a>
+</span><span id="BddControler.getInfoByCompany-466"><a href="#BddControler.getInfoByCompany-466"><span class="linenos">466</span></a><span class="sd">        Args:</span>
+</span><span id="BddControler.getInfoByCompany-467"><a href="#BddControler.getInfoByCompany-467"><span class="linenos">467</span></a><span class="sd">            company (str): Nom d&#39;une compagnie aérienne</span>
+</span><span id="BddControler.getInfoByCompany-468"><a href="#BddControler.getInfoByCompany-468"><span class="linenos">468</span></a>
+</span><span id="BddControler.getInfoByCompany-469"><a href="#BddControler.getInfoByCompany-469"><span class="linenos">469</span></a><span class="sd">        Returns:</span>
+</span><span id="BddControler.getInfoByCompany-470"><a href="#BddControler.getInfoByCompany-470"><span class="linenos">470</span></a><span class="sd">            list: Une liste d&#39;informations d&#39;une compagnie aérienne</span>
+</span><span id="BddControler.getInfoByCompany-471"><a href="#BddControler.getInfoByCompany-471"><span class="linenos">471</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BddControler.getInfoByCompany-472"><a href="#BddControler.getInfoByCompany-472"><span class="linenos">472</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="BddControler.getInfoByCompany-473"><a href="#BddControler.getInfoByCompany-473"><span class="linenos">473</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT name_ac, iata_ac, icao_ac, radio_indicative, country_ac, activity FROM airlinecompany WHERE name_ac ILIKE :company;&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getInfoByCompany-474"><a href="#BddControler.getInfoByCompany-474"><span class="linenos">474</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:company&quot;</span><span class="p">,</span> <span class="n">company</span><span class="p">)</span>
+</span><span id="BddControler.getInfoByCompany-475"><a href="#BddControler.getInfoByCompany-475"><span class="linenos">475</span></a>
+</span><span id="BddControler.getInfoByCompany-476"><a href="#BddControler.getInfoByCompany-476"><span class="linenos">476</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="BddControler.getInfoByCompany-477"><a href="#BddControler.getInfoByCompany-477"><span class="linenos">477</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="BddControler.getInfoByCompany-478"><a href="#BddControler.getInfoByCompany-478"><span class="linenos">478</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="BddControler.getInfoByCompany-479"><a href="#BddControler.getInfoByCompany-479"><span class="linenos">479</span></a>                <span class="n">name_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;name_ac&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getInfoByCompany-480"><a href="#BddControler.getInfoByCompany-480"><span class="linenos">480</span></a>                <span class="n">country_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;country_ac&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getInfoByCompany-481"><a href="#BddControler.getInfoByCompany-481"><span class="linenos">481</span></a>                <span class="n">iata_code</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;iata_ac&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getInfoByCompany-482"><a href="#BddControler.getInfoByCompany-482"><span class="linenos">482</span></a>                <span class="n">radio_code</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;radio_indicative&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getInfoByCompany-483"><a href="#BddControler.getInfoByCompany-483"><span class="linenos">483</span></a>                <span class="n">activity</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;activity&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getInfoByCompany-484"><a href="#BddControler.getInfoByCompany-484"><span class="linenos">484</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name_ac</span><span class="p">)</span>
+</span><span id="BddControler.getInfoByCompany-485"><a href="#BddControler.getInfoByCompany-485"><span class="linenos">485</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">country_ac</span><span class="p">)</span>
+</span><span id="BddControler.getInfoByCompany-486"><a href="#BddControler.getInfoByCompany-486"><span class="linenos">486</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">iata_code</span><span class="p">)</span>
+</span><span id="BddControler.getInfoByCompany-487"><a href="#BddControler.getInfoByCompany-487"><span class="linenos">487</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">radio_code</span><span class="p">)</span>
+</span><span id="BddControler.getInfoByCompany-488"><a href="#BddControler.getInfoByCompany-488"><span class="linenos">488</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">activity</span><span class="p">)</span>
+</span><span id="BddControler.getInfoByCompany-489"><a href="#BddControler.getInfoByCompany-489"><span class="linenos">489</span></a>                
+</span><span id="BddControler.getInfoByCompany-490"><a href="#BddControler.getInfoByCompany-490"><span class="linenos">490</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="BddControler.getInfoByCompany-491"><a href="#BddControler.getInfoByCompany-491"><span class="linenos">491</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="BddControler.getInfoByCompany-492"><a href="#BddControler.getInfoByCompany-492"><span class="linenos">492</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.§§&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getInfoByCompany-493"><a href="#BddControler.getInfoByCompany-493"><span class="linenos">493</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Retourne les informations d'une compagnie aérienne</p>
+
+<p>Args:
+    company (str): Nom d'une compagnie aérienne</p>
+
+<p>Returns:
+    list: Une liste d'informations d'une compagnie aérienne</p>
+</div>
+
+
+                            </div>
+                            <div id="BddControler.getco2ByAirlineCompany_monde_asc" class="classattr">
+                                        <input id="BddControler.getco2ByAirlineCompany_monde_asc-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">getco2ByAirlineCompany_monde_asc</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">) -> <span class="nb">list</span>:</span></span>
+
+                <label class="view-source-button" for="BddControler.getco2ByAirlineCompany_monde_asc-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#BddControler.getco2ByAirlineCompany_monde_asc"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="BddControler.getco2ByAirlineCompany_monde_asc-495"><a href="#BddControler.getco2ByAirlineCompany_monde_asc-495"><span class="linenos">495</span></a>    <span class="k">def</span> <span class="nf">getco2ByAirlineCompany_monde_asc</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_asc-496"><a href="#BddControler.getco2ByAirlineCompany_monde_asc-496"><span class="linenos">496</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne la liste des compagnies du monde dans l&#39;ordre croissant d&#39;émission de co2</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_asc-497"><a href="#BddControler.getco2ByAirlineCompany_monde_asc-497"><span class="linenos">497</span></a>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_asc-498"><a href="#BddControler.getco2ByAirlineCompany_monde_asc-498"><span class="linenos">498</span></a><span class="sd">        Returns:</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_asc-499"><a href="#BddControler.getco2ByAirlineCompany_monde_asc-499"><span class="linenos">499</span></a><span class="sd">            list: liste des émissions de co2</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_asc-500"><a href="#BddControler.getco2ByAirlineCompany_monde_asc-500"><span class="linenos">500</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_asc-501"><a href="#BddControler.getco2ByAirlineCompany_monde_asc-501"><span class="linenos">501</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_asc-502"><a href="#BddControler.getco2ByAirlineCompany_monde_asc-502"><span class="linenos">502</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot; select * from co2_par_airlinecompany_monde order by co2_total asc limit 5;&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_asc-503"><a href="#BddControler.getco2ByAirlineCompany_monde_asc-503"><span class="linenos">503</span></a>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_asc-504"><a href="#BddControler.getco2ByAirlineCompany_monde_asc-504"><span class="linenos">504</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_asc-505"><a href="#BddControler.getco2ByAirlineCompany_monde_asc-505"><span class="linenos">505</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_asc-506"><a href="#BddControler.getco2ByAirlineCompany_monde_asc-506"><span class="linenos">506</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_asc-507"><a href="#BddControler.getco2ByAirlineCompany_monde_asc-507"><span class="linenos">507</span></a>                <span class="n">name_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;name_ac&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_asc-508"><a href="#BddControler.getco2ByAirlineCompany_monde_asc-508"><span class="linenos">508</span></a>                <span class="n">co2_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;co2_total&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_asc-509"><a href="#BddControler.getco2ByAirlineCompany_monde_asc-509"><span class="linenos">509</span></a>                
+</span><span id="BddControler.getco2ByAirlineCompany_monde_asc-510"><a href="#BddControler.getco2ByAirlineCompany_monde_asc-510"><span class="linenos">510</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name_ac</span><span class="p">,</span><span class="n">co2_ac</span><span class="p">))</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_asc-511"><a href="#BddControler.getco2ByAirlineCompany_monde_asc-511"><span class="linenos">511</span></a>                
+</span><span id="BddControler.getco2ByAirlineCompany_monde_asc-512"><a href="#BddControler.getco2ByAirlineCompany_monde_asc-512"><span class="linenos">512</span></a>            
+</span><span id="BddControler.getco2ByAirlineCompany_monde_asc-513"><a href="#BddControler.getco2ByAirlineCompany_monde_asc-513"><span class="linenos">513</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_asc-514"><a href="#BddControler.getco2ByAirlineCompany_monde_asc-514"><span class="linenos">514</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_asc-515"><a href="#BddControler.getco2ByAirlineCompany_monde_asc-515"><span class="linenos">515</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_asc-516"><a href="#BddControler.getco2ByAirlineCompany_monde_asc-516"><span class="linenos">516</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Retourne la liste des compagnies du monde dans l'ordre croissant d'émission de co2</p>
+
+<p>Returns:
+    list: liste des émissions de co2</p>
+</div>
+
+
+                            </div>
+                            <div id="BddControler.getco2ByAirlineCompany_monde_desc" class="classattr">
+                                        <input id="BddControler.getco2ByAirlineCompany_monde_desc-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">getco2ByAirlineCompany_monde_desc</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">) -> <span class="nb">list</span>:</span></span>
+
+                <label class="view-source-button" for="BddControler.getco2ByAirlineCompany_monde_desc-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#BddControler.getco2ByAirlineCompany_monde_desc"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="BddControler.getco2ByAirlineCompany_monde_desc-518"><a href="#BddControler.getco2ByAirlineCompany_monde_desc-518"><span class="linenos">518</span></a>    <span class="k">def</span> <span class="nf">getco2ByAirlineCompany_monde_desc</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_desc-519"><a href="#BddControler.getco2ByAirlineCompany_monde_desc-519"><span class="linenos">519</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne la liste des compagnies du monde dans l&#39;ordre décroissant d&#39;émission de co2</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_desc-520"><a href="#BddControler.getco2ByAirlineCompany_monde_desc-520"><span class="linenos">520</span></a>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_desc-521"><a href="#BddControler.getco2ByAirlineCompany_monde_desc-521"><span class="linenos">521</span></a><span class="sd">        Returns:</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_desc-522"><a href="#BddControler.getco2ByAirlineCompany_monde_desc-522"><span class="linenos">522</span></a><span class="sd">            list: liste des émissions de co2</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_desc-523"><a href="#BddControler.getco2ByAirlineCompany_monde_desc-523"><span class="linenos">523</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_desc-524"><a href="#BddControler.getco2ByAirlineCompany_monde_desc-524"><span class="linenos">524</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_desc-525"><a href="#BddControler.getco2ByAirlineCompany_monde_desc-525"><span class="linenos">525</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot; select * from co2_par_airlinecompany_monde order by co2_total desc limit 5;&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_desc-526"><a href="#BddControler.getco2ByAirlineCompany_monde_desc-526"><span class="linenos">526</span></a>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_desc-527"><a href="#BddControler.getco2ByAirlineCompany_monde_desc-527"><span class="linenos">527</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_desc-528"><a href="#BddControler.getco2ByAirlineCompany_monde_desc-528"><span class="linenos">528</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_desc-529"><a href="#BddControler.getco2ByAirlineCompany_monde_desc-529"><span class="linenos">529</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_desc-530"><a href="#BddControler.getco2ByAirlineCompany_monde_desc-530"><span class="linenos">530</span></a>                <span class="n">name_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;name_ac&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_desc-531"><a href="#BddControler.getco2ByAirlineCompany_monde_desc-531"><span class="linenos">531</span></a>                <span class="n">co2_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;co2_total&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_desc-532"><a href="#BddControler.getco2ByAirlineCompany_monde_desc-532"><span class="linenos">532</span></a>                
+</span><span id="BddControler.getco2ByAirlineCompany_monde_desc-533"><a href="#BddControler.getco2ByAirlineCompany_monde_desc-533"><span class="linenos">533</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name_ac</span><span class="p">,</span><span class="n">co2_ac</span><span class="p">))</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_desc-534"><a href="#BddControler.getco2ByAirlineCompany_monde_desc-534"><span class="linenos">534</span></a>              
+</span><span id="BddControler.getco2ByAirlineCompany_monde_desc-535"><a href="#BddControler.getco2ByAirlineCompany_monde_desc-535"><span class="linenos">535</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_desc-536"><a href="#BddControler.getco2ByAirlineCompany_monde_desc-536"><span class="linenos">536</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_desc-537"><a href="#BddControler.getco2ByAirlineCompany_monde_desc-537"><span class="linenos">537</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getco2ByAirlineCompany_monde_desc-538"><a href="#BddControler.getco2ByAirlineCompany_monde_desc-538"><span class="linenos">538</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Retourne la liste des compagnies du monde dans l'ordre décroissant d'émission de co2</p>
+
+<p>Returns:
+    list: liste des émissions de co2</p>
+</div>
+
+
+                            </div>
+                            <div id="BddControler.getco2ByAirlineCompany_europe_asc" class="classattr">
+                                        <input id="BddControler.getco2ByAirlineCompany_europe_asc-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">getco2ByAirlineCompany_europe_asc</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">) -> <span class="nb">list</span>:</span></span>
+
+                <label class="view-source-button" for="BddControler.getco2ByAirlineCompany_europe_asc-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#BddControler.getco2ByAirlineCompany_europe_asc"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="BddControler.getco2ByAirlineCompany_europe_asc-540"><a href="#BddControler.getco2ByAirlineCompany_europe_asc-540"><span class="linenos">540</span></a>    <span class="k">def</span> <span class="nf">getco2ByAirlineCompany_europe_asc</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_asc-541"><a href="#BddControler.getco2ByAirlineCompany_europe_asc-541"><span class="linenos">541</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne la liste des compagnies d&#39;europe dans l&#39;ordre croissant d&#39;émission de co2</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_asc-542"><a href="#BddControler.getco2ByAirlineCompany_europe_asc-542"><span class="linenos">542</span></a>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_asc-543"><a href="#BddControler.getco2ByAirlineCompany_europe_asc-543"><span class="linenos">543</span></a><span class="sd">        Returns:</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_asc-544"><a href="#BddControler.getco2ByAirlineCompany_europe_asc-544"><span class="linenos">544</span></a><span class="sd">            list: liste des émissions de co2</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_asc-545"><a href="#BddControler.getco2ByAirlineCompany_europe_asc-545"><span class="linenos">545</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_asc-546"><a href="#BddControler.getco2ByAirlineCompany_europe_asc-546"><span class="linenos">546</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_asc-547"><a href="#BddControler.getco2ByAirlineCompany_europe_asc-547"><span class="linenos">547</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot; select * from co2_par_airlinecompany_europe order by co2_total asc limit 5;&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_asc-548"><a href="#BddControler.getco2ByAirlineCompany_europe_asc-548"><span class="linenos">548</span></a>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_asc-549"><a href="#BddControler.getco2ByAirlineCompany_europe_asc-549"><span class="linenos">549</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_asc-550"><a href="#BddControler.getco2ByAirlineCompany_europe_asc-550"><span class="linenos">550</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_asc-551"><a href="#BddControler.getco2ByAirlineCompany_europe_asc-551"><span class="linenos">551</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_asc-552"><a href="#BddControler.getco2ByAirlineCompany_europe_asc-552"><span class="linenos">552</span></a>                <span class="n">name_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;name_ac&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_asc-553"><a href="#BddControler.getco2ByAirlineCompany_europe_asc-553"><span class="linenos">553</span></a>                <span class="n">co2_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;co2_total&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_asc-554"><a href="#BddControler.getco2ByAirlineCompany_europe_asc-554"><span class="linenos">554</span></a>                
+</span><span id="BddControler.getco2ByAirlineCompany_europe_asc-555"><a href="#BddControler.getco2ByAirlineCompany_europe_asc-555"><span class="linenos">555</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name_ac</span><span class="p">,</span><span class="n">co2_ac</span><span class="p">))</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_asc-556"><a href="#BddControler.getco2ByAirlineCompany_europe_asc-556"><span class="linenos">556</span></a>                
+</span><span id="BddControler.getco2ByAirlineCompany_europe_asc-557"><a href="#BddControler.getco2ByAirlineCompany_europe_asc-557"><span class="linenos">557</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_asc-558"><a href="#BddControler.getco2ByAirlineCompany_europe_asc-558"><span class="linenos">558</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_asc-559"><a href="#BddControler.getco2ByAirlineCompany_europe_asc-559"><span class="linenos">559</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_asc-560"><a href="#BddControler.getco2ByAirlineCompany_europe_asc-560"><span class="linenos">560</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Retourne la liste des compagnies d'europe dans l'ordre croissant d'émission de co2</p>
+
+<p>Returns:
+    list: liste des émissions de co2</p>
+</div>
+
+
+                            </div>
+                            <div id="BddControler.getco2ByAirlineCompany_europe_desc" class="classattr">
+                                        <input id="BddControler.getco2ByAirlineCompany_europe_desc-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">getco2ByAirlineCompany_europe_desc</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">) -> <span class="nb">list</span>:</span></span>
+
+                <label class="view-source-button" for="BddControler.getco2ByAirlineCompany_europe_desc-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#BddControler.getco2ByAirlineCompany_europe_desc"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="BddControler.getco2ByAirlineCompany_europe_desc-562"><a href="#BddControler.getco2ByAirlineCompany_europe_desc-562"><span class="linenos">562</span></a>    <span class="k">def</span> <span class="nf">getco2ByAirlineCompany_europe_desc</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_desc-563"><a href="#BddControler.getco2ByAirlineCompany_europe_desc-563"><span class="linenos">563</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne la liste des compagnies d&#39;europe dans l&#39;ordre décroissant d&#39;émission de co2</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_desc-564"><a href="#BddControler.getco2ByAirlineCompany_europe_desc-564"><span class="linenos">564</span></a>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_desc-565"><a href="#BddControler.getco2ByAirlineCompany_europe_desc-565"><span class="linenos">565</span></a><span class="sd">        Returns:</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_desc-566"><a href="#BddControler.getco2ByAirlineCompany_europe_desc-566"><span class="linenos">566</span></a><span class="sd">            list: liste des émissions de co2</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_desc-567"><a href="#BddControler.getco2ByAirlineCompany_europe_desc-567"><span class="linenos">567</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_desc-568"><a href="#BddControler.getco2ByAirlineCompany_europe_desc-568"><span class="linenos">568</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_desc-569"><a href="#BddControler.getco2ByAirlineCompany_europe_desc-569"><span class="linenos">569</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot; select * from co2_par_airlinecompany_europe order by co2_total desc limit 5;&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_desc-570"><a href="#BddControler.getco2ByAirlineCompany_europe_desc-570"><span class="linenos">570</span></a>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_desc-571"><a href="#BddControler.getco2ByAirlineCompany_europe_desc-571"><span class="linenos">571</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_desc-572"><a href="#BddControler.getco2ByAirlineCompany_europe_desc-572"><span class="linenos">572</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_desc-573"><a href="#BddControler.getco2ByAirlineCompany_europe_desc-573"><span class="linenos">573</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_desc-574"><a href="#BddControler.getco2ByAirlineCompany_europe_desc-574"><span class="linenos">574</span></a>                <span class="n">name_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;name_ac&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_desc-575"><a href="#BddControler.getco2ByAirlineCompany_europe_desc-575"><span class="linenos">575</span></a>                <span class="n">co2_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;co2_total&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_desc-576"><a href="#BddControler.getco2ByAirlineCompany_europe_desc-576"><span class="linenos">576</span></a>                
+</span><span id="BddControler.getco2ByAirlineCompany_europe_desc-577"><a href="#BddControler.getco2ByAirlineCompany_europe_desc-577"><span class="linenos">577</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name_ac</span><span class="p">,</span><span class="n">co2_ac</span><span class="p">))</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_desc-578"><a href="#BddControler.getco2ByAirlineCompany_europe_desc-578"><span class="linenos">578</span></a>                
+</span><span id="BddControler.getco2ByAirlineCompany_europe_desc-579"><a href="#BddControler.getco2ByAirlineCompany_europe_desc-579"><span class="linenos">579</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_desc-580"><a href="#BddControler.getco2ByAirlineCompany_europe_desc-580"><span class="linenos">580</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_desc-581"><a href="#BddControler.getco2ByAirlineCompany_europe_desc-581"><span class="linenos">581</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getco2ByAirlineCompany_europe_desc-582"><a href="#BddControler.getco2ByAirlineCompany_europe_desc-582"><span class="linenos">582</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Retourne la liste des compagnies d'europe dans l'ordre décroissant d'émission de co2</p>
+
+<p>Returns:
+    list: liste des émissions de co2</p>
 </div>
 
 
@@ -1911,11 +2415,11 @@ BddControler    </h1>
 
     </div>
     <a class="headerlink" href="#BddControler.closeConnection"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="BddControler.closeConnection-457"><a href="#BddControler.closeConnection-457"><span class="linenos">457</span></a>    <span class="k">def</span> <span class="nf">closeConnection</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="BddControler.closeConnection-458"><a href="#BddControler.closeConnection-458"><span class="linenos">458</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Ferme la connection avec la base de données</span>
-</span><span id="BddControler.closeConnection-459"><a href="#BddControler.closeConnection-459"><span class="linenos">459</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="BddControler.closeConnection-460"><a href="#BddControler.closeConnection-460"><span class="linenos">460</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span><span id="BddControler.closeConnection-461"><a href="#BddControler.closeConnection-461"><span class="linenos">461</span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Connection closed&quot;</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="BddControler.closeConnection-584"><a href="#BddControler.closeConnection-584"><span class="linenos">584</span></a>    <span class="k">def</span> <span class="nf">closeConnection</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="BddControler.closeConnection-585"><a href="#BddControler.closeConnection-585"><span class="linenos">585</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Ferme la connection avec la base de données</span>
+</span><span id="BddControler.closeConnection-586"><a href="#BddControler.closeConnection-586"><span class="linenos">586</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BddControler.closeConnection-587"><a href="#BddControler.closeConnection-587"><span class="linenos">587</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span id="BddControler.closeConnection-588"><a href="#BddControler.closeConnection-588"><span class="linenos">588</span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Connection closed&quot;</span><span class="p">)</span>
 </span></pre></div>
 
 
