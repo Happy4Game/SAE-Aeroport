@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QApplication, QTabWidget, QWidget
-from AirPlainCompany import AirPlainCompany
+from AirPlainCompanyWidget import AirPlainCompanyWidget
 from InfosCountryAndAirport import InfosCountryAndAirport
 from ViewDataCo2Widget import ViewDataCo2Widget
 from RouteWidget import RouteWidget
@@ -24,7 +24,7 @@ class win(QTabWidget):
         self.addTab(InfosCountryAndAirport(self.bdd), "Informations sur les pays/aéroports")
         self.addTab(ViewDataCo2Widget(self.bdd), "CO2")
         self.addTab(RouteWidget(self.bdd), "Route")
-        self.addTab(AirPlainCompany(self.bdd), "Compagnie aérienne")
+        self.addTab(AirPlainCompanyWidget(self.bdd), "Compagnie aérienne")
         self.addTab(QWidget(), "Avion")
 
         # Affiche la fenêtre

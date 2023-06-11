@@ -430,7 +430,7 @@ class BddControler(QWidget):
             print("Erreur lors de l'exécution de la requête.§§")
             return []
     
-    def getCompanyList(self, active : str = "%") -> list:
+    def getCompanyList(self, active : str = "%", isWorld : bool = True) -> list:
         """Retourne la liste des compagnies aériennes
 
         Args:
@@ -440,8 +440,13 @@ class BddControler(QWidget):
             list: Une liste de compagnies aériennes
         """
         query = QSqlQuery(self.db)
-        query.prepare("SELECT * FROM airlinecompany WHERE activity ILIKE :active;")
-        query.bindValue(":active", active)
+        if isWorld:
+            query.prepare("SELECT * FROM airlinecompany WHERE activity ILIKE :active;")
+            query.bindValue(":active", active)
+        else:
+            # C'est l'europe
+            query.prepare("SELECT * FROM airlinecompany WHERE country_ac IN (SELECT name_country FROM country_europe);")
+
         if query.exec():
             data = []
             while query.next():
@@ -452,7 +457,38 @@ class BddControler(QWidget):
         else:
             print("Erreur lors de l'exécution de la requête.§§")
             return []
-        
+
+    def getInfoByCompany(self, company : str) -> list:
+        """Retourne les informations d'une compagnie aérienne
+
+        Args:
+            company (str): Nom d'une compagnie aérienne
+
+        Returns:
+            list: Une liste d'informations d'une compagnie aérienne
+        """
+        query = QSqlQuery(self.db)
+        query.prepare("SELECT name_ac, iata_ac, icao_ac, radio_indicative, country_ac, activity FROM airlinecompany WHERE name_ac ILIKE :company;")
+        query.bindValue(":company", company)
+
+        if query.exec():
+            data = []
+            while query.next():
+                name_ac = query.value("name_ac")
+                country_ac = query.value("country_ac")
+                iata_code = query.value("iata_ac")
+                radio_code = query.value("radio_indicative")
+                activity = query.value("activity")
+                data.append(name_ac)
+                data.append(country_ac)
+                data.append(iata_code)
+                data.append(radio_code)
+                data.append(activity)
+                
+            return data
+        else:
+            print("Erreur lors de l'exécution de la requête.§§")
+            return []
     def closeConnection(self) -> None:
         """Ferme la connection avec la base de données
         """

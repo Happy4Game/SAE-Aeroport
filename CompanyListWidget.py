@@ -14,11 +14,11 @@ class CompanyListWidget(QListWidget):
 
         self.itemClicked.connect(self.qSelectedCompanyFunc)
 
-    def setCompanyList(self, active : str = "%"):
+    def setCompanyList(self, active : str = "%", isWorld : bool = True):
         """Défini la liste des compagnies aériennes dans le widget
         """
         self.clear()
-        companys = self.__bdd.getCompanyList(active)
+        companys = self.__bdd.getCompanyList(active, isWorld)
         for company in companys:
             self.addItem(company)
 
