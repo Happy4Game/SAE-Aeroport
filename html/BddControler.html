@@ -72,6 +72,24 @@
                                 <a class="function" href="#BddControler.getInfoAirportRoute">getInfoAirportRoute</a>
                         </li>
                         <li>
+                                <a class="function" href="#BddControler.getInfoRouteByAirport">getInfoRouteByAirport</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#BddControler.getRouteFromAirportToCountry">getRouteFromAirportToCountry</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#BddControler.getTotalCo2ByEurope">getTotalCo2ByEurope</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#BddControler.getAirportOnlyWithRoute">getAirportOnlyWithRoute</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#BddControler.getAirportDestWithRoute">getAirportDestWithRoute</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#BddControler.getCompanyList">getCompanyList</a>
+                        </li>
+                        <li>
                                 <a class="function" href="#BddControler.closeConnection">closeConnection</a>
                         </li>
                 </ul>
@@ -119,8 +137,8 @@ BddControler    </h1>
 </span><span id="L-19"><a href="#L-19"><span class="linenos"> 19</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">setHostName</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">)</span>
 </span><span id="L-20"><a href="#L-20"><span class="linenos"> 20</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">setPort</span><span class="p">(</span><span class="mi">5432</span><span class="p">)</span>
 </span><span id="L-21"><a href="#L-21"><span class="linenos"> 21</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">setDatabaseName</span><span class="p">(</span><span class="s2">&quot;plane_test&quot;</span><span class="p">)</span>
-</span><span id="L-22"><a href="#L-22"><span class="linenos"> 22</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">setUserName</span><span class="p">(</span><span class="s2">&quot;happy&quot;</span><span class="p">)</span>
-</span><span id="L-23"><a href="#L-23"><span class="linenos"> 23</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">setPassword</span><span class="p">(</span><span class="s2">&quot;toor&quot;</span><span class="p">)</span>
+</span><span id="L-22"><a href="#L-22"><span class="linenos"> 22</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">setUserName</span><span class="p">(</span><span class="s2">&quot;johan&quot;</span><span class="p">)</span>
+</span><span id="L-23"><a href="#L-23"><span class="linenos"> 23</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">setPassword</span><span class="p">(</span><span class="s2">&quot;Johannahoj972.&quot;</span><span class="p">)</span>
 </span><span id="L-24"><a href="#L-24"><span class="linenos"> 24</span></a>        <span class="n">ok</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
 </span><span id="L-25"><a href="#L-25"><span class="linenos"> 25</span></a>        <span class="k">if</span> <span class="n">ok</span><span class="p">:</span>
 </span><span id="L-26"><a href="#L-26"><span class="linenos"> 26</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Successfull connection to database&quot;</span><span class="p">)</span>
@@ -152,7 +170,7 @@ BddControler    </h1>
 </span><span id="L-52"><a href="#L-52"><span class="linenos"> 52</span></a><span class="sd">            list: Une liste de noms de pays</span>
 </span><span id="L-53"><a href="#L-53"><span class="linenos"> 53</span></a><span class="sd">        &quot;&quot;&quot;</span>
 </span><span id="L-54"><a href="#L-54"><span class="linenos"> 54</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
-</span><span id="L-55"><a href="#L-55"><span class="linenos"> 55</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">(</span><span class="s2">&quot;SELECT name_country FROM country WHERE name_country ILIKE &#39;&quot;</span> <span class="o">+</span> <span class="n">text</span> <span class="o">+</span> <span class="s2">&quot;%&#39; ORDER BY name_country ASC;&quot;</span><span class="p">)</span>
+</span><span id="L-55"><a href="#L-55"><span class="linenos"> 55</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">(</span><span class="s2">&quot;SELECT DISTINCT(country_ap) FROM airport WHERE country_ap ILIKE &#39;&quot;</span> <span class="o">+</span> <span class="n">text</span> <span class="o">+</span> <span class="s2">&quot;%&#39; ORDER BY country_ap ASC;&quot;</span><span class="p">)</span>
 </span><span id="L-56"><a href="#L-56"><span class="linenos"> 56</span></a>     
 </span><span id="L-57"><a href="#L-57"><span class="linenos"> 57</span></a>        
 </span><span id="L-58"><a href="#L-58"><span class="linenos"> 58</span></a>        <span class="n">country_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -289,7 +307,7 @@ BddControler    </h1>
 </span><span id="L-189"><a href="#L-189"><span class="linenos">189</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
 </span><span id="L-190"><a href="#L-190"><span class="linenos">190</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
 </span><span id="L-191"><a href="#L-191"><span class="linenos">191</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
-</span><span id="L-192"><a href="#L-192"><span class="linenos">192</span></a>
+</span><span id="L-192"><a href="#L-192"><span class="linenos">192</span></a>            
 </span><span id="L-193"><a href="#L-193"><span class="linenos">193</span></a>            <span class="k">return</span> <span class="n">data</span>
 </span><span id="L-194"><a href="#L-194"><span class="linenos">194</span></a>        <span class="k">else</span><span class="p">:</span>
 </span><span id="L-195"><a href="#L-195"><span class="linenos">195</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.&quot;</span><span class="p">)</span>
@@ -377,7 +395,7 @@ BddControler    </h1>
 </span><span id="L-277"><a href="#L-277"><span class="linenos">277</span></a><span class="sd">            list: Une liste de total de co2 par pays</span>
 </span><span id="L-278"><a href="#L-278"><span class="linenos">278</span></a><span class="sd">        &quot;&quot;&quot;</span>
 </span><span id="L-279"><a href="#L-279"><span class="linenos">279</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
-</span><span id="L-280"><a href="#L-280"><span class="linenos">280</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;select sum(t.co2) co2, a.country_ap pays from tot_co2 t inner join airport a on t.airport=a.name_ap group by pays order by co2 desc;&quot;</span><span class="p">)</span>
+</span><span id="L-280"><a href="#L-280"><span class="linenos">280</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;select co2, country_ap as pays from tot_co2_pays;&quot;</span><span class="p">)</span>
 </span><span id="L-281"><a href="#L-281"><span class="linenos">281</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
 </span><span id="L-282"><a href="#L-282"><span class="linenos">282</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
 </span><span id="L-283"><a href="#L-283"><span class="linenos">283</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
@@ -416,22 +434,156 @@ BddControler    </h1>
 </span><span id="L-316"><a href="#L-316"><span class="linenos">316</span></a>        <span class="k">else</span><span class="p">:</span>
 </span><span id="L-317"><a href="#L-317"><span class="linenos">317</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.&quot;</span><span class="p">)</span>
 </span><span id="L-318"><a href="#L-318"><span class="linenos">318</span></a>            <span class="k">return</span> <span class="p">[]</span>
-</span><span id="L-319"><a href="#L-319"><span class="linenos">319</span></a>
-</span><span id="L-320"><a href="#L-320"><span class="linenos">320</span></a>    
-</span><span id="L-321"><a href="#L-321"><span class="linenos">321</span></a>        
-</span><span id="L-322"><a href="#L-322"><span class="linenos">322</span></a>    <span class="k">def</span> <span class="nf">closeConnection</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="L-323"><a href="#L-323"><span class="linenos">323</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Ferme la connection avec la base de données</span>
-</span><span id="L-324"><a href="#L-324"><span class="linenos">324</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-325"><a href="#L-325"><span class="linenos">325</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span><span id="L-326"><a href="#L-326"><span class="linenos">326</span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Connection closed&quot;</span><span class="p">)</span>
+</span><span id="L-319"><a href="#L-319"><span class="linenos">319</span></a>    
+</span><span id="L-320"><a href="#L-320"><span class="linenos">320</span></a>    <span class="k">def</span> <span class="nf">getInfoRouteByAirport</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">src_airport</span> <span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">dest_airport</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="L-321"><a href="#L-321"><span class="linenos">321</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne les informations des routes (distance en km et émission de co2)</span>
+</span><span id="L-322"><a href="#L-322"><span class="linenos">322</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-323"><a href="#L-323"><span class="linenos">323</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="L-324"><a href="#L-324"><span class="linenos">324</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;select calculated_co2 as co2, source_airport, destination_airport, distance from co2_par_aeroport_total where source_airport ilike :source and destination_airport ilike :destination&quot;</span><span class="p">)</span>
+</span><span id="L-325"><a href="#L-325"><span class="linenos">325</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:source&quot;</span><span class="p">,</span> <span class="n">src_airport</span><span class="p">)</span>
+</span><span id="L-326"><a href="#L-326"><span class="linenos">326</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:destination&quot;</span><span class="p">,</span> <span class="n">dest_airport</span><span class="p">)</span>
 </span><span id="L-327"><a href="#L-327"><span class="linenos">327</span></a>
-</span><span id="L-328"><a href="#L-328"><span class="linenos">328</span></a>
-</span><span id="L-329"><a href="#L-329"><span class="linenos">329</span></a>
-</span><span id="L-330"><a href="#L-330"><span class="linenos">330</span></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span> 
-</span><span id="L-331"><a href="#L-331"><span class="linenos">331</span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;main&#39;</span><span class="p">)</span> 
-</span><span id="L-332"><a href="#L-332"><span class="linenos">332</span></a>    <span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> 
-</span><span id="L-333"><a href="#L-333"><span class="linenos">333</span></a>    <span class="n">f</span> <span class="o">=</span> <span class="n">BddControler</span><span class="p">()</span> 
-</span><span id="L-334"><a href="#L-334"><span class="linenos">334</span></a>    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">exec</span><span class="p">())</span>
+</span><span id="L-328"><a href="#L-328"><span class="linenos">328</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="L-329"><a href="#L-329"><span class="linenos">329</span></a>            <span class="n">info</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="L-330"><a href="#L-330"><span class="linenos">330</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="L-331"><a href="#L-331"><span class="linenos">331</span></a>                <span class="n">co2</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;co2&quot;</span><span class="p">)</span>
+</span><span id="L-332"><a href="#L-332"><span class="linenos">332</span></a>                <span class="n">distance</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;distance&quot;</span><span class="p">)</span>
+</span><span id="L-333"><a href="#L-333"><span class="linenos">333</span></a>                <span class="n">info</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">co2</span><span class="p">))</span>
+</span><span id="L-334"><a href="#L-334"><span class="linenos">334</span></a>                <span class="n">info</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">distance</span><span class="p">))</span>
+</span><span id="L-335"><a href="#L-335"><span class="linenos">335</span></a>            <span class="nb">print</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+</span><span id="L-336"><a href="#L-336"><span class="linenos">336</span></a>            <span class="k">return</span> <span class="n">info</span>
+</span><span id="L-337"><a href="#L-337"><span class="linenos">337</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="L-338"><a href="#L-338"><span class="linenos">338</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.&quot;</span><span class="p">)</span>
+</span><span id="L-339"><a href="#L-339"><span class="linenos">339</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span><span id="L-340"><a href="#L-340"><span class="linenos">340</span></a>
+</span><span id="L-341"><a href="#L-341"><span class="linenos">341</span></a>    <span class="k">def</span> <span class="nf">getRouteFromAirportToCountry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">airport</span> <span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="L-342"><a href="#L-342"><span class="linenos">342</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne la liste des pays disponible en prenant un aeroport</span>
+</span><span id="L-343"><a href="#L-343"><span class="linenos">343</span></a>
+</span><span id="L-344"><a href="#L-344"><span class="linenos">344</span></a><span class="sd">        Args:</span>
+</span><span id="L-345"><a href="#L-345"><span class="linenos">345</span></a><span class="sd">            airport (str): aéroport de départ</span>
+</span><span id="L-346"><a href="#L-346"><span class="linenos">346</span></a>
+</span><span id="L-347"><a href="#L-347"><span class="linenos">347</span></a><span class="sd">        Returns:</span>
+</span><span id="L-348"><a href="#L-348"><span class="linenos">348</span></a><span class="sd">            (list): une liste contenant les pays disponibles</span>
+</span><span id="L-349"><a href="#L-349"><span class="linenos">349</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-350"><a href="#L-350"><span class="linenos">350</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="L-351"><a href="#L-351"><span class="linenos">351</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT DISTINCT(a2.country_ap) as country FROM routes r INNER JOIN airport a ON r.source_ap = a.id_ap INNER JOIN airport a2 on r.dest_ap = a2.id_ap WHERE a.name_ap ILIKE :airport;&quot;</span><span class="p">)</span>
+</span><span id="L-352"><a href="#L-352"><span class="linenos">352</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:airport&quot;</span><span class="p">,</span> <span class="n">airport</span><span class="p">)</span>
+</span><span id="L-353"><a href="#L-353"><span class="linenos">353</span></a>        
+</span><span id="L-354"><a href="#L-354"><span class="linenos">354</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="L-355"><a href="#L-355"><span class="linenos">355</span></a>            <span class="n">info</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="L-356"><a href="#L-356"><span class="linenos">356</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="L-357"><a href="#L-357"><span class="linenos">357</span></a>                <span class="n">countries</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;country&quot;</span><span class="p">)</span>
+</span><span id="L-358"><a href="#L-358"><span class="linenos">358</span></a>                <span class="n">info</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">countries</span><span class="p">)</span>
+</span><span id="L-359"><a href="#L-359"><span class="linenos">359</span></a>            <span class="nb">print</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+</span><span id="L-360"><a href="#L-360"><span class="linenos">360</span></a>            <span class="k">return</span> <span class="n">info</span>
+</span><span id="L-361"><a href="#L-361"><span class="linenos">361</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="L-362"><a href="#L-362"><span class="linenos">362</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.&quot;</span><span class="p">)</span>
+</span><span id="L-363"><a href="#L-363"><span class="linenos">363</span></a>            <span class="k">return</span> <span class="p">[]</span> 
+</span><span id="L-364"><a href="#L-364"><span class="linenos">364</span></a>        
+</span><span id="L-365"><a href="#L-365"><span class="linenos">365</span></a>    <span class="k">def</span> <span class="nf">getTotalCo2ByEurope</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="L-366"><a href="#L-366"><span class="linenos">366</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne le total de co2 des pays d&#39;europe</span>
+</span><span id="L-367"><a href="#L-367"><span class="linenos">367</span></a>
+</span><span id="L-368"><a href="#L-368"><span class="linenos">368</span></a><span class="sd">        Returns:</span>
+</span><span id="L-369"><a href="#L-369"><span class="linenos">369</span></a><span class="sd">            list: Une liste de total de co2 en europe</span>
+</span><span id="L-370"><a href="#L-370"><span class="linenos">370</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-371"><a href="#L-371"><span class="linenos">371</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="L-372"><a href="#L-372"><span class="linenos">372</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;select co2, country_ap as pays from tot_co2_pays_europe;&quot;</span><span class="p">)</span>
+</span><span id="L-373"><a href="#L-373"><span class="linenos">373</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="L-374"><a href="#L-374"><span class="linenos">374</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="L-375"><a href="#L-375"><span class="linenos">375</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="L-376"><a href="#L-376"><span class="linenos">376</span></a>                <span class="n">co2</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;co2&quot;</span><span class="p">)</span>
+</span><span id="L-377"><a href="#L-377"><span class="linenos">377</span></a>                <span class="n">pays</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;pays&quot;</span><span class="p">)</span>
+</span><span id="L-378"><a href="#L-378"><span class="linenos">378</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">co2</span><span class="p">,</span><span class="n">pays</span><span class="p">))</span>
+</span><span id="L-379"><a href="#L-379"><span class="linenos">379</span></a>                
+</span><span id="L-380"><a href="#L-380"><span class="linenos">380</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="L-381"><a href="#L-381"><span class="linenos">381</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="L-382"><a href="#L-382"><span class="linenos">382</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.§§&quot;</span><span class="p">)</span>
+</span><span id="L-383"><a href="#L-383"><span class="linenos">383</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span><span id="L-384"><a href="#L-384"><span class="linenos">384</span></a>    
+</span><span id="L-385"><a href="#L-385"><span class="linenos">385</span></a>    <span class="k">def</span> <span class="nf">getAirportOnlyWithRoute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">country</span> <span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="L-386"><a href="#L-386"><span class="linenos">386</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne un liste d&#39;aeroport avec des routes d&#39;un pays</span>
+</span><span id="L-387"><a href="#L-387"><span class="linenos">387</span></a>
+</span><span id="L-388"><a href="#L-388"><span class="linenos">388</span></a><span class="sd">        Args:</span>
+</span><span id="L-389"><a href="#L-389"><span class="linenos">389</span></a><span class="sd">            country (str): pays d&#39;origine de l&#39;aeroport</span>
+</span><span id="L-390"><a href="#L-390"><span class="linenos">390</span></a>
+</span><span id="L-391"><a href="#L-391"><span class="linenos">391</span></a><span class="sd">        Returns:</span>
+</span><span id="L-392"><a href="#L-392"><span class="linenos">392</span></a><span class="sd">            list: la liste de aéroport qui ont des routes</span>
+</span><span id="L-393"><a href="#L-393"><span class="linenos">393</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-394"><a href="#L-394"><span class="linenos">394</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="L-395"><a href="#L-395"><span class="linenos">395</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;select DISTINCT(a.name_ap) as airport from airport a where a.country_ap ilike :country AND (a.id_ap IN (SELECT dest_ap FROM routes) OR a.id_ap IN (SELECT source_ap FROM routes));&quot;</span><span class="p">)</span>
+</span><span id="L-396"><a href="#L-396"><span class="linenos">396</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:country&quot;</span><span class="p">,</span> <span class="n">country</span><span class="p">)</span>
+</span><span id="L-397"><a href="#L-397"><span class="linenos">397</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="L-398"><a href="#L-398"><span class="linenos">398</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="L-399"><a href="#L-399"><span class="linenos">399</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="L-400"><a href="#L-400"><span class="linenos">400</span></a>                <span class="n">airports</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;airport&quot;</span><span class="p">)</span>
+</span><span id="L-401"><a href="#L-401"><span class="linenos">401</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">airports</span><span class="p">)</span>
+</span><span id="L-402"><a href="#L-402"><span class="linenos">402</span></a>                
+</span><span id="L-403"><a href="#L-403"><span class="linenos">403</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="L-404"><a href="#L-404"><span class="linenos">404</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="L-405"><a href="#L-405"><span class="linenos">405</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.§§&quot;</span><span class="p">)</span>
+</span><span id="L-406"><a href="#L-406"><span class="linenos">406</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span><span id="L-407"><a href="#L-407"><span class="linenos">407</span></a>        
+</span><span id="L-408"><a href="#L-408"><span class="linenos">408</span></a>    <span class="k">def</span> <span class="nf">getAirportDestWithRoute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">country_dest</span> <span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">airport_src</span> <span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="L-409"><a href="#L-409"><span class="linenos">409</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne la liste des aéroports qui on une route en commun avec le pays de destination et l&#39;aéroport de départ</span>
+</span><span id="L-410"><a href="#L-410"><span class="linenos">410</span></a>
+</span><span id="L-411"><a href="#L-411"><span class="linenos">411</span></a><span class="sd">        Args:</span>
+</span><span id="L-412"><a href="#L-412"><span class="linenos">412</span></a><span class="sd">            country_dest (str): pays de destination</span>
+</span><span id="L-413"><a href="#L-413"><span class="linenos">413</span></a><span class="sd">            airport_src (str): aéroport de départ</span>
+</span><span id="L-414"><a href="#L-414"><span class="linenos">414</span></a>
+</span><span id="L-415"><a href="#L-415"><span class="linenos">415</span></a><span class="sd">        Returns:</span>
+</span><span id="L-416"><a href="#L-416"><span class="linenos">416</span></a><span class="sd">            list: les aéroports qui on une route en commun avec le pays de destination et l&#39;aéroport de départ</span>
+</span><span id="L-417"><a href="#L-417"><span class="linenos">417</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-418"><a href="#L-418"><span class="linenos">418</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="L-419"><a href="#L-419"><span class="linenos">419</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT DISTINCT(a2.name_ap) as airport FROM routes r INNER JOIN airport a ON r.source_ap = a.id_ap INNER JOIN airport a2 on r.dest_ap = a2.id_ap WHERE a2.country_ap ILIKE :country AND a.name_ap ILIKE :airport&quot;</span><span class="p">)</span>
+</span><span id="L-420"><a href="#L-420"><span class="linenos">420</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:country&quot;</span><span class="p">,</span> <span class="n">country_dest</span><span class="p">)</span>
+</span><span id="L-421"><a href="#L-421"><span class="linenos">421</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:airport&quot;</span><span class="p">,</span> <span class="n">airport_src</span><span class="p">)</span>
+</span><span id="L-422"><a href="#L-422"><span class="linenos">422</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="L-423"><a href="#L-423"><span class="linenos">423</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="L-424"><a href="#L-424"><span class="linenos">424</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="L-425"><a href="#L-425"><span class="linenos">425</span></a>                <span class="n">airports</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;airport&quot;</span><span class="p">)</span>
+</span><span id="L-426"><a href="#L-426"><span class="linenos">426</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">airports</span><span class="p">)</span>
+</span><span id="L-427"><a href="#L-427"><span class="linenos">427</span></a>                
+</span><span id="L-428"><a href="#L-428"><span class="linenos">428</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="L-429"><a href="#L-429"><span class="linenos">429</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="L-430"><a href="#L-430"><span class="linenos">430</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.§§&quot;</span><span class="p">)</span>
+</span><span id="L-431"><a href="#L-431"><span class="linenos">431</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span><span id="L-432"><a href="#L-432"><span class="linenos">432</span></a>    
+</span><span id="L-433"><a href="#L-433"><span class="linenos">433</span></a>    <span class="k">def</span> <span class="nf">getCompanyList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">active</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;%&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="L-434"><a href="#L-434"><span class="linenos">434</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne la liste des compagnies aériennes</span>
+</span><span id="L-435"><a href="#L-435"><span class="linenos">435</span></a>
+</span><span id="L-436"><a href="#L-436"><span class="linenos">436</span></a><span class="sd">        Args:</span>
+</span><span id="L-437"><a href="#L-437"><span class="linenos">437</span></a><span class="sd">            active (str, optional): &#39;N&#39; ou &#39;Y&#39;. Defaults to &#39;%&#39;.</span>
+</span><span id="L-438"><a href="#L-438"><span class="linenos">438</span></a>
+</span><span id="L-439"><a href="#L-439"><span class="linenos">439</span></a><span class="sd">        Returns:</span>
+</span><span id="L-440"><a href="#L-440"><span class="linenos">440</span></a><span class="sd">            list: Une liste de compagnies aériennes</span>
+</span><span id="L-441"><a href="#L-441"><span class="linenos">441</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-442"><a href="#L-442"><span class="linenos">442</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="L-443"><a href="#L-443"><span class="linenos">443</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM airlinecompany WHERE activity ILIKE :active;&quot;</span><span class="p">)</span>
+</span><span id="L-444"><a href="#L-444"><span class="linenos">444</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:active&quot;</span><span class="p">,</span> <span class="n">active</span><span class="p">)</span>
+</span><span id="L-445"><a href="#L-445"><span class="linenos">445</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="L-446"><a href="#L-446"><span class="linenos">446</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="L-447"><a href="#L-447"><span class="linenos">447</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="L-448"><a href="#L-448"><span class="linenos">448</span></a>                <span class="n">name_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;name_ac&quot;</span><span class="p">)</span>
+</span><span id="L-449"><a href="#L-449"><span class="linenos">449</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name_ac</span><span class="p">)</span>
+</span><span id="L-450"><a href="#L-450"><span class="linenos">450</span></a>                
+</span><span id="L-451"><a href="#L-451"><span class="linenos">451</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="L-452"><a href="#L-452"><span class="linenos">452</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="L-453"><a href="#L-453"><span class="linenos">453</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.§§&quot;</span><span class="p">)</span>
+</span><span id="L-454"><a href="#L-454"><span class="linenos">454</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span><span id="L-455"><a href="#L-455"><span class="linenos">455</span></a>        
+</span><span id="L-456"><a href="#L-456"><span class="linenos">456</span></a>    <span class="k">def</span> <span class="nf">closeConnection</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="L-457"><a href="#L-457"><span class="linenos">457</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Ferme la connection avec la base de données</span>
+</span><span id="L-458"><a href="#L-458"><span class="linenos">458</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-459"><a href="#L-459"><span class="linenos">459</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span id="L-460"><a href="#L-460"><span class="linenos">460</span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Connection closed&quot;</span><span class="p">)</span>
+</span><span id="L-461"><a href="#L-461"><span class="linenos">461</span></a>
+</span><span id="L-462"><a href="#L-462"><span class="linenos">462</span></a>
+</span><span id="L-463"><a href="#L-463"><span class="linenos">463</span></a>
+</span><span id="L-464"><a href="#L-464"><span class="linenos">464</span></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span> 
+</span><span id="L-465"><a href="#L-465"><span class="linenos">465</span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;main&#39;</span><span class="p">)</span> 
+</span><span id="L-466"><a href="#L-466"><span class="linenos">466</span></a>    <span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> 
+</span><span id="L-467"><a href="#L-467"><span class="linenos">467</span></a>    <span class="n">f</span> <span class="o">=</span> <span class="n">BddControler</span><span class="p">()</span> 
+</span><span id="L-468"><a href="#L-468"><span class="linenos">468</span></a>    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">exec</span><span class="p">())</span>
 </span></pre></div>
 
 
@@ -463,8 +615,8 @@ BddControler    </h1>
 </span><span id="BddControler-20"><a href="#BddControler-20"><span class="linenos"> 20</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">setHostName</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">)</span>
 </span><span id="BddControler-21"><a href="#BddControler-21"><span class="linenos"> 21</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">setPort</span><span class="p">(</span><span class="mi">5432</span><span class="p">)</span>
 </span><span id="BddControler-22"><a href="#BddControler-22"><span class="linenos"> 22</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">setDatabaseName</span><span class="p">(</span><span class="s2">&quot;plane_test&quot;</span><span class="p">)</span>
-</span><span id="BddControler-23"><a href="#BddControler-23"><span class="linenos"> 23</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">setUserName</span><span class="p">(</span><span class="s2">&quot;happy&quot;</span><span class="p">)</span>
-</span><span id="BddControler-24"><a href="#BddControler-24"><span class="linenos"> 24</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">setPassword</span><span class="p">(</span><span class="s2">&quot;toor&quot;</span><span class="p">)</span>
+</span><span id="BddControler-23"><a href="#BddControler-23"><span class="linenos"> 23</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">setUserName</span><span class="p">(</span><span class="s2">&quot;johan&quot;</span><span class="p">)</span>
+</span><span id="BddControler-24"><a href="#BddControler-24"><span class="linenos"> 24</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">setPassword</span><span class="p">(</span><span class="s2">&quot;Johannahoj972.&quot;</span><span class="p">)</span>
 </span><span id="BddControler-25"><a href="#BddControler-25"><span class="linenos"> 25</span></a>        <span class="n">ok</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
 </span><span id="BddControler-26"><a href="#BddControler-26"><span class="linenos"> 26</span></a>        <span class="k">if</span> <span class="n">ok</span><span class="p">:</span>
 </span><span id="BddControler-27"><a href="#BddControler-27"><span class="linenos"> 27</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Successfull connection to database&quot;</span><span class="p">)</span>
@@ -496,7 +648,7 @@ BddControler    </h1>
 </span><span id="BddControler-53"><a href="#BddControler-53"><span class="linenos"> 53</span></a><span class="sd">            list: Une liste de noms de pays</span>
 </span><span id="BddControler-54"><a href="#BddControler-54"><span class="linenos"> 54</span></a><span class="sd">        &quot;&quot;&quot;</span>
 </span><span id="BddControler-55"><a href="#BddControler-55"><span class="linenos"> 55</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
-</span><span id="BddControler-56"><a href="#BddControler-56"><span class="linenos"> 56</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">(</span><span class="s2">&quot;SELECT name_country FROM country WHERE name_country ILIKE &#39;&quot;</span> <span class="o">+</span> <span class="n">text</span> <span class="o">+</span> <span class="s2">&quot;%&#39; ORDER BY name_country ASC;&quot;</span><span class="p">)</span>
+</span><span id="BddControler-56"><a href="#BddControler-56"><span class="linenos"> 56</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">(</span><span class="s2">&quot;SELECT DISTINCT(country_ap) FROM airport WHERE country_ap ILIKE &#39;&quot;</span> <span class="o">+</span> <span class="n">text</span> <span class="o">+</span> <span class="s2">&quot;%&#39; ORDER BY country_ap ASC;&quot;</span><span class="p">)</span>
 </span><span id="BddControler-57"><a href="#BddControler-57"><span class="linenos"> 57</span></a>     
 </span><span id="BddControler-58"><a href="#BddControler-58"><span class="linenos"> 58</span></a>        
 </span><span id="BddControler-59"><a href="#BddControler-59"><span class="linenos"> 59</span></a>        <span class="n">country_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -633,7 +785,7 @@ BddControler    </h1>
 </span><span id="BddControler-190"><a href="#BddControler-190"><span class="linenos">190</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
 </span><span id="BddControler-191"><a href="#BddControler-191"><span class="linenos">191</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
 </span><span id="BddControler-192"><a href="#BddControler-192"><span class="linenos">192</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
-</span><span id="BddControler-193"><a href="#BddControler-193"><span class="linenos">193</span></a>
+</span><span id="BddControler-193"><a href="#BddControler-193"><span class="linenos">193</span></a>            
 </span><span id="BddControler-194"><a href="#BddControler-194"><span class="linenos">194</span></a>            <span class="k">return</span> <span class="n">data</span>
 </span><span id="BddControler-195"><a href="#BddControler-195"><span class="linenos">195</span></a>        <span class="k">else</span><span class="p">:</span>
 </span><span id="BddControler-196"><a href="#BddControler-196"><span class="linenos">196</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.&quot;</span><span class="p">)</span>
@@ -721,7 +873,7 @@ BddControler    </h1>
 </span><span id="BddControler-278"><a href="#BddControler-278"><span class="linenos">278</span></a><span class="sd">            list: Une liste de total de co2 par pays</span>
 </span><span id="BddControler-279"><a href="#BddControler-279"><span class="linenos">279</span></a><span class="sd">        &quot;&quot;&quot;</span>
 </span><span id="BddControler-280"><a href="#BddControler-280"><span class="linenos">280</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
-</span><span id="BddControler-281"><a href="#BddControler-281"><span class="linenos">281</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;select sum(t.co2) co2, a.country_ap pays from tot_co2 t inner join airport a on t.airport=a.name_ap group by pays order by co2 desc;&quot;</span><span class="p">)</span>
+</span><span id="BddControler-281"><a href="#BddControler-281"><span class="linenos">281</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;select co2, country_ap as pays from tot_co2_pays;&quot;</span><span class="p">)</span>
 </span><span id="BddControler-282"><a href="#BddControler-282"><span class="linenos">282</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
 </span><span id="BddControler-283"><a href="#BddControler-283"><span class="linenos">283</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
 </span><span id="BddControler-284"><a href="#BddControler-284"><span class="linenos">284</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
@@ -760,14 +912,148 @@ BddControler    </h1>
 </span><span id="BddControler-317"><a href="#BddControler-317"><span class="linenos">317</span></a>        <span class="k">else</span><span class="p">:</span>
 </span><span id="BddControler-318"><a href="#BddControler-318"><span class="linenos">318</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.&quot;</span><span class="p">)</span>
 </span><span id="BddControler-319"><a href="#BddControler-319"><span class="linenos">319</span></a>            <span class="k">return</span> <span class="p">[]</span>
-</span><span id="BddControler-320"><a href="#BddControler-320"><span class="linenos">320</span></a>
-</span><span id="BddControler-321"><a href="#BddControler-321"><span class="linenos">321</span></a>    
-</span><span id="BddControler-322"><a href="#BddControler-322"><span class="linenos">322</span></a>        
-</span><span id="BddControler-323"><a href="#BddControler-323"><span class="linenos">323</span></a>    <span class="k">def</span> <span class="nf">closeConnection</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="BddControler-324"><a href="#BddControler-324"><span class="linenos">324</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Ferme la connection avec la base de données</span>
-</span><span id="BddControler-325"><a href="#BddControler-325"><span class="linenos">325</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="BddControler-326"><a href="#BddControler-326"><span class="linenos">326</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span><span id="BddControler-327"><a href="#BddControler-327"><span class="linenos">327</span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Connection closed&quot;</span><span class="p">)</span>
+</span><span id="BddControler-320"><a href="#BddControler-320"><span class="linenos">320</span></a>    
+</span><span id="BddControler-321"><a href="#BddControler-321"><span class="linenos">321</span></a>    <span class="k">def</span> <span class="nf">getInfoRouteByAirport</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">src_airport</span> <span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">dest_airport</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="BddControler-322"><a href="#BddControler-322"><span class="linenos">322</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne les informations des routes (distance en km et émission de co2)</span>
+</span><span id="BddControler-323"><a href="#BddControler-323"><span class="linenos">323</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BddControler-324"><a href="#BddControler-324"><span class="linenos">324</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="BddControler-325"><a href="#BddControler-325"><span class="linenos">325</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;select calculated_co2 as co2, source_airport, destination_airport, distance from co2_par_aeroport_total where source_airport ilike :source and destination_airport ilike :destination&quot;</span><span class="p">)</span>
+</span><span id="BddControler-326"><a href="#BddControler-326"><span class="linenos">326</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:source&quot;</span><span class="p">,</span> <span class="n">src_airport</span><span class="p">)</span>
+</span><span id="BddControler-327"><a href="#BddControler-327"><span class="linenos">327</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:destination&quot;</span><span class="p">,</span> <span class="n">dest_airport</span><span class="p">)</span>
+</span><span id="BddControler-328"><a href="#BddControler-328"><span class="linenos">328</span></a>
+</span><span id="BddControler-329"><a href="#BddControler-329"><span class="linenos">329</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="BddControler-330"><a href="#BddControler-330"><span class="linenos">330</span></a>            <span class="n">info</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="BddControler-331"><a href="#BddControler-331"><span class="linenos">331</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="BddControler-332"><a href="#BddControler-332"><span class="linenos">332</span></a>                <span class="n">co2</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;co2&quot;</span><span class="p">)</span>
+</span><span id="BddControler-333"><a href="#BddControler-333"><span class="linenos">333</span></a>                <span class="n">distance</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;distance&quot;</span><span class="p">)</span>
+</span><span id="BddControler-334"><a href="#BddControler-334"><span class="linenos">334</span></a>                <span class="n">info</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">co2</span><span class="p">))</span>
+</span><span id="BddControler-335"><a href="#BddControler-335"><span class="linenos">335</span></a>                <span class="n">info</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">distance</span><span class="p">))</span>
+</span><span id="BddControler-336"><a href="#BddControler-336"><span class="linenos">336</span></a>            <span class="nb">print</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+</span><span id="BddControler-337"><a href="#BddControler-337"><span class="linenos">337</span></a>            <span class="k">return</span> <span class="n">info</span>
+</span><span id="BddControler-338"><a href="#BddControler-338"><span class="linenos">338</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="BddControler-339"><a href="#BddControler-339"><span class="linenos">339</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.&quot;</span><span class="p">)</span>
+</span><span id="BddControler-340"><a href="#BddControler-340"><span class="linenos">340</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span><span id="BddControler-341"><a href="#BddControler-341"><span class="linenos">341</span></a>
+</span><span id="BddControler-342"><a href="#BddControler-342"><span class="linenos">342</span></a>    <span class="k">def</span> <span class="nf">getRouteFromAirportToCountry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">airport</span> <span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="BddControler-343"><a href="#BddControler-343"><span class="linenos">343</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne la liste des pays disponible en prenant un aeroport</span>
+</span><span id="BddControler-344"><a href="#BddControler-344"><span class="linenos">344</span></a>
+</span><span id="BddControler-345"><a href="#BddControler-345"><span class="linenos">345</span></a><span class="sd">        Args:</span>
+</span><span id="BddControler-346"><a href="#BddControler-346"><span class="linenos">346</span></a><span class="sd">            airport (str): aéroport de départ</span>
+</span><span id="BddControler-347"><a href="#BddControler-347"><span class="linenos">347</span></a>
+</span><span id="BddControler-348"><a href="#BddControler-348"><span class="linenos">348</span></a><span class="sd">        Returns:</span>
+</span><span id="BddControler-349"><a href="#BddControler-349"><span class="linenos">349</span></a><span class="sd">            (list): une liste contenant les pays disponibles</span>
+</span><span id="BddControler-350"><a href="#BddControler-350"><span class="linenos">350</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BddControler-351"><a href="#BddControler-351"><span class="linenos">351</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="BddControler-352"><a href="#BddControler-352"><span class="linenos">352</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT DISTINCT(a2.country_ap) as country FROM routes r INNER JOIN airport a ON r.source_ap = a.id_ap INNER JOIN airport a2 on r.dest_ap = a2.id_ap WHERE a.name_ap ILIKE :airport;&quot;</span><span class="p">)</span>
+</span><span id="BddControler-353"><a href="#BddControler-353"><span class="linenos">353</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:airport&quot;</span><span class="p">,</span> <span class="n">airport</span><span class="p">)</span>
+</span><span id="BddControler-354"><a href="#BddControler-354"><span class="linenos">354</span></a>        
+</span><span id="BddControler-355"><a href="#BddControler-355"><span class="linenos">355</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="BddControler-356"><a href="#BddControler-356"><span class="linenos">356</span></a>            <span class="n">info</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="BddControler-357"><a href="#BddControler-357"><span class="linenos">357</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="BddControler-358"><a href="#BddControler-358"><span class="linenos">358</span></a>                <span class="n">countries</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;country&quot;</span><span class="p">)</span>
+</span><span id="BddControler-359"><a href="#BddControler-359"><span class="linenos">359</span></a>                <span class="n">info</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">countries</span><span class="p">)</span>
+</span><span id="BddControler-360"><a href="#BddControler-360"><span class="linenos">360</span></a>            <span class="nb">print</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+</span><span id="BddControler-361"><a href="#BddControler-361"><span class="linenos">361</span></a>            <span class="k">return</span> <span class="n">info</span>
+</span><span id="BddControler-362"><a href="#BddControler-362"><span class="linenos">362</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="BddControler-363"><a href="#BddControler-363"><span class="linenos">363</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.&quot;</span><span class="p">)</span>
+</span><span id="BddControler-364"><a href="#BddControler-364"><span class="linenos">364</span></a>            <span class="k">return</span> <span class="p">[]</span> 
+</span><span id="BddControler-365"><a href="#BddControler-365"><span class="linenos">365</span></a>        
+</span><span id="BddControler-366"><a href="#BddControler-366"><span class="linenos">366</span></a>    <span class="k">def</span> <span class="nf">getTotalCo2ByEurope</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="BddControler-367"><a href="#BddControler-367"><span class="linenos">367</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne le total de co2 des pays d&#39;europe</span>
+</span><span id="BddControler-368"><a href="#BddControler-368"><span class="linenos">368</span></a>
+</span><span id="BddControler-369"><a href="#BddControler-369"><span class="linenos">369</span></a><span class="sd">        Returns:</span>
+</span><span id="BddControler-370"><a href="#BddControler-370"><span class="linenos">370</span></a><span class="sd">            list: Une liste de total de co2 en europe</span>
+</span><span id="BddControler-371"><a href="#BddControler-371"><span class="linenos">371</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BddControler-372"><a href="#BddControler-372"><span class="linenos">372</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="BddControler-373"><a href="#BddControler-373"><span class="linenos">373</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;select co2, country_ap as pays from tot_co2_pays_europe;&quot;</span><span class="p">)</span>
+</span><span id="BddControler-374"><a href="#BddControler-374"><span class="linenos">374</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="BddControler-375"><a href="#BddControler-375"><span class="linenos">375</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="BddControler-376"><a href="#BddControler-376"><span class="linenos">376</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="BddControler-377"><a href="#BddControler-377"><span class="linenos">377</span></a>                <span class="n">co2</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;co2&quot;</span><span class="p">)</span>
+</span><span id="BddControler-378"><a href="#BddControler-378"><span class="linenos">378</span></a>                <span class="n">pays</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;pays&quot;</span><span class="p">)</span>
+</span><span id="BddControler-379"><a href="#BddControler-379"><span class="linenos">379</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">co2</span><span class="p">,</span><span class="n">pays</span><span class="p">))</span>
+</span><span id="BddControler-380"><a href="#BddControler-380"><span class="linenos">380</span></a>                
+</span><span id="BddControler-381"><a href="#BddControler-381"><span class="linenos">381</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="BddControler-382"><a href="#BddControler-382"><span class="linenos">382</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="BddControler-383"><a href="#BddControler-383"><span class="linenos">383</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.§§&quot;</span><span class="p">)</span>
+</span><span id="BddControler-384"><a href="#BddControler-384"><span class="linenos">384</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span><span id="BddControler-385"><a href="#BddControler-385"><span class="linenos">385</span></a>    
+</span><span id="BddControler-386"><a href="#BddControler-386"><span class="linenos">386</span></a>    <span class="k">def</span> <span class="nf">getAirportOnlyWithRoute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">country</span> <span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="BddControler-387"><a href="#BddControler-387"><span class="linenos">387</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne un liste d&#39;aeroport avec des routes d&#39;un pays</span>
+</span><span id="BddControler-388"><a href="#BddControler-388"><span class="linenos">388</span></a>
+</span><span id="BddControler-389"><a href="#BddControler-389"><span class="linenos">389</span></a><span class="sd">        Args:</span>
+</span><span id="BddControler-390"><a href="#BddControler-390"><span class="linenos">390</span></a><span class="sd">            country (str): pays d&#39;origine de l&#39;aeroport</span>
+</span><span id="BddControler-391"><a href="#BddControler-391"><span class="linenos">391</span></a>
+</span><span id="BddControler-392"><a href="#BddControler-392"><span class="linenos">392</span></a><span class="sd">        Returns:</span>
+</span><span id="BddControler-393"><a href="#BddControler-393"><span class="linenos">393</span></a><span class="sd">            list: la liste de aéroport qui ont des routes</span>
+</span><span id="BddControler-394"><a href="#BddControler-394"><span class="linenos">394</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BddControler-395"><a href="#BddControler-395"><span class="linenos">395</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="BddControler-396"><a href="#BddControler-396"><span class="linenos">396</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;select DISTINCT(a.name_ap) as airport from airport a where a.country_ap ilike :country AND (a.id_ap IN (SELECT dest_ap FROM routes) OR a.id_ap IN (SELECT source_ap FROM routes));&quot;</span><span class="p">)</span>
+</span><span id="BddControler-397"><a href="#BddControler-397"><span class="linenos">397</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:country&quot;</span><span class="p">,</span> <span class="n">country</span><span class="p">)</span>
+</span><span id="BddControler-398"><a href="#BddControler-398"><span class="linenos">398</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="BddControler-399"><a href="#BddControler-399"><span class="linenos">399</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="BddControler-400"><a href="#BddControler-400"><span class="linenos">400</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="BddControler-401"><a href="#BddControler-401"><span class="linenos">401</span></a>                <span class="n">airports</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;airport&quot;</span><span class="p">)</span>
+</span><span id="BddControler-402"><a href="#BddControler-402"><span class="linenos">402</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">airports</span><span class="p">)</span>
+</span><span id="BddControler-403"><a href="#BddControler-403"><span class="linenos">403</span></a>                
+</span><span id="BddControler-404"><a href="#BddControler-404"><span class="linenos">404</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="BddControler-405"><a href="#BddControler-405"><span class="linenos">405</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="BddControler-406"><a href="#BddControler-406"><span class="linenos">406</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.§§&quot;</span><span class="p">)</span>
+</span><span id="BddControler-407"><a href="#BddControler-407"><span class="linenos">407</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span><span id="BddControler-408"><a href="#BddControler-408"><span class="linenos">408</span></a>        
+</span><span id="BddControler-409"><a href="#BddControler-409"><span class="linenos">409</span></a>    <span class="k">def</span> <span class="nf">getAirportDestWithRoute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">country_dest</span> <span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">airport_src</span> <span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="BddControler-410"><a href="#BddControler-410"><span class="linenos">410</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne la liste des aéroports qui on une route en commun avec le pays de destination et l&#39;aéroport de départ</span>
+</span><span id="BddControler-411"><a href="#BddControler-411"><span class="linenos">411</span></a>
+</span><span id="BddControler-412"><a href="#BddControler-412"><span class="linenos">412</span></a><span class="sd">        Args:</span>
+</span><span id="BddControler-413"><a href="#BddControler-413"><span class="linenos">413</span></a><span class="sd">            country_dest (str): pays de destination</span>
+</span><span id="BddControler-414"><a href="#BddControler-414"><span class="linenos">414</span></a><span class="sd">            airport_src (str): aéroport de départ</span>
+</span><span id="BddControler-415"><a href="#BddControler-415"><span class="linenos">415</span></a>
+</span><span id="BddControler-416"><a href="#BddControler-416"><span class="linenos">416</span></a><span class="sd">        Returns:</span>
+</span><span id="BddControler-417"><a href="#BddControler-417"><span class="linenos">417</span></a><span class="sd">            list: les aéroports qui on une route en commun avec le pays de destination et l&#39;aéroport de départ</span>
+</span><span id="BddControler-418"><a href="#BddControler-418"><span class="linenos">418</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BddControler-419"><a href="#BddControler-419"><span class="linenos">419</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="BddControler-420"><a href="#BddControler-420"><span class="linenos">420</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT DISTINCT(a2.name_ap) as airport FROM routes r INNER JOIN airport a ON r.source_ap = a.id_ap INNER JOIN airport a2 on r.dest_ap = a2.id_ap WHERE a2.country_ap ILIKE :country AND a.name_ap ILIKE :airport&quot;</span><span class="p">)</span>
+</span><span id="BddControler-421"><a href="#BddControler-421"><span class="linenos">421</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:country&quot;</span><span class="p">,</span> <span class="n">country_dest</span><span class="p">)</span>
+</span><span id="BddControler-422"><a href="#BddControler-422"><span class="linenos">422</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:airport&quot;</span><span class="p">,</span> <span class="n">airport_src</span><span class="p">)</span>
+</span><span id="BddControler-423"><a href="#BddControler-423"><span class="linenos">423</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="BddControler-424"><a href="#BddControler-424"><span class="linenos">424</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="BddControler-425"><a href="#BddControler-425"><span class="linenos">425</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="BddControler-426"><a href="#BddControler-426"><span class="linenos">426</span></a>                <span class="n">airports</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;airport&quot;</span><span class="p">)</span>
+</span><span id="BddControler-427"><a href="#BddControler-427"><span class="linenos">427</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">airports</span><span class="p">)</span>
+</span><span id="BddControler-428"><a href="#BddControler-428"><span class="linenos">428</span></a>                
+</span><span id="BddControler-429"><a href="#BddControler-429"><span class="linenos">429</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="BddControler-430"><a href="#BddControler-430"><span class="linenos">430</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="BddControler-431"><a href="#BddControler-431"><span class="linenos">431</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.§§&quot;</span><span class="p">)</span>
+</span><span id="BddControler-432"><a href="#BddControler-432"><span class="linenos">432</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span><span id="BddControler-433"><a href="#BddControler-433"><span class="linenos">433</span></a>    
+</span><span id="BddControler-434"><a href="#BddControler-434"><span class="linenos">434</span></a>    <span class="k">def</span> <span class="nf">getCompanyList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">active</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;%&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="BddControler-435"><a href="#BddControler-435"><span class="linenos">435</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne la liste des compagnies aériennes</span>
+</span><span id="BddControler-436"><a href="#BddControler-436"><span class="linenos">436</span></a>
+</span><span id="BddControler-437"><a href="#BddControler-437"><span class="linenos">437</span></a><span class="sd">        Args:</span>
+</span><span id="BddControler-438"><a href="#BddControler-438"><span class="linenos">438</span></a><span class="sd">            active (str, optional): &#39;N&#39; ou &#39;Y&#39;. Defaults to &#39;%&#39;.</span>
+</span><span id="BddControler-439"><a href="#BddControler-439"><span class="linenos">439</span></a>
+</span><span id="BddControler-440"><a href="#BddControler-440"><span class="linenos">440</span></a><span class="sd">        Returns:</span>
+</span><span id="BddControler-441"><a href="#BddControler-441"><span class="linenos">441</span></a><span class="sd">            list: Une liste de compagnies aériennes</span>
+</span><span id="BddControler-442"><a href="#BddControler-442"><span class="linenos">442</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BddControler-443"><a href="#BddControler-443"><span class="linenos">443</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="BddControler-444"><a href="#BddControler-444"><span class="linenos">444</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM airlinecompany WHERE activity ILIKE :active;&quot;</span><span class="p">)</span>
+</span><span id="BddControler-445"><a href="#BddControler-445"><span class="linenos">445</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:active&quot;</span><span class="p">,</span> <span class="n">active</span><span class="p">)</span>
+</span><span id="BddControler-446"><a href="#BddControler-446"><span class="linenos">446</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="BddControler-447"><a href="#BddControler-447"><span class="linenos">447</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="BddControler-448"><a href="#BddControler-448"><span class="linenos">448</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="BddControler-449"><a href="#BddControler-449"><span class="linenos">449</span></a>                <span class="n">name_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;name_ac&quot;</span><span class="p">)</span>
+</span><span id="BddControler-450"><a href="#BddControler-450"><span class="linenos">450</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name_ac</span><span class="p">)</span>
+</span><span id="BddControler-451"><a href="#BddControler-451"><span class="linenos">451</span></a>                
+</span><span id="BddControler-452"><a href="#BddControler-452"><span class="linenos">452</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="BddControler-453"><a href="#BddControler-453"><span class="linenos">453</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="BddControler-454"><a href="#BddControler-454"><span class="linenos">454</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.§§&quot;</span><span class="p">)</span>
+</span><span id="BddControler-455"><a href="#BddControler-455"><span class="linenos">455</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span><span id="BddControler-456"><a href="#BddControler-456"><span class="linenos">456</span></a>        
+</span><span id="BddControler-457"><a href="#BddControler-457"><span class="linenos">457</span></a>    <span class="k">def</span> <span class="nf">closeConnection</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="BddControler-458"><a href="#BddControler-458"><span class="linenos">458</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Ferme la connection avec la base de données</span>
+</span><span id="BddControler-459"><a href="#BddControler-459"><span class="linenos">459</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BddControler-460"><a href="#BddControler-460"><span class="linenos">460</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span id="BddControler-461"><a href="#BddControler-461"><span class="linenos">461</span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Connection closed&quot;</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -832,7 +1118,7 @@ BddControler    </h1>
 </span><span id="BddControler.getCountry-53"><a href="#BddControler.getCountry-53"><span class="linenos">53</span></a><span class="sd">            list: Une liste de noms de pays</span>
 </span><span id="BddControler.getCountry-54"><a href="#BddControler.getCountry-54"><span class="linenos">54</span></a><span class="sd">        &quot;&quot;&quot;</span>
 </span><span id="BddControler.getCountry-55"><a href="#BddControler.getCountry-55"><span class="linenos">55</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
-</span><span id="BddControler.getCountry-56"><a href="#BddControler.getCountry-56"><span class="linenos">56</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">(</span><span class="s2">&quot;SELECT name_country FROM country WHERE name_country ILIKE &#39;&quot;</span> <span class="o">+</span> <span class="n">text</span> <span class="o">+</span> <span class="s2">&quot;%&#39; ORDER BY name_country ASC;&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getCountry-56"><a href="#BddControler.getCountry-56"><span class="linenos">56</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">(</span><span class="s2">&quot;SELECT DISTINCT(country_ap) FROM airport WHERE country_ap ILIKE &#39;&quot;</span> <span class="o">+</span> <span class="n">text</span> <span class="o">+</span> <span class="s2">&quot;%&#39; ORDER BY country_ap ASC;&quot;</span><span class="p">)</span>
 </span><span id="BddControler.getCountry-57"><a href="#BddControler.getCountry-57"><span class="linenos">57</span></a>     
 </span><span id="BddControler.getCountry-58"><a href="#BddControler.getCountry-58"><span class="linenos">58</span></a>        
 </span><span id="BddControler.getCountry-59"><a href="#BddControler.getCountry-59"><span class="linenos">59</span></a>        <span class="n">country_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1083,7 +1369,7 @@ BddControler    </h1>
 </span><span id="BddControler.getAirportByCountry-190"><a href="#BddControler.getAirportByCountry-190"><span class="linenos">190</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
 </span><span id="BddControler.getAirportByCountry-191"><a href="#BddControler.getAirportByCountry-191"><span class="linenos">191</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
 </span><span id="BddControler.getAirportByCountry-192"><a href="#BddControler.getAirportByCountry-192"><span class="linenos">192</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
-</span><span id="BddControler.getAirportByCountry-193"><a href="#BddControler.getAirportByCountry-193"><span class="linenos">193</span></a>
+</span><span id="BddControler.getAirportByCountry-193"><a href="#BddControler.getAirportByCountry-193"><span class="linenos">193</span></a>            
 </span><span id="BddControler.getAirportByCountry-194"><a href="#BddControler.getAirportByCountry-194"><span class="linenos">194</span></a>            <span class="k">return</span> <span class="n">data</span>
 </span><span id="BddControler.getAirportByCountry-195"><a href="#BddControler.getAirportByCountry-195"><span class="linenos">195</span></a>        <span class="k">else</span><span class="p">:</span>
 </span><span id="BddControler.getAirportByCountry-196"><a href="#BddControler.getAirportByCountry-196"><span class="linenos">196</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.&quot;</span><span class="p">)</span>
@@ -1268,7 +1554,7 @@ BddControler    </h1>
 </span><span id="BddControler.getTotalCo2ByCountry-278"><a href="#BddControler.getTotalCo2ByCountry-278"><span class="linenos">278</span></a><span class="sd">            list: Une liste de total de co2 par pays</span>
 </span><span id="BddControler.getTotalCo2ByCountry-279"><a href="#BddControler.getTotalCo2ByCountry-279"><span class="linenos">279</span></a><span class="sd">        &quot;&quot;&quot;</span>
 </span><span id="BddControler.getTotalCo2ByCountry-280"><a href="#BddControler.getTotalCo2ByCountry-280"><span class="linenos">280</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
-</span><span id="BddControler.getTotalCo2ByCountry-281"><a href="#BddControler.getTotalCo2ByCountry-281"><span class="linenos">281</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;select sum(t.co2) co2, a.country_ap pays from tot_co2 t inner join airport a on t.airport=a.name_ap group by pays order by co2 desc;&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getTotalCo2ByCountry-281"><a href="#BddControler.getTotalCo2ByCountry-281"><span class="linenos">281</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;select co2, country_ap as pays from tot_co2_pays;&quot;</span><span class="p">)</span>
 </span><span id="BddControler.getTotalCo2ByCountry-282"><a href="#BddControler.getTotalCo2ByCountry-282"><span class="linenos">282</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
 </span><span id="BddControler.getTotalCo2ByCountry-283"><a href="#BddControler.getTotalCo2ByCountry-283"><span class="linenos">283</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
 </span><span id="BddControler.getTotalCo2ByCountry-284"><a href="#BddControler.getTotalCo2ByCountry-284"><span class="linenos">284</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
@@ -1342,6 +1628,278 @@ BddControler    </h1>
 
 
                             </div>
+                            <div id="BddControler.getInfoRouteByAirport" class="classattr">
+                                        <input id="BddControler.getInfoRouteByAirport-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">getInfoRouteByAirport</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">src_airport</span><span class="p">:</span> <span class="nb">str</span>, </span><span class="param"><span class="n">dest_airport</span><span class="p">:</span> <span class="nb">str</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="BddControler.getInfoRouteByAirport-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#BddControler.getInfoRouteByAirport"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="BddControler.getInfoRouteByAirport-321"><a href="#BddControler.getInfoRouteByAirport-321"><span class="linenos">321</span></a>    <span class="k">def</span> <span class="nf">getInfoRouteByAirport</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">src_airport</span> <span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">dest_airport</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="BddControler.getInfoRouteByAirport-322"><a href="#BddControler.getInfoRouteByAirport-322"><span class="linenos">322</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne les informations des routes (distance en km et émission de co2)</span>
+</span><span id="BddControler.getInfoRouteByAirport-323"><a href="#BddControler.getInfoRouteByAirport-323"><span class="linenos">323</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BddControler.getInfoRouteByAirport-324"><a href="#BddControler.getInfoRouteByAirport-324"><span class="linenos">324</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="BddControler.getInfoRouteByAirport-325"><a href="#BddControler.getInfoRouteByAirport-325"><span class="linenos">325</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;select calculated_co2 as co2, source_airport, destination_airport, distance from co2_par_aeroport_total where source_airport ilike :source and destination_airport ilike :destination&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getInfoRouteByAirport-326"><a href="#BddControler.getInfoRouteByAirport-326"><span class="linenos">326</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:source&quot;</span><span class="p">,</span> <span class="n">src_airport</span><span class="p">)</span>
+</span><span id="BddControler.getInfoRouteByAirport-327"><a href="#BddControler.getInfoRouteByAirport-327"><span class="linenos">327</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:destination&quot;</span><span class="p">,</span> <span class="n">dest_airport</span><span class="p">)</span>
+</span><span id="BddControler.getInfoRouteByAirport-328"><a href="#BddControler.getInfoRouteByAirport-328"><span class="linenos">328</span></a>
+</span><span id="BddControler.getInfoRouteByAirport-329"><a href="#BddControler.getInfoRouteByAirport-329"><span class="linenos">329</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="BddControler.getInfoRouteByAirport-330"><a href="#BddControler.getInfoRouteByAirport-330"><span class="linenos">330</span></a>            <span class="n">info</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="BddControler.getInfoRouteByAirport-331"><a href="#BddControler.getInfoRouteByAirport-331"><span class="linenos">331</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="BddControler.getInfoRouteByAirport-332"><a href="#BddControler.getInfoRouteByAirport-332"><span class="linenos">332</span></a>                <span class="n">co2</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;co2&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getInfoRouteByAirport-333"><a href="#BddControler.getInfoRouteByAirport-333"><span class="linenos">333</span></a>                <span class="n">distance</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;distance&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getInfoRouteByAirport-334"><a href="#BddControler.getInfoRouteByAirport-334"><span class="linenos">334</span></a>                <span class="n">info</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">co2</span><span class="p">))</span>
+</span><span id="BddControler.getInfoRouteByAirport-335"><a href="#BddControler.getInfoRouteByAirport-335"><span class="linenos">335</span></a>                <span class="n">info</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">distance</span><span class="p">))</span>
+</span><span id="BddControler.getInfoRouteByAirport-336"><a href="#BddControler.getInfoRouteByAirport-336"><span class="linenos">336</span></a>            <span class="nb">print</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+</span><span id="BddControler.getInfoRouteByAirport-337"><a href="#BddControler.getInfoRouteByAirport-337"><span class="linenos">337</span></a>            <span class="k">return</span> <span class="n">info</span>
+</span><span id="BddControler.getInfoRouteByAirport-338"><a href="#BddControler.getInfoRouteByAirport-338"><span class="linenos">338</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="BddControler.getInfoRouteByAirport-339"><a href="#BddControler.getInfoRouteByAirport-339"><span class="linenos">339</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getInfoRouteByAirport-340"><a href="#BddControler.getInfoRouteByAirport-340"><span class="linenos">340</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Retourne les informations des routes (distance en km et émission de co2)</p>
+</div>
+
+
+                            </div>
+                            <div id="BddControler.getRouteFromAirportToCountry" class="classattr">
+                                        <input id="BddControler.getRouteFromAirportToCountry-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">getRouteFromAirportToCountry</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">airport</span><span class="p">:</span> <span class="nb">str</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="BddControler.getRouteFromAirportToCountry-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#BddControler.getRouteFromAirportToCountry"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="BddControler.getRouteFromAirportToCountry-342"><a href="#BddControler.getRouteFromAirportToCountry-342"><span class="linenos">342</span></a>    <span class="k">def</span> <span class="nf">getRouteFromAirportToCountry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">airport</span> <span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="BddControler.getRouteFromAirportToCountry-343"><a href="#BddControler.getRouteFromAirportToCountry-343"><span class="linenos">343</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne la liste des pays disponible en prenant un aeroport</span>
+</span><span id="BddControler.getRouteFromAirportToCountry-344"><a href="#BddControler.getRouteFromAirportToCountry-344"><span class="linenos">344</span></a>
+</span><span id="BddControler.getRouteFromAirportToCountry-345"><a href="#BddControler.getRouteFromAirportToCountry-345"><span class="linenos">345</span></a><span class="sd">        Args:</span>
+</span><span id="BddControler.getRouteFromAirportToCountry-346"><a href="#BddControler.getRouteFromAirportToCountry-346"><span class="linenos">346</span></a><span class="sd">            airport (str): aéroport de départ</span>
+</span><span id="BddControler.getRouteFromAirportToCountry-347"><a href="#BddControler.getRouteFromAirportToCountry-347"><span class="linenos">347</span></a>
+</span><span id="BddControler.getRouteFromAirportToCountry-348"><a href="#BddControler.getRouteFromAirportToCountry-348"><span class="linenos">348</span></a><span class="sd">        Returns:</span>
+</span><span id="BddControler.getRouteFromAirportToCountry-349"><a href="#BddControler.getRouteFromAirportToCountry-349"><span class="linenos">349</span></a><span class="sd">            (list): une liste contenant les pays disponibles</span>
+</span><span id="BddControler.getRouteFromAirportToCountry-350"><a href="#BddControler.getRouteFromAirportToCountry-350"><span class="linenos">350</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BddControler.getRouteFromAirportToCountry-351"><a href="#BddControler.getRouteFromAirportToCountry-351"><span class="linenos">351</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="BddControler.getRouteFromAirportToCountry-352"><a href="#BddControler.getRouteFromAirportToCountry-352"><span class="linenos">352</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT DISTINCT(a2.country_ap) as country FROM routes r INNER JOIN airport a ON r.source_ap = a.id_ap INNER JOIN airport a2 on r.dest_ap = a2.id_ap WHERE a.name_ap ILIKE :airport;&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getRouteFromAirportToCountry-353"><a href="#BddControler.getRouteFromAirportToCountry-353"><span class="linenos">353</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:airport&quot;</span><span class="p">,</span> <span class="n">airport</span><span class="p">)</span>
+</span><span id="BddControler.getRouteFromAirportToCountry-354"><a href="#BddControler.getRouteFromAirportToCountry-354"><span class="linenos">354</span></a>        
+</span><span id="BddControler.getRouteFromAirportToCountry-355"><a href="#BddControler.getRouteFromAirportToCountry-355"><span class="linenos">355</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="BddControler.getRouteFromAirportToCountry-356"><a href="#BddControler.getRouteFromAirportToCountry-356"><span class="linenos">356</span></a>            <span class="n">info</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="BddControler.getRouteFromAirportToCountry-357"><a href="#BddControler.getRouteFromAirportToCountry-357"><span class="linenos">357</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="BddControler.getRouteFromAirportToCountry-358"><a href="#BddControler.getRouteFromAirportToCountry-358"><span class="linenos">358</span></a>                <span class="n">countries</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;country&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getRouteFromAirportToCountry-359"><a href="#BddControler.getRouteFromAirportToCountry-359"><span class="linenos">359</span></a>                <span class="n">info</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">countries</span><span class="p">)</span>
+</span><span id="BddControler.getRouteFromAirportToCountry-360"><a href="#BddControler.getRouteFromAirportToCountry-360"><span class="linenos">360</span></a>            <span class="nb">print</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+</span><span id="BddControler.getRouteFromAirportToCountry-361"><a href="#BddControler.getRouteFromAirportToCountry-361"><span class="linenos">361</span></a>            <span class="k">return</span> <span class="n">info</span>
+</span><span id="BddControler.getRouteFromAirportToCountry-362"><a href="#BddControler.getRouteFromAirportToCountry-362"><span class="linenos">362</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="BddControler.getRouteFromAirportToCountry-363"><a href="#BddControler.getRouteFromAirportToCountry-363"><span class="linenos">363</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getRouteFromAirportToCountry-364"><a href="#BddControler.getRouteFromAirportToCountry-364"><span class="linenos">364</span></a>            <span class="k">return</span> <span class="p">[]</span> 
+</span></pre></div>
+
+
+            <div class="docstring"><p>Retourne la liste des pays disponible en prenant un aeroport</p>
+
+<p>Args:
+    airport (str): aéroport de départ</p>
+
+<p>Returns:
+    (list): une liste contenant les pays disponibles</p>
+</div>
+
+
+                            </div>
+                            <div id="BddControler.getTotalCo2ByEurope" class="classattr">
+                                        <input id="BddControler.getTotalCo2ByEurope-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">getTotalCo2ByEurope</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">) -> <span class="nb">list</span>:</span></span>
+
+                <label class="view-source-button" for="BddControler.getTotalCo2ByEurope-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#BddControler.getTotalCo2ByEurope"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="BddControler.getTotalCo2ByEurope-366"><a href="#BddControler.getTotalCo2ByEurope-366"><span class="linenos">366</span></a>    <span class="k">def</span> <span class="nf">getTotalCo2ByEurope</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="BddControler.getTotalCo2ByEurope-367"><a href="#BddControler.getTotalCo2ByEurope-367"><span class="linenos">367</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne le total de co2 des pays d&#39;europe</span>
+</span><span id="BddControler.getTotalCo2ByEurope-368"><a href="#BddControler.getTotalCo2ByEurope-368"><span class="linenos">368</span></a>
+</span><span id="BddControler.getTotalCo2ByEurope-369"><a href="#BddControler.getTotalCo2ByEurope-369"><span class="linenos">369</span></a><span class="sd">        Returns:</span>
+</span><span id="BddControler.getTotalCo2ByEurope-370"><a href="#BddControler.getTotalCo2ByEurope-370"><span class="linenos">370</span></a><span class="sd">            list: Une liste de total de co2 en europe</span>
+</span><span id="BddControler.getTotalCo2ByEurope-371"><a href="#BddControler.getTotalCo2ByEurope-371"><span class="linenos">371</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BddControler.getTotalCo2ByEurope-372"><a href="#BddControler.getTotalCo2ByEurope-372"><span class="linenos">372</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="BddControler.getTotalCo2ByEurope-373"><a href="#BddControler.getTotalCo2ByEurope-373"><span class="linenos">373</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;select co2, country_ap as pays from tot_co2_pays_europe;&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getTotalCo2ByEurope-374"><a href="#BddControler.getTotalCo2ByEurope-374"><span class="linenos">374</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="BddControler.getTotalCo2ByEurope-375"><a href="#BddControler.getTotalCo2ByEurope-375"><span class="linenos">375</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="BddControler.getTotalCo2ByEurope-376"><a href="#BddControler.getTotalCo2ByEurope-376"><span class="linenos">376</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="BddControler.getTotalCo2ByEurope-377"><a href="#BddControler.getTotalCo2ByEurope-377"><span class="linenos">377</span></a>                <span class="n">co2</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;co2&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getTotalCo2ByEurope-378"><a href="#BddControler.getTotalCo2ByEurope-378"><span class="linenos">378</span></a>                <span class="n">pays</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;pays&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getTotalCo2ByEurope-379"><a href="#BddControler.getTotalCo2ByEurope-379"><span class="linenos">379</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">co2</span><span class="p">,</span><span class="n">pays</span><span class="p">))</span>
+</span><span id="BddControler.getTotalCo2ByEurope-380"><a href="#BddControler.getTotalCo2ByEurope-380"><span class="linenos">380</span></a>                
+</span><span id="BddControler.getTotalCo2ByEurope-381"><a href="#BddControler.getTotalCo2ByEurope-381"><span class="linenos">381</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="BddControler.getTotalCo2ByEurope-382"><a href="#BddControler.getTotalCo2ByEurope-382"><span class="linenos">382</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="BddControler.getTotalCo2ByEurope-383"><a href="#BddControler.getTotalCo2ByEurope-383"><span class="linenos">383</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.§§&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getTotalCo2ByEurope-384"><a href="#BddControler.getTotalCo2ByEurope-384"><span class="linenos">384</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Retourne le total de co2 des pays d'europe</p>
+
+<p>Returns:
+    list: Une liste de total de co2 en europe</p>
+</div>
+
+
+                            </div>
+                            <div id="BddControler.getAirportOnlyWithRoute" class="classattr">
+                                        <input id="BddControler.getAirportOnlyWithRoute-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">getAirportOnlyWithRoute</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">country</span><span class="p">:</span> <span class="nb">str</span></span><span class="return-annotation">) -> <span class="nb">list</span>:</span></span>
+
+                <label class="view-source-button" for="BddControler.getAirportOnlyWithRoute-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#BddControler.getAirportOnlyWithRoute"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="BddControler.getAirportOnlyWithRoute-386"><a href="#BddControler.getAirportOnlyWithRoute-386"><span class="linenos">386</span></a>    <span class="k">def</span> <span class="nf">getAirportOnlyWithRoute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">country</span> <span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="BddControler.getAirportOnlyWithRoute-387"><a href="#BddControler.getAirportOnlyWithRoute-387"><span class="linenos">387</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne un liste d&#39;aeroport avec des routes d&#39;un pays</span>
+</span><span id="BddControler.getAirportOnlyWithRoute-388"><a href="#BddControler.getAirportOnlyWithRoute-388"><span class="linenos">388</span></a>
+</span><span id="BddControler.getAirportOnlyWithRoute-389"><a href="#BddControler.getAirportOnlyWithRoute-389"><span class="linenos">389</span></a><span class="sd">        Args:</span>
+</span><span id="BddControler.getAirportOnlyWithRoute-390"><a href="#BddControler.getAirportOnlyWithRoute-390"><span class="linenos">390</span></a><span class="sd">            country (str): pays d&#39;origine de l&#39;aeroport</span>
+</span><span id="BddControler.getAirportOnlyWithRoute-391"><a href="#BddControler.getAirportOnlyWithRoute-391"><span class="linenos">391</span></a>
+</span><span id="BddControler.getAirportOnlyWithRoute-392"><a href="#BddControler.getAirportOnlyWithRoute-392"><span class="linenos">392</span></a><span class="sd">        Returns:</span>
+</span><span id="BddControler.getAirportOnlyWithRoute-393"><a href="#BddControler.getAirportOnlyWithRoute-393"><span class="linenos">393</span></a><span class="sd">            list: la liste de aéroport qui ont des routes</span>
+</span><span id="BddControler.getAirportOnlyWithRoute-394"><a href="#BddControler.getAirportOnlyWithRoute-394"><span class="linenos">394</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BddControler.getAirportOnlyWithRoute-395"><a href="#BddControler.getAirportOnlyWithRoute-395"><span class="linenos">395</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="BddControler.getAirportOnlyWithRoute-396"><a href="#BddControler.getAirportOnlyWithRoute-396"><span class="linenos">396</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;select DISTINCT(a.name_ap) as airport from airport a where a.country_ap ilike :country AND (a.id_ap IN (SELECT dest_ap FROM routes) OR a.id_ap IN (SELECT source_ap FROM routes));&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getAirportOnlyWithRoute-397"><a href="#BddControler.getAirportOnlyWithRoute-397"><span class="linenos">397</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:country&quot;</span><span class="p">,</span> <span class="n">country</span><span class="p">)</span>
+</span><span id="BddControler.getAirportOnlyWithRoute-398"><a href="#BddControler.getAirportOnlyWithRoute-398"><span class="linenos">398</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="BddControler.getAirportOnlyWithRoute-399"><a href="#BddControler.getAirportOnlyWithRoute-399"><span class="linenos">399</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="BddControler.getAirportOnlyWithRoute-400"><a href="#BddControler.getAirportOnlyWithRoute-400"><span class="linenos">400</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="BddControler.getAirportOnlyWithRoute-401"><a href="#BddControler.getAirportOnlyWithRoute-401"><span class="linenos">401</span></a>                <span class="n">airports</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;airport&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getAirportOnlyWithRoute-402"><a href="#BddControler.getAirportOnlyWithRoute-402"><span class="linenos">402</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">airports</span><span class="p">)</span>
+</span><span id="BddControler.getAirportOnlyWithRoute-403"><a href="#BddControler.getAirportOnlyWithRoute-403"><span class="linenos">403</span></a>                
+</span><span id="BddControler.getAirportOnlyWithRoute-404"><a href="#BddControler.getAirportOnlyWithRoute-404"><span class="linenos">404</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="BddControler.getAirportOnlyWithRoute-405"><a href="#BddControler.getAirportOnlyWithRoute-405"><span class="linenos">405</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="BddControler.getAirportOnlyWithRoute-406"><a href="#BddControler.getAirportOnlyWithRoute-406"><span class="linenos">406</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.§§&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getAirportOnlyWithRoute-407"><a href="#BddControler.getAirportOnlyWithRoute-407"><span class="linenos">407</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Retourne un liste d'aeroport avec des routes d'un pays</p>
+
+<p>Args:
+    country (str): pays d'origine de l'aeroport</p>
+
+<p>Returns:
+    list: la liste de aéroport qui ont des routes</p>
+</div>
+
+
+                            </div>
+                            <div id="BddControler.getAirportDestWithRoute" class="classattr">
+                                        <input id="BddControler.getAirportDestWithRoute-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">getAirportDestWithRoute</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">country_dest</span><span class="p">:</span> <span class="nb">str</span>, </span><span class="param"><span class="n">airport_src</span><span class="p">:</span> <span class="nb">str</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="BddControler.getAirportDestWithRoute-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#BddControler.getAirportDestWithRoute"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="BddControler.getAirportDestWithRoute-409"><a href="#BddControler.getAirportDestWithRoute-409"><span class="linenos">409</span></a>    <span class="k">def</span> <span class="nf">getAirportDestWithRoute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">country_dest</span> <span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">airport_src</span> <span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="BddControler.getAirportDestWithRoute-410"><a href="#BddControler.getAirportDestWithRoute-410"><span class="linenos">410</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne la liste des aéroports qui on une route en commun avec le pays de destination et l&#39;aéroport de départ</span>
+</span><span id="BddControler.getAirportDestWithRoute-411"><a href="#BddControler.getAirportDestWithRoute-411"><span class="linenos">411</span></a>
+</span><span id="BddControler.getAirportDestWithRoute-412"><a href="#BddControler.getAirportDestWithRoute-412"><span class="linenos">412</span></a><span class="sd">        Args:</span>
+</span><span id="BddControler.getAirportDestWithRoute-413"><a href="#BddControler.getAirportDestWithRoute-413"><span class="linenos">413</span></a><span class="sd">            country_dest (str): pays de destination</span>
+</span><span id="BddControler.getAirportDestWithRoute-414"><a href="#BddControler.getAirportDestWithRoute-414"><span class="linenos">414</span></a><span class="sd">            airport_src (str): aéroport de départ</span>
+</span><span id="BddControler.getAirportDestWithRoute-415"><a href="#BddControler.getAirportDestWithRoute-415"><span class="linenos">415</span></a>
+</span><span id="BddControler.getAirportDestWithRoute-416"><a href="#BddControler.getAirportDestWithRoute-416"><span class="linenos">416</span></a><span class="sd">        Returns:</span>
+</span><span id="BddControler.getAirportDestWithRoute-417"><a href="#BddControler.getAirportDestWithRoute-417"><span class="linenos">417</span></a><span class="sd">            list: les aéroports qui on une route en commun avec le pays de destination et l&#39;aéroport de départ</span>
+</span><span id="BddControler.getAirportDestWithRoute-418"><a href="#BddControler.getAirportDestWithRoute-418"><span class="linenos">418</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BddControler.getAirportDestWithRoute-419"><a href="#BddControler.getAirportDestWithRoute-419"><span class="linenos">419</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="BddControler.getAirportDestWithRoute-420"><a href="#BddControler.getAirportDestWithRoute-420"><span class="linenos">420</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT DISTINCT(a2.name_ap) as airport FROM routes r INNER JOIN airport a ON r.source_ap = a.id_ap INNER JOIN airport a2 on r.dest_ap = a2.id_ap WHERE a2.country_ap ILIKE :country AND a.name_ap ILIKE :airport&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getAirportDestWithRoute-421"><a href="#BddControler.getAirportDestWithRoute-421"><span class="linenos">421</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:country&quot;</span><span class="p">,</span> <span class="n">country_dest</span><span class="p">)</span>
+</span><span id="BddControler.getAirportDestWithRoute-422"><a href="#BddControler.getAirportDestWithRoute-422"><span class="linenos">422</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:airport&quot;</span><span class="p">,</span> <span class="n">airport_src</span><span class="p">)</span>
+</span><span id="BddControler.getAirportDestWithRoute-423"><a href="#BddControler.getAirportDestWithRoute-423"><span class="linenos">423</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="BddControler.getAirportDestWithRoute-424"><a href="#BddControler.getAirportDestWithRoute-424"><span class="linenos">424</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="BddControler.getAirportDestWithRoute-425"><a href="#BddControler.getAirportDestWithRoute-425"><span class="linenos">425</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="BddControler.getAirportDestWithRoute-426"><a href="#BddControler.getAirportDestWithRoute-426"><span class="linenos">426</span></a>                <span class="n">airports</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;airport&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getAirportDestWithRoute-427"><a href="#BddControler.getAirportDestWithRoute-427"><span class="linenos">427</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">airports</span><span class="p">)</span>
+</span><span id="BddControler.getAirportDestWithRoute-428"><a href="#BddControler.getAirportDestWithRoute-428"><span class="linenos">428</span></a>                
+</span><span id="BddControler.getAirportDestWithRoute-429"><a href="#BddControler.getAirportDestWithRoute-429"><span class="linenos">429</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="BddControler.getAirportDestWithRoute-430"><a href="#BddControler.getAirportDestWithRoute-430"><span class="linenos">430</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="BddControler.getAirportDestWithRoute-431"><a href="#BddControler.getAirportDestWithRoute-431"><span class="linenos">431</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.§§&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getAirportDestWithRoute-432"><a href="#BddControler.getAirportDestWithRoute-432"><span class="linenos">432</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Retourne la liste des aéroports qui on une route en commun avec le pays de destination et l'aéroport de départ</p>
+
+<p>Args:
+    country_dest (str): pays de destination
+    airport_src (str): aéroport de départ</p>
+
+<p>Returns:
+    list: les aéroports qui on une route en commun avec le pays de destination et l'aéroport de départ</p>
+</div>
+
+
+                            </div>
+                            <div id="BddControler.getCompanyList" class="classattr">
+                                        <input id="BddControler.getCompanyList-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">getCompanyList</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">active</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;%&#39;</span></span><span class="return-annotation">) -> <span class="nb">list</span>:</span></span>
+
+                <label class="view-source-button" for="BddControler.getCompanyList-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#BddControler.getCompanyList"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="BddControler.getCompanyList-434"><a href="#BddControler.getCompanyList-434"><span class="linenos">434</span></a>    <span class="k">def</span> <span class="nf">getCompanyList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">active</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;%&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="BddControler.getCompanyList-435"><a href="#BddControler.getCompanyList-435"><span class="linenos">435</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retourne la liste des compagnies aériennes</span>
+</span><span id="BddControler.getCompanyList-436"><a href="#BddControler.getCompanyList-436"><span class="linenos">436</span></a>
+</span><span id="BddControler.getCompanyList-437"><a href="#BddControler.getCompanyList-437"><span class="linenos">437</span></a><span class="sd">        Args:</span>
+</span><span id="BddControler.getCompanyList-438"><a href="#BddControler.getCompanyList-438"><span class="linenos">438</span></a><span class="sd">            active (str, optional): &#39;N&#39; ou &#39;Y&#39;. Defaults to &#39;%&#39;.</span>
+</span><span id="BddControler.getCompanyList-439"><a href="#BddControler.getCompanyList-439"><span class="linenos">439</span></a>
+</span><span id="BddControler.getCompanyList-440"><a href="#BddControler.getCompanyList-440"><span class="linenos">440</span></a><span class="sd">        Returns:</span>
+</span><span id="BddControler.getCompanyList-441"><a href="#BddControler.getCompanyList-441"><span class="linenos">441</span></a><span class="sd">            list: Une liste de compagnies aériennes</span>
+</span><span id="BddControler.getCompanyList-442"><a href="#BddControler.getCompanyList-442"><span class="linenos">442</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BddControler.getCompanyList-443"><a href="#BddControler.getCompanyList-443"><span class="linenos">443</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">QSqlQuery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+</span><span id="BddControler.getCompanyList-444"><a href="#BddControler.getCompanyList-444"><span class="linenos">444</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM airlinecompany WHERE activity ILIKE :active;&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getCompanyList-445"><a href="#BddControler.getCompanyList-445"><span class="linenos">445</span></a>        <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:active&quot;</span><span class="p">,</span> <span class="n">active</span><span class="p">)</span>
+</span><span id="BddControler.getCompanyList-446"><a href="#BddControler.getCompanyList-446"><span class="linenos">446</span></a>        <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
+</span><span id="BddControler.getCompanyList-447"><a href="#BddControler.getCompanyList-447"><span class="linenos">447</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="BddControler.getCompanyList-448"><a href="#BddControler.getCompanyList-448"><span class="linenos">448</span></a>            <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+</span><span id="BddControler.getCompanyList-449"><a href="#BddControler.getCompanyList-449"><span class="linenos">449</span></a>                <span class="n">name_ac</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;name_ac&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getCompanyList-450"><a href="#BddControler.getCompanyList-450"><span class="linenos">450</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name_ac</span><span class="p">)</span>
+</span><span id="BddControler.getCompanyList-451"><a href="#BddControler.getCompanyList-451"><span class="linenos">451</span></a>                
+</span><span id="BddControler.getCompanyList-452"><a href="#BddControler.getCompanyList-452"><span class="linenos">452</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="BddControler.getCompanyList-453"><a href="#BddControler.getCompanyList-453"><span class="linenos">453</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="BddControler.getCompanyList-454"><a href="#BddControler.getCompanyList-454"><span class="linenos">454</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erreur lors de l&#39;exécution de la requête.§§&quot;</span><span class="p">)</span>
+</span><span id="BddControler.getCompanyList-455"><a href="#BddControler.getCompanyList-455"><span class="linenos">455</span></a>            <span class="k">return</span> <span class="p">[]</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Retourne la liste des compagnies aériennes</p>
+
+<p>Args:
+    active (str, optional): 'N' ou 'Y'. Defaults to '%'.</p>
+
+<p>Returns:
+    list: Une liste de compagnies aériennes</p>
+</div>
+
+
+                            </div>
                             <div id="BddControler.closeConnection" class="classattr">
                                         <input id="BddControler.closeConnection-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
@@ -1353,11 +1911,11 @@ BddControler    </h1>
 
     </div>
     <a class="headerlink" href="#BddControler.closeConnection"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="BddControler.closeConnection-323"><a href="#BddControler.closeConnection-323"><span class="linenos">323</span></a>    <span class="k">def</span> <span class="nf">closeConnection</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="BddControler.closeConnection-324"><a href="#BddControler.closeConnection-324"><span class="linenos">324</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Ferme la connection avec la base de données</span>
-</span><span id="BddControler.closeConnection-325"><a href="#BddControler.closeConnection-325"><span class="linenos">325</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="BddControler.closeConnection-326"><a href="#BddControler.closeConnection-326"><span class="linenos">326</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span><span id="BddControler.closeConnection-327"><a href="#BddControler.closeConnection-327"><span class="linenos">327</span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Connection closed&quot;</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="BddControler.closeConnection-457"><a href="#BddControler.closeConnection-457"><span class="linenos">457</span></a>    <span class="k">def</span> <span class="nf">closeConnection</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="BddControler.closeConnection-458"><a href="#BddControler.closeConnection-458"><span class="linenos">458</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Ferme la connection avec la base de données</span>
+</span><span id="BddControler.closeConnection-459"><a href="#BddControler.closeConnection-459"><span class="linenos">459</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BddControler.closeConnection-460"><a href="#BddControler.closeConnection-460"><span class="linenos">460</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span id="BddControler.closeConnection-461"><a href="#BddControler.closeConnection-461"><span class="linenos">461</span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Connection closed&quot;</span><span class="p">)</span>
 </span></pre></div>
 
 

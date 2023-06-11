@@ -429,6 +429,29 @@ class BddControler(QWidget):
         else:
             print("Erreur lors de l'exécution de la requête.§§")
             return []
+    
+    def getCompanyList(self, active : str = "%") -> list:
+        """Retourne la liste des compagnies aériennes
+
+        Args:
+            active (str, optional): 'N' ou 'Y'. Defaults to '%'.
+
+        Returns:
+            list: Une liste de compagnies aériennes
+        """
+        query = QSqlQuery(self.db)
+        query.prepare("SELECT * FROM airlinecompany WHERE activity ILIKE :active;")
+        query.bindValue(":active", active)
+        if query.exec():
+            data = []
+            while query.next():
+                name_ac = query.value("name_ac")
+                data.append(name_ac)
+                
+            return data
+        else:
+            print("Erreur lors de l'exécution de la requête.§§")
+            return []
         
     def closeConnection(self) -> None:
         """Ferme la connection avec la base de données

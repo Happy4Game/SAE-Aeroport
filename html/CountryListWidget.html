@@ -33,22 +33,40 @@
             <h2>API Documentation</h2>
                 <ul class="memberlist">
             <li>
-                    <a class="class" href="#CountryListWidget">CountryListWidget</a>
+                    <a class="class" href="#CountrySrcListWidget">CountrySrcListWidget</a>
                             <ul class="memberlist">
                         <li>
-                                <a class="function" href="#CountryListWidget.__init__">CountryListWidget</a>
+                                <a class="function" href="#CountrySrcListWidget.__init__">CountrySrcListWidget</a>
                         </li>
                         <li>
-                                <a class="function" href="#CountryListWidget.countryClicked">countryClicked</a>
+                                <a class="function" href="#CountrySrcListWidget.countryClicked">countryClicked</a>
                         </li>
                         <li>
-                                <a class="function" href="#CountryListWidget.countryClickedFunc">countryClickedFunc</a>
+                                <a class="function" href="#CountrySrcListWidget.countryClickedFunc">countryClickedFunc</a>
                         </li>
                         <li>
-                                <a class="function" href="#CountryListWidget.getCountryClickedText">getCountryClickedText</a>
+                                <a class="function" href="#CountrySrcListWidget.getCountryClickedText">getCountryClickedText</a>
                         </li>
                         <li>
-                                <a class="function" href="#CountryListWidget.addCountryList">addCountryList</a>
+                                <a class="function" href="#CountrySrcListWidget.addCountryList">addCountryList</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#CountrySrcListWidget.clearCountryList">clearCountryList</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#CountrySrcListWidget.getList">getList</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="class" href="#CountryDestListWidget">CountryDestListWidget</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#CountryDestListWidget.__init__">CountryDestListWidget</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#CountryDestListWidget.updateCountryList">updateCountryList</a>
                         </li>
                 </ul>
 
@@ -78,7 +96,7 @@ CountryListWidget    </h1>
 </span><span id="L-2"><a href="#L-2"><span class="linenos"> 2</span></a><span class="kn">from</span> <span class="nn">PyQt6.QtCore</span> <span class="kn">import</span> <span class="n">pyqtSignal</span>
 </span><span id="L-3"><a href="#L-3"><span class="linenos"> 3</span></a><span class="kn">from</span> <span class="nn">BddControler</span> <span class="kn">import</span> <span class="n">BddControler</span>
 </span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a>
-</span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a><span class="k">class</span> <span class="nc">CountryListWidget</span><span class="p">(</span><span class="n">QWidget</span><span class="p">):</span>
+</span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a><span class="k">class</span> <span class="nc">CountrySrcListWidget</span><span class="p">(</span><span class="n">QWidget</span><span class="p">):</span>
 </span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a>
 </span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a>    <span class="n">countryClicked</span> <span class="p">:</span> <span class="n">pyqtSignal</span> <span class="o">=</span> <span class="n">pyqtSignal</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 </span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a>
@@ -129,92 +147,136 @@ CountryListWidget    </h1>
 </span><span id="L-53"><a href="#L-53"><span class="linenos">53</span></a>        
 </span><span id="L-54"><a href="#L-54"><span class="linenos">54</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">countryClickedText</span>
 </span><span id="L-55"><a href="#L-55"><span class="linenos">55</span></a>    
-</span><span id="L-56"><a href="#L-56"><span class="linenos">56</span></a>    <span class="k">def</span> <span class="nf">addCountryList</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="L-56"><a href="#L-56"><span class="linenos">56</span></a>    <span class="k">def</span> <span class="nf">addCountryList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">countries</span> <span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 </span><span id="L-57"><a href="#L-57"><span class="linenos">57</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Fonction qui ajoute la liste des pays dans QListWidget</span>
-</span><span id="L-58"><a href="#L-58"><span class="linenos">58</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-59"><a href="#L-59"><span class="linenos">59</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-</span><span id="L-60"><a href="#L-60"><span class="linenos">60</span></a>        <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__line_edit</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
-</span><span id="L-61"><a href="#L-61"><span class="linenos">61</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span id="L-62"><a href="#L-62"><span class="linenos">62</span></a>            <span class="n">info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bdd</span><span class="o">.</span><span class="n">getCountry</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-</span><span id="L-63"><a href="#L-63"><span class="linenos">63</span></a>            
-</span><span id="L-64"><a href="#L-64"><span class="linenos">64</span></a>            <span class="k">for</span> <span class="n">country</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">info</span><span class="p">)):</span>
-</span><span id="L-65"><a href="#L-65"><span class="linenos">65</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="n">country</span><span class="p">])</span>
+</span><span id="L-58"><a href="#L-58"><span class="linenos">58</span></a>
+</span><span id="L-59"><a href="#L-59"><span class="linenos">59</span></a><span class="sd">        Args:</span>
+</span><span id="L-60"><a href="#L-60"><span class="linenos">60</span></a><span class="sd">            countries (list, optional): Liste des pays à ajouter. </span>
+</span><span id="L-61"><a href="#L-61"><span class="linenos">61</span></a><span class="sd">                                   Si None, récupère la liste des pays depuis la base de données. </span>
+</span><span id="L-62"><a href="#L-62"><span class="linenos">62</span></a><span class="sd">                                   Par défaut None.</span>
+</span><span id="L-63"><a href="#L-63"><span class="linenos">63</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-64"><a href="#L-64"><span class="linenos">64</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</span><span id="L-65"><a href="#L-65"><span class="linenos">65</span></a>
+</span><span id="L-66"><a href="#L-66"><span class="linenos">66</span></a>        
+</span><span id="L-67"><a href="#L-67"><span class="linenos">67</span></a>        <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__line_edit</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+</span><span id="L-68"><a href="#L-68"><span class="linenos">68</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="L-69"><a href="#L-69"><span class="linenos">69</span></a>            <span class="n">info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bdd</span><span class="o">.</span><span class="n">getCountry</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span><span id="L-70"><a href="#L-70"><span class="linenos">70</span></a>            
+</span><span id="L-71"><a href="#L-71"><span class="linenos">71</span></a>            <span class="k">for</span> <span class="n">country</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">info</span><span class="p">)):</span>
+</span><span id="L-72"><a href="#L-72"><span class="linenos">72</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="n">country</span><span class="p">])</span>
+</span><span id="L-73"><a href="#L-73"><span class="linenos">73</span></a>        
+</span><span id="L-74"><a href="#L-74"><span class="linenos">74</span></a>            
+</span><span id="L-75"><a href="#L-75"><span class="linenos">75</span></a>
+</span><span id="L-76"><a href="#L-76"><span class="linenos">76</span></a>    <span class="k">def</span> <span class="nf">clearCountryList</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-77"><a href="#L-77"><span class="linenos">77</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Fonction qui vide la liste des pays dans QListWidget&quot;&quot;&quot;</span>
+</span><span id="L-78"><a href="#L-78"><span class="linenos">78</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</span><span id="L-79"><a href="#L-79"><span class="linenos">79</span></a>
+</span><span id="L-80"><a href="#L-80"><span class="linenos">80</span></a>    <span class="k">def</span> <span class="nf">getList</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-81"><a href="#L-81"><span class="linenos">81</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__list</span>
+</span><span id="L-82"><a href="#L-82"><span class="linenos">82</span></a>
+</span><span id="L-83"><a href="#L-83"><span class="linenos">83</span></a><span class="k">class</span> <span class="nc">CountryDestListWidget</span><span class="p">(</span><span class="n">CountrySrcListWidget</span><span class="p">):</span>
+</span><span id="L-84"><a href="#L-84"><span class="linenos">84</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bdd</span><span class="p">:</span> <span class="n">BddControler</span><span class="p">):</span>
+</span><span id="L-85"><a href="#L-85"><span class="linenos">85</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">bdd</span><span class="p">)</span>
+</span><span id="L-86"><a href="#L-86"><span class="linenos">86</span></a>
+</span><span id="L-87"><a href="#L-87"><span class="linenos">87</span></a>    <span class="k">def</span> <span class="nf">updateCountryList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">countries</span> <span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+</span><span id="L-88"><a href="#L-88"><span class="linenos">88</span></a>        <span class="n">countryList</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getList</span><span class="p">()</span>
+</span><span id="L-89"><a href="#L-89"><span class="linenos">89</span></a>        <span class="n">countryList</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</span><span id="L-90"><a href="#L-90"><span class="linenos">90</span></a>        
+</span><span id="L-91"><a href="#L-91"><span class="linenos">91</span></a>
+</span><span id="L-92"><a href="#L-92"><span class="linenos">92</span></a>        <span class="k">for</span> <span class="n">country</span> <span class="ow">in</span> <span class="n">countries</span><span class="p">:</span>
+</span><span id="L-93"><a href="#L-93"><span class="linenos">93</span></a>                <span class="n">countryList</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">country</span><span class="p">)</span>
 </span></pre></div>
 
 
             </section>
-                <section id="CountryListWidget">
-                            <input id="CountryListWidget-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+                <section id="CountrySrcListWidget">
+                            <input id="CountrySrcListWidget-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr class">
             
     <span class="def">class</span>
-    <span class="name">CountryListWidget</span><wbr>(<span class="base">PyQt6.QtWidgets.QWidget</span>):
+    <span class="name">CountrySrcListWidget</span><wbr>(<span class="base">PyQt6.QtWidgets.QWidget</span>):
 
-                <label class="view-source-button" for="CountryListWidget-view-source"><span>View Source</span></label>
+                <label class="view-source-button" for="CountrySrcListWidget-view-source"><span>View Source</span></label>
 
     </div>
-    <a class="headerlink" href="#CountryListWidget"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="CountryListWidget-6"><a href="#CountryListWidget-6"><span class="linenos"> 6</span></a><span class="k">class</span> <span class="nc">CountryListWidget</span><span class="p">(</span><span class="n">QWidget</span><span class="p">):</span>
-</span><span id="CountryListWidget-7"><a href="#CountryListWidget-7"><span class="linenos"> 7</span></a>
-</span><span id="CountryListWidget-8"><a href="#CountryListWidget-8"><span class="linenos"> 8</span></a>    <span class="n">countryClicked</span> <span class="p">:</span> <span class="n">pyqtSignal</span> <span class="o">=</span> <span class="n">pyqtSignal</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
-</span><span id="CountryListWidget-9"><a href="#CountryListWidget-9"><span class="linenos"> 9</span></a>
-</span><span id="CountryListWidget-10"><a href="#CountryListWidget-10"><span class="linenos">10</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bdd</span> <span class="p">:</span> <span class="n">BddControler</span><span class="p">):</span>
-</span><span id="CountryListWidget-11"><a href="#CountryListWidget-11"><span class="linenos">11</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-</span><span id="CountryListWidget-12"><a href="#CountryListWidget-12"><span class="linenos">12</span></a>
-</span><span id="CountryListWidget-13"><a href="#CountryListWidget-13"><span class="linenos">13</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">bdd</span> <span class="p">:</span> <span class="n">BddControler</span> <span class="o">=</span> <span class="n">bdd</span>
-</span><span id="CountryListWidget-14"><a href="#CountryListWidget-14"><span class="linenos">14</span></a>
-</span><span id="CountryListWidget-15"><a href="#CountryListWidget-15"><span class="linenos">15</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">()</span>
-</span><span id="CountryListWidget-16"><a href="#CountryListWidget-16"><span class="linenos">16</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__layout</span><span class="p">)</span>
-</span><span id="CountryListWidget-17"><a href="#CountryListWidget-17"><span class="linenos">17</span></a>
-</span><span id="CountryListWidget-18"><a href="#CountryListWidget-18"><span class="linenos">18</span></a>        <span class="c1"># Label indiquant la liste des pays</span>
-</span><span id="CountryListWidget-19"><a href="#CountryListWidget-19"><span class="linenos">19</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s2">&quot;Liste des pays&quot;</span><span class="p">)</span>
-</span><span id="CountryListWidget-20"><a href="#CountryListWidget-20"><span class="linenos">20</span></a>
-</span><span id="CountryListWidget-21"><a href="#CountryListWidget-21"><span class="linenos">21</span></a>        <span class="c1"># Ligne de saisie de texte</span>
-</span><span id="CountryListWidget-22"><a href="#CountryListWidget-22"><span class="linenos">22</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__line_edit</span> <span class="p">:</span> <span class="n">QLineEdit</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">()</span>
-</span><span id="CountryListWidget-23"><a href="#CountryListWidget-23"><span class="linenos">23</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__line_edit</span><span class="o">.</span><span class="n">setPlaceholderText</span><span class="p">(</span><span class="s2">&quot;Rechercher un pays&quot;</span><span class="p">)</span>
-</span><span id="CountryListWidget-24"><a href="#CountryListWidget-24"><span class="linenos">24</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__line_edit</span><span class="o">.</span><span class="n">textChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">addCountryList</span><span class="p">)</span>
-</span><span id="CountryListWidget-25"><a href="#CountryListWidget-25"><span class="linenos">25</span></a>
-</span><span id="CountryListWidget-26"><a href="#CountryListWidget-26"><span class="linenos">26</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__list</span> <span class="o">=</span> <span class="n">QListWidget</span><span class="p">()</span>
-</span><span id="CountryListWidget-27"><a href="#CountryListWidget-27"><span class="linenos">27</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">countryClickedText</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-</span><span id="CountryListWidget-28"><a href="#CountryListWidget-28"><span class="linenos">28</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__label</span><span class="p">)</span>
-</span><span id="CountryListWidget-29"><a href="#CountryListWidget-29"><span class="linenos">29</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="p">)</span>
-</span><span id="CountryListWidget-30"><a href="#CountryListWidget-30"><span class="linenos">30</span></a>
-</span><span id="CountryListWidget-31"><a href="#CountryListWidget-31"><span class="linenos">31</span></a>        <span class="c1"># Redirection du signal vers la fonction countryClickedFunc</span>
-</span><span id="CountryListWidget-32"><a href="#CountryListWidget-32"><span class="linenos">32</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="o">.</span><span class="n">itemClicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">countryClickedFunc</span><span class="p">)</span>
-</span><span id="CountryListWidget-33"><a href="#CountryListWidget-33"><span class="linenos">33</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">addCountryList</span><span class="p">()</span>
-</span><span id="CountryListWidget-34"><a href="#CountryListWidget-34"><span class="linenos">34</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__label</span><span class="p">)</span>
-</span><span id="CountryListWidget-35"><a href="#CountryListWidget-35"><span class="linenos">35</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__line_edit</span><span class="p">)</span>
-</span><span id="CountryListWidget-36"><a href="#CountryListWidget-36"><span class="linenos">36</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="p">)</span>
-</span><span id="CountryListWidget-37"><a href="#CountryListWidget-37"><span class="linenos">37</span></a>
-</span><span id="CountryListWidget-38"><a href="#CountryListWidget-38"><span class="linenos">38</span></a>
-</span><span id="CountryListWidget-39"><a href="#CountryListWidget-39"><span class="linenos">39</span></a>    <span class="k">def</span> <span class="nf">countryClickedFunc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span> <span class="p">:</span> <span class="n">QListWidgetItem</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="CountryListWidget-40"><a href="#CountryListWidget-40"><span class="linenos">40</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Fonction qui emmet le texte du pays dans un signal</span>
-</span><span id="CountryListWidget-41"><a href="#CountryListWidget-41"><span class="linenos">41</span></a>
-</span><span id="CountryListWidget-42"><a href="#CountryListWidget-42"><span class="linenos">42</span></a><span class="sd">        Args:</span>
-</span><span id="CountryListWidget-43"><a href="#CountryListWidget-43"><span class="linenos">43</span></a><span class="sd">            item (QListWidgetItem): Element de QListWidget</span>
-</span><span id="CountryListWidget-44"><a href="#CountryListWidget-44"><span class="linenos">44</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="CountryListWidget-45"><a href="#CountryListWidget-45"><span class="linenos">45</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">countryClickedText</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
-</span><span id="CountryListWidget-46"><a href="#CountryListWidget-46"><span class="linenos">46</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">countryClicked</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
-</span><span id="CountryListWidget-47"><a href="#CountryListWidget-47"><span class="linenos">47</span></a>
-</span><span id="CountryListWidget-48"><a href="#CountryListWidget-48"><span class="linenos">48</span></a>    <span class="k">def</span> <span class="nf">getCountryClickedText</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-</span><span id="CountryListWidget-49"><a href="#CountryListWidget-49"><span class="linenos">49</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Fonction qui retourne le texte émis par le signal countryClicked.</span>
-</span><span id="CountryListWidget-50"><a href="#CountryListWidget-50"><span class="linenos">50</span></a>
-</span><span id="CountryListWidget-51"><a href="#CountryListWidget-51"><span class="linenos">51</span></a><span class="sd">        Returns:</span>
-</span><span id="CountryListWidget-52"><a href="#CountryListWidget-52"><span class="linenos">52</span></a><span class="sd">            str: Texte émis par le signal countryClicked.</span>
-</span><span id="CountryListWidget-53"><a href="#CountryListWidget-53"><span class="linenos">53</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="CountryListWidget-54"><a href="#CountryListWidget-54"><span class="linenos">54</span></a>        
-</span><span id="CountryListWidget-55"><a href="#CountryListWidget-55"><span class="linenos">55</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">countryClickedText</span>
-</span><span id="CountryListWidget-56"><a href="#CountryListWidget-56"><span class="linenos">56</span></a>    
-</span><span id="CountryListWidget-57"><a href="#CountryListWidget-57"><span class="linenos">57</span></a>    <span class="k">def</span> <span class="nf">addCountryList</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="CountryListWidget-58"><a href="#CountryListWidget-58"><span class="linenos">58</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Fonction qui ajoute la liste des pays dans QListWidget</span>
-</span><span id="CountryListWidget-59"><a href="#CountryListWidget-59"><span class="linenos">59</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="CountryListWidget-60"><a href="#CountryListWidget-60"><span class="linenos">60</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-</span><span id="CountryListWidget-61"><a href="#CountryListWidget-61"><span class="linenos">61</span></a>        <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__line_edit</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
-</span><span id="CountryListWidget-62"><a href="#CountryListWidget-62"><span class="linenos">62</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span id="CountryListWidget-63"><a href="#CountryListWidget-63"><span class="linenos">63</span></a>            <span class="n">info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bdd</span><span class="o">.</span><span class="n">getCountry</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-</span><span id="CountryListWidget-64"><a href="#CountryListWidget-64"><span class="linenos">64</span></a>            
-</span><span id="CountryListWidget-65"><a href="#CountryListWidget-65"><span class="linenos">65</span></a>            <span class="k">for</span> <span class="n">country</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">info</span><span class="p">)):</span>
-</span><span id="CountryListWidget-66"><a href="#CountryListWidget-66"><span class="linenos">66</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="n">country</span><span class="p">])</span>
+    <a class="headerlink" href="#CountrySrcListWidget"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CountrySrcListWidget-6"><a href="#CountrySrcListWidget-6"><span class="linenos"> 6</span></a><span class="k">class</span> <span class="nc">CountrySrcListWidget</span><span class="p">(</span><span class="n">QWidget</span><span class="p">):</span>
+</span><span id="CountrySrcListWidget-7"><a href="#CountrySrcListWidget-7"><span class="linenos"> 7</span></a>
+</span><span id="CountrySrcListWidget-8"><a href="#CountrySrcListWidget-8"><span class="linenos"> 8</span></a>    <span class="n">countryClicked</span> <span class="p">:</span> <span class="n">pyqtSignal</span> <span class="o">=</span> <span class="n">pyqtSignal</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</span><span id="CountrySrcListWidget-9"><a href="#CountrySrcListWidget-9"><span class="linenos"> 9</span></a>
+</span><span id="CountrySrcListWidget-10"><a href="#CountrySrcListWidget-10"><span class="linenos">10</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bdd</span> <span class="p">:</span> <span class="n">BddControler</span><span class="p">):</span>
+</span><span id="CountrySrcListWidget-11"><a href="#CountrySrcListWidget-11"><span class="linenos">11</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span><span id="CountrySrcListWidget-12"><a href="#CountrySrcListWidget-12"><span class="linenos">12</span></a>
+</span><span id="CountrySrcListWidget-13"><a href="#CountrySrcListWidget-13"><span class="linenos">13</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">bdd</span> <span class="p">:</span> <span class="n">BddControler</span> <span class="o">=</span> <span class="n">bdd</span>
+</span><span id="CountrySrcListWidget-14"><a href="#CountrySrcListWidget-14"><span class="linenos">14</span></a>
+</span><span id="CountrySrcListWidget-15"><a href="#CountrySrcListWidget-15"><span class="linenos">15</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">()</span>
+</span><span id="CountrySrcListWidget-16"><a href="#CountrySrcListWidget-16"><span class="linenos">16</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__layout</span><span class="p">)</span>
+</span><span id="CountrySrcListWidget-17"><a href="#CountrySrcListWidget-17"><span class="linenos">17</span></a>
+</span><span id="CountrySrcListWidget-18"><a href="#CountrySrcListWidget-18"><span class="linenos">18</span></a>        <span class="c1"># Label indiquant la liste des pays</span>
+</span><span id="CountrySrcListWidget-19"><a href="#CountrySrcListWidget-19"><span class="linenos">19</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s2">&quot;Liste des pays&quot;</span><span class="p">)</span>
+</span><span id="CountrySrcListWidget-20"><a href="#CountrySrcListWidget-20"><span class="linenos">20</span></a>
+</span><span id="CountrySrcListWidget-21"><a href="#CountrySrcListWidget-21"><span class="linenos">21</span></a>        <span class="c1"># Ligne de saisie de texte</span>
+</span><span id="CountrySrcListWidget-22"><a href="#CountrySrcListWidget-22"><span class="linenos">22</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__line_edit</span> <span class="p">:</span> <span class="n">QLineEdit</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">()</span>
+</span><span id="CountrySrcListWidget-23"><a href="#CountrySrcListWidget-23"><span class="linenos">23</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__line_edit</span><span class="o">.</span><span class="n">setPlaceholderText</span><span class="p">(</span><span class="s2">&quot;Rechercher un pays&quot;</span><span class="p">)</span>
+</span><span id="CountrySrcListWidget-24"><a href="#CountrySrcListWidget-24"><span class="linenos">24</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__line_edit</span><span class="o">.</span><span class="n">textChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">addCountryList</span><span class="p">)</span>
+</span><span id="CountrySrcListWidget-25"><a href="#CountrySrcListWidget-25"><span class="linenos">25</span></a>
+</span><span id="CountrySrcListWidget-26"><a href="#CountrySrcListWidget-26"><span class="linenos">26</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__list</span> <span class="o">=</span> <span class="n">QListWidget</span><span class="p">()</span>
+</span><span id="CountrySrcListWidget-27"><a href="#CountrySrcListWidget-27"><span class="linenos">27</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">countryClickedText</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</span><span id="CountrySrcListWidget-28"><a href="#CountrySrcListWidget-28"><span class="linenos">28</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__label</span><span class="p">)</span>
+</span><span id="CountrySrcListWidget-29"><a href="#CountrySrcListWidget-29"><span class="linenos">29</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="p">)</span>
+</span><span id="CountrySrcListWidget-30"><a href="#CountrySrcListWidget-30"><span class="linenos">30</span></a>
+</span><span id="CountrySrcListWidget-31"><a href="#CountrySrcListWidget-31"><span class="linenos">31</span></a>        <span class="c1"># Redirection du signal vers la fonction countryClickedFunc</span>
+</span><span id="CountrySrcListWidget-32"><a href="#CountrySrcListWidget-32"><span class="linenos">32</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="o">.</span><span class="n">itemClicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">countryClickedFunc</span><span class="p">)</span>
+</span><span id="CountrySrcListWidget-33"><a href="#CountrySrcListWidget-33"><span class="linenos">33</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">addCountryList</span><span class="p">()</span>
+</span><span id="CountrySrcListWidget-34"><a href="#CountrySrcListWidget-34"><span class="linenos">34</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__label</span><span class="p">)</span>
+</span><span id="CountrySrcListWidget-35"><a href="#CountrySrcListWidget-35"><span class="linenos">35</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__line_edit</span><span class="p">)</span>
+</span><span id="CountrySrcListWidget-36"><a href="#CountrySrcListWidget-36"><span class="linenos">36</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="p">)</span>
+</span><span id="CountrySrcListWidget-37"><a href="#CountrySrcListWidget-37"><span class="linenos">37</span></a>
+</span><span id="CountrySrcListWidget-38"><a href="#CountrySrcListWidget-38"><span class="linenos">38</span></a>
+</span><span id="CountrySrcListWidget-39"><a href="#CountrySrcListWidget-39"><span class="linenos">39</span></a>    <span class="k">def</span> <span class="nf">countryClickedFunc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span> <span class="p">:</span> <span class="n">QListWidgetItem</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="CountrySrcListWidget-40"><a href="#CountrySrcListWidget-40"><span class="linenos">40</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Fonction qui emmet le texte du pays dans un signal</span>
+</span><span id="CountrySrcListWidget-41"><a href="#CountrySrcListWidget-41"><span class="linenos">41</span></a>
+</span><span id="CountrySrcListWidget-42"><a href="#CountrySrcListWidget-42"><span class="linenos">42</span></a><span class="sd">        Args:</span>
+</span><span id="CountrySrcListWidget-43"><a href="#CountrySrcListWidget-43"><span class="linenos">43</span></a><span class="sd">            item (QListWidgetItem): Element de QListWidget</span>
+</span><span id="CountrySrcListWidget-44"><a href="#CountrySrcListWidget-44"><span class="linenos">44</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="CountrySrcListWidget-45"><a href="#CountrySrcListWidget-45"><span class="linenos">45</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">countryClickedText</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+</span><span id="CountrySrcListWidget-46"><a href="#CountrySrcListWidget-46"><span class="linenos">46</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">countryClicked</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+</span><span id="CountrySrcListWidget-47"><a href="#CountrySrcListWidget-47"><span class="linenos">47</span></a>
+</span><span id="CountrySrcListWidget-48"><a href="#CountrySrcListWidget-48"><span class="linenos">48</span></a>    <span class="k">def</span> <span class="nf">getCountryClickedText</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="CountrySrcListWidget-49"><a href="#CountrySrcListWidget-49"><span class="linenos">49</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Fonction qui retourne le texte émis par le signal countryClicked.</span>
+</span><span id="CountrySrcListWidget-50"><a href="#CountrySrcListWidget-50"><span class="linenos">50</span></a>
+</span><span id="CountrySrcListWidget-51"><a href="#CountrySrcListWidget-51"><span class="linenos">51</span></a><span class="sd">        Returns:</span>
+</span><span id="CountrySrcListWidget-52"><a href="#CountrySrcListWidget-52"><span class="linenos">52</span></a><span class="sd">            str: Texte émis par le signal countryClicked.</span>
+</span><span id="CountrySrcListWidget-53"><a href="#CountrySrcListWidget-53"><span class="linenos">53</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="CountrySrcListWidget-54"><a href="#CountrySrcListWidget-54"><span class="linenos">54</span></a>        
+</span><span id="CountrySrcListWidget-55"><a href="#CountrySrcListWidget-55"><span class="linenos">55</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">countryClickedText</span>
+</span><span id="CountrySrcListWidget-56"><a href="#CountrySrcListWidget-56"><span class="linenos">56</span></a>    
+</span><span id="CountrySrcListWidget-57"><a href="#CountrySrcListWidget-57"><span class="linenos">57</span></a>    <span class="k">def</span> <span class="nf">addCountryList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">countries</span> <span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="CountrySrcListWidget-58"><a href="#CountrySrcListWidget-58"><span class="linenos">58</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Fonction qui ajoute la liste des pays dans QListWidget</span>
+</span><span id="CountrySrcListWidget-59"><a href="#CountrySrcListWidget-59"><span class="linenos">59</span></a>
+</span><span id="CountrySrcListWidget-60"><a href="#CountrySrcListWidget-60"><span class="linenos">60</span></a><span class="sd">        Args:</span>
+</span><span id="CountrySrcListWidget-61"><a href="#CountrySrcListWidget-61"><span class="linenos">61</span></a><span class="sd">            countries (list, optional): Liste des pays à ajouter. </span>
+</span><span id="CountrySrcListWidget-62"><a href="#CountrySrcListWidget-62"><span class="linenos">62</span></a><span class="sd">                                   Si None, récupère la liste des pays depuis la base de données. </span>
+</span><span id="CountrySrcListWidget-63"><a href="#CountrySrcListWidget-63"><span class="linenos">63</span></a><span class="sd">                                   Par défaut None.</span>
+</span><span id="CountrySrcListWidget-64"><a href="#CountrySrcListWidget-64"><span class="linenos">64</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="CountrySrcListWidget-65"><a href="#CountrySrcListWidget-65"><span class="linenos">65</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</span><span id="CountrySrcListWidget-66"><a href="#CountrySrcListWidget-66"><span class="linenos">66</span></a>
+</span><span id="CountrySrcListWidget-67"><a href="#CountrySrcListWidget-67"><span class="linenos">67</span></a>        
+</span><span id="CountrySrcListWidget-68"><a href="#CountrySrcListWidget-68"><span class="linenos">68</span></a>        <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__line_edit</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+</span><span id="CountrySrcListWidget-69"><a href="#CountrySrcListWidget-69"><span class="linenos">69</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="CountrySrcListWidget-70"><a href="#CountrySrcListWidget-70"><span class="linenos">70</span></a>            <span class="n">info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bdd</span><span class="o">.</span><span class="n">getCountry</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span><span id="CountrySrcListWidget-71"><a href="#CountrySrcListWidget-71"><span class="linenos">71</span></a>            
+</span><span id="CountrySrcListWidget-72"><a href="#CountrySrcListWidget-72"><span class="linenos">72</span></a>            <span class="k">for</span> <span class="n">country</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">info</span><span class="p">)):</span>
+</span><span id="CountrySrcListWidget-73"><a href="#CountrySrcListWidget-73"><span class="linenos">73</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="n">country</span><span class="p">])</span>
+</span><span id="CountrySrcListWidget-74"><a href="#CountrySrcListWidget-74"><span class="linenos">74</span></a>        
+</span><span id="CountrySrcListWidget-75"><a href="#CountrySrcListWidget-75"><span class="linenos">75</span></a>            
+</span><span id="CountrySrcListWidget-76"><a href="#CountrySrcListWidget-76"><span class="linenos">76</span></a>
+</span><span id="CountrySrcListWidget-77"><a href="#CountrySrcListWidget-77"><span class="linenos">77</span></a>    <span class="k">def</span> <span class="nf">clearCountryList</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="CountrySrcListWidget-78"><a href="#CountrySrcListWidget-78"><span class="linenos">78</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Fonction qui vide la liste des pays dans QListWidget&quot;&quot;&quot;</span>
+</span><span id="CountrySrcListWidget-79"><a href="#CountrySrcListWidget-79"><span class="linenos">79</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</span><span id="CountrySrcListWidget-80"><a href="#CountrySrcListWidget-80"><span class="linenos">80</span></a>
+</span><span id="CountrySrcListWidget-81"><a href="#CountrySrcListWidget-81"><span class="linenos">81</span></a>    <span class="k">def</span> <span class="nf">getList</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="CountrySrcListWidget-82"><a href="#CountrySrcListWidget-82"><span class="linenos">82</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__list</span>
 </span></pre></div>
 
 
@@ -222,50 +284,50 @@ CountryListWidget    </h1>
 </div>
 
 
-                            <div id="CountryListWidget.__init__" class="classattr">
-                                        <input id="CountryListWidget.__init__-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+                            <div id="CountrySrcListWidget.__init__" class="classattr">
+                                        <input id="CountrySrcListWidget.__init__-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
             
-        <span class="name">CountryListWidget</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">bdd</span><span class="p">:</span> <span class="n"><a href="BddControler.html#BddControler">BddControler.BddControler</a></span></span>)</span>
+        <span class="name">CountrySrcListWidget</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">bdd</span><span class="p">:</span> <span class="n"><a href="BddControler.html#BddControler">BddControler.BddControler</a></span></span>)</span>
 
-                <label class="view-source-button" for="CountryListWidget.__init__-view-source"><span>View Source</span></label>
+                <label class="view-source-button" for="CountrySrcListWidget.__init__-view-source"><span>View Source</span></label>
 
     </div>
-    <a class="headerlink" href="#CountryListWidget.__init__"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="CountryListWidget.__init__-10"><a href="#CountryListWidget.__init__-10"><span class="linenos">10</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bdd</span> <span class="p">:</span> <span class="n">BddControler</span><span class="p">):</span>
-</span><span id="CountryListWidget.__init__-11"><a href="#CountryListWidget.__init__-11"><span class="linenos">11</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-</span><span id="CountryListWidget.__init__-12"><a href="#CountryListWidget.__init__-12"><span class="linenos">12</span></a>
-</span><span id="CountryListWidget.__init__-13"><a href="#CountryListWidget.__init__-13"><span class="linenos">13</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">bdd</span> <span class="p">:</span> <span class="n">BddControler</span> <span class="o">=</span> <span class="n">bdd</span>
-</span><span id="CountryListWidget.__init__-14"><a href="#CountryListWidget.__init__-14"><span class="linenos">14</span></a>
-</span><span id="CountryListWidget.__init__-15"><a href="#CountryListWidget.__init__-15"><span class="linenos">15</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">()</span>
-</span><span id="CountryListWidget.__init__-16"><a href="#CountryListWidget.__init__-16"><span class="linenos">16</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__layout</span><span class="p">)</span>
-</span><span id="CountryListWidget.__init__-17"><a href="#CountryListWidget.__init__-17"><span class="linenos">17</span></a>
-</span><span id="CountryListWidget.__init__-18"><a href="#CountryListWidget.__init__-18"><span class="linenos">18</span></a>        <span class="c1"># Label indiquant la liste des pays</span>
-</span><span id="CountryListWidget.__init__-19"><a href="#CountryListWidget.__init__-19"><span class="linenos">19</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s2">&quot;Liste des pays&quot;</span><span class="p">)</span>
-</span><span id="CountryListWidget.__init__-20"><a href="#CountryListWidget.__init__-20"><span class="linenos">20</span></a>
-</span><span id="CountryListWidget.__init__-21"><a href="#CountryListWidget.__init__-21"><span class="linenos">21</span></a>        <span class="c1"># Ligne de saisie de texte</span>
-</span><span id="CountryListWidget.__init__-22"><a href="#CountryListWidget.__init__-22"><span class="linenos">22</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__line_edit</span> <span class="p">:</span> <span class="n">QLineEdit</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">()</span>
-</span><span id="CountryListWidget.__init__-23"><a href="#CountryListWidget.__init__-23"><span class="linenos">23</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__line_edit</span><span class="o">.</span><span class="n">setPlaceholderText</span><span class="p">(</span><span class="s2">&quot;Rechercher un pays&quot;</span><span class="p">)</span>
-</span><span id="CountryListWidget.__init__-24"><a href="#CountryListWidget.__init__-24"><span class="linenos">24</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__line_edit</span><span class="o">.</span><span class="n">textChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">addCountryList</span><span class="p">)</span>
-</span><span id="CountryListWidget.__init__-25"><a href="#CountryListWidget.__init__-25"><span class="linenos">25</span></a>
-</span><span id="CountryListWidget.__init__-26"><a href="#CountryListWidget.__init__-26"><span class="linenos">26</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__list</span> <span class="o">=</span> <span class="n">QListWidget</span><span class="p">()</span>
-</span><span id="CountryListWidget.__init__-27"><a href="#CountryListWidget.__init__-27"><span class="linenos">27</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">countryClickedText</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-</span><span id="CountryListWidget.__init__-28"><a href="#CountryListWidget.__init__-28"><span class="linenos">28</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__label</span><span class="p">)</span>
-</span><span id="CountryListWidget.__init__-29"><a href="#CountryListWidget.__init__-29"><span class="linenos">29</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="p">)</span>
-</span><span id="CountryListWidget.__init__-30"><a href="#CountryListWidget.__init__-30"><span class="linenos">30</span></a>
-</span><span id="CountryListWidget.__init__-31"><a href="#CountryListWidget.__init__-31"><span class="linenos">31</span></a>        <span class="c1"># Redirection du signal vers la fonction countryClickedFunc</span>
-</span><span id="CountryListWidget.__init__-32"><a href="#CountryListWidget.__init__-32"><span class="linenos">32</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="o">.</span><span class="n">itemClicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">countryClickedFunc</span><span class="p">)</span>
-</span><span id="CountryListWidget.__init__-33"><a href="#CountryListWidget.__init__-33"><span class="linenos">33</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">addCountryList</span><span class="p">()</span>
-</span><span id="CountryListWidget.__init__-34"><a href="#CountryListWidget.__init__-34"><span class="linenos">34</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__label</span><span class="p">)</span>
-</span><span id="CountryListWidget.__init__-35"><a href="#CountryListWidget.__init__-35"><span class="linenos">35</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__line_edit</span><span class="p">)</span>
-</span><span id="CountryListWidget.__init__-36"><a href="#CountryListWidget.__init__-36"><span class="linenos">36</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="p">)</span>
+    <a class="headerlink" href="#CountrySrcListWidget.__init__"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CountrySrcListWidget.__init__-10"><a href="#CountrySrcListWidget.__init__-10"><span class="linenos">10</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bdd</span> <span class="p">:</span> <span class="n">BddControler</span><span class="p">):</span>
+</span><span id="CountrySrcListWidget.__init__-11"><a href="#CountrySrcListWidget.__init__-11"><span class="linenos">11</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span><span id="CountrySrcListWidget.__init__-12"><a href="#CountrySrcListWidget.__init__-12"><span class="linenos">12</span></a>
+</span><span id="CountrySrcListWidget.__init__-13"><a href="#CountrySrcListWidget.__init__-13"><span class="linenos">13</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">bdd</span> <span class="p">:</span> <span class="n">BddControler</span> <span class="o">=</span> <span class="n">bdd</span>
+</span><span id="CountrySrcListWidget.__init__-14"><a href="#CountrySrcListWidget.__init__-14"><span class="linenos">14</span></a>
+</span><span id="CountrySrcListWidget.__init__-15"><a href="#CountrySrcListWidget.__init__-15"><span class="linenos">15</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">()</span>
+</span><span id="CountrySrcListWidget.__init__-16"><a href="#CountrySrcListWidget.__init__-16"><span class="linenos">16</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__layout</span><span class="p">)</span>
+</span><span id="CountrySrcListWidget.__init__-17"><a href="#CountrySrcListWidget.__init__-17"><span class="linenos">17</span></a>
+</span><span id="CountrySrcListWidget.__init__-18"><a href="#CountrySrcListWidget.__init__-18"><span class="linenos">18</span></a>        <span class="c1"># Label indiquant la liste des pays</span>
+</span><span id="CountrySrcListWidget.__init__-19"><a href="#CountrySrcListWidget.__init__-19"><span class="linenos">19</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s2">&quot;Liste des pays&quot;</span><span class="p">)</span>
+</span><span id="CountrySrcListWidget.__init__-20"><a href="#CountrySrcListWidget.__init__-20"><span class="linenos">20</span></a>
+</span><span id="CountrySrcListWidget.__init__-21"><a href="#CountrySrcListWidget.__init__-21"><span class="linenos">21</span></a>        <span class="c1"># Ligne de saisie de texte</span>
+</span><span id="CountrySrcListWidget.__init__-22"><a href="#CountrySrcListWidget.__init__-22"><span class="linenos">22</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__line_edit</span> <span class="p">:</span> <span class="n">QLineEdit</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">()</span>
+</span><span id="CountrySrcListWidget.__init__-23"><a href="#CountrySrcListWidget.__init__-23"><span class="linenos">23</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__line_edit</span><span class="o">.</span><span class="n">setPlaceholderText</span><span class="p">(</span><span class="s2">&quot;Rechercher un pays&quot;</span><span class="p">)</span>
+</span><span id="CountrySrcListWidget.__init__-24"><a href="#CountrySrcListWidget.__init__-24"><span class="linenos">24</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__line_edit</span><span class="o">.</span><span class="n">textChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">addCountryList</span><span class="p">)</span>
+</span><span id="CountrySrcListWidget.__init__-25"><a href="#CountrySrcListWidget.__init__-25"><span class="linenos">25</span></a>
+</span><span id="CountrySrcListWidget.__init__-26"><a href="#CountrySrcListWidget.__init__-26"><span class="linenos">26</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__list</span> <span class="o">=</span> <span class="n">QListWidget</span><span class="p">()</span>
+</span><span id="CountrySrcListWidget.__init__-27"><a href="#CountrySrcListWidget.__init__-27"><span class="linenos">27</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">countryClickedText</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</span><span id="CountrySrcListWidget.__init__-28"><a href="#CountrySrcListWidget.__init__-28"><span class="linenos">28</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__label</span><span class="p">)</span>
+</span><span id="CountrySrcListWidget.__init__-29"><a href="#CountrySrcListWidget.__init__-29"><span class="linenos">29</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="p">)</span>
+</span><span id="CountrySrcListWidget.__init__-30"><a href="#CountrySrcListWidget.__init__-30"><span class="linenos">30</span></a>
+</span><span id="CountrySrcListWidget.__init__-31"><a href="#CountrySrcListWidget.__init__-31"><span class="linenos">31</span></a>        <span class="c1"># Redirection du signal vers la fonction countryClickedFunc</span>
+</span><span id="CountrySrcListWidget.__init__-32"><a href="#CountrySrcListWidget.__init__-32"><span class="linenos">32</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="o">.</span><span class="n">itemClicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">countryClickedFunc</span><span class="p">)</span>
+</span><span id="CountrySrcListWidget.__init__-33"><a href="#CountrySrcListWidget.__init__-33"><span class="linenos">33</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">addCountryList</span><span class="p">()</span>
+</span><span id="CountrySrcListWidget.__init__-34"><a href="#CountrySrcListWidget.__init__-34"><span class="linenos">34</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__label</span><span class="p">)</span>
+</span><span id="CountrySrcListWidget.__init__-35"><a href="#CountrySrcListWidget.__init__-35"><span class="linenos">35</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__line_edit</span><span class="p">)</span>
+</span><span id="CountrySrcListWidget.__init__-36"><a href="#CountrySrcListWidget.__init__-36"><span class="linenos">36</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="p">)</span>
 </span></pre></div>
 
 
     
 
                             </div>
-                            <div id="CountryListWidget.countryClicked" class="classattr">
+                            <div id="CountrySrcListWidget.countryClicked" class="classattr">
                                 <div class="attr function">
             
         <span class="def">def</span>
@@ -273,7 +335,7 @@ CountryListWidget    </h1>
 
         
     </div>
-    <a class="headerlink" href="#CountryListWidget.countryClicked"></a>
+    <a class="headerlink" href="#CountrySrcListWidget.countryClicked"></a>
     
             <div class="docstring"><p>pyqtSignal(*types, name: str = ..., revision: int = ..., arguments: Sequence = ...) -> PYQT_SIGNAL</p>
 
@@ -290,25 +352,25 @@ arguments is the optional sequence of the names of the signal's arguments.</p>
 
 
                             </div>
-                            <div id="CountryListWidget.countryClickedFunc" class="classattr">
-                                        <input id="CountryListWidget.countryClickedFunc-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+                            <div id="CountrySrcListWidget.countryClickedFunc" class="classattr">
+                                        <input id="CountrySrcListWidget.countryClickedFunc-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
             
         <span class="def">def</span>
         <span class="name">countryClickedFunc</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">item</span><span class="p">:</span> <span class="n">PyQt6</span><span class="o">.</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QListWidgetItem</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
 
-                <label class="view-source-button" for="CountryListWidget.countryClickedFunc-view-source"><span>View Source</span></label>
+                <label class="view-source-button" for="CountrySrcListWidget.countryClickedFunc-view-source"><span>View Source</span></label>
 
     </div>
-    <a class="headerlink" href="#CountryListWidget.countryClickedFunc"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="CountryListWidget.countryClickedFunc-39"><a href="#CountryListWidget.countryClickedFunc-39"><span class="linenos">39</span></a>    <span class="k">def</span> <span class="nf">countryClickedFunc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span> <span class="p">:</span> <span class="n">QListWidgetItem</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="CountryListWidget.countryClickedFunc-40"><a href="#CountryListWidget.countryClickedFunc-40"><span class="linenos">40</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Fonction qui emmet le texte du pays dans un signal</span>
-</span><span id="CountryListWidget.countryClickedFunc-41"><a href="#CountryListWidget.countryClickedFunc-41"><span class="linenos">41</span></a>
-</span><span id="CountryListWidget.countryClickedFunc-42"><a href="#CountryListWidget.countryClickedFunc-42"><span class="linenos">42</span></a><span class="sd">        Args:</span>
-</span><span id="CountryListWidget.countryClickedFunc-43"><a href="#CountryListWidget.countryClickedFunc-43"><span class="linenos">43</span></a><span class="sd">            item (QListWidgetItem): Element de QListWidget</span>
-</span><span id="CountryListWidget.countryClickedFunc-44"><a href="#CountryListWidget.countryClickedFunc-44"><span class="linenos">44</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="CountryListWidget.countryClickedFunc-45"><a href="#CountryListWidget.countryClickedFunc-45"><span class="linenos">45</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">countryClickedText</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
-</span><span id="CountryListWidget.countryClickedFunc-46"><a href="#CountryListWidget.countryClickedFunc-46"><span class="linenos">46</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">countryClicked</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+    <a class="headerlink" href="#CountrySrcListWidget.countryClickedFunc"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CountrySrcListWidget.countryClickedFunc-39"><a href="#CountrySrcListWidget.countryClickedFunc-39"><span class="linenos">39</span></a>    <span class="k">def</span> <span class="nf">countryClickedFunc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span> <span class="p">:</span> <span class="n">QListWidgetItem</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="CountrySrcListWidget.countryClickedFunc-40"><a href="#CountrySrcListWidget.countryClickedFunc-40"><span class="linenos">40</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Fonction qui emmet le texte du pays dans un signal</span>
+</span><span id="CountrySrcListWidget.countryClickedFunc-41"><a href="#CountrySrcListWidget.countryClickedFunc-41"><span class="linenos">41</span></a>
+</span><span id="CountrySrcListWidget.countryClickedFunc-42"><a href="#CountrySrcListWidget.countryClickedFunc-42"><span class="linenos">42</span></a><span class="sd">        Args:</span>
+</span><span id="CountrySrcListWidget.countryClickedFunc-43"><a href="#CountrySrcListWidget.countryClickedFunc-43"><span class="linenos">43</span></a><span class="sd">            item (QListWidgetItem): Element de QListWidget</span>
+</span><span id="CountrySrcListWidget.countryClickedFunc-44"><a href="#CountrySrcListWidget.countryClickedFunc-44"><span class="linenos">44</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="CountrySrcListWidget.countryClickedFunc-45"><a href="#CountrySrcListWidget.countryClickedFunc-45"><span class="linenos">45</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">countryClickedText</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+</span><span id="CountrySrcListWidget.countryClickedFunc-46"><a href="#CountrySrcListWidget.countryClickedFunc-46"><span class="linenos">46</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">countryClicked</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
 </span></pre></div>
 
 
@@ -320,25 +382,25 @@ arguments is the optional sequence of the names of the signal's arguments.</p>
 
 
                             </div>
-                            <div id="CountryListWidget.getCountryClickedText" class="classattr">
-                                        <input id="CountryListWidget.getCountryClickedText-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+                            <div id="CountrySrcListWidget.getCountryClickedText" class="classattr">
+                                        <input id="CountrySrcListWidget.getCountryClickedText-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
             
         <span class="def">def</span>
         <span class="name">getCountryClickedText</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">) -> <span class="nb">str</span>:</span></span>
 
-                <label class="view-source-button" for="CountryListWidget.getCountryClickedText-view-source"><span>View Source</span></label>
+                <label class="view-source-button" for="CountrySrcListWidget.getCountryClickedText-view-source"><span>View Source</span></label>
 
     </div>
-    <a class="headerlink" href="#CountryListWidget.getCountryClickedText"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="CountryListWidget.getCountryClickedText-48"><a href="#CountryListWidget.getCountryClickedText-48"><span class="linenos">48</span></a>    <span class="k">def</span> <span class="nf">getCountryClickedText</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-</span><span id="CountryListWidget.getCountryClickedText-49"><a href="#CountryListWidget.getCountryClickedText-49"><span class="linenos">49</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Fonction qui retourne le texte émis par le signal countryClicked.</span>
-</span><span id="CountryListWidget.getCountryClickedText-50"><a href="#CountryListWidget.getCountryClickedText-50"><span class="linenos">50</span></a>
-</span><span id="CountryListWidget.getCountryClickedText-51"><a href="#CountryListWidget.getCountryClickedText-51"><span class="linenos">51</span></a><span class="sd">        Returns:</span>
-</span><span id="CountryListWidget.getCountryClickedText-52"><a href="#CountryListWidget.getCountryClickedText-52"><span class="linenos">52</span></a><span class="sd">            str: Texte émis par le signal countryClicked.</span>
-</span><span id="CountryListWidget.getCountryClickedText-53"><a href="#CountryListWidget.getCountryClickedText-53"><span class="linenos">53</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="CountryListWidget.getCountryClickedText-54"><a href="#CountryListWidget.getCountryClickedText-54"><span class="linenos">54</span></a>        
-</span><span id="CountryListWidget.getCountryClickedText-55"><a href="#CountryListWidget.getCountryClickedText-55"><span class="linenos">55</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">countryClickedText</span>
+    <a class="headerlink" href="#CountrySrcListWidget.getCountryClickedText"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CountrySrcListWidget.getCountryClickedText-48"><a href="#CountrySrcListWidget.getCountryClickedText-48"><span class="linenos">48</span></a>    <span class="k">def</span> <span class="nf">getCountryClickedText</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="CountrySrcListWidget.getCountryClickedText-49"><a href="#CountrySrcListWidget.getCountryClickedText-49"><span class="linenos">49</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Fonction qui retourne le texte émis par le signal countryClicked.</span>
+</span><span id="CountrySrcListWidget.getCountryClickedText-50"><a href="#CountrySrcListWidget.getCountryClickedText-50"><span class="linenos">50</span></a>
+</span><span id="CountrySrcListWidget.getCountryClickedText-51"><a href="#CountrySrcListWidget.getCountryClickedText-51"><span class="linenos">51</span></a><span class="sd">        Returns:</span>
+</span><span id="CountrySrcListWidget.getCountryClickedText-52"><a href="#CountrySrcListWidget.getCountryClickedText-52"><span class="linenos">52</span></a><span class="sd">            str: Texte émis par le signal countryClicked.</span>
+</span><span id="CountrySrcListWidget.getCountryClickedText-53"><a href="#CountrySrcListWidget.getCountryClickedText-53"><span class="linenos">53</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="CountrySrcListWidget.getCountryClickedText-54"><a href="#CountrySrcListWidget.getCountryClickedText-54"><span class="linenos">54</span></a>        
+</span><span id="CountrySrcListWidget.getCountryClickedText-55"><a href="#CountrySrcListWidget.getCountryClickedText-55"><span class="linenos">55</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">countryClickedText</span>
 </span></pre></div>
 
 
@@ -350,358 +412,819 @@ arguments is the optional sequence of the names of the signal's arguments.</p>
 
 
                             </div>
-                            <div id="CountryListWidget.addCountryList" class="classattr">
-                                        <input id="CountryListWidget.addCountryList-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+                            <div id="CountrySrcListWidget.addCountryList" class="classattr">
+                                        <input id="CountrySrcListWidget.addCountryList-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
             
         <span class="def">def</span>
-        <span class="name">addCountryList</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
+        <span class="name">addCountryList</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">countries</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
 
-                <label class="view-source-button" for="CountryListWidget.addCountryList-view-source"><span>View Source</span></label>
+                <label class="view-source-button" for="CountrySrcListWidget.addCountryList-view-source"><span>View Source</span></label>
 
     </div>
-    <a class="headerlink" href="#CountryListWidget.addCountryList"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="CountryListWidget.addCountryList-57"><a href="#CountryListWidget.addCountryList-57"><span class="linenos">57</span></a>    <span class="k">def</span> <span class="nf">addCountryList</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="CountryListWidget.addCountryList-58"><a href="#CountryListWidget.addCountryList-58"><span class="linenos">58</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Fonction qui ajoute la liste des pays dans QListWidget</span>
-</span><span id="CountryListWidget.addCountryList-59"><a href="#CountryListWidget.addCountryList-59"><span class="linenos">59</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="CountryListWidget.addCountryList-60"><a href="#CountryListWidget.addCountryList-60"><span class="linenos">60</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-</span><span id="CountryListWidget.addCountryList-61"><a href="#CountryListWidget.addCountryList-61"><span class="linenos">61</span></a>        <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__line_edit</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
-</span><span id="CountryListWidget.addCountryList-62"><a href="#CountryListWidget.addCountryList-62"><span class="linenos">62</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span id="CountryListWidget.addCountryList-63"><a href="#CountryListWidget.addCountryList-63"><span class="linenos">63</span></a>            <span class="n">info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bdd</span><span class="o">.</span><span class="n">getCountry</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-</span><span id="CountryListWidget.addCountryList-64"><a href="#CountryListWidget.addCountryList-64"><span class="linenos">64</span></a>            
-</span><span id="CountryListWidget.addCountryList-65"><a href="#CountryListWidget.addCountryList-65"><span class="linenos">65</span></a>            <span class="k">for</span> <span class="n">country</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">info</span><span class="p">)):</span>
-</span><span id="CountryListWidget.addCountryList-66"><a href="#CountryListWidget.addCountryList-66"><span class="linenos">66</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="n">country</span><span class="p">])</span>
+    <a class="headerlink" href="#CountrySrcListWidget.addCountryList"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CountrySrcListWidget.addCountryList-57"><a href="#CountrySrcListWidget.addCountryList-57"><span class="linenos">57</span></a>    <span class="k">def</span> <span class="nf">addCountryList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">countries</span> <span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="CountrySrcListWidget.addCountryList-58"><a href="#CountrySrcListWidget.addCountryList-58"><span class="linenos">58</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Fonction qui ajoute la liste des pays dans QListWidget</span>
+</span><span id="CountrySrcListWidget.addCountryList-59"><a href="#CountrySrcListWidget.addCountryList-59"><span class="linenos">59</span></a>
+</span><span id="CountrySrcListWidget.addCountryList-60"><a href="#CountrySrcListWidget.addCountryList-60"><span class="linenos">60</span></a><span class="sd">        Args:</span>
+</span><span id="CountrySrcListWidget.addCountryList-61"><a href="#CountrySrcListWidget.addCountryList-61"><span class="linenos">61</span></a><span class="sd">            countries (list, optional): Liste des pays à ajouter. </span>
+</span><span id="CountrySrcListWidget.addCountryList-62"><a href="#CountrySrcListWidget.addCountryList-62"><span class="linenos">62</span></a><span class="sd">                                   Si None, récupère la liste des pays depuis la base de données. </span>
+</span><span id="CountrySrcListWidget.addCountryList-63"><a href="#CountrySrcListWidget.addCountryList-63"><span class="linenos">63</span></a><span class="sd">                                   Par défaut None.</span>
+</span><span id="CountrySrcListWidget.addCountryList-64"><a href="#CountrySrcListWidget.addCountryList-64"><span class="linenos">64</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="CountrySrcListWidget.addCountryList-65"><a href="#CountrySrcListWidget.addCountryList-65"><span class="linenos">65</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</span><span id="CountrySrcListWidget.addCountryList-66"><a href="#CountrySrcListWidget.addCountryList-66"><span class="linenos">66</span></a>
+</span><span id="CountrySrcListWidget.addCountryList-67"><a href="#CountrySrcListWidget.addCountryList-67"><span class="linenos">67</span></a>        
+</span><span id="CountrySrcListWidget.addCountryList-68"><a href="#CountrySrcListWidget.addCountryList-68"><span class="linenos">68</span></a>        <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__line_edit</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+</span><span id="CountrySrcListWidget.addCountryList-69"><a href="#CountrySrcListWidget.addCountryList-69"><span class="linenos">69</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="CountrySrcListWidget.addCountryList-70"><a href="#CountrySrcListWidget.addCountryList-70"><span class="linenos">70</span></a>            <span class="n">info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bdd</span><span class="o">.</span><span class="n">getCountry</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span><span id="CountrySrcListWidget.addCountryList-71"><a href="#CountrySrcListWidget.addCountryList-71"><span class="linenos">71</span></a>            
+</span><span id="CountrySrcListWidget.addCountryList-72"><a href="#CountrySrcListWidget.addCountryList-72"><span class="linenos">72</span></a>            <span class="k">for</span> <span class="n">country</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">info</span><span class="p">)):</span>
+</span><span id="CountrySrcListWidget.addCountryList-73"><a href="#CountrySrcListWidget.addCountryList-73"><span class="linenos">73</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="n">country</span><span class="p">])</span>
 </span></pre></div>
 
 
             <div class="docstring"><p>Fonction qui ajoute la liste des pays dans QListWidget</p>
+
+<p>Args:
+    countries (list, optional): Liste des pays à ajouter. 
+                           Si None, récupère la liste des pays depuis la base de données. 
+                           Par défaut None.</p>
 </div>
 
+
+                            </div>
+                            <div id="CountrySrcListWidget.clearCountryList" class="classattr">
+                                        <input id="CountrySrcListWidget.clearCountryList-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">clearCountryList</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="CountrySrcListWidget.clearCountryList-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#CountrySrcListWidget.clearCountryList"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CountrySrcListWidget.clearCountryList-77"><a href="#CountrySrcListWidget.clearCountryList-77"><span class="linenos">77</span></a>    <span class="k">def</span> <span class="nf">clearCountryList</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="CountrySrcListWidget.clearCountryList-78"><a href="#CountrySrcListWidget.clearCountryList-78"><span class="linenos">78</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Fonction qui vide la liste des pays dans QListWidget&quot;&quot;&quot;</span>
+</span><span id="CountrySrcListWidget.clearCountryList-79"><a href="#CountrySrcListWidget.clearCountryList-79"><span class="linenos">79</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__list</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Fonction qui vide la liste des pays dans QListWidget</p>
+</div>
+
+
+                            </div>
+                            <div id="CountrySrcListWidget.getList" class="classattr">
+                                        <input id="CountrySrcListWidget.getList-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">getList</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="CountrySrcListWidget.getList-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#CountrySrcListWidget.getList"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CountrySrcListWidget.getList-81"><a href="#CountrySrcListWidget.getList-81"><span class="linenos">81</span></a>    <span class="k">def</span> <span class="nf">getList</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="CountrySrcListWidget.getList-82"><a href="#CountrySrcListWidget.getList-82"><span class="linenos">82</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__list</span>
+</span></pre></div>
+
+
+    
 
                             </div>
                             <div class="inherited">
                                 <h5>Inherited Members</h5>
                                 <dl>
                                     <div><dt>PyQt6.QtWidgets.QWidget</dt>
-                                <dd id="CountryListWidget.acceptDrops" class="function">acceptDrops</dd>
-                <dd id="CountryListWidget.accessibleDescription" class="function">accessibleDescription</dd>
-                <dd id="CountryListWidget.accessibleName" class="function">accessibleName</dd>
-                <dd id="CountryListWidget.actionEvent" class="function">actionEvent</dd>
-                <dd id="CountryListWidget.actions" class="function">actions</dd>
-                <dd id="CountryListWidget.activateWindow" class="function">activateWindow</dd>
-                <dd id="CountryListWidget.addAction" class="function">addAction</dd>
-                <dd id="CountryListWidget.addActions" class="function">addActions</dd>
-                <dd id="CountryListWidget.adjustSize" class="function">adjustSize</dd>
-                <dd id="CountryListWidget.autoFillBackground" class="function">autoFillBackground</dd>
-                <dd id="CountryListWidget.backgroundRole" class="function">backgroundRole</dd>
-                <dd id="CountryListWidget.baseSize" class="function">baseSize</dd>
-                <dd id="CountryListWidget.changeEvent" class="function">changeEvent</dd>
-                <dd id="CountryListWidget.childAt" class="function">childAt</dd>
-                <dd id="CountryListWidget.childEvent" class="function">childEvent</dd>
-                <dd id="CountryListWidget.childrenRect" class="function">childrenRect</dd>
-                <dd id="CountryListWidget.childrenRegion" class="function">childrenRegion</dd>
-                <dd id="CountryListWidget.clearFocus" class="function">clearFocus</dd>
-                <dd id="CountryListWidget.clearMask" class="function">clearMask</dd>
-                <dd id="CountryListWidget.close" class="function">close</dd>
-                <dd id="CountryListWidget.closeEvent" class="function">closeEvent</dd>
-                <dd id="CountryListWidget.connectNotify" class="function">connectNotify</dd>
-                <dd id="CountryListWidget.contentsMargins" class="function">contentsMargins</dd>
-                <dd id="CountryListWidget.contentsRect" class="function">contentsRect</dd>
-                <dd id="CountryListWidget.contextMenuEvent" class="function">contextMenuEvent</dd>
-                <dd id="CountryListWidget.contextMenuPolicy" class="function">contextMenuPolicy</dd>
-                <dd id="CountryListWidget.create" class="function">create</dd>
-                <dd id="CountryListWidget.createWindowContainer" class="function">createWindowContainer</dd>
-                <dd id="CountryListWidget.cursor" class="function">cursor</dd>
-                <dd id="CountryListWidget.customEvent" class="function">customEvent</dd>
-                <dd id="CountryListWidget.destroy" class="function">destroy</dd>
-                <dd id="CountryListWidget.devType" class="function">devType</dd>
-                <dd id="CountryListWidget.disconnectNotify" class="function">disconnectNotify</dd>
-                <dd id="CountryListWidget.dragEnterEvent" class="function">dragEnterEvent</dd>
-                <dd id="CountryListWidget.dragLeaveEvent" class="function">dragLeaveEvent</dd>
-                <dd id="CountryListWidget.dragMoveEvent" class="function">dragMoveEvent</dd>
-                <dd id="CountryListWidget.dropEvent" class="function">dropEvent</dd>
-                <dd id="CountryListWidget.effectiveWinId" class="function">effectiveWinId</dd>
-                <dd id="CountryListWidget.ensurePolished" class="function">ensurePolished</dd>
-                <dd id="CountryListWidget.enterEvent" class="function">enterEvent</dd>
-                <dd id="CountryListWidget.event" class="function">event</dd>
-                <dd id="CountryListWidget.find" class="function">find</dd>
-                <dd id="CountryListWidget.focusInEvent" class="function">focusInEvent</dd>
-                <dd id="CountryListWidget.focusNextChild" class="function">focusNextChild</dd>
-                <dd id="CountryListWidget.focusNextPrevChild" class="function">focusNextPrevChild</dd>
-                <dd id="CountryListWidget.focusOutEvent" class="function">focusOutEvent</dd>
-                <dd id="CountryListWidget.focusPolicy" class="function">focusPolicy</dd>
-                <dd id="CountryListWidget.focusPreviousChild" class="function">focusPreviousChild</dd>
-                <dd id="CountryListWidget.focusProxy" class="function">focusProxy</dd>
-                <dd id="CountryListWidget.focusWidget" class="function">focusWidget</dd>
-                <dd id="CountryListWidget.font" class="function">font</dd>
-                <dd id="CountryListWidget.fontInfo" class="function">fontInfo</dd>
-                <dd id="CountryListWidget.fontMetrics" class="function">fontMetrics</dd>
-                <dd id="CountryListWidget.foregroundRole" class="function">foregroundRole</dd>
-                <dd id="CountryListWidget.frameGeometry" class="function">frameGeometry</dd>
-                <dd id="CountryListWidget.frameSize" class="function">frameSize</dd>
-                <dd id="CountryListWidget.geometry" class="function">geometry</dd>
-                <dd id="CountryListWidget.grab" class="function">grab</dd>
-                <dd id="CountryListWidget.grabGesture" class="function">grabGesture</dd>
-                <dd id="CountryListWidget.grabKeyboard" class="function">grabKeyboard</dd>
-                <dd id="CountryListWidget.grabMouse" class="function">grabMouse</dd>
-                <dd id="CountryListWidget.grabShortcut" class="function">grabShortcut</dd>
-                <dd id="CountryListWidget.graphicsEffect" class="function">graphicsEffect</dd>
-                <dd id="CountryListWidget.graphicsProxyWidget" class="function">graphicsProxyWidget</dd>
-                <dd id="CountryListWidget.hasFocus" class="function">hasFocus</dd>
-                <dd id="CountryListWidget.hasHeightForWidth" class="function">hasHeightForWidth</dd>
-                <dd id="CountryListWidget.hasMouseTracking" class="function">hasMouseTracking</dd>
-                <dd id="CountryListWidget.hasTabletTracking" class="function">hasTabletTracking</dd>
-                <dd id="CountryListWidget.height" class="function">height</dd>
-                <dd id="CountryListWidget.heightForWidth" class="function">heightForWidth</dd>
-                <dd id="CountryListWidget.hide" class="function">hide</dd>
-                <dd id="CountryListWidget.hideEvent" class="function">hideEvent</dd>
-                <dd id="CountryListWidget.initPainter" class="function">initPainter</dd>
-                <dd id="CountryListWidget.inputMethodEvent" class="function">inputMethodEvent</dd>
-                <dd id="CountryListWidget.inputMethodHints" class="function">inputMethodHints</dd>
-                <dd id="CountryListWidget.inputMethodQuery" class="function">inputMethodQuery</dd>
-                <dd id="CountryListWidget.insertAction" class="function">insertAction</dd>
-                <dd id="CountryListWidget.insertActions" class="function">insertActions</dd>
-                <dd id="CountryListWidget.isActiveWindow" class="function">isActiveWindow</dd>
-                <dd id="CountryListWidget.isAncestorOf" class="function">isAncestorOf</dd>
-                <dd id="CountryListWidget.isEnabled" class="function">isEnabled</dd>
-                <dd id="CountryListWidget.isEnabledTo" class="function">isEnabledTo</dd>
-                <dd id="CountryListWidget.isFullScreen" class="function">isFullScreen</dd>
-                <dd id="CountryListWidget.isHidden" class="function">isHidden</dd>
-                <dd id="CountryListWidget.isLeftToRight" class="function">isLeftToRight</dd>
-                <dd id="CountryListWidget.isMaximized" class="function">isMaximized</dd>
-                <dd id="CountryListWidget.isMinimized" class="function">isMinimized</dd>
-                <dd id="CountryListWidget.isModal" class="function">isModal</dd>
-                <dd id="CountryListWidget.isRightToLeft" class="function">isRightToLeft</dd>
-                <dd id="CountryListWidget.isSignalConnected" class="function">isSignalConnected</dd>
-                <dd id="CountryListWidget.isVisible" class="function">isVisible</dd>
-                <dd id="CountryListWidget.isVisibleTo" class="function">isVisibleTo</dd>
-                <dd id="CountryListWidget.isWindow" class="function">isWindow</dd>
-                <dd id="CountryListWidget.isWindowModified" class="function">isWindowModified</dd>
-                <dd id="CountryListWidget.keyPressEvent" class="function">keyPressEvent</dd>
-                <dd id="CountryListWidget.keyReleaseEvent" class="function">keyReleaseEvent</dd>
-                <dd id="CountryListWidget.keyboardGrabber" class="function">keyboardGrabber</dd>
-                <dd id="CountryListWidget.layout" class="function">layout</dd>
-                <dd id="CountryListWidget.layoutDirection" class="function">layoutDirection</dd>
-                <dd id="CountryListWidget.leaveEvent" class="function">leaveEvent</dd>
-                <dd id="CountryListWidget.locale" class="function">locale</dd>
-                <dd id="CountryListWidget.lower" class="function">lower</dd>
-                <dd id="CountryListWidget.mapFrom" class="function">mapFrom</dd>
-                <dd id="CountryListWidget.mapFromGlobal" class="function">mapFromGlobal</dd>
-                <dd id="CountryListWidget.mapFromParent" class="function">mapFromParent</dd>
-                <dd id="CountryListWidget.mapTo" class="function">mapTo</dd>
-                <dd id="CountryListWidget.mapToGlobal" class="function">mapToGlobal</dd>
-                <dd id="CountryListWidget.mapToParent" class="function">mapToParent</dd>
-                <dd id="CountryListWidget.mask" class="function">mask</dd>
-                <dd id="CountryListWidget.maximumHeight" class="function">maximumHeight</dd>
-                <dd id="CountryListWidget.maximumSize" class="function">maximumSize</dd>
-                <dd id="CountryListWidget.maximumWidth" class="function">maximumWidth</dd>
-                <dd id="CountryListWidget.metric" class="function">metric</dd>
-                <dd id="CountryListWidget.minimumHeight" class="function">minimumHeight</dd>
-                <dd id="CountryListWidget.minimumSize" class="function">minimumSize</dd>
-                <dd id="CountryListWidget.minimumSizeHint" class="function">minimumSizeHint</dd>
-                <dd id="CountryListWidget.minimumWidth" class="function">minimumWidth</dd>
-                <dd id="CountryListWidget.mouseDoubleClickEvent" class="function">mouseDoubleClickEvent</dd>
-                <dd id="CountryListWidget.mouseGrabber" class="function">mouseGrabber</dd>
-                <dd id="CountryListWidget.mouseMoveEvent" class="function">mouseMoveEvent</dd>
-                <dd id="CountryListWidget.mousePressEvent" class="function">mousePressEvent</dd>
-                <dd id="CountryListWidget.mouseReleaseEvent" class="function">mouseReleaseEvent</dd>
-                <dd id="CountryListWidget.move" class="function">move</dd>
-                <dd id="CountryListWidget.moveEvent" class="function">moveEvent</dd>
-                <dd id="CountryListWidget.nativeEvent" class="function">nativeEvent</dd>
-                <dd id="CountryListWidget.nativeParentWidget" class="function">nativeParentWidget</dd>
-                <dd id="CountryListWidget.nextInFocusChain" class="function">nextInFocusChain</dd>
-                <dd id="CountryListWidget.normalGeometry" class="function">normalGeometry</dd>
-                <dd id="CountryListWidget.overrideWindowFlags" class="function">overrideWindowFlags</dd>
-                <dd id="CountryListWidget.overrideWindowState" class="function">overrideWindowState</dd>
-                <dd id="CountryListWidget.paintEngine" class="function">paintEngine</dd>
-                <dd id="CountryListWidget.paintEvent" class="function">paintEvent</dd>
-                <dd id="CountryListWidget.palette" class="function">palette</dd>
-                <dd id="CountryListWidget.parentWidget" class="function">parentWidget</dd>
-                <dd id="CountryListWidget.pos" class="function">pos</dd>
-                <dd id="CountryListWidget.previousInFocusChain" class="function">previousInFocusChain</dd>
-                <dd id="CountryListWidget.raise_" class="function">raise_</dd>
-                <dd id="CountryListWidget.receivers" class="function">receivers</dd>
-                <dd id="CountryListWidget.rect" class="function">rect</dd>
-                <dd id="CountryListWidget.releaseKeyboard" class="function">releaseKeyboard</dd>
-                <dd id="CountryListWidget.releaseMouse" class="function">releaseMouse</dd>
-                <dd id="CountryListWidget.releaseShortcut" class="function">releaseShortcut</dd>
-                <dd id="CountryListWidget.removeAction" class="function">removeAction</dd>
-                <dd id="CountryListWidget.render" class="function">render</dd>
-                <dd id="CountryListWidget.repaint" class="function">repaint</dd>
-                <dd id="CountryListWidget.resize" class="function">resize</dd>
-                <dd id="CountryListWidget.resizeEvent" class="function">resizeEvent</dd>
-                <dd id="CountryListWidget.restoreGeometry" class="function">restoreGeometry</dd>
-                <dd id="CountryListWidget.saveGeometry" class="function">saveGeometry</dd>
-                <dd id="CountryListWidget.screen" class="function">screen</dd>
-                <dd id="CountryListWidget.scroll" class="function">scroll</dd>
-                <dd id="CountryListWidget.sender" class="function">sender</dd>
-                <dd id="CountryListWidget.senderSignalIndex" class="function">senderSignalIndex</dd>
-                <dd id="CountryListWidget.setAcceptDrops" class="function">setAcceptDrops</dd>
-                <dd id="CountryListWidget.setAccessibleDescription" class="function">setAccessibleDescription</dd>
-                <dd id="CountryListWidget.setAccessibleName" class="function">setAccessibleName</dd>
-                <dd id="CountryListWidget.setAttribute" class="function">setAttribute</dd>
-                <dd id="CountryListWidget.setAutoFillBackground" class="function">setAutoFillBackground</dd>
-                <dd id="CountryListWidget.setBackgroundRole" class="function">setBackgroundRole</dd>
-                <dd id="CountryListWidget.setBaseSize" class="function">setBaseSize</dd>
-                <dd id="CountryListWidget.setContentsMargins" class="function">setContentsMargins</dd>
-                <dd id="CountryListWidget.setContextMenuPolicy" class="function">setContextMenuPolicy</dd>
-                <dd id="CountryListWidget.setCursor" class="function">setCursor</dd>
-                <dd id="CountryListWidget.setDisabled" class="function">setDisabled</dd>
-                <dd id="CountryListWidget.setEnabled" class="function">setEnabled</dd>
-                <dd id="CountryListWidget.setFixedHeight" class="function">setFixedHeight</dd>
-                <dd id="CountryListWidget.setFixedSize" class="function">setFixedSize</dd>
-                <dd id="CountryListWidget.setFixedWidth" class="function">setFixedWidth</dd>
-                <dd id="CountryListWidget.setFocus" class="function">setFocus</dd>
-                <dd id="CountryListWidget.setFocusPolicy" class="function">setFocusPolicy</dd>
-                <dd id="CountryListWidget.setFocusProxy" class="function">setFocusProxy</dd>
-                <dd id="CountryListWidget.setFont" class="function">setFont</dd>
-                <dd id="CountryListWidget.setForegroundRole" class="function">setForegroundRole</dd>
-                <dd id="CountryListWidget.setGeometry" class="function">setGeometry</dd>
-                <dd id="CountryListWidget.setGraphicsEffect" class="function">setGraphicsEffect</dd>
-                <dd id="CountryListWidget.setHidden" class="function">setHidden</dd>
-                <dd id="CountryListWidget.setInputMethodHints" class="function">setInputMethodHints</dd>
-                <dd id="CountryListWidget.setLayout" class="function">setLayout</dd>
-                <dd id="CountryListWidget.setLayoutDirection" class="function">setLayoutDirection</dd>
-                <dd id="CountryListWidget.setLocale" class="function">setLocale</dd>
-                <dd id="CountryListWidget.setMask" class="function">setMask</dd>
-                <dd id="CountryListWidget.setMaximumHeight" class="function">setMaximumHeight</dd>
-                <dd id="CountryListWidget.setMaximumSize" class="function">setMaximumSize</dd>
-                <dd id="CountryListWidget.setMaximumWidth" class="function">setMaximumWidth</dd>
-                <dd id="CountryListWidget.setMinimumHeight" class="function">setMinimumHeight</dd>
-                <dd id="CountryListWidget.setMinimumSize" class="function">setMinimumSize</dd>
-                <dd id="CountryListWidget.setMinimumWidth" class="function">setMinimumWidth</dd>
-                <dd id="CountryListWidget.setMouseTracking" class="function">setMouseTracking</dd>
-                <dd id="CountryListWidget.setPalette" class="function">setPalette</dd>
-                <dd id="CountryListWidget.setParent" class="function">setParent</dd>
-                <dd id="CountryListWidget.setScreen" class="function">setScreen</dd>
-                <dd id="CountryListWidget.setShortcutAutoRepeat" class="function">setShortcutAutoRepeat</dd>
-                <dd id="CountryListWidget.setShortcutEnabled" class="function">setShortcutEnabled</dd>
-                <dd id="CountryListWidget.setSizeIncrement" class="function">setSizeIncrement</dd>
-                <dd id="CountryListWidget.setSizePolicy" class="function">setSizePolicy</dd>
-                <dd id="CountryListWidget.setStatusTip" class="function">setStatusTip</dd>
-                <dd id="CountryListWidget.setStyle" class="function">setStyle</dd>
-                <dd id="CountryListWidget.setStyleSheet" class="function">setStyleSheet</dd>
-                <dd id="CountryListWidget.setTabOrder" class="function">setTabOrder</dd>
-                <dd id="CountryListWidget.setTabletTracking" class="function">setTabletTracking</dd>
-                <dd id="CountryListWidget.setToolTip" class="function">setToolTip</dd>
-                <dd id="CountryListWidget.setToolTipDuration" class="function">setToolTipDuration</dd>
-                <dd id="CountryListWidget.setUpdatesEnabled" class="function">setUpdatesEnabled</dd>
-                <dd id="CountryListWidget.setVisible" class="function">setVisible</dd>
-                <dd id="CountryListWidget.setWhatsThis" class="function">setWhatsThis</dd>
-                <dd id="CountryListWidget.setWindowFilePath" class="function">setWindowFilePath</dd>
-                <dd id="CountryListWidget.setWindowFlag" class="function">setWindowFlag</dd>
-                <dd id="CountryListWidget.setWindowFlags" class="function">setWindowFlags</dd>
-                <dd id="CountryListWidget.setWindowIcon" class="function">setWindowIcon</dd>
-                <dd id="CountryListWidget.setWindowIconText" class="function">setWindowIconText</dd>
-                <dd id="CountryListWidget.setWindowModality" class="function">setWindowModality</dd>
-                <dd id="CountryListWidget.setWindowModified" class="function">setWindowModified</dd>
-                <dd id="CountryListWidget.setWindowOpacity" class="function">setWindowOpacity</dd>
-                <dd id="CountryListWidget.setWindowRole" class="function">setWindowRole</dd>
-                <dd id="CountryListWidget.setWindowState" class="function">setWindowState</dd>
-                <dd id="CountryListWidget.setWindowTitle" class="function">setWindowTitle</dd>
-                <dd id="CountryListWidget.sharedPainter" class="function">sharedPainter</dd>
-                <dd id="CountryListWidget.show" class="function">show</dd>
-                <dd id="CountryListWidget.showEvent" class="function">showEvent</dd>
-                <dd id="CountryListWidget.showFullScreen" class="function">showFullScreen</dd>
-                <dd id="CountryListWidget.showMaximized" class="function">showMaximized</dd>
-                <dd id="CountryListWidget.showMinimized" class="function">showMinimized</dd>
-                <dd id="CountryListWidget.showNormal" class="function">showNormal</dd>
-                <dd id="CountryListWidget.size" class="function">size</dd>
-                <dd id="CountryListWidget.sizeHint" class="function">sizeHint</dd>
-                <dd id="CountryListWidget.sizeIncrement" class="function">sizeIncrement</dd>
-                <dd id="CountryListWidget.sizePolicy" class="function">sizePolicy</dd>
-                <dd id="CountryListWidget.stackUnder" class="function">stackUnder</dd>
-                <dd id="CountryListWidget.statusTip" class="function">statusTip</dd>
-                <dd id="CountryListWidget.style" class="function">style</dd>
-                <dd id="CountryListWidget.styleSheet" class="function">styleSheet</dd>
-                <dd id="CountryListWidget.tabletEvent" class="function">tabletEvent</dd>
-                <dd id="CountryListWidget.testAttribute" class="function">testAttribute</dd>
-                <dd id="CountryListWidget.timerEvent" class="function">timerEvent</dd>
-                <dd id="CountryListWidget.toolTip" class="function">toolTip</dd>
-                <dd id="CountryListWidget.toolTipDuration" class="function">toolTipDuration</dd>
-                <dd id="CountryListWidget.underMouse" class="function">underMouse</dd>
-                <dd id="CountryListWidget.ungrabGesture" class="function">ungrabGesture</dd>
-                <dd id="CountryListWidget.unsetCursor" class="function">unsetCursor</dd>
-                <dd id="CountryListWidget.unsetLayoutDirection" class="function">unsetLayoutDirection</dd>
-                <dd id="CountryListWidget.unsetLocale" class="function">unsetLocale</dd>
-                <dd id="CountryListWidget.update" class="function">update</dd>
-                <dd id="CountryListWidget.updateGeometry" class="function">updateGeometry</dd>
-                <dd id="CountryListWidget.updateMicroFocus" class="function">updateMicroFocus</dd>
-                <dd id="CountryListWidget.updatesEnabled" class="function">updatesEnabled</dd>
-                <dd id="CountryListWidget.visibleRegion" class="function">visibleRegion</dd>
-                <dd id="CountryListWidget.whatsThis" class="function">whatsThis</dd>
-                <dd id="CountryListWidget.wheelEvent" class="function">wheelEvent</dd>
-                <dd id="CountryListWidget.width" class="function">width</dd>
-                <dd id="CountryListWidget.winId" class="function">winId</dd>
-                <dd id="CountryListWidget.window" class="function">window</dd>
-                <dd id="CountryListWidget.windowFilePath" class="function">windowFilePath</dd>
-                <dd id="CountryListWidget.windowFlags" class="function">windowFlags</dd>
-                <dd id="CountryListWidget.windowHandle" class="function">windowHandle</dd>
-                <dd id="CountryListWidget.windowIcon" class="function">windowIcon</dd>
-                <dd id="CountryListWidget.windowIconText" class="function">windowIconText</dd>
-                <dd id="CountryListWidget.windowModality" class="function">windowModality</dd>
-                <dd id="CountryListWidget.windowOpacity" class="function">windowOpacity</dd>
-                <dd id="CountryListWidget.windowRole" class="function">windowRole</dd>
-                <dd id="CountryListWidget.windowState" class="function">windowState</dd>
-                <dd id="CountryListWidget.windowTitle" class="function">windowTitle</dd>
-                <dd id="CountryListWidget.windowType" class="function">windowType</dd>
-                <dd id="CountryListWidget.x" class="function">x</dd>
-                <dd id="CountryListWidget.y" class="function">y</dd>
-                <dd id="CountryListWidget.RenderFlag" class="class">RenderFlag</dd>
-                <dd id="CountryListWidget.windowIconTextChanged" class="function">windowIconTextChanged</dd>
-                <dd id="CountryListWidget.windowIconChanged" class="function">windowIconChanged</dd>
-                <dd id="CountryListWidget.windowTitleChanged" class="function">windowTitleChanged</dd>
-                <dd id="CountryListWidget.customContextMenuRequested" class="function">customContextMenuRequested</dd>
+                                <dd id="CountrySrcListWidget.acceptDrops" class="function">acceptDrops</dd>
+                <dd id="CountrySrcListWidget.accessibleDescription" class="function">accessibleDescription</dd>
+                <dd id="CountrySrcListWidget.accessibleName" class="function">accessibleName</dd>
+                <dd id="CountrySrcListWidget.actionEvent" class="function">actionEvent</dd>
+                <dd id="CountrySrcListWidget.actions" class="function">actions</dd>
+                <dd id="CountrySrcListWidget.activateWindow" class="function">activateWindow</dd>
+                <dd id="CountrySrcListWidget.addAction" class="function">addAction</dd>
+                <dd id="CountrySrcListWidget.addActions" class="function">addActions</dd>
+                <dd id="CountrySrcListWidget.adjustSize" class="function">adjustSize</dd>
+                <dd id="CountrySrcListWidget.autoFillBackground" class="function">autoFillBackground</dd>
+                <dd id="CountrySrcListWidget.backgroundRole" class="function">backgroundRole</dd>
+                <dd id="CountrySrcListWidget.baseSize" class="function">baseSize</dd>
+                <dd id="CountrySrcListWidget.changeEvent" class="function">changeEvent</dd>
+                <dd id="CountrySrcListWidget.childAt" class="function">childAt</dd>
+                <dd id="CountrySrcListWidget.childEvent" class="function">childEvent</dd>
+                <dd id="CountrySrcListWidget.childrenRect" class="function">childrenRect</dd>
+                <dd id="CountrySrcListWidget.childrenRegion" class="function">childrenRegion</dd>
+                <dd id="CountrySrcListWidget.clearFocus" class="function">clearFocus</dd>
+                <dd id="CountrySrcListWidget.clearMask" class="function">clearMask</dd>
+                <dd id="CountrySrcListWidget.close" class="function">close</dd>
+                <dd id="CountrySrcListWidget.closeEvent" class="function">closeEvent</dd>
+                <dd id="CountrySrcListWidget.connectNotify" class="function">connectNotify</dd>
+                <dd id="CountrySrcListWidget.contentsMargins" class="function">contentsMargins</dd>
+                <dd id="CountrySrcListWidget.contentsRect" class="function">contentsRect</dd>
+                <dd id="CountrySrcListWidget.contextMenuEvent" class="function">contextMenuEvent</dd>
+                <dd id="CountrySrcListWidget.contextMenuPolicy" class="function">contextMenuPolicy</dd>
+                <dd id="CountrySrcListWidget.create" class="function">create</dd>
+                <dd id="CountrySrcListWidget.createWindowContainer" class="function">createWindowContainer</dd>
+                <dd id="CountrySrcListWidget.cursor" class="function">cursor</dd>
+                <dd id="CountrySrcListWidget.customEvent" class="function">customEvent</dd>
+                <dd id="CountrySrcListWidget.destroy" class="function">destroy</dd>
+                <dd id="CountrySrcListWidget.devType" class="function">devType</dd>
+                <dd id="CountrySrcListWidget.disconnectNotify" class="function">disconnectNotify</dd>
+                <dd id="CountrySrcListWidget.dragEnterEvent" class="function">dragEnterEvent</dd>
+                <dd id="CountrySrcListWidget.dragLeaveEvent" class="function">dragLeaveEvent</dd>
+                <dd id="CountrySrcListWidget.dragMoveEvent" class="function">dragMoveEvent</dd>
+                <dd id="CountrySrcListWidget.dropEvent" class="function">dropEvent</dd>
+                <dd id="CountrySrcListWidget.effectiveWinId" class="function">effectiveWinId</dd>
+                <dd id="CountrySrcListWidget.ensurePolished" class="function">ensurePolished</dd>
+                <dd id="CountrySrcListWidget.enterEvent" class="function">enterEvent</dd>
+                <dd id="CountrySrcListWidget.event" class="function">event</dd>
+                <dd id="CountrySrcListWidget.find" class="function">find</dd>
+                <dd id="CountrySrcListWidget.focusInEvent" class="function">focusInEvent</dd>
+                <dd id="CountrySrcListWidget.focusNextChild" class="function">focusNextChild</dd>
+                <dd id="CountrySrcListWidget.focusNextPrevChild" class="function">focusNextPrevChild</dd>
+                <dd id="CountrySrcListWidget.focusOutEvent" class="function">focusOutEvent</dd>
+                <dd id="CountrySrcListWidget.focusPolicy" class="function">focusPolicy</dd>
+                <dd id="CountrySrcListWidget.focusPreviousChild" class="function">focusPreviousChild</dd>
+                <dd id="CountrySrcListWidget.focusProxy" class="function">focusProxy</dd>
+                <dd id="CountrySrcListWidget.focusWidget" class="function">focusWidget</dd>
+                <dd id="CountrySrcListWidget.font" class="function">font</dd>
+                <dd id="CountrySrcListWidget.fontInfo" class="function">fontInfo</dd>
+                <dd id="CountrySrcListWidget.fontMetrics" class="function">fontMetrics</dd>
+                <dd id="CountrySrcListWidget.foregroundRole" class="function">foregroundRole</dd>
+                <dd id="CountrySrcListWidget.frameGeometry" class="function">frameGeometry</dd>
+                <dd id="CountrySrcListWidget.frameSize" class="function">frameSize</dd>
+                <dd id="CountrySrcListWidget.geometry" class="function">geometry</dd>
+                <dd id="CountrySrcListWidget.grab" class="function">grab</dd>
+                <dd id="CountrySrcListWidget.grabGesture" class="function">grabGesture</dd>
+                <dd id="CountrySrcListWidget.grabKeyboard" class="function">grabKeyboard</dd>
+                <dd id="CountrySrcListWidget.grabMouse" class="function">grabMouse</dd>
+                <dd id="CountrySrcListWidget.grabShortcut" class="function">grabShortcut</dd>
+                <dd id="CountrySrcListWidget.graphicsEffect" class="function">graphicsEffect</dd>
+                <dd id="CountrySrcListWidget.graphicsProxyWidget" class="function">graphicsProxyWidget</dd>
+                <dd id="CountrySrcListWidget.hasFocus" class="function">hasFocus</dd>
+                <dd id="CountrySrcListWidget.hasHeightForWidth" class="function">hasHeightForWidth</dd>
+                <dd id="CountrySrcListWidget.hasMouseTracking" class="function">hasMouseTracking</dd>
+                <dd id="CountrySrcListWidget.hasTabletTracking" class="function">hasTabletTracking</dd>
+                <dd id="CountrySrcListWidget.height" class="function">height</dd>
+                <dd id="CountrySrcListWidget.heightForWidth" class="function">heightForWidth</dd>
+                <dd id="CountrySrcListWidget.hide" class="function">hide</dd>
+                <dd id="CountrySrcListWidget.hideEvent" class="function">hideEvent</dd>
+                <dd id="CountrySrcListWidget.initPainter" class="function">initPainter</dd>
+                <dd id="CountrySrcListWidget.inputMethodEvent" class="function">inputMethodEvent</dd>
+                <dd id="CountrySrcListWidget.inputMethodHints" class="function">inputMethodHints</dd>
+                <dd id="CountrySrcListWidget.inputMethodQuery" class="function">inputMethodQuery</dd>
+                <dd id="CountrySrcListWidget.insertAction" class="function">insertAction</dd>
+                <dd id="CountrySrcListWidget.insertActions" class="function">insertActions</dd>
+                <dd id="CountrySrcListWidget.isActiveWindow" class="function">isActiveWindow</dd>
+                <dd id="CountrySrcListWidget.isAncestorOf" class="function">isAncestorOf</dd>
+                <dd id="CountrySrcListWidget.isEnabled" class="function">isEnabled</dd>
+                <dd id="CountrySrcListWidget.isEnabledTo" class="function">isEnabledTo</dd>
+                <dd id="CountrySrcListWidget.isFullScreen" class="function">isFullScreen</dd>
+                <dd id="CountrySrcListWidget.isHidden" class="function">isHidden</dd>
+                <dd id="CountrySrcListWidget.isLeftToRight" class="function">isLeftToRight</dd>
+                <dd id="CountrySrcListWidget.isMaximized" class="function">isMaximized</dd>
+                <dd id="CountrySrcListWidget.isMinimized" class="function">isMinimized</dd>
+                <dd id="CountrySrcListWidget.isModal" class="function">isModal</dd>
+                <dd id="CountrySrcListWidget.isRightToLeft" class="function">isRightToLeft</dd>
+                <dd id="CountrySrcListWidget.isSignalConnected" class="function">isSignalConnected</dd>
+                <dd id="CountrySrcListWidget.isVisible" class="function">isVisible</dd>
+                <dd id="CountrySrcListWidget.isVisibleTo" class="function">isVisibleTo</dd>
+                <dd id="CountrySrcListWidget.isWindow" class="function">isWindow</dd>
+                <dd id="CountrySrcListWidget.isWindowModified" class="function">isWindowModified</dd>
+                <dd id="CountrySrcListWidget.keyPressEvent" class="function">keyPressEvent</dd>
+                <dd id="CountrySrcListWidget.keyReleaseEvent" class="function">keyReleaseEvent</dd>
+                <dd id="CountrySrcListWidget.keyboardGrabber" class="function">keyboardGrabber</dd>
+                <dd id="CountrySrcListWidget.layout" class="function">layout</dd>
+                <dd id="CountrySrcListWidget.layoutDirection" class="function">layoutDirection</dd>
+                <dd id="CountrySrcListWidget.leaveEvent" class="function">leaveEvent</dd>
+                <dd id="CountrySrcListWidget.locale" class="function">locale</dd>
+                <dd id="CountrySrcListWidget.lower" class="function">lower</dd>
+                <dd id="CountrySrcListWidget.mapFrom" class="function">mapFrom</dd>
+                <dd id="CountrySrcListWidget.mapFromGlobal" class="function">mapFromGlobal</dd>
+                <dd id="CountrySrcListWidget.mapFromParent" class="function">mapFromParent</dd>
+                <dd id="CountrySrcListWidget.mapTo" class="function">mapTo</dd>
+                <dd id="CountrySrcListWidget.mapToGlobal" class="function">mapToGlobal</dd>
+                <dd id="CountrySrcListWidget.mapToParent" class="function">mapToParent</dd>
+                <dd id="CountrySrcListWidget.mask" class="function">mask</dd>
+                <dd id="CountrySrcListWidget.maximumHeight" class="function">maximumHeight</dd>
+                <dd id="CountrySrcListWidget.maximumSize" class="function">maximumSize</dd>
+                <dd id="CountrySrcListWidget.maximumWidth" class="function">maximumWidth</dd>
+                <dd id="CountrySrcListWidget.metric" class="function">metric</dd>
+                <dd id="CountrySrcListWidget.minimumHeight" class="function">minimumHeight</dd>
+                <dd id="CountrySrcListWidget.minimumSize" class="function">minimumSize</dd>
+                <dd id="CountrySrcListWidget.minimumSizeHint" class="function">minimumSizeHint</dd>
+                <dd id="CountrySrcListWidget.minimumWidth" class="function">minimumWidth</dd>
+                <dd id="CountrySrcListWidget.mouseDoubleClickEvent" class="function">mouseDoubleClickEvent</dd>
+                <dd id="CountrySrcListWidget.mouseGrabber" class="function">mouseGrabber</dd>
+                <dd id="CountrySrcListWidget.mouseMoveEvent" class="function">mouseMoveEvent</dd>
+                <dd id="CountrySrcListWidget.mousePressEvent" class="function">mousePressEvent</dd>
+                <dd id="CountrySrcListWidget.mouseReleaseEvent" class="function">mouseReleaseEvent</dd>
+                <dd id="CountrySrcListWidget.move" class="function">move</dd>
+                <dd id="CountrySrcListWidget.moveEvent" class="function">moveEvent</dd>
+                <dd id="CountrySrcListWidget.nativeEvent" class="function">nativeEvent</dd>
+                <dd id="CountrySrcListWidget.nativeParentWidget" class="function">nativeParentWidget</dd>
+                <dd id="CountrySrcListWidget.nextInFocusChain" class="function">nextInFocusChain</dd>
+                <dd id="CountrySrcListWidget.normalGeometry" class="function">normalGeometry</dd>
+                <dd id="CountrySrcListWidget.overrideWindowFlags" class="function">overrideWindowFlags</dd>
+                <dd id="CountrySrcListWidget.overrideWindowState" class="function">overrideWindowState</dd>
+                <dd id="CountrySrcListWidget.paintEngine" class="function">paintEngine</dd>
+                <dd id="CountrySrcListWidget.paintEvent" class="function">paintEvent</dd>
+                <dd id="CountrySrcListWidget.palette" class="function">palette</dd>
+                <dd id="CountrySrcListWidget.parentWidget" class="function">parentWidget</dd>
+                <dd id="CountrySrcListWidget.pos" class="function">pos</dd>
+                <dd id="CountrySrcListWidget.previousInFocusChain" class="function">previousInFocusChain</dd>
+                <dd id="CountrySrcListWidget.raise_" class="function">raise_</dd>
+                <dd id="CountrySrcListWidget.receivers" class="function">receivers</dd>
+                <dd id="CountrySrcListWidget.rect" class="function">rect</dd>
+                <dd id="CountrySrcListWidget.releaseKeyboard" class="function">releaseKeyboard</dd>
+                <dd id="CountrySrcListWidget.releaseMouse" class="function">releaseMouse</dd>
+                <dd id="CountrySrcListWidget.releaseShortcut" class="function">releaseShortcut</dd>
+                <dd id="CountrySrcListWidget.removeAction" class="function">removeAction</dd>
+                <dd id="CountrySrcListWidget.render" class="function">render</dd>
+                <dd id="CountrySrcListWidget.repaint" class="function">repaint</dd>
+                <dd id="CountrySrcListWidget.resize" class="function">resize</dd>
+                <dd id="CountrySrcListWidget.resizeEvent" class="function">resizeEvent</dd>
+                <dd id="CountrySrcListWidget.restoreGeometry" class="function">restoreGeometry</dd>
+                <dd id="CountrySrcListWidget.saveGeometry" class="function">saveGeometry</dd>
+                <dd id="CountrySrcListWidget.screen" class="function">screen</dd>
+                <dd id="CountrySrcListWidget.scroll" class="function">scroll</dd>
+                <dd id="CountrySrcListWidget.sender" class="function">sender</dd>
+                <dd id="CountrySrcListWidget.senderSignalIndex" class="function">senderSignalIndex</dd>
+                <dd id="CountrySrcListWidget.setAcceptDrops" class="function">setAcceptDrops</dd>
+                <dd id="CountrySrcListWidget.setAccessibleDescription" class="function">setAccessibleDescription</dd>
+                <dd id="CountrySrcListWidget.setAccessibleName" class="function">setAccessibleName</dd>
+                <dd id="CountrySrcListWidget.setAttribute" class="function">setAttribute</dd>
+                <dd id="CountrySrcListWidget.setAutoFillBackground" class="function">setAutoFillBackground</dd>
+                <dd id="CountrySrcListWidget.setBackgroundRole" class="function">setBackgroundRole</dd>
+                <dd id="CountrySrcListWidget.setBaseSize" class="function">setBaseSize</dd>
+                <dd id="CountrySrcListWidget.setContentsMargins" class="function">setContentsMargins</dd>
+                <dd id="CountrySrcListWidget.setContextMenuPolicy" class="function">setContextMenuPolicy</dd>
+                <dd id="CountrySrcListWidget.setCursor" class="function">setCursor</dd>
+                <dd id="CountrySrcListWidget.setDisabled" class="function">setDisabled</dd>
+                <dd id="CountrySrcListWidget.setEnabled" class="function">setEnabled</dd>
+                <dd id="CountrySrcListWidget.setFixedHeight" class="function">setFixedHeight</dd>
+                <dd id="CountrySrcListWidget.setFixedSize" class="function">setFixedSize</dd>
+                <dd id="CountrySrcListWidget.setFixedWidth" class="function">setFixedWidth</dd>
+                <dd id="CountrySrcListWidget.setFocus" class="function">setFocus</dd>
+                <dd id="CountrySrcListWidget.setFocusPolicy" class="function">setFocusPolicy</dd>
+                <dd id="CountrySrcListWidget.setFocusProxy" class="function">setFocusProxy</dd>
+                <dd id="CountrySrcListWidget.setFont" class="function">setFont</dd>
+                <dd id="CountrySrcListWidget.setForegroundRole" class="function">setForegroundRole</dd>
+                <dd id="CountrySrcListWidget.setGeometry" class="function">setGeometry</dd>
+                <dd id="CountrySrcListWidget.setGraphicsEffect" class="function">setGraphicsEffect</dd>
+                <dd id="CountrySrcListWidget.setHidden" class="function">setHidden</dd>
+                <dd id="CountrySrcListWidget.setInputMethodHints" class="function">setInputMethodHints</dd>
+                <dd id="CountrySrcListWidget.setLayout" class="function">setLayout</dd>
+                <dd id="CountrySrcListWidget.setLayoutDirection" class="function">setLayoutDirection</dd>
+                <dd id="CountrySrcListWidget.setLocale" class="function">setLocale</dd>
+                <dd id="CountrySrcListWidget.setMask" class="function">setMask</dd>
+                <dd id="CountrySrcListWidget.setMaximumHeight" class="function">setMaximumHeight</dd>
+                <dd id="CountrySrcListWidget.setMaximumSize" class="function">setMaximumSize</dd>
+                <dd id="CountrySrcListWidget.setMaximumWidth" class="function">setMaximumWidth</dd>
+                <dd id="CountrySrcListWidget.setMinimumHeight" class="function">setMinimumHeight</dd>
+                <dd id="CountrySrcListWidget.setMinimumSize" class="function">setMinimumSize</dd>
+                <dd id="CountrySrcListWidget.setMinimumWidth" class="function">setMinimumWidth</dd>
+                <dd id="CountrySrcListWidget.setMouseTracking" class="function">setMouseTracking</dd>
+                <dd id="CountrySrcListWidget.setPalette" class="function">setPalette</dd>
+                <dd id="CountrySrcListWidget.setParent" class="function">setParent</dd>
+                <dd id="CountrySrcListWidget.setScreen" class="function">setScreen</dd>
+                <dd id="CountrySrcListWidget.setShortcutAutoRepeat" class="function">setShortcutAutoRepeat</dd>
+                <dd id="CountrySrcListWidget.setShortcutEnabled" class="function">setShortcutEnabled</dd>
+                <dd id="CountrySrcListWidget.setSizeIncrement" class="function">setSizeIncrement</dd>
+                <dd id="CountrySrcListWidget.setSizePolicy" class="function">setSizePolicy</dd>
+                <dd id="CountrySrcListWidget.setStatusTip" class="function">setStatusTip</dd>
+                <dd id="CountrySrcListWidget.setStyle" class="function">setStyle</dd>
+                <dd id="CountrySrcListWidget.setStyleSheet" class="function">setStyleSheet</dd>
+                <dd id="CountrySrcListWidget.setTabOrder" class="function">setTabOrder</dd>
+                <dd id="CountrySrcListWidget.setTabletTracking" class="function">setTabletTracking</dd>
+                <dd id="CountrySrcListWidget.setToolTip" class="function">setToolTip</dd>
+                <dd id="CountrySrcListWidget.setToolTipDuration" class="function">setToolTipDuration</dd>
+                <dd id="CountrySrcListWidget.setUpdatesEnabled" class="function">setUpdatesEnabled</dd>
+                <dd id="CountrySrcListWidget.setVisible" class="function">setVisible</dd>
+                <dd id="CountrySrcListWidget.setWhatsThis" class="function">setWhatsThis</dd>
+                <dd id="CountrySrcListWidget.setWindowFilePath" class="function">setWindowFilePath</dd>
+                <dd id="CountrySrcListWidget.setWindowFlag" class="function">setWindowFlag</dd>
+                <dd id="CountrySrcListWidget.setWindowFlags" class="function">setWindowFlags</dd>
+                <dd id="CountrySrcListWidget.setWindowIcon" class="function">setWindowIcon</dd>
+                <dd id="CountrySrcListWidget.setWindowIconText" class="function">setWindowIconText</dd>
+                <dd id="CountrySrcListWidget.setWindowModality" class="function">setWindowModality</dd>
+                <dd id="CountrySrcListWidget.setWindowModified" class="function">setWindowModified</dd>
+                <dd id="CountrySrcListWidget.setWindowOpacity" class="function">setWindowOpacity</dd>
+                <dd id="CountrySrcListWidget.setWindowRole" class="function">setWindowRole</dd>
+                <dd id="CountrySrcListWidget.setWindowState" class="function">setWindowState</dd>
+                <dd id="CountrySrcListWidget.setWindowTitle" class="function">setWindowTitle</dd>
+                <dd id="CountrySrcListWidget.sharedPainter" class="function">sharedPainter</dd>
+                <dd id="CountrySrcListWidget.show" class="function">show</dd>
+                <dd id="CountrySrcListWidget.showEvent" class="function">showEvent</dd>
+                <dd id="CountrySrcListWidget.showFullScreen" class="function">showFullScreen</dd>
+                <dd id="CountrySrcListWidget.showMaximized" class="function">showMaximized</dd>
+                <dd id="CountrySrcListWidget.showMinimized" class="function">showMinimized</dd>
+                <dd id="CountrySrcListWidget.showNormal" class="function">showNormal</dd>
+                <dd id="CountrySrcListWidget.size" class="function">size</dd>
+                <dd id="CountrySrcListWidget.sizeHint" class="function">sizeHint</dd>
+                <dd id="CountrySrcListWidget.sizeIncrement" class="function">sizeIncrement</dd>
+                <dd id="CountrySrcListWidget.sizePolicy" class="function">sizePolicy</dd>
+                <dd id="CountrySrcListWidget.stackUnder" class="function">stackUnder</dd>
+                <dd id="CountrySrcListWidget.statusTip" class="function">statusTip</dd>
+                <dd id="CountrySrcListWidget.style" class="function">style</dd>
+                <dd id="CountrySrcListWidget.styleSheet" class="function">styleSheet</dd>
+                <dd id="CountrySrcListWidget.tabletEvent" class="function">tabletEvent</dd>
+                <dd id="CountrySrcListWidget.testAttribute" class="function">testAttribute</dd>
+                <dd id="CountrySrcListWidget.timerEvent" class="function">timerEvent</dd>
+                <dd id="CountrySrcListWidget.toolTip" class="function">toolTip</dd>
+                <dd id="CountrySrcListWidget.toolTipDuration" class="function">toolTipDuration</dd>
+                <dd id="CountrySrcListWidget.underMouse" class="function">underMouse</dd>
+                <dd id="CountrySrcListWidget.ungrabGesture" class="function">ungrabGesture</dd>
+                <dd id="CountrySrcListWidget.unsetCursor" class="function">unsetCursor</dd>
+                <dd id="CountrySrcListWidget.unsetLayoutDirection" class="function">unsetLayoutDirection</dd>
+                <dd id="CountrySrcListWidget.unsetLocale" class="function">unsetLocale</dd>
+                <dd id="CountrySrcListWidget.update" class="function">update</dd>
+                <dd id="CountrySrcListWidget.updateGeometry" class="function">updateGeometry</dd>
+                <dd id="CountrySrcListWidget.updateMicroFocus" class="function">updateMicroFocus</dd>
+                <dd id="CountrySrcListWidget.updatesEnabled" class="function">updatesEnabled</dd>
+                <dd id="CountrySrcListWidget.visibleRegion" class="function">visibleRegion</dd>
+                <dd id="CountrySrcListWidget.whatsThis" class="function">whatsThis</dd>
+                <dd id="CountrySrcListWidget.wheelEvent" class="function">wheelEvent</dd>
+                <dd id="CountrySrcListWidget.width" class="function">width</dd>
+                <dd id="CountrySrcListWidget.winId" class="function">winId</dd>
+                <dd id="CountrySrcListWidget.window" class="function">window</dd>
+                <dd id="CountrySrcListWidget.windowFilePath" class="function">windowFilePath</dd>
+                <dd id="CountrySrcListWidget.windowFlags" class="function">windowFlags</dd>
+                <dd id="CountrySrcListWidget.windowHandle" class="function">windowHandle</dd>
+                <dd id="CountrySrcListWidget.windowIcon" class="function">windowIcon</dd>
+                <dd id="CountrySrcListWidget.windowIconText" class="function">windowIconText</dd>
+                <dd id="CountrySrcListWidget.windowModality" class="function">windowModality</dd>
+                <dd id="CountrySrcListWidget.windowOpacity" class="function">windowOpacity</dd>
+                <dd id="CountrySrcListWidget.windowRole" class="function">windowRole</dd>
+                <dd id="CountrySrcListWidget.windowState" class="function">windowState</dd>
+                <dd id="CountrySrcListWidget.windowTitle" class="function">windowTitle</dd>
+                <dd id="CountrySrcListWidget.windowType" class="function">windowType</dd>
+                <dd id="CountrySrcListWidget.x" class="function">x</dd>
+                <dd id="CountrySrcListWidget.y" class="function">y</dd>
+                <dd id="CountrySrcListWidget.RenderFlag" class="class">RenderFlag</dd>
+                <dd id="CountrySrcListWidget.windowIconTextChanged" class="function">windowIconTextChanged</dd>
+                <dd id="CountrySrcListWidget.windowIconChanged" class="function">windowIconChanged</dd>
+                <dd id="CountrySrcListWidget.windowTitleChanged" class="function">windowTitleChanged</dd>
+                <dd id="CountrySrcListWidget.customContextMenuRequested" class="function">customContextMenuRequested</dd>
 
             </div>
             <div><dt>PyQt6.QtCore.QObject</dt>
-                                <dd id="CountryListWidget.blockSignals" class="function">blockSignals</dd>
-                <dd id="CountryListWidget.children" class="function">children</dd>
-                <dd id="CountryListWidget.deleteLater" class="function">deleteLater</dd>
-                <dd id="CountryListWidget.disconnect" class="function">disconnect</dd>
-                <dd id="CountryListWidget.dumpObjectInfo" class="function">dumpObjectInfo</dd>
-                <dd id="CountryListWidget.dumpObjectTree" class="function">dumpObjectTree</dd>
-                <dd id="CountryListWidget.dynamicPropertyNames" class="function">dynamicPropertyNames</dd>
-                <dd id="CountryListWidget.eventFilter" class="function">eventFilter</dd>
-                <dd id="CountryListWidget.findChild" class="function">findChild</dd>
-                <dd id="CountryListWidget.findChildren" class="function">findChildren</dd>
-                <dd id="CountryListWidget.inherits" class="function">inherits</dd>
-                <dd id="CountryListWidget.installEventFilter" class="function">installEventFilter</dd>
-                <dd id="CountryListWidget.isQuickItemType" class="function">isQuickItemType</dd>
-                <dd id="CountryListWidget.isWidgetType" class="function">isWidgetType</dd>
-                <dd id="CountryListWidget.isWindowType" class="function">isWindowType</dd>
-                <dd id="CountryListWidget.killTimer" class="function">killTimer</dd>
-                <dd id="CountryListWidget.metaObject" class="function">metaObject</dd>
-                <dd id="CountryListWidget.moveToThread" class="function">moveToThread</dd>
-                <dd id="CountryListWidget.objectName" class="function">objectName</dd>
-                <dd id="CountryListWidget.parent" class="function">parent</dd>
-                <dd id="CountryListWidget.property" class="function">property</dd>
-                <dd id="CountryListWidget.pyqtConfigure" class="function">pyqtConfigure</dd>
-                <dd id="CountryListWidget.removeEventFilter" class="function">removeEventFilter</dd>
-                <dd id="CountryListWidget.setObjectName" class="function">setObjectName</dd>
-                <dd id="CountryListWidget.setProperty" class="function">setProperty</dd>
-                <dd id="CountryListWidget.signalsBlocked" class="function">signalsBlocked</dd>
-                <dd id="CountryListWidget.startTimer" class="function">startTimer</dd>
-                <dd id="CountryListWidget.thread" class="function">thread</dd>
-                <dd id="CountryListWidget.tr" class="function">tr</dd>
-                <dd id="CountryListWidget.objectNameChanged" class="function">objectNameChanged</dd>
-                <dd id="CountryListWidget.destroyed" class="function">destroyed</dd>
+                                <dd id="CountrySrcListWidget.blockSignals" class="function">blockSignals</dd>
+                <dd id="CountrySrcListWidget.children" class="function">children</dd>
+                <dd id="CountrySrcListWidget.deleteLater" class="function">deleteLater</dd>
+                <dd id="CountrySrcListWidget.disconnect" class="function">disconnect</dd>
+                <dd id="CountrySrcListWidget.dumpObjectInfo" class="function">dumpObjectInfo</dd>
+                <dd id="CountrySrcListWidget.dumpObjectTree" class="function">dumpObjectTree</dd>
+                <dd id="CountrySrcListWidget.dynamicPropertyNames" class="function">dynamicPropertyNames</dd>
+                <dd id="CountrySrcListWidget.eventFilter" class="function">eventFilter</dd>
+                <dd id="CountrySrcListWidget.findChild" class="function">findChild</dd>
+                <dd id="CountrySrcListWidget.findChildren" class="function">findChildren</dd>
+                <dd id="CountrySrcListWidget.inherits" class="function">inherits</dd>
+                <dd id="CountrySrcListWidget.installEventFilter" class="function">installEventFilter</dd>
+                <dd id="CountrySrcListWidget.isQuickItemType" class="function">isQuickItemType</dd>
+                <dd id="CountrySrcListWidget.isWidgetType" class="function">isWidgetType</dd>
+                <dd id="CountrySrcListWidget.isWindowType" class="function">isWindowType</dd>
+                <dd id="CountrySrcListWidget.killTimer" class="function">killTimer</dd>
+                <dd id="CountrySrcListWidget.metaObject" class="function">metaObject</dd>
+                <dd id="CountrySrcListWidget.moveToThread" class="function">moveToThread</dd>
+                <dd id="CountrySrcListWidget.objectName" class="function">objectName</dd>
+                <dd id="CountrySrcListWidget.parent" class="function">parent</dd>
+                <dd id="CountrySrcListWidget.property" class="function">property</dd>
+                <dd id="CountrySrcListWidget.pyqtConfigure" class="function">pyqtConfigure</dd>
+                <dd id="CountrySrcListWidget.removeEventFilter" class="function">removeEventFilter</dd>
+                <dd id="CountrySrcListWidget.setObjectName" class="function">setObjectName</dd>
+                <dd id="CountrySrcListWidget.setProperty" class="function">setProperty</dd>
+                <dd id="CountrySrcListWidget.signalsBlocked" class="function">signalsBlocked</dd>
+                <dd id="CountrySrcListWidget.startTimer" class="function">startTimer</dd>
+                <dd id="CountrySrcListWidget.thread" class="function">thread</dd>
+                <dd id="CountrySrcListWidget.tr" class="function">tr</dd>
+                <dd id="CountrySrcListWidget.objectNameChanged" class="function">objectNameChanged</dd>
+                <dd id="CountrySrcListWidget.destroyed" class="function">destroyed</dd>
 
             </div>
             <div><dt>PyQt6.QtGui.QPaintDevice</dt>
-                                <dd id="CountryListWidget.colorCount" class="function">colorCount</dd>
-                <dd id="CountryListWidget.depth" class="function">depth</dd>
-                <dd id="CountryListWidget.devicePixelRatio" class="function">devicePixelRatio</dd>
-                <dd id="CountryListWidget.devicePixelRatioF" class="function">devicePixelRatioF</dd>
-                <dd id="CountryListWidget.devicePixelRatioFScale" class="function">devicePixelRatioFScale</dd>
-                <dd id="CountryListWidget.heightMM" class="function">heightMM</dd>
-                <dd id="CountryListWidget.logicalDpiX" class="function">logicalDpiX</dd>
-                <dd id="CountryListWidget.logicalDpiY" class="function">logicalDpiY</dd>
-                <dd id="CountryListWidget.paintingActive" class="function">paintingActive</dd>
-                <dd id="CountryListWidget.physicalDpiX" class="function">physicalDpiX</dd>
-                <dd id="CountryListWidget.physicalDpiY" class="function">physicalDpiY</dd>
-                <dd id="CountryListWidget.widthMM" class="function">widthMM</dd>
-                <dd id="CountryListWidget.PaintDeviceMetric" class="class">PaintDeviceMetric</dd>
+                                <dd id="CountrySrcListWidget.colorCount" class="function">colorCount</dd>
+                <dd id="CountrySrcListWidget.depth" class="function">depth</dd>
+                <dd id="CountrySrcListWidget.devicePixelRatio" class="function">devicePixelRatio</dd>
+                <dd id="CountrySrcListWidget.devicePixelRatioF" class="function">devicePixelRatioF</dd>
+                <dd id="CountrySrcListWidget.devicePixelRatioFScale" class="function">devicePixelRatioFScale</dd>
+                <dd id="CountrySrcListWidget.heightMM" class="function">heightMM</dd>
+                <dd id="CountrySrcListWidget.logicalDpiX" class="function">logicalDpiX</dd>
+                <dd id="CountrySrcListWidget.logicalDpiY" class="function">logicalDpiY</dd>
+                <dd id="CountrySrcListWidget.paintingActive" class="function">paintingActive</dd>
+                <dd id="CountrySrcListWidget.physicalDpiX" class="function">physicalDpiX</dd>
+                <dd id="CountrySrcListWidget.physicalDpiY" class="function">physicalDpiY</dd>
+                <dd id="CountrySrcListWidget.widthMM" class="function">widthMM</dd>
+                <dd id="CountrySrcListWidget.PaintDeviceMetric" class="class">PaintDeviceMetric</dd>
+
+            </div>
+                                </dl>
+                            </div>
+                </section>
+                <section id="CountryDestListWidget">
+                            <input id="CountryDestListWidget-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">CountryDestListWidget</span><wbr>(<span class="base"><a href="#CountrySrcListWidget">CountrySrcListWidget</a></span>):
+
+                <label class="view-source-button" for="CountryDestListWidget-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#CountryDestListWidget"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CountryDestListWidget-84"><a href="#CountryDestListWidget-84"><span class="linenos">84</span></a><span class="k">class</span> <span class="nc">CountryDestListWidget</span><span class="p">(</span><span class="n">CountrySrcListWidget</span><span class="p">):</span>
+</span><span id="CountryDestListWidget-85"><a href="#CountryDestListWidget-85"><span class="linenos">85</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bdd</span><span class="p">:</span> <span class="n">BddControler</span><span class="p">):</span>
+</span><span id="CountryDestListWidget-86"><a href="#CountryDestListWidget-86"><span class="linenos">86</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">bdd</span><span class="p">)</span>
+</span><span id="CountryDestListWidget-87"><a href="#CountryDestListWidget-87"><span class="linenos">87</span></a>
+</span><span id="CountryDestListWidget-88"><a href="#CountryDestListWidget-88"><span class="linenos">88</span></a>    <span class="k">def</span> <span class="nf">updateCountryList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">countries</span> <span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+</span><span id="CountryDestListWidget-89"><a href="#CountryDestListWidget-89"><span class="linenos">89</span></a>        <span class="n">countryList</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getList</span><span class="p">()</span>
+</span><span id="CountryDestListWidget-90"><a href="#CountryDestListWidget-90"><span class="linenos">90</span></a>        <span class="n">countryList</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</span><span id="CountryDestListWidget-91"><a href="#CountryDestListWidget-91"><span class="linenos">91</span></a>        
+</span><span id="CountryDestListWidget-92"><a href="#CountryDestListWidget-92"><span class="linenos">92</span></a>
+</span><span id="CountryDestListWidget-93"><a href="#CountryDestListWidget-93"><span class="linenos">93</span></a>        <span class="k">for</span> <span class="n">country</span> <span class="ow">in</span> <span class="n">countries</span><span class="p">:</span>
+</span><span id="CountryDestListWidget-94"><a href="#CountryDestListWidget-94"><span class="linenos">94</span></a>                <span class="n">countryList</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">country</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>QWidget(parent: typing.Optional[QWidget] = None, flags: Qt.WindowType = Qt.WindowFlags())</p>
+</div>
+
+
+                            <div id="CountryDestListWidget.__init__" class="classattr">
+                                        <input id="CountryDestListWidget.__init__-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="name">CountryDestListWidget</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">bdd</span><span class="p">:</span> <span class="n"><a href="BddControler.html#BddControler">BddControler.BddControler</a></span></span>)</span>
+
+                <label class="view-source-button" for="CountryDestListWidget.__init__-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#CountryDestListWidget.__init__"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CountryDestListWidget.__init__-85"><a href="#CountryDestListWidget.__init__-85"><span class="linenos">85</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bdd</span><span class="p">:</span> <span class="n">BddControler</span><span class="p">):</span>
+</span><span id="CountryDestListWidget.__init__-86"><a href="#CountryDestListWidget.__init__-86"><span class="linenos">86</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">bdd</span><span class="p">)</span>
+</span></pre></div>
+
+
+    
+
+                            </div>
+                            <div id="CountryDestListWidget.updateCountryList" class="classattr">
+                                        <input id="CountryDestListWidget.updateCountryList-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">updateCountryList</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">countries</span><span class="p">:</span> <span class="nb">list</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="CountryDestListWidget.updateCountryList-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#CountryDestListWidget.updateCountryList"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CountryDestListWidget.updateCountryList-88"><a href="#CountryDestListWidget.updateCountryList-88"><span class="linenos">88</span></a>    <span class="k">def</span> <span class="nf">updateCountryList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">countries</span> <span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+</span><span id="CountryDestListWidget.updateCountryList-89"><a href="#CountryDestListWidget.updateCountryList-89"><span class="linenos">89</span></a>        <span class="n">countryList</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getList</span><span class="p">()</span>
+</span><span id="CountryDestListWidget.updateCountryList-90"><a href="#CountryDestListWidget.updateCountryList-90"><span class="linenos">90</span></a>        <span class="n">countryList</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</span><span id="CountryDestListWidget.updateCountryList-91"><a href="#CountryDestListWidget.updateCountryList-91"><span class="linenos">91</span></a>        
+</span><span id="CountryDestListWidget.updateCountryList-92"><a href="#CountryDestListWidget.updateCountryList-92"><span class="linenos">92</span></a>
+</span><span id="CountryDestListWidget.updateCountryList-93"><a href="#CountryDestListWidget.updateCountryList-93"><span class="linenos">93</span></a>        <span class="k">for</span> <span class="n">country</span> <span class="ow">in</span> <span class="n">countries</span><span class="p">:</span>
+</span><span id="CountryDestListWidget.updateCountryList-94"><a href="#CountryDestListWidget.updateCountryList-94"><span class="linenos">94</span></a>                <span class="n">countryList</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">country</span><span class="p">)</span>
+</span></pre></div>
+
+
+    
+
+                            </div>
+                            <div class="inherited">
+                                <h5>Inherited Members</h5>
+                                <dl>
+                                    <div><dt><a href="#CountrySrcListWidget">CountrySrcListWidget</a></dt>
+                                <dd id="CountryDestListWidget.countryClicked" class="function"><a href="#CountrySrcListWidget.countryClicked">countryClicked</a></dd>
+                <dd id="CountryDestListWidget.countryClickedFunc" class="function"><a href="#CountrySrcListWidget.countryClickedFunc">countryClickedFunc</a></dd>
+                <dd id="CountryDestListWidget.getCountryClickedText" class="function"><a href="#CountrySrcListWidget.getCountryClickedText">getCountryClickedText</a></dd>
+                <dd id="CountryDestListWidget.addCountryList" class="function"><a href="#CountrySrcListWidget.addCountryList">addCountryList</a></dd>
+                <dd id="CountryDestListWidget.clearCountryList" class="function"><a href="#CountrySrcListWidget.clearCountryList">clearCountryList</a></dd>
+                <dd id="CountryDestListWidget.getList" class="function"><a href="#CountrySrcListWidget.getList">getList</a></dd>
+
+            </div>
+            <div><dt>PyQt6.QtWidgets.QWidget</dt>
+                                <dd id="CountryDestListWidget.acceptDrops" class="function">acceptDrops</dd>
+                <dd id="CountryDestListWidget.accessibleDescription" class="function">accessibleDescription</dd>
+                <dd id="CountryDestListWidget.accessibleName" class="function">accessibleName</dd>
+                <dd id="CountryDestListWidget.actionEvent" class="function">actionEvent</dd>
+                <dd id="CountryDestListWidget.actions" class="function">actions</dd>
+                <dd id="CountryDestListWidget.activateWindow" class="function">activateWindow</dd>
+                <dd id="CountryDestListWidget.addAction" class="function">addAction</dd>
+                <dd id="CountryDestListWidget.addActions" class="function">addActions</dd>
+                <dd id="CountryDestListWidget.adjustSize" class="function">adjustSize</dd>
+                <dd id="CountryDestListWidget.autoFillBackground" class="function">autoFillBackground</dd>
+                <dd id="CountryDestListWidget.backgroundRole" class="function">backgroundRole</dd>
+                <dd id="CountryDestListWidget.baseSize" class="function">baseSize</dd>
+                <dd id="CountryDestListWidget.changeEvent" class="function">changeEvent</dd>
+                <dd id="CountryDestListWidget.childAt" class="function">childAt</dd>
+                <dd id="CountryDestListWidget.childEvent" class="function">childEvent</dd>
+                <dd id="CountryDestListWidget.childrenRect" class="function">childrenRect</dd>
+                <dd id="CountryDestListWidget.childrenRegion" class="function">childrenRegion</dd>
+                <dd id="CountryDestListWidget.clearFocus" class="function">clearFocus</dd>
+                <dd id="CountryDestListWidget.clearMask" class="function">clearMask</dd>
+                <dd id="CountryDestListWidget.close" class="function">close</dd>
+                <dd id="CountryDestListWidget.closeEvent" class="function">closeEvent</dd>
+                <dd id="CountryDestListWidget.connectNotify" class="function">connectNotify</dd>
+                <dd id="CountryDestListWidget.contentsMargins" class="function">contentsMargins</dd>
+                <dd id="CountryDestListWidget.contentsRect" class="function">contentsRect</dd>
+                <dd id="CountryDestListWidget.contextMenuEvent" class="function">contextMenuEvent</dd>
+                <dd id="CountryDestListWidget.contextMenuPolicy" class="function">contextMenuPolicy</dd>
+                <dd id="CountryDestListWidget.create" class="function">create</dd>
+                <dd id="CountryDestListWidget.createWindowContainer" class="function">createWindowContainer</dd>
+                <dd id="CountryDestListWidget.cursor" class="function">cursor</dd>
+                <dd id="CountryDestListWidget.customEvent" class="function">customEvent</dd>
+                <dd id="CountryDestListWidget.destroy" class="function">destroy</dd>
+                <dd id="CountryDestListWidget.devType" class="function">devType</dd>
+                <dd id="CountryDestListWidget.disconnectNotify" class="function">disconnectNotify</dd>
+                <dd id="CountryDestListWidget.dragEnterEvent" class="function">dragEnterEvent</dd>
+                <dd id="CountryDestListWidget.dragLeaveEvent" class="function">dragLeaveEvent</dd>
+                <dd id="CountryDestListWidget.dragMoveEvent" class="function">dragMoveEvent</dd>
+                <dd id="CountryDestListWidget.dropEvent" class="function">dropEvent</dd>
+                <dd id="CountryDestListWidget.effectiveWinId" class="function">effectiveWinId</dd>
+                <dd id="CountryDestListWidget.ensurePolished" class="function">ensurePolished</dd>
+                <dd id="CountryDestListWidget.enterEvent" class="function">enterEvent</dd>
+                <dd id="CountryDestListWidget.event" class="function">event</dd>
+                <dd id="CountryDestListWidget.find" class="function">find</dd>
+                <dd id="CountryDestListWidget.focusInEvent" class="function">focusInEvent</dd>
+                <dd id="CountryDestListWidget.focusNextChild" class="function">focusNextChild</dd>
+                <dd id="CountryDestListWidget.focusNextPrevChild" class="function">focusNextPrevChild</dd>
+                <dd id="CountryDestListWidget.focusOutEvent" class="function">focusOutEvent</dd>
+                <dd id="CountryDestListWidget.focusPolicy" class="function">focusPolicy</dd>
+                <dd id="CountryDestListWidget.focusPreviousChild" class="function">focusPreviousChild</dd>
+                <dd id="CountryDestListWidget.focusProxy" class="function">focusProxy</dd>
+                <dd id="CountryDestListWidget.focusWidget" class="function">focusWidget</dd>
+                <dd id="CountryDestListWidget.font" class="function">font</dd>
+                <dd id="CountryDestListWidget.fontInfo" class="function">fontInfo</dd>
+                <dd id="CountryDestListWidget.fontMetrics" class="function">fontMetrics</dd>
+                <dd id="CountryDestListWidget.foregroundRole" class="function">foregroundRole</dd>
+                <dd id="CountryDestListWidget.frameGeometry" class="function">frameGeometry</dd>
+                <dd id="CountryDestListWidget.frameSize" class="function">frameSize</dd>
+                <dd id="CountryDestListWidget.geometry" class="function">geometry</dd>
+                <dd id="CountryDestListWidget.grab" class="function">grab</dd>
+                <dd id="CountryDestListWidget.grabGesture" class="function">grabGesture</dd>
+                <dd id="CountryDestListWidget.grabKeyboard" class="function">grabKeyboard</dd>
+                <dd id="CountryDestListWidget.grabMouse" class="function">grabMouse</dd>
+                <dd id="CountryDestListWidget.grabShortcut" class="function">grabShortcut</dd>
+                <dd id="CountryDestListWidget.graphicsEffect" class="function">graphicsEffect</dd>
+                <dd id="CountryDestListWidget.graphicsProxyWidget" class="function">graphicsProxyWidget</dd>
+                <dd id="CountryDestListWidget.hasFocus" class="function">hasFocus</dd>
+                <dd id="CountryDestListWidget.hasHeightForWidth" class="function">hasHeightForWidth</dd>
+                <dd id="CountryDestListWidget.hasMouseTracking" class="function">hasMouseTracking</dd>
+                <dd id="CountryDestListWidget.hasTabletTracking" class="function">hasTabletTracking</dd>
+                <dd id="CountryDestListWidget.height" class="function">height</dd>
+                <dd id="CountryDestListWidget.heightForWidth" class="function">heightForWidth</dd>
+                <dd id="CountryDestListWidget.hide" class="function">hide</dd>
+                <dd id="CountryDestListWidget.hideEvent" class="function">hideEvent</dd>
+                <dd id="CountryDestListWidget.initPainter" class="function">initPainter</dd>
+                <dd id="CountryDestListWidget.inputMethodEvent" class="function">inputMethodEvent</dd>
+                <dd id="CountryDestListWidget.inputMethodHints" class="function">inputMethodHints</dd>
+                <dd id="CountryDestListWidget.inputMethodQuery" class="function">inputMethodQuery</dd>
+                <dd id="CountryDestListWidget.insertAction" class="function">insertAction</dd>
+                <dd id="CountryDestListWidget.insertActions" class="function">insertActions</dd>
+                <dd id="CountryDestListWidget.isActiveWindow" class="function">isActiveWindow</dd>
+                <dd id="CountryDestListWidget.isAncestorOf" class="function">isAncestorOf</dd>
+                <dd id="CountryDestListWidget.isEnabled" class="function">isEnabled</dd>
+                <dd id="CountryDestListWidget.isEnabledTo" class="function">isEnabledTo</dd>
+                <dd id="CountryDestListWidget.isFullScreen" class="function">isFullScreen</dd>
+                <dd id="CountryDestListWidget.isHidden" class="function">isHidden</dd>
+                <dd id="CountryDestListWidget.isLeftToRight" class="function">isLeftToRight</dd>
+                <dd id="CountryDestListWidget.isMaximized" class="function">isMaximized</dd>
+                <dd id="CountryDestListWidget.isMinimized" class="function">isMinimized</dd>
+                <dd id="CountryDestListWidget.isModal" class="function">isModal</dd>
+                <dd id="CountryDestListWidget.isRightToLeft" class="function">isRightToLeft</dd>
+                <dd id="CountryDestListWidget.isSignalConnected" class="function">isSignalConnected</dd>
+                <dd id="CountryDestListWidget.isVisible" class="function">isVisible</dd>
+                <dd id="CountryDestListWidget.isVisibleTo" class="function">isVisibleTo</dd>
+                <dd id="CountryDestListWidget.isWindow" class="function">isWindow</dd>
+                <dd id="CountryDestListWidget.isWindowModified" class="function">isWindowModified</dd>
+                <dd id="CountryDestListWidget.keyPressEvent" class="function">keyPressEvent</dd>
+                <dd id="CountryDestListWidget.keyReleaseEvent" class="function">keyReleaseEvent</dd>
+                <dd id="CountryDestListWidget.keyboardGrabber" class="function">keyboardGrabber</dd>
+                <dd id="CountryDestListWidget.layout" class="function">layout</dd>
+                <dd id="CountryDestListWidget.layoutDirection" class="function">layoutDirection</dd>
+                <dd id="CountryDestListWidget.leaveEvent" class="function">leaveEvent</dd>
+                <dd id="CountryDestListWidget.locale" class="function">locale</dd>
+                <dd id="CountryDestListWidget.lower" class="function">lower</dd>
+                <dd id="CountryDestListWidget.mapFrom" class="function">mapFrom</dd>
+                <dd id="CountryDestListWidget.mapFromGlobal" class="function">mapFromGlobal</dd>
+                <dd id="CountryDestListWidget.mapFromParent" class="function">mapFromParent</dd>
+                <dd id="CountryDestListWidget.mapTo" class="function">mapTo</dd>
+                <dd id="CountryDestListWidget.mapToGlobal" class="function">mapToGlobal</dd>
+                <dd id="CountryDestListWidget.mapToParent" class="function">mapToParent</dd>
+                <dd id="CountryDestListWidget.mask" class="function">mask</dd>
+                <dd id="CountryDestListWidget.maximumHeight" class="function">maximumHeight</dd>
+                <dd id="CountryDestListWidget.maximumSize" class="function">maximumSize</dd>
+                <dd id="CountryDestListWidget.maximumWidth" class="function">maximumWidth</dd>
+                <dd id="CountryDestListWidget.metric" class="function">metric</dd>
+                <dd id="CountryDestListWidget.minimumHeight" class="function">minimumHeight</dd>
+                <dd id="CountryDestListWidget.minimumSize" class="function">minimumSize</dd>
+                <dd id="CountryDestListWidget.minimumSizeHint" class="function">minimumSizeHint</dd>
+                <dd id="CountryDestListWidget.minimumWidth" class="function">minimumWidth</dd>
+                <dd id="CountryDestListWidget.mouseDoubleClickEvent" class="function">mouseDoubleClickEvent</dd>
+                <dd id="CountryDestListWidget.mouseGrabber" class="function">mouseGrabber</dd>
+                <dd id="CountryDestListWidget.mouseMoveEvent" class="function">mouseMoveEvent</dd>
+                <dd id="CountryDestListWidget.mousePressEvent" class="function">mousePressEvent</dd>
+                <dd id="CountryDestListWidget.mouseReleaseEvent" class="function">mouseReleaseEvent</dd>
+                <dd id="CountryDestListWidget.move" class="function">move</dd>
+                <dd id="CountryDestListWidget.moveEvent" class="function">moveEvent</dd>
+                <dd id="CountryDestListWidget.nativeEvent" class="function">nativeEvent</dd>
+                <dd id="CountryDestListWidget.nativeParentWidget" class="function">nativeParentWidget</dd>
+                <dd id="CountryDestListWidget.nextInFocusChain" class="function">nextInFocusChain</dd>
+                <dd id="CountryDestListWidget.normalGeometry" class="function">normalGeometry</dd>
+                <dd id="CountryDestListWidget.overrideWindowFlags" class="function">overrideWindowFlags</dd>
+                <dd id="CountryDestListWidget.overrideWindowState" class="function">overrideWindowState</dd>
+                <dd id="CountryDestListWidget.paintEngine" class="function">paintEngine</dd>
+                <dd id="CountryDestListWidget.paintEvent" class="function">paintEvent</dd>
+                <dd id="CountryDestListWidget.palette" class="function">palette</dd>
+                <dd id="CountryDestListWidget.parentWidget" class="function">parentWidget</dd>
+                <dd id="CountryDestListWidget.pos" class="function">pos</dd>
+                <dd id="CountryDestListWidget.previousInFocusChain" class="function">previousInFocusChain</dd>
+                <dd id="CountryDestListWidget.raise_" class="function">raise_</dd>
+                <dd id="CountryDestListWidget.receivers" class="function">receivers</dd>
+                <dd id="CountryDestListWidget.rect" class="function">rect</dd>
+                <dd id="CountryDestListWidget.releaseKeyboard" class="function">releaseKeyboard</dd>
+                <dd id="CountryDestListWidget.releaseMouse" class="function">releaseMouse</dd>
+                <dd id="CountryDestListWidget.releaseShortcut" class="function">releaseShortcut</dd>
+                <dd id="CountryDestListWidget.removeAction" class="function">removeAction</dd>
+                <dd id="CountryDestListWidget.render" class="function">render</dd>
+                <dd id="CountryDestListWidget.repaint" class="function">repaint</dd>
+                <dd id="CountryDestListWidget.resize" class="function">resize</dd>
+                <dd id="CountryDestListWidget.resizeEvent" class="function">resizeEvent</dd>
+                <dd id="CountryDestListWidget.restoreGeometry" class="function">restoreGeometry</dd>
+                <dd id="CountryDestListWidget.saveGeometry" class="function">saveGeometry</dd>
+                <dd id="CountryDestListWidget.screen" class="function">screen</dd>
+                <dd id="CountryDestListWidget.scroll" class="function">scroll</dd>
+                <dd id="CountryDestListWidget.sender" class="function">sender</dd>
+                <dd id="CountryDestListWidget.senderSignalIndex" class="function">senderSignalIndex</dd>
+                <dd id="CountryDestListWidget.setAcceptDrops" class="function">setAcceptDrops</dd>
+                <dd id="CountryDestListWidget.setAccessibleDescription" class="function">setAccessibleDescription</dd>
+                <dd id="CountryDestListWidget.setAccessibleName" class="function">setAccessibleName</dd>
+                <dd id="CountryDestListWidget.setAttribute" class="function">setAttribute</dd>
+                <dd id="CountryDestListWidget.setAutoFillBackground" class="function">setAutoFillBackground</dd>
+                <dd id="CountryDestListWidget.setBackgroundRole" class="function">setBackgroundRole</dd>
+                <dd id="CountryDestListWidget.setBaseSize" class="function">setBaseSize</dd>
+                <dd id="CountryDestListWidget.setContentsMargins" class="function">setContentsMargins</dd>
+                <dd id="CountryDestListWidget.setContextMenuPolicy" class="function">setContextMenuPolicy</dd>
+                <dd id="CountryDestListWidget.setCursor" class="function">setCursor</dd>
+                <dd id="CountryDestListWidget.setDisabled" class="function">setDisabled</dd>
+                <dd id="CountryDestListWidget.setEnabled" class="function">setEnabled</dd>
+                <dd id="CountryDestListWidget.setFixedHeight" class="function">setFixedHeight</dd>
+                <dd id="CountryDestListWidget.setFixedSize" class="function">setFixedSize</dd>
+                <dd id="CountryDestListWidget.setFixedWidth" class="function">setFixedWidth</dd>
+                <dd id="CountryDestListWidget.setFocus" class="function">setFocus</dd>
+                <dd id="CountryDestListWidget.setFocusPolicy" class="function">setFocusPolicy</dd>
+                <dd id="CountryDestListWidget.setFocusProxy" class="function">setFocusProxy</dd>
+                <dd id="CountryDestListWidget.setFont" class="function">setFont</dd>
+                <dd id="CountryDestListWidget.setForegroundRole" class="function">setForegroundRole</dd>
+                <dd id="CountryDestListWidget.setGeometry" class="function">setGeometry</dd>
+                <dd id="CountryDestListWidget.setGraphicsEffect" class="function">setGraphicsEffect</dd>
+                <dd id="CountryDestListWidget.setHidden" class="function">setHidden</dd>
+                <dd id="CountryDestListWidget.setInputMethodHints" class="function">setInputMethodHints</dd>
+                <dd id="CountryDestListWidget.setLayout" class="function">setLayout</dd>
+                <dd id="CountryDestListWidget.setLayoutDirection" class="function">setLayoutDirection</dd>
+                <dd id="CountryDestListWidget.setLocale" class="function">setLocale</dd>
+                <dd id="CountryDestListWidget.setMask" class="function">setMask</dd>
+                <dd id="CountryDestListWidget.setMaximumHeight" class="function">setMaximumHeight</dd>
+                <dd id="CountryDestListWidget.setMaximumSize" class="function">setMaximumSize</dd>
+                <dd id="CountryDestListWidget.setMaximumWidth" class="function">setMaximumWidth</dd>
+                <dd id="CountryDestListWidget.setMinimumHeight" class="function">setMinimumHeight</dd>
+                <dd id="CountryDestListWidget.setMinimumSize" class="function">setMinimumSize</dd>
+                <dd id="CountryDestListWidget.setMinimumWidth" class="function">setMinimumWidth</dd>
+                <dd id="CountryDestListWidget.setMouseTracking" class="function">setMouseTracking</dd>
+                <dd id="CountryDestListWidget.setPalette" class="function">setPalette</dd>
+                <dd id="CountryDestListWidget.setParent" class="function">setParent</dd>
+                <dd id="CountryDestListWidget.setScreen" class="function">setScreen</dd>
+                <dd id="CountryDestListWidget.setShortcutAutoRepeat" class="function">setShortcutAutoRepeat</dd>
+                <dd id="CountryDestListWidget.setShortcutEnabled" class="function">setShortcutEnabled</dd>
+                <dd id="CountryDestListWidget.setSizeIncrement" class="function">setSizeIncrement</dd>
+                <dd id="CountryDestListWidget.setSizePolicy" class="function">setSizePolicy</dd>
+                <dd id="CountryDestListWidget.setStatusTip" class="function">setStatusTip</dd>
+                <dd id="CountryDestListWidget.setStyle" class="function">setStyle</dd>
+                <dd id="CountryDestListWidget.setStyleSheet" class="function">setStyleSheet</dd>
+                <dd id="CountryDestListWidget.setTabOrder" class="function">setTabOrder</dd>
+                <dd id="CountryDestListWidget.setTabletTracking" class="function">setTabletTracking</dd>
+                <dd id="CountryDestListWidget.setToolTip" class="function">setToolTip</dd>
+                <dd id="CountryDestListWidget.setToolTipDuration" class="function">setToolTipDuration</dd>
+                <dd id="CountryDestListWidget.setUpdatesEnabled" class="function">setUpdatesEnabled</dd>
+                <dd id="CountryDestListWidget.setVisible" class="function">setVisible</dd>
+                <dd id="CountryDestListWidget.setWhatsThis" class="function">setWhatsThis</dd>
+                <dd id="CountryDestListWidget.setWindowFilePath" class="function">setWindowFilePath</dd>
+                <dd id="CountryDestListWidget.setWindowFlag" class="function">setWindowFlag</dd>
+                <dd id="CountryDestListWidget.setWindowFlags" class="function">setWindowFlags</dd>
+                <dd id="CountryDestListWidget.setWindowIcon" class="function">setWindowIcon</dd>
+                <dd id="CountryDestListWidget.setWindowIconText" class="function">setWindowIconText</dd>
+                <dd id="CountryDestListWidget.setWindowModality" class="function">setWindowModality</dd>
+                <dd id="CountryDestListWidget.setWindowModified" class="function">setWindowModified</dd>
+                <dd id="CountryDestListWidget.setWindowOpacity" class="function">setWindowOpacity</dd>
+                <dd id="CountryDestListWidget.setWindowRole" class="function">setWindowRole</dd>
+                <dd id="CountryDestListWidget.setWindowState" class="function">setWindowState</dd>
+                <dd id="CountryDestListWidget.setWindowTitle" class="function">setWindowTitle</dd>
+                <dd id="CountryDestListWidget.sharedPainter" class="function">sharedPainter</dd>
+                <dd id="CountryDestListWidget.show" class="function">show</dd>
+                <dd id="CountryDestListWidget.showEvent" class="function">showEvent</dd>
+                <dd id="CountryDestListWidget.showFullScreen" class="function">showFullScreen</dd>
+                <dd id="CountryDestListWidget.showMaximized" class="function">showMaximized</dd>
+                <dd id="CountryDestListWidget.showMinimized" class="function">showMinimized</dd>
+                <dd id="CountryDestListWidget.showNormal" class="function">showNormal</dd>
+                <dd id="CountryDestListWidget.size" class="function">size</dd>
+                <dd id="CountryDestListWidget.sizeHint" class="function">sizeHint</dd>
+                <dd id="CountryDestListWidget.sizeIncrement" class="function">sizeIncrement</dd>
+                <dd id="CountryDestListWidget.sizePolicy" class="function">sizePolicy</dd>
+                <dd id="CountryDestListWidget.stackUnder" class="function">stackUnder</dd>
+                <dd id="CountryDestListWidget.statusTip" class="function">statusTip</dd>
+                <dd id="CountryDestListWidget.style" class="function">style</dd>
+                <dd id="CountryDestListWidget.styleSheet" class="function">styleSheet</dd>
+                <dd id="CountryDestListWidget.tabletEvent" class="function">tabletEvent</dd>
+                <dd id="CountryDestListWidget.testAttribute" class="function">testAttribute</dd>
+                <dd id="CountryDestListWidget.timerEvent" class="function">timerEvent</dd>
+                <dd id="CountryDestListWidget.toolTip" class="function">toolTip</dd>
+                <dd id="CountryDestListWidget.toolTipDuration" class="function">toolTipDuration</dd>
+                <dd id="CountryDestListWidget.underMouse" class="function">underMouse</dd>
+                <dd id="CountryDestListWidget.ungrabGesture" class="function">ungrabGesture</dd>
+                <dd id="CountryDestListWidget.unsetCursor" class="function">unsetCursor</dd>
+                <dd id="CountryDestListWidget.unsetLayoutDirection" class="function">unsetLayoutDirection</dd>
+                <dd id="CountryDestListWidget.unsetLocale" class="function">unsetLocale</dd>
+                <dd id="CountryDestListWidget.update" class="function">update</dd>
+                <dd id="CountryDestListWidget.updateGeometry" class="function">updateGeometry</dd>
+                <dd id="CountryDestListWidget.updateMicroFocus" class="function">updateMicroFocus</dd>
+                <dd id="CountryDestListWidget.updatesEnabled" class="function">updatesEnabled</dd>
+                <dd id="CountryDestListWidget.visibleRegion" class="function">visibleRegion</dd>
+                <dd id="CountryDestListWidget.whatsThis" class="function">whatsThis</dd>
+                <dd id="CountryDestListWidget.wheelEvent" class="function">wheelEvent</dd>
+                <dd id="CountryDestListWidget.width" class="function">width</dd>
+                <dd id="CountryDestListWidget.winId" class="function">winId</dd>
+                <dd id="CountryDestListWidget.window" class="function">window</dd>
+                <dd id="CountryDestListWidget.windowFilePath" class="function">windowFilePath</dd>
+                <dd id="CountryDestListWidget.windowFlags" class="function">windowFlags</dd>
+                <dd id="CountryDestListWidget.windowHandle" class="function">windowHandle</dd>
+                <dd id="CountryDestListWidget.windowIcon" class="function">windowIcon</dd>
+                <dd id="CountryDestListWidget.windowIconText" class="function">windowIconText</dd>
+                <dd id="CountryDestListWidget.windowModality" class="function">windowModality</dd>
+                <dd id="CountryDestListWidget.windowOpacity" class="function">windowOpacity</dd>
+                <dd id="CountryDestListWidget.windowRole" class="function">windowRole</dd>
+                <dd id="CountryDestListWidget.windowState" class="function">windowState</dd>
+                <dd id="CountryDestListWidget.windowTitle" class="function">windowTitle</dd>
+                <dd id="CountryDestListWidget.windowType" class="function">windowType</dd>
+                <dd id="CountryDestListWidget.x" class="function">x</dd>
+                <dd id="CountryDestListWidget.y" class="function">y</dd>
+                <dd id="CountryDestListWidget.RenderFlag" class="class">RenderFlag</dd>
+                <dd id="CountryDestListWidget.windowIconTextChanged" class="function">windowIconTextChanged</dd>
+                <dd id="CountryDestListWidget.windowIconChanged" class="function">windowIconChanged</dd>
+                <dd id="CountryDestListWidget.windowTitleChanged" class="function">windowTitleChanged</dd>
+                <dd id="CountryDestListWidget.customContextMenuRequested" class="function">customContextMenuRequested</dd>
+
+            </div>
+            <div><dt>PyQt6.QtCore.QObject</dt>
+                                <dd id="CountryDestListWidget.blockSignals" class="function">blockSignals</dd>
+                <dd id="CountryDestListWidget.children" class="function">children</dd>
+                <dd id="CountryDestListWidget.deleteLater" class="function">deleteLater</dd>
+                <dd id="CountryDestListWidget.disconnect" class="function">disconnect</dd>
+                <dd id="CountryDestListWidget.dumpObjectInfo" class="function">dumpObjectInfo</dd>
+                <dd id="CountryDestListWidget.dumpObjectTree" class="function">dumpObjectTree</dd>
+                <dd id="CountryDestListWidget.dynamicPropertyNames" class="function">dynamicPropertyNames</dd>
+                <dd id="CountryDestListWidget.eventFilter" class="function">eventFilter</dd>
+                <dd id="CountryDestListWidget.findChild" class="function">findChild</dd>
+                <dd id="CountryDestListWidget.findChildren" class="function">findChildren</dd>
+                <dd id="CountryDestListWidget.inherits" class="function">inherits</dd>
+                <dd id="CountryDestListWidget.installEventFilter" class="function">installEventFilter</dd>
+                <dd id="CountryDestListWidget.isQuickItemType" class="function">isQuickItemType</dd>
+                <dd id="CountryDestListWidget.isWidgetType" class="function">isWidgetType</dd>
+                <dd id="CountryDestListWidget.isWindowType" class="function">isWindowType</dd>
+                <dd id="CountryDestListWidget.killTimer" class="function">killTimer</dd>
+                <dd id="CountryDestListWidget.metaObject" class="function">metaObject</dd>
+                <dd id="CountryDestListWidget.moveToThread" class="function">moveToThread</dd>
+                <dd id="CountryDestListWidget.objectName" class="function">objectName</dd>
+                <dd id="CountryDestListWidget.parent" class="function">parent</dd>
+                <dd id="CountryDestListWidget.property" class="function">property</dd>
+                <dd id="CountryDestListWidget.pyqtConfigure" class="function">pyqtConfigure</dd>
+                <dd id="CountryDestListWidget.removeEventFilter" class="function">removeEventFilter</dd>
+                <dd id="CountryDestListWidget.setObjectName" class="function">setObjectName</dd>
+                <dd id="CountryDestListWidget.setProperty" class="function">setProperty</dd>
+                <dd id="CountryDestListWidget.signalsBlocked" class="function">signalsBlocked</dd>
+                <dd id="CountryDestListWidget.startTimer" class="function">startTimer</dd>
+                <dd id="CountryDestListWidget.thread" class="function">thread</dd>
+                <dd id="CountryDestListWidget.tr" class="function">tr</dd>
+                <dd id="CountryDestListWidget.objectNameChanged" class="function">objectNameChanged</dd>
+                <dd id="CountryDestListWidget.destroyed" class="function">destroyed</dd>
+
+            </div>
+            <div><dt>PyQt6.QtGui.QPaintDevice</dt>
+                                <dd id="CountryDestListWidget.colorCount" class="function">colorCount</dd>
+                <dd id="CountryDestListWidget.depth" class="function">depth</dd>
+                <dd id="CountryDestListWidget.devicePixelRatio" class="function">devicePixelRatio</dd>
+                <dd id="CountryDestListWidget.devicePixelRatioF" class="function">devicePixelRatioF</dd>
+                <dd id="CountryDestListWidget.devicePixelRatioFScale" class="function">devicePixelRatioFScale</dd>
+                <dd id="CountryDestListWidget.heightMM" class="function">heightMM</dd>
+                <dd id="CountryDestListWidget.logicalDpiX" class="function">logicalDpiX</dd>
+                <dd id="CountryDestListWidget.logicalDpiY" class="function">logicalDpiY</dd>
+                <dd id="CountryDestListWidget.paintingActive" class="function">paintingActive</dd>
+                <dd id="CountryDestListWidget.physicalDpiX" class="function">physicalDpiX</dd>
+                <dd id="CountryDestListWidget.physicalDpiY" class="function">physicalDpiY</dd>
+                <dd id="CountryDestListWidget.widthMM" class="function">widthMM</dd>
+                <dd id="CountryDestListWidget.PaintDeviceMetric" class="class">PaintDeviceMetric</dd>
 
             </div>
                                 </dl>
