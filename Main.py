@@ -25,7 +25,6 @@ class win(QTabWidget):
         self.addTab(ViewDataCo2Widget(self.bdd), "CO2")
         self.addTab(RouteWidget(self.bdd), "Route")
         self.addTab(AirPlainCompanyWidget(self.bdd), "Compagnie aérienne")
-        self.addTab(QWidget(), "Avion")
 
         # Affiche la fenêtre
         self.show()
