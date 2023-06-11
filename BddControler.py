@@ -489,6 +489,96 @@ class BddControler(QWidget):
         else:
             print("Erreur lors de l'exécution de la requête.§§")
             return []
+        
+    def getco2ByAirlineCompany_monde_asc(self) -> list:
+        """Retourne la liste des compagnies du monde dans l'ordre croissant d'émission de co2
+
+        Returns:
+            list: liste des émissions de co2
+        """
+        query = QSqlQuery(self.db)
+        query.prepare(" select * from co2_par_airlinecompany_monde order by co2_total asc limit 5;")
+
+        if query.exec():
+            data = []
+            while query.next():
+                name_ac = query.value("name_ac")
+                co2_ac = query.value("co2_total")
+                
+                data.append((name_ac,co2_ac))
+                
+            
+            return data
+        else:
+            print("Erreur lors de l'exécution de la requête.")
+            return []
+        
+    def getco2ByAirlineCompany_monde_desc(self) -> list:
+        """Retourne la liste des compagnies du monde dans l'ordre décroissant d'émission de co2
+
+        Returns:
+            list: liste des émissions de co2
+        """
+        query = QSqlQuery(self.db)
+        query.prepare(" select * from co2_par_airlinecompany_monde order by co2_total desc limit 5;")
+
+        if query.exec():
+            data = []
+            while query.next():
+                name_ac = query.value("name_ac")
+                co2_ac = query.value("co2_total")
+                
+                data.append((name_ac,co2_ac))
+              
+            return data
+        else:
+            print("Erreur lors de l'exécution de la requête.")
+            return []
+        
+    def getco2ByAirlineCompany_europe_asc(self) -> list:
+        """Retourne la liste des compagnies d'europe dans l'ordre croissant d'émission de co2
+
+        Returns:
+            list: liste des émissions de co2
+        """
+        query = QSqlQuery(self.db)
+        query.prepare(" select * from co2_par_airlinecompany_europe order by co2_total asc limit 5;")
+
+        if query.exec():
+            data = []
+            while query.next():
+                name_ac = query.value("name_ac")
+                co2_ac = query.value("co2_total")
+                
+                data.append((name_ac,co2_ac))
+                
+            return data
+        else:
+            print("Erreur lors de l'exécution de la requête.")
+            return []
+        
+    def getco2ByAirlineCompany_europe_desc(self) -> list:
+        """Retourne la liste des compagnies d'europe dans l'ordre décroissant d'émission de co2
+
+        Returns:
+            list: liste des émissions de co2
+        """
+        query = QSqlQuery(self.db)
+        query.prepare(" select * from co2_par_airlinecompany_europe order by co2_total desc limit 5;")
+
+        if query.exec():
+            data = []
+            while query.next():
+                name_ac = query.value("name_ac")
+                co2_ac = query.value("co2_total")
+                
+                data.append((name_ac,co2_ac))
+                
+            return data
+        else:
+            print("Erreur lors de l'exécution de la requête.")
+            return []
+        
     def closeConnection(self) -> None:
         """Ferme la connection avec la base de données
         """
@@ -500,5 +590,5 @@ class BddControler(QWidget):
 if __name__ == "__main__": 
     print(f'main') 
     app = QApplication(sys.argv) 
-    f = BddControler() 
+    f = BddControler()
     sys.exit(app.exec())
